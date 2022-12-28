@@ -1,6 +1,6 @@
 @extends('layouts.main')
-@section('title','Inicio')
-@section('content')
+@section('titulo','Inicio')
+@section('conteudo')
 
 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
 <div class="carousel-indicators">
