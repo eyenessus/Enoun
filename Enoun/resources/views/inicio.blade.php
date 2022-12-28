@@ -99,21 +99,21 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="/AdobeStock_493195061.jpeg" class="d-block w-100" alt="...">
+                <img src="/img/inicio/desenvolvimento.jpeg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Desenvolvimento de alto nível</h5>
                     <p>Os melhores softwares já desenvolvido.</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="/AdobeStock_519327901.jpeg" class="d-block w-100" alt="...">
+                <img src="/img/inicio/atendimento.jpeg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Atendimento especializado</h5>
                     <p>Seja aqui conosco ou a distância, nosso foco está em resolver sua solução!</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="/AdobeStock_292340795.jpeg" class="d-block w-100" alt="...">
+                <img src="/img/inicio/robo.jpeg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Serviços remotos</h5>
                     <p>Preparamos com muita práticidade, serviços remotos que você solicita em poucos toques!</p>
@@ -143,7 +143,7 @@
             
             <div class="col">
                 <div class="card h-100">
-                    <img src="/900ppi/Ativo 6.png" class="card-img-top p-md-5 p-3" alt="...">
+                    <img src="/img/icons/Ativo 6.png" class="card-img-top p-md-5 p-3" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Suporte Remoto</h5>
                         <p class="card-text">Time preparado para atender você á distancia de forma produtiva e
@@ -154,7 +154,7 @@
                 
                 <div class="col">
                     <div class="card h-100">
-                        <img src="/900ppi/Ativo 7.png" class="card-img-top p-md-5 p-3" alt="...">
+                        <img src="/img/icons/Ativo 7.png" class="card-img-top p-md-5 p-3" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Conversas em tempo real</h5>
                             <p class="card-text">Conversas em tempo real com os especialista, para sanar dúvidas e
@@ -165,7 +165,7 @@
                     
                     <div class="col">
                         <div class="card h-100">
-                            <img src="/300ppi/Ativo 4.png" class="card-img-top p-md-5 p-3" alt="...">
+                            <img src="/img/icons/Ativo 4.png" class="card-img-top p-md-5 p-3" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Assistência Técnica</h5>
                                 <p class="card-text">Você decide, quando, e quantos serviços precisa, a gente soluciona.</p>
@@ -175,7 +175,7 @@
                     
                     <div class="col">
                         <div class="card h-100">
-                            <img src="/900ppi/Ativo 8.png" class="card-img-top p-md-5 p-3" alt="...">
+                            <img src="/img/icons/Ativo 8.png" class="card-img-top p-md-5 p-3" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Proteção contra vírus</h5>
                                 <p class="card-text">Ajudamos a proteger você ou até mesmo sua empresa</p>
@@ -185,7 +185,7 @@
                     
                     <div class="col">
                         <div class="card h-100">
-                            <img src="/900ppi/Ativo 9.png" class="card-img-top p-md-5 p-4" alt="...">
+                            <img src="/img/icons/Ativo 9.png" class="card-img-top p-md-5 p-4" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Localização</h5>
                                 <p class="card-text">Para qualquer hora, temos a localização especifica do seu dispostivo
@@ -196,7 +196,7 @@
                     
                     <div class="col">
                         <div class="card h-100">
-                            <img src="/900ppi/Ativo 10.png" class="card-img-top p-md-5 p-4" alt="...">
+                            <img src="/img/icons/Ativo 10.png" class="card-img-top p-md-5 p-4" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Integridade</h5>
                                 <p class="card-text">Garantimos precisão, proteção e integridade com suas informações</p>
