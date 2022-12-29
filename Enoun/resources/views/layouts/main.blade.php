@@ -16,7 +16,7 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
         <nav class="navbar navbar-expand-lg border-bottom border-2 border-primary sticky-md-top"
             style="background-color: #00c8ff;">
             <div class="container-fluid ">
-                <a class="navbar-brand text-dark text-uppercase " href="#">
+                <a class="navbar-brand text-dark text-uppercase " href="{{route('inicio')}}">
                     <img src="/img/logoCentral/logo.png" alt="" height="30">
                 </a>
                 <button class="navbar-toggler border-top border border-info bg-light" type="button"
@@ -68,7 +68,7 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
                             <a href="{{route('contato')}}" class="nav-link text-light text-uppercase">Contato</a>
                         </li>
                     </ul>
-                    <form class="d-flex" role="search">
+                    <form class="d-flex" role="search" action="{{route('buscar')}}" >
                         <input class="form-control me-2" type="search" placeholder="Pesquisa" aria-label="Search">
                         <button class="btn btn-outline-info bg-info text-info border bg-light border-2 border-info"
                             type="submit">Buscar</button>

@@ -34,6 +34,9 @@ Route::get('/contact', function () {
     return view('Contato.contato');
 })->name('contato');
 
+Route::get('/search/{id?}', function ($id = null) {  
+    return view('Busca.search',['id' => $id]);
+ })->name('buscar');
 
 Route::fallback(function () {
     return "ERROR, PÁGINA NÃO ENCONTRADA";
