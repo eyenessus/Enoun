@@ -16,9 +16,9 @@ class EnounController extends Controller
        return view('Login.login'); 
     }
 
-    public function Cadastrar()
+    public function Cadastro()
     {
-        return view('Cadastrar.cadastrar');
+        return view('Cadastro.cadastro');
     }
 
     public function Contato(){
