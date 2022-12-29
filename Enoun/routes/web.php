@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\EnounController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,30 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('Inicio.inicio');
-})->name('inicio');
+Route::get('/',[EnounController::class,"Inicio"])->name('inicio');
 
 
-Route::get('/login', function () {
-    return view('Login.login');
-})->name('login');
+Route::get('/login', [EnounController::class,'Login'])->name('login');
 
-Route::get('/signin', function () {
-    return view('Cadastro.cadastro');
-})->name('cadastro');
+Route::get('/signin',[EnounController::class,"Cadastro"])->name('cadastro');
 
-Route::get('/service', function () {
-    return view('Servicos.servicos');
-})->name('servicos');
+Route::get('/service', [EnounController::class,"Servicos"])->name('servicos');
 
-Route::get('/contact', function () {
-    return view('Contato.contato');
-})->name('contato');
+Route::get('/contact', [EnounController::class,"Contato"])->name('contato');
 
-Route::get('/search/{id?}', function ($id = null) {  
-    return view('Busca.search',['id' => $id]);
- })->name('buscar');
+Route::get('/search/{id?}', [EnounController::class,'Buscar'])->name('buscar');
 
 Route::fallback(function () {
     return "ERROR, PÁGINA NÃO ENCONTRADA";
