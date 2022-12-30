@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\FuncCall;
 use App\Models\Produto;
-
+use App\Models\Servico;
 class EnounController extends Controller
 {
     public function Inicio(){
@@ -27,7 +27,8 @@ class EnounController extends Controller
     }
 
     public function Servicos(){
-        return view('Servicos.servicos');
+        $services =  Servico::all();
+        return view('Servicos.servicos',['serv'=>$services]);
     }
 
     public function Buscar(Request $request)
