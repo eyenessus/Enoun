@@ -2,7 +2,7 @@
 @section('title','Contato')
 @section('conteudo')
 <div class="container">
-<form action="" method="POST" name="cadastro" class="card">
+<form action="" method="POST" name="cadastro">
 <h1>Contato</h1>
 <div class="mb-3">
   <label for="user" class="form-label">Usuário</label>
