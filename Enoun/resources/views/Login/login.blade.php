@@ -1,19 +1,22 @@
 @extends('layouts.main')
 @section('title','Login')
 @section('conteudo')
-<h1>Login</h1>
+
 <div class="container">
-<form action="" method="POST" name="login" class="card">
+<h1>Login</h1>
+<form>
+  <div class="mb-3">
+    <label for="user" class="form-label">Usuário</label>
+    <input type="text" class="form-control" id="user" >
 
-<label for="user">Usuário :</label>
-<input type="text" name="user" id="user">
-
-<label for="password">Senha :</label>
-<input type="password" name="senha" id="senha">
-
-<button class="btn btn-info" type="submit" name="login" value="Login" >Entrar</button>
-
+  </div>
+  <div class="mb-3">
+    <label for="senha" class="form-label">Senha</label>
+    <input type="password" class="form-control" id="senha">
+    <div id="senha" class="form-text">Nunca compartilhe sua senhas.</div>
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Entrar</button>
 </form>
-
 </div>
 @endsection
