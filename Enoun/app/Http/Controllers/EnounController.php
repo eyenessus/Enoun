@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\FuncCall;
+use App\Models\Produto;
 
 class EnounController extends Controller
 {
