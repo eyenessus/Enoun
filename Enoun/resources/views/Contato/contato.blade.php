@@ -13,11 +13,12 @@
   <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="mensagem"></textarea>
 </div>
 
-<div>
-<button class="btn btn-info float-end" type="submit" name="cadastro" value="Cadastro" >Enviar</button>
-</div>
+
+<button class="btn btn-primary" type="submit" name="cadastro" value="Cadastro" >Enviar</button>
+
 
 </form>
 
-
+</div>
 @endsection
+
