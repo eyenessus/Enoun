@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use PhpParser\Node\Expr\FuncCall;
 use App\Models\Produto;
 use App\Models\Servico;
+use App\Models\Usuario;
 class EnounController extends Controller
 {
     public function Inicio(){
@@ -31,9 +32,15 @@ class EnounController extends Controller
         return view('Servicos.servicos',['serv'=>$services]);
     }
 
-    public function Buscar(Request $request)
+    public function Buscar()
     {
-        $request->query();
-        return view('Busca.search',['id'=>$request]);
+        return view('Busca.search');
+    }
+
+    public function Cadastrar(Request $requisicao){
+       
+        Usuario::create($requisicao->all());
+        return view('Inicio.inicio');
+       
     }
 }

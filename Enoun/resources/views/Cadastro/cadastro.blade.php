@@ -4,15 +4,15 @@
 
 <div class="container">
 <h1>CADASTRO</h1>
-<form class="row g-3">
-
+<form class="row g-3" action="{{route('inserir')}}" method="POST">
+@csrf
 <div class="col-md-6">
     <label for="pnome" class="form-label">Nome</label>
-    <input type="text" class="form-control" id="pnome" name="pnome">
+    <input type="text" class="form-control" id="nome" name="nome">
   </div>
   <div class="col-md-6">
     <label for="snome" class="form-label">Sobrenome</label>
-    <input type="text" class="form-control" id="snome" name="snome">
+    <input type="text" class="form-control" id="nome" name="sobrenome">
   </div>
   <div class="col-md-6">
     <label for="email" class="form-label">Email</label>
@@ -37,18 +37,18 @@
   </div>
   <div class="col-md-4">
     <label for="estado" class="form-label">Estado</label>
-    <select id="estado" class="form-select">
+    <select name="estado" class="form-select">
       <option selected>Escolha...</option>
-      <option name="sp" value="sp">SP</option>
+      <option value="sp">SP</option>
     </select>
   </div>
-  <div class="col-md-2">
+  <div class="col-md-2"> 
     <label for="cep" class="form-label">CEP</label>
     <input type="text" class="form-control" id="cep" name="cep">
   </div>
  
   <div class="col-12">
-  <button class="btn btn-info" type="submit" name="cadastro" value="Cadastro" >Cadastrar</button>
+  <button class="btn btn-info" type="submit" >Cadastrar</button>
   </div>
 </form>
 

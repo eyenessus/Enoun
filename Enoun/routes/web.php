@@ -25,6 +25,7 @@ Route::get('/service', [EnounController::class,"Servicos"])->name('servicos');
 Route::get('/contact', [EnounController::class,"Contato"])->name('contato');
 
 Route::get('/search/{id?}', [EnounController::class,'Buscar'])->name('buscar');
+Route::post('/insert',[EnounController::class,'Cadastrar'])->name('inserir');
 
 Route::fallback(function () {
     return "ERROR, PÁGINA NÃO ENCONTRADA";
