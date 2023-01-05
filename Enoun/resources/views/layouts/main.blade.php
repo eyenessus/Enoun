@@ -69,7 +69,7 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
                         </li>
                     </ul>
                     <form class="d-flex" role="search" action="{{route('buscar')}}" >
-                        <input class="form-control me-2" type="search" placeholder="Pesquisa" aria-label="Search">
+                        <input class="form-control me-2" type="search" placeholder="Pesquisa" aria-label="Search" name="pesquisa">
                         <button class="btn btn-outline-info bg-info text-info border bg-light border-2 border-info"
                             type="submit">Buscar</button>
                     </form>

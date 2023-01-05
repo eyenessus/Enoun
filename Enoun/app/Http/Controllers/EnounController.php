@@ -37,10 +37,11 @@ class EnounController extends Controller
 
     public function Buscar()
     {
-        $busca = request('search');
+        $busca = request('pesquisa');
         return view('Busca.search',['idbusca'=>$busca]);
     }
 
+ 
     public function Cadastrar(Request $requisicao){
        
         Usuario::create($requisicao->all());
