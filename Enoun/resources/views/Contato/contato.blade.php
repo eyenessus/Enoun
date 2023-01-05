@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title','Contato')
+@section('titulo','Contato')
 @section('conteudo')
 <div class="container">
 <form action="" method="POST" name="cadastro">

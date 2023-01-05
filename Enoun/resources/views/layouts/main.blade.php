@@ -62,6 +62,12 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
                                 </li>
                                 <li><a class="dropdown-item" href="#">Monitores</a></li>
                                 <li><a class="dropdown-item" href="#">Roteador Wireless</a></li>
+
+                                <li>
+                                    <h6 class="dropdown-header text-dark text-uppercase">Outras Opções</h6>
+                                </li>
+                                <li><a class="dropdown-item" href="#">Reg</a></li>
+                                <li><a class="dropdown-item" href="#">Roteador Wireless</a></li>
                             </ul>
                         </li>
                         <li>

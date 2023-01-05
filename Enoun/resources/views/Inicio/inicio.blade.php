@@ -117,12 +117,19 @@ aria-label="Slide 2"></button>
     </div>
 
     <div class="container m-md-5 mb-3">
-        <h1>Informações do dia</h1>
         @if(count($inicio) > 0 )
             @foreach($inicio as $value)
-            <h1> Dados mostrando </h1>
-            <p>Titulo: {{ $value->titulo}} </p>
-            <p>Descricao: {{ $value->descricao}} </p>
+
+        <div class="card mb-3">
+        <img src="..." class="card-img-top" alt="...">
+     <div class="card-body">
+        <h5 class="card-title">{{ $value->titulo}}</h5>
+        <p class="card-text">{{ $value->descricao}}</p>
+        
+    </div>
+    </div>
+           
+           
             @endforeach
             @else
          <div class="d-flex justify-content-center">
