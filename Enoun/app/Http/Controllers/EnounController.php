@@ -46,6 +46,19 @@ class EnounController extends Controller
        
         Usuario::create($requisicao->all());
         return redirect('/')->with('mensagem', 'Cadastrado com sucesso!');
-       
     }
+
+    public function RService(){
+        return view('Registro.service');
+    }
+
+    public function RNoti(){
+        return view('Registro.noticiasini');
+    }
+
+
+
+
+
+
 }

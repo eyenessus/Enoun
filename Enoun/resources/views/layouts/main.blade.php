@@ -43,16 +43,16 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
                                 <li>
                                     <h6 class="dropdown-header text-dark text-uppercase">Informática</h6>
                                 </li>
-                                <li><a class="dropdown-item" href="#">Serviços digitais</a></li>
-                                <li><a class="dropdown-item" href="#">Revelações de fotos</a></li>
+                                <li><a class="dropdown-item" href="{{route('servicos')}}">Serviços digitais</a></li>
+                                <li><a class="dropdown-item" href="{{route('servicos')}}">Revelações de fotos</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li>
                                     <h6 class="dropdown-header text-dark text-uppercase">Softwares</h6>
                                 </li>
-                                <li><a class="dropdown-item" href="#">Windows 11 Pro</a></li>
-                                <li><a class="dropdown-item" href="#">Desenvolvimento de softwares</a></li>
+                                <li><a class="dropdown-item" href="{{route('servicos')}}">Windows 11 Pro</a></li>
+                                <li><a class="dropdown-item" href="{{route('servicos')}}">Desenvolvimento de softwares</a></li>
 
                                 <li>
                                     <hr class="dropdown-divider">
@@ -60,14 +60,14 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
                                 <li>
                                     <h6 class="dropdown-header text-dark text-uppercase">Acessórios</h6>
                                 </li>
-                                <li><a class="dropdown-item" href="#">Monitores</a></li>
-                                <li><a class="dropdown-item" href="#">Roteador Wireless</a></li>
+                                <li><a class="dropdown-item" href="{{route('servicos')}}">Monitores</a></li>
+                                <li><a class="dropdown-item" href="{{route('servicos')}}">Roteador Wireless</a></li>
 
                                 <li>
                                     <h6 class="dropdown-header text-dark text-uppercase">Outras Opções</h6>
                                 </li>
-                                <li><a class="dropdown-item" href="#">Reg</a></li>
-                                <li><a class="dropdown-item" href="#">Roteador Wireless</a></li>
+                                <li><a class="dropdown-item" href="{{route('RegistrarNoticia')}}">Registrar Notícias (Início)</a></li>
+                                <li><a class="dropdown-item" href="{{route('RegistrarServico')}}">Registra Serviços</a></li>
                             </ul>
                         </li>
                         <li>
