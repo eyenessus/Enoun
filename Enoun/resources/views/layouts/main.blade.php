@@ -87,6 +87,9 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
     </header>
 
     <main>
+        @if(session('mensagem'))
+        <p>{{session('mensagem')}}</p>
+        @endif
         @yield('conteudo')
     </main>
 

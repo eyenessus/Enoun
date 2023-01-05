@@ -118,9 +118,18 @@ aria-label="Slide 2"></button>
 
     <div class="container m-md-5 mb-3">
         <h1>Informações do dia</h1>
-        <div class="d-flex justify-content-center">
+        @if(count($inicio) > 0 )
+            @foreach($inicio as $value)
+            <h1> Dados mostrando </h1>
+            <p>Titulo: {{ $value->titulo}} </p>
+            <p>Descricao: {{ $value->descricao}} </p>
+            @endforeach
+            @else
+         <div class="d-flex justify-content-center">
             <div class="spinner-border" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
+            @endif
+         
         </div>
         @endsection
