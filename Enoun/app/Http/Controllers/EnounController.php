@@ -55,6 +55,30 @@ class EnounController extends Controller
     public function RNoti(){
         return view('Registro.noticiasini');
     }
+    public function SaveNoticia(Request $request){
+        $noticias = new Inicio;
+        $noticias->titulo = $request->titulo;
+        $noticias->descricao = $request->descricao;
+
+
+
+        //imagem
+        if($request->hasFile('imagem') && $request->file('imagem')->isValid()){
+
+            $requisaoImagem = $request->imagem;
+            $extensao = $requisaoImagem->extension();
+            $nomeImagem = md5($requisaoImagem->getClientOriginalName() . strtotime("now") . $extensao);
+            $requisaoImagem->move(public_path('img/publicnoticias'), $nomeImagem);
+            $noticias->imagem = $nomeImagem;
+        }
+ 
+        $noticias->save();
+
+        return redirect('/');
+    }
+    public function SaveService(){
+
+    }
 
 
 

@@ -5,6 +5,7 @@
 <div class="container">
 <h1>Registro de serviços</h1>
 <form method="POST" action="{{route('saveservice')}}" enctype="multipart/form-data">
+@csrf
     <div class="mb-3">
   <label for="titulo" class="form-label">Titulo do serviço</label>
   <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo">
