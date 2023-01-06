@@ -117,11 +117,12 @@ aria-label="Slide 2"></button>
     </div>
 
     <div class="container m-md-5 mb-3">
+        <h1 id="noticias">Notícias</h1>
         @if(count($inicio) > 0 )
             @foreach($inicio as $value)
 
         <div class="card mb-3">
-        <img src="..." class="card-img-top" alt="...">
+        <img src="/img/publicnoticias/{{$value->imagem}}" class="card-img-top h-100 w-100" alt="...">
      <div class="card-body">
         <h5 class="card-title">{{ $value->titulo}}</h5>
         <p class="card-text">{{ $value->descricao}}</p>

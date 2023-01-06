@@ -21,6 +21,7 @@ Route::get('/login', [EnounController::class,'Login'])->name('login');
 Route::get('/signin',[EnounController::class,"Cadastro"])->name('cadastro');
 
 Route::get('/service', [EnounController::class,"Servicos"])->name('servicos');
+Route::get('/service/show/{id}', [EnounController::class,"MostrarServico"])->name('showService');
 
 Route::get('/contact', [EnounController::class,"Contato"])->name('contato');
 

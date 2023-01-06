@@ -8,6 +8,8 @@ use App\Models\Produto;
 use App\Models\Servico;
 use App\Models\Usuario;
 use App\Models\Inicio;
+use PHPUnit\Framework\Error\Notice;
+
 class EnounController extends Controller
 {
     public function Inicio(){
@@ -76,8 +78,26 @@ class EnounController extends Controller
 
         return redirect('/');
     }
-    public function SaveService(){
+    public function SaveService(Request $request){
+        $service = new Servico;
+        $service->nome = $request->nome;
+        $service->descricao = $request->descricao;
 
+        $service->categoria = $request->categoria;
+        $service->codigo = $request->codigo;
+        //imagem
+        if($request->hasFile('imagem') && $request->file('imagem')->isValid()){
+
+            $requisaoImagem = $request->imagem;
+            $extensao = $requisaoImagem->extension();
+            $nomeImagem = md5($requisaoImagem->getClientOriginalName() . strtotime("now") . $extensao);
+            $requisaoImagem->move(public_path('img/publicserivces'), $nomeImagem);
+            $service->imagem = $nomeImagem;
+        }
+       
+        $service->save();
+
+        return redirect('/');
     }
 
 
