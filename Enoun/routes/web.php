@@ -37,7 +37,7 @@ Route::post('/insert',[EnounController::class,'store'])->name('inserir');
 Route::get('/formNoticias', [EnounController::class, 'RNoti'])->name('RegistrarNoticia');
 Route::get('/formServicos', [EnounController::class, 'RService'])->name('RegistrarServico');
 
-
+Route::get('/resultadoNoticias/{id}', [EnounController::class, 'showNoticias']);
 
 //POSTS
 Route::post('/regsave',[EnounController::class,'SaveService'])->name('saveservice');

@@ -107,5 +107,9 @@ class EnounController extends Controller
         }
 
 
+        public function showNoticias($id){
+            $resultado = Inicio::findOrFail($id);
+            return view('Inicio.resultado',['resultadoNoticia'=>$resultado]);
+        }
 
 }
