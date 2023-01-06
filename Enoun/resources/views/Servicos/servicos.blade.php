@@ -14,6 +14,7 @@
       <div class="card-body ">
         <h5 class="card-title">{{$servicos->nome}}</h5>
         <p class="card-text">{{$servicos->descricao}}</p>
+         <a href="service/show/{{$servicos->id}}" class="btn btn-primary">Saiba mais</a>
       </div>
     </div>
   </div>
@@ -31,7 +32,7 @@
       <span class="placeholder col-6"></span>
       <span class="placeholder col-8"></span>
     </p>
-    
+        <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-6"></a>
   </div>
 </div>
 @endif
@@ -51,6 +52,7 @@
       <div class="card-body ">
         <h5 class="card-title">{{$servicos->nome}}</h5>
         <p class="card-text">{{$servicos->descricao}}</p>
+         <a href="service/show/{{$servicos->id}}" class="btn btn-primary">Saiba mais</a>
       </div>
     </div>
   </div>
@@ -68,7 +70,7 @@
       <span class="placeholder col-6"></span>
       <span class="placeholder col-8"></span>
     </p>
-    
+        <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-6"></a>
   </div>
 </div>
     @endif
@@ -86,6 +88,7 @@
       <div class="card-body ">
         <h5 class="card-title">{{$servicos->nome}}</h5>
         <p class="card-text">{{$servicos->descricao}}</p>
+         <a href="service/show/{{$servicos->id}}" class="btn btn-primary">Saiba mais</a>
       </div>
     </div>
   </div>
@@ -104,7 +107,7 @@
       <span class="placeholder col-6"></span>
       <span class="placeholder col-8"></span>
     </p>
-    
+        <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-6"></a>
   </div>
 </div>
     @endif
@@ -122,6 +125,8 @@
       <div class="card-body ">
         <h5 class="card-title">{{$servicos->nome}}</h5>
         <p class="card-text">{{$servicos->descricao}}</p>
+         <a href="service/show/{{$servicos->id}}" class="btn btn-primary">Saiba mais</a>
+        
       </div>
     </div>
   </div>
@@ -139,7 +144,7 @@
       <span class="placeholder col-6"></span>
       <span class="placeholder col-8"></span>
     </p>
-    
+        <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-6"></a>
   </div>
 </div>
     @endif
