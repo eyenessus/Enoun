@@ -12,7 +12,7 @@ use PHPUnit\Framework\Error\Notice;
 
 class EnounController extends Controller
 {
-    public function Inicio(){
+    public function index(){
         //pagina inicial
         $inforday = Inicio::all();
         return view('Inicio.inicio',['inicio' => $inforday]);
@@ -22,7 +22,7 @@ class EnounController extends Controller
        return view('Login.login'); 
     }
 
-    public function Cadastro()
+    public function create()
     {
         return view('Cadastro.cadastro');
     }
@@ -44,7 +44,7 @@ class EnounController extends Controller
     }
 
  
-    public function Cadastrar(Request $requisicao){
+    public function store(Request $requisicao){
        
         Usuario::create($requisicao->all());
         return redirect('/')->with('mensagem', 'Cadastrado com sucesso!');

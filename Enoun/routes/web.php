@@ -13,30 +13,37 @@ use App\Http\Controllers\EnounController;
 |
 */
 
-Route::get('/',[EnounController::class,"Inicio"])->name('inicio');
 
+
+
+
+//GETS
+Route::get('/',[EnounController::class,"index"])->name('inicio');
 
 Route::get('/login', [EnounController::class,'Login'])->name('login');
 
-Route::get('/signin',[EnounController::class,"Cadastro"])->name('cadastro');
+Route::get('/signin',[EnounController::class,"create"])->name('cadastro');
 
 Route::get('/service', [EnounController::class,"Servicos"])->name('servicos');
-Route::get('/service/show/{id}', [EnounController::class,"MostrarServico"])->name('showService');
+
+Route::get('/service/show/{id}', [EnounController::class,"show"])->name('showService');
 
 Route::get('/contact', [EnounController::class,"Contato"])->name('contato');
 
 Route::get('/search/{id?}', [EnounController::class,'Buscar'])->name('buscar');
 
-Route::post('/insert',[EnounController::class,'Cadastrar'])->name('inserir');
+Route::post('/insert',[EnounController::class,'store'])->name('inserir');
 
 Route::get('/formNoticias', [EnounController::class, 'RNoti'])->name('RegistrarNoticia');
 Route::get('/formServicos', [EnounController::class, 'RService'])->name('RegistrarServico');
 
 
+
+//POSTS
+Route::post('/regsave',[EnounController::class,'SaveService'])->name('saveservice');
 Route::post('/regnoti',[EnounController::class,'SaveNoticia'])->name('savenoti');
 
-Route::post('/regsave',[EnounController::class,'SaveService'])->name('saveservice');
-
+//FALLBACKS
 Route::fallback(function () {
     return "ERROR, PÁGINA NÃO ENCONTRADA";
 });
