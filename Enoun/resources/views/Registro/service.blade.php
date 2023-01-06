@@ -4,18 +4,18 @@
 
 <div class="container">
 <h1>Registro de serviços</h1>
-<form>
+<form method="POST" action="{{route('saveservice')}}" enctype="multipart/form-data">
     <div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Titulo do serviço</label>
-  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Titulo">
+  <label for="titulo" class="form-label">Titulo do serviço</label>
+  <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo">
 </div>
 <div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Imagem:</label>
-  <input type="file" class="form-control" id="exampleFormControlInput1">
+  <label for="imagem" class="form-label">Imagem:</label>
+  <input type="file" class="form-control" id="imagem" name="imagem">
 </div>
 <div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">Descrição:</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  <label for="descricao" class="form-label">Descrição:</label>
+  <textarea class="form-control" id="descricao" name="descricao" rows="3"></textarea>
 </div>
 
 <div class="mb-3">

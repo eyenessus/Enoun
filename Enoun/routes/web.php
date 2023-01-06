@@ -28,8 +28,13 @@ Route::get('/search/{id?}', [EnounController::class,'Buscar'])->name('buscar');
 
 Route::post('/insert',[EnounController::class,'Cadastrar'])->name('inserir');
 
-Route::get('/registroNot', [EnounController::class, 'RNoti'])->name('RegistrarNoticia');
-Route::get('/registroServ', [EnounController::class, 'RService'])->name('RegistrarServico');
+Route::get('/formNoticias', [EnounController::class, 'RNoti'])->name('RegistrarNoticia');
+Route::get('/formServicos', [EnounController::class, 'RService'])->name('RegistrarServico');
+
+
+Route::post('/regnoti',[EnounController::class,'SaveNoticia'])->name('savenoti');
+
+Route::post('/regsave',[EnounController::class,'SaveService'])->name('saveservice');
 
 Route::fallback(function () {
     return "ERROR, PÁGINA NÃO ENCONTRADA";
