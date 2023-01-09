@@ -7,12 +7,12 @@
 <form>
   <div class="mb-3">
     <label for="user" class="form-label">Usuário</label>
-    <input type="text" class="form-control" id="user" >
+    <input type="text" class="form-control" id="user" required>
 
   </div>
   <div class="mb-3">
     <label for="senha" class="form-label">Senha</label>
-    <input type="password" class="form-control" id="senha">
+    <input type="password" class="form-control" id="senha" required>
     <div id="senha" class="form-text">Nunca compartilhe sua senhas.</div>
   </div>
   
