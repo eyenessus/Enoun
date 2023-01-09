@@ -43,6 +43,7 @@ Route::get('/resultadoNoticias/{id}', [EnounController::class, 'showNoticias']);
 Route::post('/regsave',[EnounController::class,'SaveService'])->name('saveservice');
 Route::post('/regnoti',[EnounController::class,'SaveNoticia'])->name('savenoti');
 
+Route::post('/registraContato', [EnounController::class, 'MessContats'])->name('contate');
 //FALLBACKS
 Route::fallback(function () {
     return "ERROR, PÁGINA NÃO ENCONTRADA";

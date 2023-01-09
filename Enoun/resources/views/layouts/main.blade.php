@@ -100,9 +100,13 @@
 
     <main>
         @if(session('mensagem'))
-        <p>{{session('mensagem')}}</p>
+        <p class="text-success text-uppercase text-center">{{session('mensagem')}}</p>
+        @endif
+        @if(session('contato'))
+        <p class="text-success text-uppercase text-center">{{session('contato')}}</p>
         @endif
         @yield('conteudo')
+       
     </main>
 
 

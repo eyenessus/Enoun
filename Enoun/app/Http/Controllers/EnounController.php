@@ -8,6 +8,7 @@ use App\Models\Produto;
 use App\Models\Servico;
 use App\Models\Usuario;
 use App\Models\Inicio;
+use App\Models\Contato;
 use App\Models\Slide;
 use PHPUnit\Framework\Error\Notice;
 
@@ -116,4 +117,11 @@ class EnounController extends Controller
             return view('Inicio.resultado',['resultadoNoticia'=>$resultado]);
         }
 
+        public function MessContats(Request $request){
+            $contatos = new Contato();
+            $contatos->usuario = $request->usuario;
+            $contatos->mensagem = $request->mensagem;
+            $contatos->save();        
+            return redirect('/')->with('contato','Mensagem enviada com sucesso!');
+        }
 }

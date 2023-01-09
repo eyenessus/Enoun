@@ -4,7 +4,7 @@
 
 <div class="container">
 <h1 class="p-2 p-md-3">CADASTRO</h1>
-<form class="row g-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded-3 m-3 mt-md-3" action="{{route('inserir')}}" method="POST">
+<form class="row g-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded-3 m-3 mt-md-3 bg-light" action="{{route('inserir')}}" method="POST">
 @csrf
 <div class="col-md-6">
     <label for="pnome" class="form-label">Nome</label>
