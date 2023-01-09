@@ -126,7 +126,7 @@ aria-label="Slide 2"></button>
      <div class="card-body">
         <h5 class="card-title">{{ $value->titulo}}</h5>
         <p class="card-text">{{ $value->descricao}}</p>
-        <p class="card-text"><small class="text-muted">{{$value->updated_at}}</small></p>
+        <p class="card-text"><small class="text-muted">{{date('d/m/Y', strtotime($value->updated_at))}}</small></p>
         <a href="/resultadoNoticias/{{$value->id}}" class="btn btn-primary">Saiba mais</a>
         
     </div>
