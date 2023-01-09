@@ -8,15 +8,18 @@ use App\Models\Produto;
 use App\Models\Servico;
 use App\Models\Usuario;
 use App\Models\Inicio;
+use App\Models\Slide;
 use PHPUnit\Framework\Error\Notice;
 
 class EnounController extends Controller
 {
     public function index(){
         //pagina inicial
-        $inforday = Inicio::all();
 
-        return view('Inicio.inicio',['inicio' => $inforday]);
+        $inforday = Inicio::all();
+        return view('Inicio.inicio',
+        ['inicio' => $inforday]
+    );
     }
 
     public function Login(){

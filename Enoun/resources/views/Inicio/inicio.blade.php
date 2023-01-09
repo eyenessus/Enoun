@@ -10,6 +10,7 @@
         aria-label="Slide 2"></button>
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
+    
     <div class="carousel-inner h-75">
         <div class="carousel-item active">
             <img src="/img/inicio/desenvolvimento.jpeg" class="d-block w-100" alt="...">
@@ -148,6 +149,9 @@
                                 <h1>Destaques</h1>
                                 <div class="card">
                                     <div class="card-body">
+                      
+                      
+                                        <img class="card card-img-top img-fluid" src="https://tudosobrehospedagemdesites.com.br/site/wp-content/uploads/2013/10/o-que-e-html-destaque-1.png"/>
                                         <div class="card-title mt-3">Informações</div>
                                         <div class="btn btn-info text-capitalize text-light">Clique aqui</div>
                                     </div>
