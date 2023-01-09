@@ -121,10 +121,10 @@ aria-label="Slide 2"></button>
         @if(count($inicio) > 0 )
             @foreach($inicio as $value)
 
-        <div class="card mb-3">
-        <img src="/img/publicnoticias/{{$value->imagem}}" class="card-img-top h-100 w-100" alt="...">
+        <div>
+        <img src="/img/publicnoticias/{{$value->imagem}}" class="card-img-top h-25 w-75" alt="..." id="imagemnote">
      <div class="card-body">
-        <h5 class="card-title">{{ $value->titulo}}</h5>
+        <h5 class="card-title mt-3">{{ $value->titulo}}</h5>
         <p class="card-text">{{ $value->descricao}}</p>
         <p class="card-text"><small class="text-muted">{{date('d/m/Y', strtotime($value->updated_at))}}</small></p>
         <a href="/resultadoNoticias/{{$value->id}}" class="btn btn-primary">Saiba mais</a>

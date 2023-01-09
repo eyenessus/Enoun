@@ -44,8 +44,8 @@
 
 
 <div class="mb-3 form-check">
-  <input type="checkbox" class="form-check-input" id="novo" value="Novo" name="inforextra[]" >
-  <label class="form-check-label" for="novo">Novo</label>
+  <input type="checkbox" class="form-check-input" id="remoto" value="remoto" name="inforextra[]" >
+  <label class="form-check-label" for="remoto">Novo</label>
 </div>
 
 <div class="mb-3 form-check">
