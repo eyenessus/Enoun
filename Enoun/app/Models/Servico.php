@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Servico extends Model
 {
+
+    protected $casts  =
+        [ 'inforextra' => 'array' ];
+
+
+
     use HasFactory;
 }

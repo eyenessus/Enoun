@@ -7,6 +7,7 @@
 <h2 id="informatica">Informática</h2>
 <div class="row row-cols-1 row-cols-md-3 g-4">
   @foreach($serv as $servicos)
+
   @if($servicos->categoria == "informatica")  
   <div class="col">
     <div class="card h-100">
@@ -14,7 +15,10 @@
       <div class="card-body ">
         <h5 class="card-title">{{$servicos->nome}}</h5>
         <p class="card-text">{{$servicos->descricao}}</p>
-         <a href="service/show/{{$servicos->id}}" class="btn btn-primary">Saiba mais</a>
+        @foreach($servicos->inforextra as $servi)
+        <p>{{$servi}}</p>
+        @endforeach
+<a href="service/show/{{$servicos->id}}" class="btn btn-primary">Saiba mais</a>
       </div>
     </div>
   </div>
@@ -42,6 +46,8 @@
 
 
 
+
+
 <h2 id="webti">Desenvolvimento de website </h2>
 <div class="row row-cols-1 row-cols-md-3 g-4">
   @foreach($serv as $servicos)
@@ -52,6 +58,9 @@
       <div class="card-body ">
         <h5 class="card-title">{{$servicos->nome}}</h5>
         <p class="card-text">{{$servicos->descricao}}</p>
+        @foreach($servicos->inforextra as $servi)
+        <p>{{$servi}}</p>
+        @endforeach
          <a href="service/show/{{$servicos->id}}" class="btn btn-primary">Saiba mais</a>
       </div>
     </div>
@@ -88,6 +97,9 @@
       <div class="card-body ">
         <h5 class="card-title">{{$servicos->nome}}</h5>
         <p class="card-text">{{$servicos->descricao}}</p>
+        @foreach($servicos->inforextra as $servi)
+        <p>{{$servi}}</p>
+        @endforeach
          <a href="service/show/{{$servicos->id}}" class="btn btn-primary">Saiba mais</a>
       </div>
     </div>
@@ -125,6 +137,9 @@
       <div class="card-body ">
         <h5 class="card-title">{{$servicos->nome}}</h5>
         <p class="card-text">{{$servicos->descricao}}</p>
+        @foreach($servicos->inforextra as $servi)
+        <p>{{$servi}}</p>
+        @endforeach
          <a href="service/show/{{$servicos->id}}" class="btn btn-primary">Saiba mais</a>
         
       </div>

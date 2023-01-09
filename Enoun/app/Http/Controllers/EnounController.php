@@ -86,6 +86,7 @@ class EnounController extends Controller
         $service->descricao = $request->descricao;
         $service->categoria = $request->categoria;
         $service->codigo = $request->codigo;
+        $service->inforextra = $request->inforextra;
 
         //imagem
         if($request->hasFile('imagem') && $request->file('imagem')->isValid()){
