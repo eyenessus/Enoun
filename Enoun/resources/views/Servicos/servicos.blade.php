@@ -16,7 +16,7 @@
         <h5 class="card-title">{{$servicos->nome}}</h5>
         <p class="card-text">{{$servicos->descricao}}</p>
         @foreach($servicos->inforextra as $servi)
-        <p>{{$servi}}</p>
+        <p class="text-capitalize "> <i class="bi bi-check-circle-fill m-2" style="font-size: 30px; color: cornflowerblue;"></i>{{$servi}}</p>
         @endforeach
 <a href="service/show/{{$servicos->id}}" class="btn btn-primary">Saiba mais</a>
       </div>
@@ -59,7 +59,7 @@
         <h5 class="card-title">{{$servicos->nome}}</h5>
         <p class="card-text">{{$servicos->descricao}}</p>
         @foreach($servicos->inforextra as $servi)
-        <p>{{$servi}}</p>
+        <p class="text-capitalize "> <i class="bi bi-check-circle-fill m-2" style="font-size: 30px; color: cornflowerblue;"></i>{{$servi}}</p>
         @endforeach
          <a href="service/show/{{$servicos->id}}" class="btn btn-primary">Saiba mais</a>
       </div>
@@ -98,7 +98,7 @@
         <h5 class="card-title">{{$servicos->nome}}</h5>
         <p class="card-text">{{$servicos->descricao}}</p>
         @foreach($servicos->inforextra as $servi)
-        <p>{{$servi}}</p>
+        <p class="text-capitalize "> <i class="bi bi-check-circle-fill m-2" style="font-size: 30px; color: cornflowerblue;"></i>{{$servi}}</p>
         @endforeach
          <a href="service/show/{{$servicos->id}}" class="btn btn-primary">Saiba mais</a>
       </div>
@@ -138,7 +138,7 @@
         <h5 class="card-title">{{$servicos->nome}}</h5>
         <p class="card-text">{{$servicos->descricao}}</p>
         @foreach($servicos->inforextra as $servi)
-        <p>{{$servi}}</p>
+        <p class="text-capitalize "> <i class="bi bi-check-circle-fill m-2" style="font-size: 30px; color: cornflowerblue;"></i>{{$servi}}</p>
         @endforeach
          <a href="service/show/{{$servicos->id}}" class="btn btn-primary">Saiba mais</a>
         

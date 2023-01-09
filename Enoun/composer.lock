@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c61ff82cbf0142a401a48a8161e1595a",
+    "content-hash": "6cfa70c4f0bbd8e008ebe974bfc532c1",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5204,6 +5204,45 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/2.2.5"
             },
             "time": "2022-09-12T13:28:28+00:00"
+        },
+        {
+            "name": "twbs/bootstrap-icons",
+            "version": "v1.10.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twbs/icons.git",
+                "reference": "817d780a476dbb24b269a89ba56ff1d0d4125132"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twbs/icons/zipball/817d780a476dbb24b269a89ba56ff1d0d4125132",
+                "reference": "817d780a476dbb24b269a89ba56ff1d0d4125132",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Otto",
+                    "email": "markdotto@gmail.com"
+                }
+            ],
+            "description": "Official open source SVG icon library for Bootstrap",
+            "homepage": "https://icons.getbootstrap.com/",
+            "keywords": [
+                "bootstrap",
+                "icon font",
+                "icons",
+                "svg"
+            ],
+            "support": {
+                "issues": "https://github.com/twbs/icons/issues",
+                "source": "https://github.com/twbs/icons/tree/v1.10.3"
+            },
+            "time": "2022-12-27T05:46:02+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

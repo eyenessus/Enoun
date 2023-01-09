@@ -33,28 +33,28 @@
 </div>
 
 <div class="mb-3 form-check">
-  <input type="checkbox" class="form-check-input" id="atendimento" value="atende" name="inforextra[]" >
+  <input type="checkbox" class="form-check-input" id="atendimento" value="Atendimento Prioritário" name="inforextra[]" >
   <label class="form-check-label" for="atendimento">Atendimento prioritário</label>
 </div>
 
 <div class="mb-3 form-check">
-  <input type="checkbox" class="form-check-input" id="destaque" name="inforextra[]" value="destaque">
+  <input type="checkbox" class="form-check-input" id="destaque" name="inforextra[]" value="Em destaque">
   <label class="form-check-label" for="destaque">Em destaque</label>
 </div>
 
 
 <div class="mb-3 form-check">
-  <input type="checkbox" class="form-check-input" id="novo" value="novo" name="inforextra[]" >
+  <input type="checkbox" class="form-check-input" id="novo" value="Novo" name="inforextra[]" >
   <label class="form-check-label" for="novo">Novo</label>
 </div>
 
 <div class="mb-3 form-check">
-  <input type="checkbox" class="form-check-input" id="gratuito" name="inforextra[]" value="free" >
+  <input type="checkbox" class="form-check-input" id="gratuito" name="inforextra[]" value="Gratuito" >
   <label class="form-check-label" for="gratuito">Gratuito</label>
 </div>
 
 <div class="mb-3 form-check">
-  <input type="checkbox" class="form-check-input" id="pagamento" name="inforextra[]" value="pay">
+  <input type="checkbox" class="form-check-input" id="pagamento" name="inforextra[]" value="Pagamento">
   <label class="form-check-label" for="pagamento">Pagamento</label>
 </div>
 
