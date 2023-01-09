@@ -2,8 +2,9 @@
 @section('titulo','Contato')
 @section('conteudo')
 <div class="container">
-<form action="" method="POST" name="cadastro">
-<h1>Contato</h1>
+  <h1 class="p-2 p-md-3">Contato</h1>
+<form action="" method="POST" name="cadastro" class="row g-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded-3 m-3 mt-md-3 m-md-5">
+
 <div class="mb-3">
   <label for="user" class="form-label">Usuário</label>
   <input type="text" class="form-control" id="user" placeholder="EXEMPLO22" name="user" required>
