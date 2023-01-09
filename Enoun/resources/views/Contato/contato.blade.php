@@ -15,7 +15,7 @@
 </div>
 
 <div>
-  <button class="btn btn-primary" type="submit" name="cadastro" value="Cadastro" >Enviar</button>
+  <button class="btn btn-primary float-end" type="submit" name="cadastro" value="Cadastro" >Enviar</button>
 </div>
 
 

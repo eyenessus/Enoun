@@ -48,7 +48,7 @@
   </div>
  
   <div class="col-12">
-  <button class="btn btn-info" type="submit" >Cadastrar</button>
+  <button class="btn btn-info float-end" type="submit" >Cadastrar</button>
   </div>
 </form>
 

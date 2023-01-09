@@ -17,7 +17,7 @@
       <div id="senha" class="form-text">Nunca compartilhe sua senhas.</div>
     </div>
     <div>
-      <button type="submit" class="btn btn-primary">Entrar</button> 
+      <button type="submit" class="btn btn-primary float-end">Entrar</button> 
     </div>
     
  
