@@ -1,7 +1,12 @@
-h1 {
-    color: rgb(102, 176, 241);
-}
-
-#imagemnote {
-    width: 100%;
-}
+    h1 {
+        color: rgb(102, 176, 241);
+    }
+    
+    body {
+        background-color: #cff2ffd7;
+    }
+    
+    #resultadoimagem {
+        width: 50%;
+        margin: 5% 0% 2% 24%;
+    }
