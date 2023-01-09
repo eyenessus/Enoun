@@ -4,7 +4,7 @@
 
 <div class="container">
 <h1>Registro de Noticias</h1>
-<form method="POST" action="{{route('savenoti')}}" enctype="multipart/form-data">
+<form method="POST" action="{{route('savenoti')}}" enctype="multipart/form-data" class="bg-light p-5 rounded shadow m-5">
 @csrf
     <div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Titulo da notícia</label>
@@ -20,7 +20,6 @@
 </div>
 
 <div class="mb-3">
-
  <button class="btn btn-success">Registrar</button>
 </div>
 </form>

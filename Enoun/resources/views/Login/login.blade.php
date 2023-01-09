@@ -16,8 +16,11 @@
       <input type="password" class="form-control" id="senha" required>
       <div id="senha" class="form-text">Nunca compartilhe sua senhas.</div>
     </div>
+    <div>
+      <button type="submit" class="btn btn-primary">Entrar</button> 
+    </div>
     
-    <button type="submit" class="btn btn-primary">Entrar</button>
+ 
   </form>
 </div>
 
