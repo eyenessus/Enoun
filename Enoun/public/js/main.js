@@ -62,37 +62,6 @@ $(document).ready(()=>{
             }
         }
        
-/*
-        if($inputNome.val() ==""){
-            alert('Preencha o campo');
-            return;
-        }
-        if($inputSnome.val() ==""){
-            alert('Preencha o campo');
-            return;
-        }
-        if($inputSenha.val() ==""){
-            alert('Preencha o campo');
-            return;
-        }
-        if($inputUser.val() ==""){
-            alert('Preencha o campo');
-            return;
-        }
-        if($inputEndereco.val() ==""){
-            alert('Preencha o campo');
-            return;
-        }
-        if($inputCidade.val() ==""){
-            alert('Preencha o campo');
-            return;
-        }
-        if($inputCep.val() ==""){
-            alert('Preencha o campo');
-            return;
-        }
-        */
-
 
     })
 
