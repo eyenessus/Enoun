@@ -29,36 +29,74 @@ $(document).ready(()=>{
         }
 
      $('#formulariologin').submit();
+
     });
 
 
    
+//formulario cadastro
+    const $formCadastro = $('#formcadastro');
+    let $inputNome = $('#nome');
+    let $inputSnome = $('#snome');
+    let $inputSenha = $('#senha');
+    let $inputUser = $('#user');
+    let $inputEndereco = $('#endereco');
+    let $inputCidade = $('#cidade');
+    let $inputCep = $('#cep');
 
 
+    
 
-/*
-
-
-    $formlogin.submit(event=>{
-        alert('HELLOW')
+    $formCadastro.submit(event =>{
         event.preventDefault();
+        const $array = [
+            $inputNome,$inputSnome,$inputSenha,
+            $inputUser,$inputEndereco,$inputCidade,
+            $inputCep
+        ];
+        
+        for(let i=0; i<$array.length; i++){
+            if(!$array[i].val()){
+                alert("Preencha todos os campos por favor.");
+                return
+            }
+        }
+       
+/*
+        if($inputNome.val() ==""){
+            alert('Preencha o campo');
+            return;
+        }
+        if($inputSnome.val() ==""){
+            alert('Preencha o campo');
+            return;
+        }
+        if($inputSenha.val() ==""){
+            alert('Preencha o campo');
+            return;
+        }
+        if($inputUser.val() ==""){
+            alert('Preencha o campo');
+            return;
+        }
+        if($inputEndereco.val() ==""){
+            alert('Preencha o campo');
+            return;
+        }
+        if($inputCidade.val() ==""){
+            alert('Preencha o campo');
+            return;
+        }
+        if($inputCep.val() ==""){
+            alert('Preencha o campo');
+            return;
+        }
+        */
+
 
     })
-  */  
-    
-  
 
-/*
-   $enviar.submit(function( event ) {
-        alert( "Handler for .submit() called." );
-        event.preventDefault();
-      });
 
-    let $inputNome = $('#nome').val();
-    let $inputNome = $('#nome').val();
-    let $inputNome = $('#nome').val();
-    let $inputNome = $('#nome').val();
-*/
    
 
 })
