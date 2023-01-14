@@ -30,17 +30,17 @@
     <label for="endereco" class="form-label">Endereço</label>
     <input type="text" class="form-control" id="endereco" placeholder="Rua Abilio Cesar 223" name="endereco" required>
   </div>
-
+  <div class="col-5">
+    <label for="endereco" class="form-label">Número</label>
+    <input type="number" class="form-control" id="numero" name="numero" required>
+  </div>
   <div class="col-md-6">
     <label for="cidade" class="form-label">Cidade</label>
     <input type="text" class="form-control" id="cidade" name="cidade" required>
   </div>
   <div class="col-md-4">
     <label for="estado" class="form-label">Estado</label>
-    <select name="estado" class="form-select" required>
-      <option selected>Escolha...</option>
-      <option value="sp">SP</option>
-    </select>
+    <input type="text" class="form-control" id="estado">
   </div>
   <div class="col-md-2"> 
     <label for="cep" class="form-label">CEP</label>
