@@ -12,7 +12,7 @@
   </div>
   <div class="col-md-6">
     <label for="snome" class="form-label">Sobrenome</label>
-    <input type="text" class="form-control" id="nome" name="sobrenome" required>
+    <input type="text" class="form-control" id="snome" name="sobrenome" required>
   </div>
   <div class="col-md-6">
     <label for="email" class="form-label">Email</label>

@@ -49,7 +49,7 @@ class EnounController extends Controller
         $busca = request('pesquisa');
         return view('Busca.search',['idbusca'=>$busca]);
     }
-
+ 
  
     public function store(Request $requisicao){
 
