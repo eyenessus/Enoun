@@ -131,4 +131,25 @@ $(document).ready(()=>{
             limpa_formulário_cep();
         }
     });
+
+   
+
+
+
+    const $resuladoJSON = $.getJSON("https://jsonplaceholder.typicode.com/photos",dados=>{
+   /*
+    $.each(dados,(key,value)=>{
+        console.log(value.title)
+        
+    })*/
+
+    for(key in dados){
+        $('#titulobusca').append(`<div class="text-capitalize"><h1>${dados[key].title}</h1></div>`).append(`
+            <img src="${dados[key].thumbnailUrl}"/>
+        `)
+    }
+    })
+    
+
+    
 })
