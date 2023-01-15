@@ -13,7 +13,7 @@
 
 <div> 
 <h6>Comentários:</h6>
-<div class="bg bg-light border-5" id="comentariosServicos">
+<div class=" border-5" id="comentariosServicos">
   
 </div>
 </div>

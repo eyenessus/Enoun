@@ -152,7 +152,7 @@ $(document).ready(()=>{
         for(key in dados){
             $('#comentariosServicos').append(
 
-                `<div class="bg-light bg-gradient border">
+                `<div class="bg-light p-1 m-2">
                 <div class="container text-success pt-4" >
                 <p class="text-capitalize text-dark">Titulo :${dados[key].name}</p>
                 </div>
