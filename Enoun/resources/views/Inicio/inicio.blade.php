@@ -65,8 +65,9 @@
             
             
             <div class="container">
-                <div class="row row-cols-2 row-cols-md-6 g-4 mb-3">
-                    
+
+
+                <div class="row row-cols-2 row-cols-md-6 g-4 mb-3"> 
                     <div class="col">
                         <div class="card h-100">
                             <img src="/img/icons/Ativo 6.png" class="card-img-top p-md-5 p-3" alt="...">
@@ -129,50 +130,47 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-md-12 mt-3">
+                        <h1>Notícias</h1>
+                        @if(count($inicio) > 0 )
+                        @foreach($inicio as $value)
                         
-                        <div class="container m-md-5 mb-3">
-                            <div class="row p-5">
-                                <div class="col-12 col-md-9">
-                                    <h1>Notícias</h1>
-                                    @if(count($inicio) > 0 )
-                                    @foreach($inicio as $value)
-                                    
-                                    <div class="card border-0 m-md-5 m-2 w-100">
-                                        <img src="/img/publicnoticias/{{$value->imagem}}" class=" w-70 rounded" alt="..." id="imagemnote">
-                                        <div class="card-body">
-                                            <h5 class="card-title mt-3">{{ $value->titulo}}</h5>
-                                            <p class="card-text">{{ $value->descricao}}</p>
-                                            <p class="card-text"><small class="text-muted">{{date('d/m/Y', strtotime($value->updated_at))}}</small></p>
-                                            <a href="/resultadoNoticias/{{$value->id}}" class="btn btn-primary">Saiba mais</a>
-                                            
-                                        </div>
-                                    </div>
-                                    
-                                    
-                                    @endforeach
-                                    @else
-                                    <div class="d-flex justify-content-center">
-                                        <div class="spinner-border" role="status">
-                                            <span class="visually-hidden">Loading...</span>
-                                        </div>
-                                        @endif
-                                        
-                                    </div> 
-                                    <div class="col">
-                                        <h1>Destaques</h1>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                
-                                                
-                                                <img class="card card-img-top img-fluid" src="https://tudosobrehospedagemdesites.com.br/site/wp-content/uploads/2013/10/o-que-e-html-destaque-1.png"/>
-                                                <div class="card-title mt-3">Informações</div>
-                                                <div class="btn btn-info text-capitalize text-light">Clique aqui</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
+                        <div class="card border-0 mt-3 w-100">
+                            <img src="/img/publicnoticias/{{$value->imagem}}" class=" w-70 rounded" alt="..." id="imagemnote">
+                            <div class="card-body">
+                                <h5 class="card-title mt-3">{{ $value->titulo}}</h5>
+                                <p class="card-text">{{ $value->descricao}}</p>
+                                <p class="card-text"><small class="text-muted">{{date('d/m/Y', strtotime($value->updated_at))}}</small></p>
+                                <a href="/resultadoNoticias/{{$value->id}}" class="btn btn-primary">Saiba mais</a>
                                 
                             </div>
+                        </div>
+                        
+                        
+                        @endforeach
+                        @else
+                        <div class="d-flex justify-content-center">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            @endif
+                            
+                        </div> 
+                        
+                    </div>
+                    
+                    
+                </div>
+            </div>
+                
+                    
+                   
+                  
+
+                        
+                       
+                           
                             @endsection
