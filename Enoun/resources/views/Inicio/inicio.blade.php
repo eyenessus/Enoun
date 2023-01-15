@@ -2,7 +2,7 @@
 @section('titulo','Inicio')
 @section('conteudo')
 
-        <div id="carouselExampleCaptions" class="carousel slide">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 
                 
@@ -132,13 +132,13 @@
                         </div>
                         
                         <div class="container m-md-5 mb-3">
-                            <div class="row">
+                            <div class="row p-5">
                                 <div class="col-12 col-md-9">
                                     <h1>Notícias</h1>
                                     @if(count($inicio) > 0 )
                                     @foreach($inicio as $value)
                                     
-                                    <div class="card border-0">
+                                    <div class="card border-0 m-md-5 m-2 w-100">
                                         <img src="/img/publicnoticias/{{$value->imagem}}" class=" w-70 rounded" alt="..." id="imagemnote">
                                         <div class="card-body">
                                             <h5 class="card-title mt-3">{{ $value->titulo}}</h5>
