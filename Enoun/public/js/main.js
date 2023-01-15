@@ -151,12 +151,15 @@ $(document).ready(()=>{
     const $buscaCommentarios = $.getJSON("https://jsonplaceholder.typicode.com/comments",dados=>{
         for(key in dados){
             $('#comentariosServicos').append(
-                `<div class="container text-success pt-4" >
-                Titulo :${dados[key].name}
+
+                `<div class="bg-light bg-gradient border">
+                <div class="container text-success pt-4" >
+                <p class="text-capitalize text-dark">Titulo :${dados[key].name}</p>
                 </div>
 
                 <div class="text-danger mb-3 container">
-                Descrição:  ${dados[key].body}
+                <span>Descrição:  ${dados[key].body}</span>
+                </div>
                 </div>
                 `
             )
