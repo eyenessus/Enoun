@@ -5,6 +5,7 @@
 <p> Digite alguma coisa para que seja exibido resultados correspondente </p>
 @elseif($idbusca == true)
 <h1>Resultado de busca : {{$idbusca}}</h1>
+<h1>Exibindo resultado de {{$idbusca}}:</h1>
 <div class="container">
     <h2 id="titulobusca">Sugestões:</h2>
 </div>

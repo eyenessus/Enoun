@@ -144,12 +144,25 @@ $(document).ready(()=>{
     })*/
 
     for(key in dados){
-        $('#titulobusca').append(`<div class="text-capitalize"><h1>${dados[key].title}</h1></div>`).append(`
-            <img src="${dados[key].thumbnailUrl}"/>
-        `)
+        $('#titulobusca').append(`<div class="text-capitalize"><h1>${dados[key].title}</h1></div>`).append(`<img src="${dados[key].thumbnailUrl}"/>`)
     }
     })
     
+    const $buscaCommentarios = $.getJSON("https://jsonplaceholder.typicode.com/comments",dados=>{
+        for(key in dados){
+            $('#comentariosServicos').append(
+                `<div class="container text-success pt-4" >
+                Titulo :${dados[key].name}
+                </div>
+
+                <div class="text-danger mb-3 container">
+                Descrição:  ${dados[key].body}
+                </div>
+                `
+            )
+        }
+        
+    })
 
     
 })
