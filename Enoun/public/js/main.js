@@ -180,5 +180,27 @@ $(document).ready(() => {
 
     })
 
+    //imagens de servicos
+    $('img').closest('.card').on('mouseenter',event => {
+        $(event.currentTarget).toggleClass('shadow-lg  bg-body-tertiary rounded border-info border')
+    }).on('mouseleave',event => {
+        $(event.currentTarget).toggleClass('shadow-lg  border-info  bg-body-tertiary rounded')
+    })
+
+
+
+    //aba de categorias
+    $botaocategoria.on('mouseenter',() => {
+        $menu.show()
+    }).on('mouseleave',() => {
+        $menu.hide()
+    });
+
+    $menu.on('mouseenter',()=>{
+        $menu.show()
+    }).on('mouseleave',()=>{
+        $menu.hide()
+    })
+
 
 })

@@ -16,10 +16,10 @@ class EnounController extends Controller
 {
     public function index(){
         //pagina inicial
-
+        $slides = Slide::all();
         $inforday = Inicio::all();
         return view('Inicio.inicio',
-        ['inicio' => $inforday]
+        ['inicio' => $inforday,'slides' => $inforday]
     );
     }
 

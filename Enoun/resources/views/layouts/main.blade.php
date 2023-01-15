@@ -31,14 +31,14 @@
             <span class="navbar-toggler-icon border-info"></span>
         </button>
         
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" >
             
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="lista">
                 <li class="nav-item">
                     <a class="nav-link active text-light text-uppercase" aria-current="page" href="{{route('inicio')}}">Início</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-light text-uppercase" href="{{route('servicos')}}">Serviços</a>
+                <li class="nav-item" >
+                    <a class="nav-link text-light text-uppercase" href="{{route('servicos')}}" >Serviços</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-light text-uppercase " href="#" role="button"
@@ -49,7 +49,7 @@
                     <li>
                         <h6 class="dropdown-header text-dark text-uppercase">Informática</h6>
                     </li>
-                    <li><a class="dropdown-item" href="/service/#informatica">Serviços digitais</a></li>
+                    <li><a class="dropdown-item" href="/service/#informatica" >Serviços digitais</a></li>
                     <li><a class="dropdown-item" href="/service/#informatica">Revelações de fotos</a></li>
                     <li>
                         <hr class="dropdown-divider">
