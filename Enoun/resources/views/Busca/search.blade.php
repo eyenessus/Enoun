@@ -6,7 +6,7 @@
 @elseif($idbusca == true)
 <h1>Resultado de busca : {{$idbusca}}</h1>
 <div class="container">
-    <h1 id="titulobusca"></h1>
+    <h2 id="titulobusca">Sugestões:</h2>
 </div>
 
 @endif
