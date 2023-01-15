@@ -209,4 +209,9 @@ $(document).ready(() => {
             width: '60rem',
             height:'auto'
         })
+
+        $slide = $('.slide')
+        
+        
+       
 })

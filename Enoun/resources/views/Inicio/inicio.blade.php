@@ -28,7 +28,7 @@
             <div class="carousel-inner">
                 @for($i = 0; $i < count($slides); $i++)
                 <div class="carousel-item active">
-                   <img src="/img/publicnoticias/{{ $slides[$i]->imagem }}" class="d-block w-100" alt="...">
+                   <img src="/img/publicnoticias/{{ $slides[$i]->imagem }}" class="d-block w-100 img-fluid slide" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>{{ $slides[$i]->titulo }}</h5>
                             <p>{{ $slides[$i]->descricao }}</p>
@@ -37,7 +37,7 @@
                 @for($i = 1; $i < count($slides); $i++)
 
                 <div class="carousel-item">
-                    <img src="/img/publicnoticias/{{ $slides[$i]->imagem }}" class="d-block w-100" alt="...">
+                    <img src="/img/publicnoticias/{{ $slides[$i]->imagem }}" class="d-block w-100 img-fluid slide" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>{{ $slides[$i]->titulo }}</h5>
                         <p>{{ $slides[$i]->descricao }}</p>
