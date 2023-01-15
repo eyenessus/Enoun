@@ -202,5 +202,11 @@ $(document).ready(() => {
         $menu.hide()
     })
 
+        const $imagemNot = $('.noticias')
 
+        $($imagemNot).css({
+            backgroundColor: 'white',
+            width: '60rem',
+            height:'auto'
+        })
 })

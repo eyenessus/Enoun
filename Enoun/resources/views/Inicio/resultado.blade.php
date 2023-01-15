@@ -2,11 +2,11 @@
 @section('titulo',$resultadoNoticia->titulo)
 @section('conteudo')
 <div class="container">
-<h1>
+<h1 class="text-center">
 {{$resultadoNoticia->titulo}}
 </h1>
-<img src="/img/publicnoticias/{{$resultadoNoticia->imagem}}" />
-<p>{{$resultadoNoticia->descricao}}</p>
+<img class="img-fluid img-thumbnail rounded mx-auto d-block noticias" src="/img/publicnoticias/{{$resultadoNoticia->imagem}}" />
+<p class="text-center bg-light text-dark">{{$resultadoNoticia->descricao}}</p>
 </div>
 
 
