@@ -149,10 +149,16 @@ $(document).ready(()=>{
     })
     
     const $buscaCommentarios = $.getJSON("https://jsonplaceholder.typicode.com/comments",dados=>{
-        for(key in dados){
+        const comments = [];
+        $.each(dados, function (index, valor) { 
+                comments.push(valor);
+        });
+        
+    
+        for(key in comments){
             $('#comentariosServicos').append(
 
-                `<div class="bg-light p-1 m-2">
+                `<div class="bg-light p-1 m-2 rounded">
                 <div class="container text-success pt-4" >
                 <p class="text-capitalize text-dark">Titulo :${dados[key].name}</p>
                 </div>
