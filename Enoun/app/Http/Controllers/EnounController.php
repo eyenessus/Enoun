@@ -47,9 +47,14 @@ class EnounController extends Controller
 
     public function Buscar(){
         $busca = request('pesquisa');
-        return view('Busca.search',['idbusca'=>$busca]);
+        if($busca){
+            $servicosBusca = Servico::where([['nome', 'like', '%' . $busca . '%']])->get();
+        }
+        else{
+            $servicosBusca = Servico::all();
+        }
+        return view('Busca.search',['idbusca'=>$busca, 'services'=>$servicosBusca]);
     }
- 
  
     public function store(Request $requisicao){
 
