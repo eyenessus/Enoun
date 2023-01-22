@@ -85,6 +85,7 @@
             <button class="btn btn-outline-info bg-info text-info border bg-light border-2 border-info"
             type="submit">Buscar</button>
         </form>
+        @guest
         <a href="{{route('login')}}">
             <button
             class="btn btn-primary text-center text-light float-end mt-5 mt-md-0 mt-md-0 m-2 m-md-1 m-lg-1">Login</button>
@@ -93,6 +94,17 @@
         <a href="{{route('cadastro')}}">
             <button class="btn btn-primary text-center d-flex float-start mt-5 mt-md-0">Cadastra-se</button>
         </a>
+        @endguest
+       
+        @auth
+        <form action="/logout" method="POST">
+            @csrf
+            <a href="/logout" id="botaoSair">
+                <button
+                class="btn btn-primary text-center text-light float-end mt-5 mt-md-0 mt-md-0 m-2 m-md-1 m-lg-1">Sair</button>
+            </a>
+        </form>
+        @endauth
     </div>
 </div>
 </nav>

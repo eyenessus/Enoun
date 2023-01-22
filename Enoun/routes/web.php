@@ -20,7 +20,7 @@ use App\Http\Controllers\EnounController;
 //GETS
 Route::get('/',[EnounController::class,"index"])->name('inicio');
 
-Route::get('/login', [EnounController::class,'Login'])->name('login');
+Route::get('/entrar', [EnounController::class,'Login'])->name('erapraentrar');
 
 Route::get('/signin',[EnounController::class,"create"])->name('cadastro');
 
@@ -47,4 +47,13 @@ Route::post('/registraContato', [EnounController::class, 'MessContats'])->name('
 //FALLBACKS
 Route::fallback(function () {
     return "ERROR, PÁGINA NÃO ENCONTRADA";
+});
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });
