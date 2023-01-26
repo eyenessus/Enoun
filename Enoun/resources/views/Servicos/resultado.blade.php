@@ -8,6 +8,9 @@
       <h1 class="card-title text-info text-center">{{$resultadoId->nome}}</h1>
       <p class="text-uppercase p-3">{{$resultadoId->descricao}}</p>
       <p class="text-uppercase p-2"><small class="text-muted">{{$resultadoId->categoria}}</small></p>
+      <div>
+        Publico por: {{$donoDoServico['name']}}
+      </div>
     </div>
   </div>
 

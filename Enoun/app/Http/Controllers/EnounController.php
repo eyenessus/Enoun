@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\FuncCall;
 use App\Models\Produto;
@@ -89,7 +90,6 @@ class EnounController extends Controller
         return redirect('/');
     }
     public function SaveService(Request $request){
-
         $service = new Servico;
         $service->nome = $request->nome;
         $service->descricao = $request->descricao;
@@ -105,19 +105,30 @@ class EnounController extends Controller
             $requisaoImagem->move(public_path('img/publicserivces'), $nomeImagem);
             $service->imagem = $nomeImagem;
         }
+
+
+        $usuarioLogado = auth()->user(); //usuario logado
+
+        $service->user_id = $usuarioLogado->id; //atribuindo o id do usuario logado no data base
+
+
           $service->save();
 
-          $usuarioLogado = auth()->user(); //usuario logado
-
-            $service->user_id = $usuarioLogado->id; //atribuindo o id do usuario logado no data base
+      
 
         return redirect('/');
     }
 
         public function show($id){
-            $servico = Servico::findOrFail($id);
+            $servico = Servico::findOrFail($id); //filtro de registros
 
-        return view('Servicos.resultado',['resultadoId'=>$servico]);
+
+        $donoDoServico = User::where('id', $servico->user_id)->first()->toArray();
+
+    
+
+      
+        return view('Servicos.resultado',['resultadoId'=>$servico, 'donoDoServico'=>$donoDoServico]);
         }
 
 
