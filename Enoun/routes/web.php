@@ -24,7 +24,7 @@ Route::get('/entrar', [EnounController::class,'Login'])->name('erapraentrar');
 
 Route::get('/signin',[EnounController::class,"create"])->name('cadastro');
 
-Route::get('/service', [EnounController::class,"Servicos"])->name('servicos');
+Route::get('/service', [EnounController::class, "Servicos"])->name('servicos');
 
 Route::get('/service/show/{id}', [EnounController::class,"show"])->name('showService');
 
@@ -34,8 +34,8 @@ Route::get('/search/{id?}', [EnounController::class,'Buscar'])->name('buscar');
 
 Route::post('/insert',[EnounController::class,'store'])->name('inserir');
 
-Route::get('/formNoticias', [EnounController::class, 'RNoti'])->name('RegistrarNoticia');
-Route::get('/formServicos', [EnounController::class, 'RService'])->name('RegistrarServico');
+Route::get('/formNoticias', [EnounController::class, 'RNoti'])->name('RegistrarNoticia')->middleware('auth');
+Route::get('/formServicos', [EnounController::class, 'RService'])->name('RegistrarServico')->middleware('auth');
 
 Route::get('/resultadoNoticias/{id}', [EnounController::class, 'showNoticias']);
 

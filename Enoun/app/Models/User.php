@@ -58,4 +58,11 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+    public function servicos (){ //plurak
+        //USUARIO TEM MUITOS SERVICOS 
+        //PARA MUITOS 
+        return $this->hasMany('App\Models\Servico'); //pertecem a varios servicos
+    }
 }

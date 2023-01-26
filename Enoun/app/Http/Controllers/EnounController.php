@@ -107,6 +107,10 @@ class EnounController extends Controller
         }
           $service->save();
 
+          $usuarioLogado = auth()->user(); //usuario logado
+
+            $service->user_id = $usuarioLogado->id; //atribuindo o id do usuario logado no data base
+
         return redirect('/');
     }
 
