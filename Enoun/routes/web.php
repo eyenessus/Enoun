@@ -54,6 +54,8 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('Inicio.inicio');
+        return view('dashboard');
     })->name('dashboard');
 });
+
+Route::get('/dashboard', [EnounController::class, 'Dash'])->name('dash');

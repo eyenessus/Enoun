@@ -1,15 +1,31 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('layouts.main')
+@section('titulo','DashBoard')
+@section('conteudo')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-jet-welcome />
-            </div>
-        </div>
-    </div>
-</x-app-layout>
+<h1>Meus serviços</h1>
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Ações</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        @foreach($servico as $servicos)
+      <tr>
+        <th scope="row">{{$loop->index + 1}}</th>
+        <td>{{$servicos->nome}}</td>
+        <td>{{$servicos->descricao}}</td>
+        <td>Editar | Excluir</td>
+      </tr>
+      @endforeach
+    </tbody>
+  </table>
+
+
+
+@endsection

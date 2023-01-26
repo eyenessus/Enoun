@@ -144,4 +144,14 @@ class EnounController extends Controller
             $contatos->save();        
             return redirect('/')->with('contato','Mensagem enviada com sucesso!');
         }
+
+        public function Dash(){
+        $usuarioLogado = auth()->user();
+
+        $servico = $usuarioLogado->servicos;
+
+
+
+        return view('dashboard', ['servico' => $servico]);
+        }
 }
