@@ -58,4 +58,4 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/dashboard', [EnounController::class, 'Dash'])->name('dash');
+Route::get('/dashboard', [EnounController::class, 'Dash'])->name('dash')->middleware('auth');

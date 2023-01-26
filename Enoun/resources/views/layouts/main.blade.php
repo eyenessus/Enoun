@@ -68,18 +68,35 @@
                     </li>
                     <li><a class="dropdown-item" href="/service/#acess">Monitores</a></li>
                     <li><a class="dropdown-item" href="/service/#acess">Roteador Wireless</a></li>
-                    
-                    <li>
-                        <h6 class="dropdown-header text-dark text-uppercase">Outras Opções</h6>
-                    </li>
-                    <li><a class="dropdown-item" href="{{route('RegistrarNoticia')}}">Registrar Notícias (Início)</a></li>
-                    <li><a class="dropdown-item" href="{{route('RegistrarServico')}}">Registra Serviços</a></li>
+                  
                 </ul>
             </li>
             <li>
                 <a href="{{route('contato')}}" class="nav-link text-light text-uppercase">Contato</a>
             </li>
+
+            
         </ul>
+       @auth
+<div class="btn-group m-2">
+    <button type="button" class="btn btn-info dropdown-toggle text-light" data-bs-toggle="dropdown" aria-expanded="false">
+      Menu
+    </button>
+    <ul class="dropdown-menu">
+        <li>
+            <h6 class="dropdown-header text-dark text-uppercase">Registrar</h6>
+        </li>
+        <li><a class="dropdown-item" href="{{route('RegistrarNoticia')}}">Registrar Notícias (Início)</a></li>
+        <li><a class="dropdown-item" href="{{route('RegistrarServico')}}">Registra Serviços</a></li>
+      <li><hr class="dropdown-divider"></li>
+      
+      <li>
+        <h6 class="dropdown-header text-dark text-uppercase">Dashboard</h6>
+    </li>
+    <li><a class="dropdown-item" href="{{route('dash')}}">Menu Dashboard</a></li>
+    </ul>
+  </div>
+  @endauth
         <form class="d-flex" role="search" action="{{route('buscar')}}" >
             <input class="form-control me-2" type="search" placeholder="Pesquisa" aria-label="Search" name="pesquisa">
             <button class="btn btn-outline-info bg-info text-info border bg-light border-2 border-info"
