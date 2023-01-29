@@ -10,15 +10,16 @@ use App\Models\Servico;
 use App\Models\Usuario;
 use App\Models\Inicio;
 use App\Models\Contato;
-use App\Models\Slide;
+use Illuminate\Support\Facades\Auth;
 use PHPUnit\Framework\Error\Notice;
 
 class EnounController extends Controller
 {
     public function index(){
         //pagina inicial
-        $slides = Slide::all();
+       
         $inforday = Inicio::all();
+        
         return view('Inicio.inicio',
         ['inicio' => $inforday,'slides' => $inforday]
     );
@@ -85,6 +86,9 @@ class EnounController extends Controller
             $requisaoImagem->move(public_path('img/publicnoticias'), $nomeImagem);
             $noticias->imagem = $nomeImagem;
         }
+
+        $obterUser = auth()->user();
+        $noticias->user_id = $obterUser->id;
         $noticias->save();
 
         return redirect('/');
@@ -134,7 +138,9 @@ class EnounController extends Controller
 
         public function showNoticias($id){
             $resultado = Inicio::findOrFail($id);
-            return view('Inicio.resultado',['resultadoNoticia'=>$resultado]);
+            $buscaFilttrada = User::where('id', $resultado->id)->first()->toArray();
+            
+            return view('Inicio.resultado',['resultadoNoticia'=>$resultado,'buscaFilttrada'=>$buscaFilttrada]);
         }
 
         public function MessContats(Request $request){
@@ -149,9 +155,9 @@ class EnounController extends Controller
         $usuarioLogado = auth()->user();
 
         $servico = $usuarioLogado->servicos;
+        $noticias = $usuarioLogado->noticias;
 
+        return view('dashboard', ['servico' => $servico,'noticias' => $noticias]);
 
-
-        return view('dashboard', ['servico' => $servico]);
         }
 }

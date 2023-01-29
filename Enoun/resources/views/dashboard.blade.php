@@ -4,28 +4,51 @@
 
 <h1>Meus serviços</h1>
 
-
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Ações</th>
-      </tr>
-    </thead>
-    <tbody class="table-group-divider">
-        @foreach($servico as $servicos)
-      <tr>
-        <th scope="row">{{$loop->index + 1}}</th>
-        <td>{{$servicos->nome}}</td>
-        <td>{{$servicos->descricao}}</td>
-        <td>Editar | Excluir</td>
-      </tr>
-      @endforeach
-    </tbody>
-  </table>
-
+<div class="container">
+  <table class="table">
+    <h2>Tabelas de Servicos que foram registrados</h2>
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Descricao</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+          @foreach($servico as $servicos)
+        <tr>
+          <th scope="row">{{$loop->index + 1}}</th>
+          <td>{{$servicos->nome}}</td>
+          <td>{{$servicos->descricao}}</td>
+          <td>Editar | Excluir</td>
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
+  
+    <table class="table">
+      <h2>Tabelas de Noticias que foram registrados</h2>
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Descricao</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            @foreach($noticias as $note)
+          <tr>
+            <th scope="row">{{$loop->index + 1}}</th>
+            <td>{{$note->titulo}}</td>
+            <td>{{$note->descricao}}</td>
+            <td>Editar | Excluir</td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+</div>
 
 
 @endsection

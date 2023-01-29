@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Inicio extends Model
 {
+  public function usuario(){
+        return $this->belongsTo('\App\Models\User');
+  }
     use HasFactory;
 }

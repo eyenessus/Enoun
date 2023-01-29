@@ -65,4 +65,8 @@ class User extends Authenticatable
         //PARA MUITOS 
         return $this->hasMany('App\Models\Servico'); //pertecem a varios servicos
     }
+    
+    public function noticias (){
+        return $this->hasMany('App\Models\Inicio');
+    }
 }

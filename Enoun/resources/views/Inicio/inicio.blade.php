@@ -1,11 +1,10 @@
 @extends('layouts.main')
 @section('titulo','Inicio')
 @section('conteudo')
-
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 
-                
+               
                 
                 
                 @for($i = 0; $i < count($slides); $i++)
