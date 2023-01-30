@@ -27,7 +27,7 @@
               <form action="serviceDelete/{{$servicos->id}}" method="POST">
                 @csrf
                
-                <button type="submit"><i class="bi bi-pencil-square"></i></button>
+                <button type="submit" ><i class="bi bi-pencil-square"></i></button>
               </form>
   
             </div>
@@ -37,7 +37,7 @@
               <form action="serviceDelete/{{$servicos->id}}" method="POST">
                 @csrf
                 @method("DELETE")
-                <button type="submit"><i class="bi bi-trash3-fill"></i></button>
+                <button type="submit" class="btn btn-danger btn-delete"><i class="bi bi-trash3-fill"></i></button>
               </form>
             </div>
 
@@ -67,24 +67,27 @@
             <td>{{$note->titulo}}</td>
             <td>{{$note->descricao}}</td>
             <td>
+              <div class="row">
+                <div class="col">
+                  <form action="serviceDelete/{{$note->id}}" method="POST" class="">
+                    @csrf
+                   
+                    <button type="submit" class="btn btn-info text-light"><i class="bi bi-pencil-square"></i></button>
+                  </form>
+        
+                </div>
+        
+                   <div class="col">
+                    <form action="" method="POST" class="">
+                      @csrf
+                      @method("DELETE")
+                      <button type="submit" class="btn btn-danger btn-delete"><i class="bi bi-trash3-fill"></i></button>
+                    </form>
+        
+                   </div>
 
-        <div>
-          <form action="serviceDelete/{{$note->id}}" method="POST">
-            @csrf
-           
-            <button type="submit"><i class="bi bi-pencil-square"></i></button>
-          </form>
-
-        </div>
-
-           <div>
-            <form action="" method="POST">
-              @csrf
-              @method("DELETE")
-              <button type="submit"><i class="bi bi-trash3-fill"></i></button>
-            </form>
-
-           </div>
+              </div>
+       
 
               
             </td>
