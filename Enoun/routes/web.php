@@ -44,6 +44,12 @@ Route::post('/regsave',[EnounController::class,'SaveService'])->name('saveservic
 Route::post('/regnoti',[EnounController::class,'SaveNoticia'])->name('savenoti');
 
 Route::post('/registraContato', [EnounController::class, 'MessContats'])->name('contate');
+
+
+
+Route::delete('/serviceDelete/{id}', [EnounController::class, 'destroy'])->name('apagar');
+
+
 //FALLBACKS
 Route::fallback(function () {
     return "ERROR, PÁGINA NÃO ENCONTRADA";

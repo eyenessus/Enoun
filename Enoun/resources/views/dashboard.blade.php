@@ -21,7 +21,30 @@
           <th scope="row">{{$loop->index + 1}}</th>
           <td>{{$servicos->nome}}</td>
           <td>{{$servicos->descricao}}</td>
-          <td>Editar | Excluir</td>
+          <td>
+
+            <div>
+              <form action="serviceDelete/{{$servicos->id}}" method="POST">
+                @csrf
+               
+                <button type="submit"><i class="bi bi-pencil-square"></i></button>
+              </form>
+  
+            </div>
+
+            <div>
+  
+              <form action="serviceDelete/{{$servicos->id}}" method="POST">
+                @csrf
+                @method("DELETE")
+                <button type="submit"><i class="bi bi-trash3-fill"></i></button>
+              </form>
+            </div>
+
+         
+          
+
+          </td>
         </tr>
         @endforeach
       </tbody>
@@ -43,7 +66,28 @@
             <th scope="row">{{$loop->index + 1}}</th>
             <td>{{$note->titulo}}</td>
             <td>{{$note->descricao}}</td>
-            <td>Editar | Excluir</td>
+            <td>
+
+        <div>
+          <form action="serviceDelete/{{$note->id}}" method="POST">
+            @csrf
+           
+            <button type="submit"><i class="bi bi-pencil-square"></i></button>
+          </form>
+
+        </div>
+
+           <div>
+            <form action="" method="POST">
+              @csrf
+              @method("DELETE")
+              <button type="submit"><i class="bi bi-trash3-fill"></i></button>
+            </form>
+
+           </div>
+
+              
+            </td>
           </tr>
           @endforeach
         </tbody>

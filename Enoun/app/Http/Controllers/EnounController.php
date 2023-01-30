@@ -160,4 +160,12 @@ class EnounController extends Controller
         return view('dashboard', ['servico' => $servico,'noticias' => $noticias]);
 
         }
+
+        public function destroy($id){
+
+        Servico::FindOrFail($id)->delete();
+
+        return redirect('/');
+        
+        }
 }
