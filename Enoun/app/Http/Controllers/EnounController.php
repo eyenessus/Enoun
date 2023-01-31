@@ -138,7 +138,8 @@ class EnounController extends Controller
 
         public function showNoticias($id){
             $resultado = Inicio::findOrFail($id);
-            $buscaFilttrada = User::where('id', $resultado->id)->first()->toArray();
+        
+            $buscaFilttrada = Inicio::where('id', $resultado->id)->first()->toArray();
             
             return view('Inicio.resultado',['resultadoNoticia'=>$resultado,'buscaFilttrada'=>$buscaFilttrada]);
         }
