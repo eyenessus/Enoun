@@ -79,15 +79,15 @@
         </ul>
        @auth
 <div class="btn-group m-2">
-    <button type="button" class="btn btn-info dropdown-toggle text-light" data-bs-toggle="dropdown" aria-expanded="false">
-      Menu
+    <button type="button" class="btn btn-info dropdown-toggle text-light border border-3 border-light bg-info text-light text-bold" data-bs-toggle="dropdown" aria-expanded="false">
+      MENU
     </button>
     <ul class="dropdown-menu">
         <li>
             <h6 class="dropdown-header text-dark text-uppercase">Registrar</h6>
         </li>
-        <li><a class="dropdown-item" href="{{route('RegistrarNoticia')}}">Registrar Notícias (Início)</a></li>
         <li><a class="dropdown-item" href="{{route('RegistrarServico')}}">Registra Serviços</a></li>
+        <li><a class="dropdown-item" href="{{route('RegistrarNoticia')}}">Registrar Notícias (Início)</a></li> 
       <li><hr class="dropdown-divider"></li>
       
       <li>
