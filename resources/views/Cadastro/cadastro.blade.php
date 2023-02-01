@@ -3,10 +3,10 @@
 @section('conteudo')
 
 <div class="container">
-<h1 class="p-2 p-md-3">CADASTRO</h1>
+
 <form class="row g-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded-3 m-3 mt-md-3 bg-light" method="POST" action="{{ route('register') }}" >
 @csrf
-
+<h1 class="p-md-3">CADASTRO</h1>
   
 <div class="col-md-6">
     <label for="pnome" class="form-label">Nome</label>

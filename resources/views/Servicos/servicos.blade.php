@@ -4,7 +4,7 @@
 
 
 <div class="container">
-  <h1 class="pt-3">SERVIÇOS</h1>
+  <h1 class="pt-3 text-center">SERVIÇOS</h1>
 <h2 id="informatica" class="mt-5">Informática</h2>
 <div class="row row-cols-1 row-cols-md-3 g-4">
   @foreach($serv as $servicos)

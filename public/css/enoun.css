@@ -13,4 +13,47 @@
     #lista{
         font-weight: bolder;
     }
+
     
+    
+    
+
+    @media only screen and (min-width: 100px) and (max-width:450px) {
+        .carousel-inner, .carrousel-item{
+            height: 30vh;
+          } 
+
+    }
+ 
+    @media only screen and (min-width: 530px) and (max-width:1200px) {
+        .carousel-inner, .carrousel-item{
+            height: 50vh;
+          } 
+    
+
+    }
+
+
+
+/* XX-Large devices (larger desktops, 1400px and up)*/
+@media (min-width: 1400px) { 
+    .carousel-inner, .carrousel-item{
+        height: 60vh;
+      } 
+      .carousel-caption{
+        top: 25%;   
+        }
+      .carousel-caption h5{
+        font-size: 50px;
+        margin-bottom: 30px;  
+        font-weight: bolder; 
+        color: white;
+        }
+        .carousel-caption p{
+            font-size: 22px;
+            font-weight: 300px;
+            margin-bottom: 100px;
+            color:white;
+        }
+
+}

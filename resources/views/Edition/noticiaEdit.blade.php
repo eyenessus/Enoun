@@ -3,9 +3,10 @@
 @section('conteudo')
 
 <div class="container">
-<h1>Edição de Noticias</h1>
+
 <form method="POST" action="/editarNoticia/update/{{$noticia->id}}" enctype="multipart/form-data" class="bg-light p-5 rounded shadow m-5">
 @csrf
+<h1>Edição de Noticias</h1>
 @method('PUT')
     <div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Titulo da notícia</label>

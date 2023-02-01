@@ -3,9 +3,10 @@
 @section('conteudo')
 
 <div class="container">
-<h1>Visualização de Noticias</h1>
+
 <form method="POST" action="{{route('savenoti')}}" enctype="multipart/form-data" class="bg-light p-5 rounded shadow m-5">
-    <div class="mb-3">
+  <h1>Visualização de Noticias</h1>
+  <div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Titulo da notícia</label>
   <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Titulo" name="titulo" value="{{$noticia->titulo}}" readonly>
 </div>

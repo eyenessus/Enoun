@@ -3,9 +3,10 @@
 @section('conteudo')
 
 <div class="container">
-<h1>Registro de serviços</h1>
+
 <form method="POST" action="{{route('saveservice')}}" enctype="multipart/form-data" class="bg-light p-5 rounded shadow m-5">
-@csrf
+  <h1>Registro de serviços</h1>
+  @csrf
     <div class="mb-3">
   <label for="nome" class="form-label">Titulo do serviço</label>
   <input type="text" class="form-control" id="nome" name="nome" placeholder="Titulo" required>

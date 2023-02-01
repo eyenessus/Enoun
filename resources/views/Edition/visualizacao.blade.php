@@ -9,7 +9,7 @@
       
         <div class="mb-3">
       <label for="nome" class="form-label">Titulo do serviço</label>
-      <input type="text" class="form-control" id="nome" name="nome" placeholder="Titulo"  required value="{{$servico->nome}}" disabled readonly>
+      <input type="text" class="form-control" id="nome" name="nome" placeholder="Titulo"  required value="{{$servico->nome}}"  readonly>
     </div>
     <div class="mb-3">
       <label for="imagem" class="form-label">Imagem:</label>
@@ -22,7 +22,7 @@
     </div>
     <div class="mb-3">
       <label for="categoria" class="form-label">Categoria</label>
-      <select class="form-select" name="categoria" value="{{$servico->categoria}}" disabled readonly>  
+      <select class="form-select" name="categoria" value="{{$servico->categoria}}"  readonly>  
       <option value="informatica">Informática</option>
       <option value="developeweb">Desenvolvimento web</option>
       <option value="developeApp">Desenvovilmento Mobile</option>
