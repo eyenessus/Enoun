@@ -5,14 +5,16 @@
 <h1>Meus serviços</h1>
 
 <div class="container">
-  <table class="table">
-    <h2>Tabelas de Servicos que foram registrados</h2>
+  <table class="table table-light table-striped">
+    <h2>Serviços que você registrou:</h2>
       <thead>
         <tr>
           <th scope="col">ID</th>
           <th scope="col">Nome</th>
-          <th scope="col">Descricao</th>
-          <th scope="col">Ações</th>
+          <th scope="col">Descricão</th>
+          <th scope="col">Visualizar</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Apagar</th>
         </tr>
       </thead>
       <tbody class="table-group-divider">
@@ -36,23 +38,35 @@
 
 
 
-              <div class="col m-1">
-                <a href="/editar/{{$servicos->id}}"> 
-                  <button type="submit" class="btn btn-info text-light"><i class="bi bi-pencil-square"></i></button>
-                </a>
-              </div>
       
-                 <div class="col m-1">
-                  <form action="serviceDelete/{{$servicos->id}}" method="POST" class="">
-                    @csrf
-                    @method("DELETE")
-                    <button type="submit" class="btn btn-danger btn-delete"><i class="bi bi-trash3-fill"></i></button>
-                  </form>
-      
-                 </div>
+              
 
             </div>
      
+
+          </td>
+
+          <td>
+
+
+            <div class="col m-1">
+              <a href="/editar/{{$servicos->id}}"> 
+                <button type="submit" class="btn btn-info text-light"><i class="bi bi-pencil-square"></i></button>
+              </a>
+            </div>
+          </td>
+
+
+
+          <td>
+            <div class="col m-1">
+              <form action="serviceDelete/{{$servicos->id}}" method="POST" class="">
+                @csrf
+                @method("DELETE")
+                <button type="submit" class="btn btn-danger btn-delete"><i class="bi bi-trash3-fill"></i></button>
+              </form>
+  
+             </div>
 
           </td>
         </tr>
@@ -60,14 +74,16 @@
       </tbody>
     </table>
   
-    <table class="table">
-      <h2>Tabelas de Noticias que foram registrados</h2>
+    <table class="table table-light table-striped">
+      <h2>Noticías que você registrou:</h2>
         <thead>
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Nome</th>
-            <th scope="col">Descricao</th>
-            <th scope="col">Ações</th>
+            <th scope="col">Descricão</th>
+            <th scope="col">Visualizar</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Apagar</th>
           </tr>
         </thead>
         <tbody class="table-group-divider">
@@ -89,26 +105,35 @@
   
                  </div>
   
+ 
   
-  
-                <div class="col m-1">
-                  <a href="/editarNoticia/{{$note->id}}"> 
-                    <button type="submit" class="btn btn-info text-light"><i class="bi bi-pencil-square"></i></button>
-                  </a>
-                </div>
-        
-                   <div class="col m-1">
-                    <form action="noticeDelete/{{$note->id}}" method="POST" class="">
-                      @csrf
-                      @method("DELETE")
-                      <button type="submit" class="btn btn-danger btn-delete"><i class="bi bi-trash3-fill"></i></button>
-                    </form>
-        
-                   </div>
-  
+                  
               </div>
 
               
+            </td>
+            <td>
+              
+              <div class="col m-1">
+                <a href="/editarNoticia/{{$note->id}}"> 
+                  <button type="submit" class="btn btn-info text-light"><i class="bi bi-pencil-square"></i></button>
+                </a>
+              </div>
+      
+
+
+            </td>
+
+            <td>
+              
+              <div class="col m-1">
+                <form action="noticeDelete/{{$note->id}}" method="POST" class="">
+                  @csrf
+                  @method("DELETE")
+                  <button type="submit" class="btn btn-danger btn-delete"><i class="bi bi-trash3-fill"></i></button>
+                </form>
+    
+               </div>
             </td>
           </tr>
           @endforeach

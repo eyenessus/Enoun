@@ -22,7 +22,7 @@
     </div>
     <div class="mb-3">
       <label for="categoria" class="form-label">Categoria</label>
-      <select class="form-select" name="categoria" value="{{$servico->categoria}}"  readonly>  
+      <select class="form-select" name="categoria" value="{{$servico->categoria}}"  disabled>  
       <option value="informatica">Informática</option>
       <option value="developeweb">Desenvolvimento web</option>
       <option value="developeApp">Desenvovilmento Mobile</option>
