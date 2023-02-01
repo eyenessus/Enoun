@@ -1,0 +1,38 @@
+@extends('layouts.main')
+@section('titulo','Visualizador de Serviços')
+@section('conteudo')
+
+<div class="container">
+      
+    <div class="bg-light p-5 rounded shadow m-5">
+      <h1>Visualização de serviço</h1>
+      
+        <div class="mb-3">
+      <label for="nome" class="form-label">Titulo do serviço</label>
+      <input type="text" class="form-control" id="nome" name="nome" placeholder="Titulo"  required value="{{$servico->nome}}" disabled readonly>
+    </div>
+    <div class="mb-3">
+      <label for="imagem" class="form-label">Imagem:</label>
+      
+      <div class="card" style="width: 18rem;">
+        <img src="/img/publicserivces/{{$servico->imagem}}" class="card-img-top" alt="...">
+        
+      </div>
+     
+    </div>
+    <div class="mb-3">
+      <label for="categoria" class="form-label">Categoria</label>
+      <select class="form-select" name="categoria" value="{{$servico->categoria}}" disabled readonly>  
+      <option value="informatica">Informática</option>
+      <option value="developeweb">Desenvolvimento web</option>
+      <option value="developeApp">Desenvovilmento Mobile</option>
+      <option value="system">Sistema operacionais</option>
+    </select>
+    </div>
+
+    
+    </div>
+   
+    </div>
+
+@endsection
