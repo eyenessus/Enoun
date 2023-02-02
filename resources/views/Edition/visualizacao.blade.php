@@ -4,12 +4,13 @@
 
 <div class="container">
       
-    <div class="bg-light p-5 rounded shadow m-5">
+    <div class="bg-light p-4 m-1 mt-5 mb-5 rounded shadow card w-100">
       <h1>Visualização de serviço</h1>
       
         <div class="mb-3">
       <label for="nome" class="form-label">Titulo do serviço</label>
-      <input type="text" class="form-control" id="nome" name="nome" placeholder="Titulo"  required value="{{$servico->nome}}"  readonly>
+   
+      <input type="text" class="form-control-plaintext font-bold text-uppercase" id="nome" name="nome" placeholder="Titulo"  value="{{$servico->nome}}"  readonly>
     </div>
     <div class="mb-3">
       <label for="imagem" class="form-label">Imagem:</label>

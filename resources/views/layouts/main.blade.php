@@ -77,6 +77,7 @@
             
         </ul>
        @auth
+       <i class="bi bi-cart3 btn bg-white d-none d-md-block d-sm-none mr-10 "><span class="label label-danger m-1"> 1</span></i>
 <div class="btn-group m-2">
     <button type="button" class="btn btn-info dropdown-toggle text-light border border-3 border-light bg-info text-light text-bold" data-bs-toggle="dropdown" aria-expanded="false">
       MENU
@@ -98,7 +99,7 @@
   @endauth
         <form class="d-flex" role="search" action="{{route('buscar')}}" >
             <input class="form-control me-2" type="search" placeholder="Pesquisa" aria-label="Search" name="pesquisa">
-            <button class="btn btn-outline-info bg-info text-info border bg-light border-2 border-info"
+            <button class="btn btn-outline-info bg-info text-info bg-light border-2 border-info"
             type="submit">Buscar</button>
         </form>
         @guest
@@ -113,6 +114,12 @@
         @endguest
        
         @auth
+      <button class="btn ">
+        <i class="bi bi-cart3 btn bg-white d-block d-md-none d-sm-block" ><span class="label label-danger m-1"> 1</span></i>
+        
+      </button>
+          
+        
         <form action="/logout" method="POST">
             @csrf
             <a href="/logout" id="botaoSair">
@@ -120,8 +127,10 @@
                 class="btn btn-primary text-center text-light float-end mt-5 mt-md-0 mt-md-0 m-2 m-md-1 m-lg-1">Sair</button>
             </a>
         </form>
+       
         @endauth
     </div>
+    
 </div>
 </nav>
 </header>

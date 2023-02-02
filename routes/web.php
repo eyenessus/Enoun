@@ -69,6 +69,8 @@ Route::delete('/noticeDelete/{id}', [EnounController::class, 'destroyeNotice']);
 Route::put('/editarNoticia/update/{id}', [EnounController::class, 'atualizarNoticia']);
 
 
+Route::get('/carrinho', [EnounController::class, 'carrinho'])->name('verCarrinho');
+
 
 //FALLBACKS
 Route::fallback(function () {

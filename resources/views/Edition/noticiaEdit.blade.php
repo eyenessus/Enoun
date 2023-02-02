@@ -4,7 +4,7 @@
 
 <div class="container">
 
-<form method="POST" action="/editarNoticia/update/{{$noticia->id}}" enctype="multipart/form-data" class="bg-light p-5 rounded shadow m-5">
+<form method="POST" action="/editarNoticia/update/{{$noticia->id}}" enctype="multipart/form-data" class="bg-light p-4 m-1 mt-5 mb-5 rounded shadow card w-100">
 @csrf
 <h1>Edição de Noticias</h1>
 @method('PUT')
@@ -16,7 +16,7 @@
   <label for="exampleFormControlInput1" class="form-label">Imagem:</label>
   
   <input type="file" class="form-control" id="imagem" name="imagem">
-  <div class="card" style="width: 18rem;">
+  <div class="card mt-2" style="width: 18rem;">
     <img src="/img/publicnoticias/{{$noticia->imagem}}" class="card-img-top" alt="...">
   </div>
 </div>

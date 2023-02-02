@@ -4,25 +4,25 @@
 
 <div class="container">
 
-<form method="POST" action="{{route('savenoti')}}" enctype="multipart/form-data" class="bg-light p-5 rounded shadow m-5">
+<div class="bg-light p-4 m-1 mt-5 mb-5 rounded shadow card w-100 ">
   <h1>Visualização de Noticias</h1>
   <div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Titulo da notícia</label>
-  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Titulo" name="titulo" value="{{$noticia->titulo}}" readonly>
+  <label for="titulo" class="form-label">Titulo da notícia</label>
+  <input type="text" class="form-control-plaintext" id="exampleFormControlInput1" placeholder="Titulo" name="titulo" value="{{$noticia->titulo}}" readonly>
 </div>
 <div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Imagem:</label>
+  <label for="imagem" class="form-label">Imagem:</label>
   
-  <div class="card" style="width: 18rem;">
-    <img src="/img/publicnoticias/{{$noticia->imagem}}" class="card-img-top" alt="...">
+  <div class="card p-2  " style="width: 18rem;">
+    <img src="/img/publicnoticias/{{$noticia->imagem}}">
   </div>
 </div>
 <div class="mb-3">
   <label for="descricao" class="form-label">Descrição:</label>
-  <textarea class="form-control" id="descricao" rows="3" name="descricao" readonly>{{$noticia->descricao}}</textarea>
+  <input type="text" class="form-control-plaintext" id="descricao" rows="3" name="descricao" readonly value="{{$noticia->descricao}}" />
 </div>
 
-</form>
+</div>
 </div>
 @endsection
 

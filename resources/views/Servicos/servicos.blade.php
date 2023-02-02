@@ -20,6 +20,7 @@
         <p class="text-capitalize "> <i class="bi bi-check-circle-fill m-2" style="font-size: 30px; color: cornflowerblue;"></i>{{$servi}}</p>
         @endforeach
 <a href="service/show/{{$servicos->id}}" class="btn btn-primary">Saiba mais</a>
+<a href=""><i class="bi bi-cart-plus-fill float-end btn btn-success"></i></a>
       </div>
     </div>
   </div>

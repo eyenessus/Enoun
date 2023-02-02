@@ -4,7 +4,7 @@
 
 <div class="container">
       
-    <form method="POST" action="/editar/update/{{$servico->id}}" enctype="multipart/form-data" class="bg-light p-5 rounded shadow m-5">
+    <form method="POST" action="/editar/update/{{$servico->id}}" enctype="multipart/form-data" class="bg-light p-4 m-1 mt-5 mb-5 rounded shadow card w-100">
       <h1>Edição de serviço</h1>
       @csrf
       @method('PUT')
@@ -15,7 +15,7 @@
     <div class="mb-3">
       <label for="imagem" class="form-label">Imagem:</label>
       <input type="file" class="form-control" id="imagem" name="imagem" required>
-      <div class="card" style="width: 18rem;">
+      <div class="card mt-2" style="width: 18rem;">
         <img src="/img/publicserivces/{{$servico->imagem}}" class="card-img-top" alt="...">
         
       </div>

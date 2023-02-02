@@ -234,4 +234,9 @@ class EnounController extends Controller
         Inicio::findOrFail($request->id)->update($data);
         return redirect('/');
     }
+
+
+    public function carrinho(){
+        return view('Car.carrinho');
+    }
 }
