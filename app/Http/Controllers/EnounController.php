@@ -17,9 +17,10 @@ class EnounController extends Controller
 {
     public function index(){
         //pagina inicial
-       
+
+
+  
         $inforday = Inicio::all();
-        
         return view('Inicio.inicio',
         ['inicio' => $inforday,'slides' => $inforday]
     );
@@ -157,7 +158,12 @@ class EnounController extends Controller
 
         $servico = $usuarioLogado->servicos;
         $noticias = $usuarioLogado->noticias;
+        
+        
+     
 
+      
+            
         return view('dashboard', ['servico' => $servico,'noticias' => $noticias]);
 
         }
@@ -237,6 +243,31 @@ class EnounController extends Controller
 
 
     public function carrinho(){
-        return view('Car.carrinho');
+
+        if(auth()){
+            $user = auth()->user();
+            $addItem = $user->servicosAsCar;
+           
+        }else{
+            $addItem = null;
+        }
+      
+        
+
+        return view('Car.carrinho',['addItem' => $addItem]);
+        
     }
+
+
+    public function addCarrinho($id){
+        $usuarioLogado = auth()->user();
+        $usuarioLogado->servicosAsCar()->attach($id);
+
+       return redirect('/');
+    }
+
+
+
+
+
 }

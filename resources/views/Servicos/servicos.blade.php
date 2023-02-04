@@ -19,8 +19,29 @@
         @foreach($servicos->inforextra as $servi)
         <p class="text-capitalize "> <i class="bi bi-check-circle-fill m-2" style="font-size: 30px; color: cornflowerblue;"></i>{{$servi}}</p>
         @endforeach
-<a href="service/show/{{$servicos->id}}" class="btn btn-primary">Saiba mais</a>
-<a href=""><i class="bi bi-cart-plus-fill float-end btn btn-success"></i></a>
+
+      
+<div class="row">
+
+<div class="col">
+  <button class="btn btn-primary"> Saiba mais
+    <a href="service/show/{{$servicos->id}}"></a>
+  </button>
+</div>
+
+<div class="col">
+  <form action="/service/AddToCar/{{$servicos->id}}" method="POST" id="formCar">
+    @csrf
+    <button class="btn float-end"><i class="bi bi-cart-plus-fill btn btn-success"></i></button>
+  </form>
+</div>
+
+</div>
+
+    
+
+
+
       </div>
     </div>
   </div>

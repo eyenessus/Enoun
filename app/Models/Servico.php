@@ -18,6 +18,12 @@ class Servico extends Model
             return $this->belongsTo('App\Models\User'); //pertence  a um
         }
 
+        
+        public function UsuariosPlus(){
+
+        return $this->belongsToMany('App\Models\User');
+        
+        }
 
     protected $guarded = [];
     use HasFactory;

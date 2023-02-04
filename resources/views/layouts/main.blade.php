@@ -77,7 +77,9 @@
             
         </ul>
        @auth
-       <i class="bi bi-cart3 btn bg-white d-none d-md-block d-sm-none mr-10 "><span class="label label-danger m-1"> 1</span></i>
+     
+       <a href="{{route('verCarrinho')}}" class="text-decoration-none"><i class="bi bi-cart3 btn bg-white d-none d-md-block d-sm-none mr-10 "><span class="label label-danger m-1"> </span></i></a>
+    
 <div class="btn-group m-2">
     <button type="button" class="btn btn-info dropdown-toggle text-light border border-3 border-light bg-info text-light text-bold" data-bs-toggle="dropdown" aria-expanded="false">
       MENU
@@ -115,10 +117,11 @@
        
         @auth
       <button class="btn ">
-        <i class="bi bi-cart3 btn bg-white d-block d-md-none d-sm-block" ><span class="label label-danger m-1"> 1</span></i>
+        <a  href="{{route('verCarrinho')}}"> <i class="bi bi-cart3 btn bg-white d-block d-md-none d-sm-block" ><span class="label label-danger m-1"> </span></i></a>
+       
         
       </button>
-          
+        
         
         <form action="/logout" method="POST">
             @csrf

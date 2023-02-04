@@ -74,4 +74,11 @@ class User extends Authenticatable
     public function noticias (){
         return $this->hasMany('App\Models\Inicio');
     }
+
+
+    public function servicosAsCar (){
+        return $this->belongsToMany('App\Models\Servico');
+    }
+
+    
 }

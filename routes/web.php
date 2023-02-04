@@ -69,7 +69,10 @@ Route::delete('/noticeDelete/{id}', [EnounController::class, 'destroyeNotice']);
 Route::put('/editarNoticia/update/{id}', [EnounController::class, 'atualizarNoticia']);
 
 
-Route::get('/carrinho', [EnounController::class, 'carrinho'])->name('verCarrinho');
+Route::get('/carrinho', [EnounController::class, 'carrinho'])->name('verCarrinho')->middleware('auth');
+
+Route::post('/service/AddToCar/{id}', [EnounController::class, 'addCarrinho']);
+
 
 
 //FALLBACKS

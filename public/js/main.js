@@ -212,7 +212,6 @@ $(document).ready(() => {
         })
 
         $slide = $('.slide')
-        
-        
+     
        
 })
