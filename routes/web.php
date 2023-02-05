@@ -71,7 +71,7 @@ Route::put('/editarNoticia/update/{id}', [EnounController::class, 'atualizarNoti
 
 Route::get('/carrinho', [EnounController::class, 'carrinho'])->name('verCarrinho')->middleware('auth');
 
-Route::post('/service/AddToCar/{id}', [EnounController::class, 'addCarrinho']);
+Route::post('/service/AddToCar/{id}', [EnounController::class, 'addCarrinho'])->middleware('auth');
 
 
 

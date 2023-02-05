@@ -247,7 +247,7 @@ class EnounController extends Controller
         if(auth()){
             $user = auth()->user();
             $addItem = $user->servicosAsCar;
-           
+            
         }else{
             $addItem = null;
         }
