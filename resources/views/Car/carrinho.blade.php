@@ -14,13 +14,13 @@
 
         <div>
         </div>
-        <table class="table table-auto table-light table-hover table-bordered m-2">
+        <table class="table table-auto table-light table-hover table-bordered m-2 mt-5 table-responsive">
             <thead>
                 <tr class="text-center">
 
                     <th scope="col">Descrição</th>
                     <th scope="col">Valor</th>
-                    <th scope="col">Qnt</th>
+                    <th scope="col">Quantidade</th>
                     <th scope="col">Ações</th>
                 </tr>
             </thead>
@@ -32,7 +32,7 @@
                         <td>R$ <span id="valorItem"> {{ $valuer->preco }}</span>,00</td>
                         <th scope="row"> <input type="number" value="{{ $valuer->pivot['quantidade'] }}"
                                 class="text-center"></th>
-                        <td>
+                        <td >
 
 
 
@@ -88,6 +88,26 @@
 
                     <h6>Valor Total: R$ {{ number_format($valorFinal, 2, ',', '.') }}</h6>
                     <div class="p-3">
+
+                        <label for="bandeira">Bandeira</label>
+
+                        <div class="d-flex m-2">
+                            <div class="form-check m-1">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                  Visa
+                                </label>
+                              </div>
+                              <div class="form-check m-1">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                  Mastercard
+                                </label>
+                              </div>
+                              
+                        </div>
+
+
                         <label>Nome escrito no cartão</label>
                         <input class="form-control form-control-sm" type="text">
 
@@ -95,7 +115,7 @@
                         <input class="form-control form-control-sm" type="text">
 
                         <label>Codigo de segurança</label>
-                        <input class="form-control form-control-sm" type="text">
+                        <input class="form-control form-control-sm " type="text">
                     </div>
 
                     <div class="form-check">
@@ -112,8 +132,9 @@
                         </label>
                     </div>
 
-
-
+                      <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 75%"></div>
+                      </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
