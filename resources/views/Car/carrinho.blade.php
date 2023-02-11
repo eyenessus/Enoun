@@ -1,7 +1,16 @@
 @extends('layouts.main')
 @section('titulo', 'Carrinho de compras')
 @section('conteudo')
+
+<script>
+  {{ $valorFinal = null }}
+  @foreach ($addItem as $valores)
+      {{ $valorFinal += $valores['preco'] * $valores->pivot['quantidade'] }}
+  @endforeach
+</script>
+
     <div class="container">
+
 
         <div>
         </div>
@@ -23,17 +32,28 @@
                         <td>R$ <span id="valorItem"> {{ $valuer->preco }}</span>,00</td>
                         <th scope="row"> <input type="number" value="{{ $valuer->pivot['quantidade'] }}"
                                 class="text-center"></th>
-                        <td><i class=" btn btn-danger float-end bi bi-trash3-fill"></i></td>
+                        <td>
+
+
+
+                        
+                           <form action="serviceDeletCar/{{$valuer->id}}" method="POST">
+                            
+                            @csrf
+                           @method('DELETE')
+
+                       <button class="btn btn-danger">  <i class="  float-end bi bi-trash3-fill"> Deletar</i> </button>
+                        
+                        </form>
+
+
+                    </td>
                     </tr>
                 @endforeach
 
             </tbody>
 
-
-            {{ $valorFinal = null }}
-            @foreach ($addItem as $valores)
-                {{ $valorFinal += $valores['preco'] * $valores->pivot['quantidade'] }}
-            @endforeach
+     
 
             <td colspan="4"> <span class="float-end">Valor Total: R$ {{ number_format($valorFinal, 2, ',', '.') }}</span>
             </td>

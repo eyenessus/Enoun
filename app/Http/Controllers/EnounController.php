@@ -252,4 +252,14 @@ class EnounController extends Controller
 
         return redirect('/carrinho');
     }
+
+    public function removeCarr($id)
+    {
+       
+        $usuarioLogado = auth()->user();
+        $usuarioLogado->servicosAsCar()->detach($id);
+
+
+        return redirect('/carrinho');
+    }
 }
