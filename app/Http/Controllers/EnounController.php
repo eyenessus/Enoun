@@ -15,20 +15,20 @@ use PHPUnit\Framework\Error\Notice;
 
 class EnounController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         //pagina inicial
-
-
-  
         $inforday = Inicio::all();
-        return view('Inicio.inicio',
-        ['inicio' => $inforday,'slides' => $inforday]
-    );
+        return view(
+            'Inicio.inicio',
+            ['inicio' => $inforday, 'slides' => $inforday]
+        );
     }
 
-    public function Login(){
+    public function Login()
+    {
 
-       return view('Login.login'); 
+        return view('Login.login');
     }
 
     public function create()
@@ -36,51 +36,51 @@ class EnounController extends Controller
         return view('Cadastro.cadastro');
     }
 
-    public function Contato(){
-
+    public function Contato()
+    {
         return view('Contato.contato');
     }
 
-    public function Servicos(){
-
+    public function Servicos()
+    {
         $services =  Servico::all();
-    
-        return view('Servicos.servicos',['serv'=>$services]);
+        return view('Servicos.servicos', ['serv' => $services]);
     }
 
-    public function Buscar(){
+    public function Buscar()
+    {
         $busca = request('pesquisa');
-        if($busca){
+        if ($busca) {
             $servicosBusca = Servico::where([['nome', 'like', '%' . $busca . '%']])->get();
-        }
-        else{
+        } else {
             $servicosBusca = Servico::all();
         }
-        return view('Busca.search',['idbusca'=>$busca, 'services'=>$servicosBusca]);
+        return view('Busca.search', ['idbusca' => $busca, 'services' => $servicosBusca]);
     }
- 
-    public function store(Request $requisicao){
 
+    public function store(Request $requisicao)
+    {
         Usuario::create($requisicao->all());
         return redirect('/')->with('mensagem', 'Cadastrado com sucesso!');
     }
 
-    public function RService(){
-
+    public function RService()
+    {
         return view('Registro.service');
     }
 
-    public function RNoti(){
-
+    public function RNoti()
+    {
         return view('Registro.noticiasini');
     }
-    public function SaveNoticia(Request $request){
+    public function SaveNoticia(Request $request)
+    {
 
         $noticias = new Inicio;
         $noticias->titulo = $request->titulo;
         $noticias->descricao = $request->descricao;
         //imagem
-        if($request->hasFile('imagem') && $request->file('imagem')->isValid()){
+        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
             $requisaoImagem = $request->imagem;
             $extensao = $requisaoImagem->extension();
             $nomeImagem = md5($requisaoImagem->getClientOriginalName() . strtotime("now") . $extensao);
@@ -94,7 +94,8 @@ class EnounController extends Controller
 
         return redirect('/');
     }
-    public function SaveService(Request $request){
+    public function SaveService(Request $request)
+    {
         $service = new Servico;
         $service->nome = $request->nome;
         $service->descricao = $request->descricao;
@@ -104,7 +105,7 @@ class EnounController extends Controller
         $service->preco = $request->preco;
 
         //imagem
-        if($request->hasFile('imagem') && $request->file('imagem')->isValid()){
+        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
             $requisaoImagem = $request->imagem;
             $extensao = $requisaoImagem->extension();
             $nomeImagem = md5($requisaoImagem->getClientOriginalName() . strtotime("now") . $extensao);
@@ -114,94 +115,77 @@ class EnounController extends Controller
 
 
         $usuarioLogado = auth()->user(); //usuario logado
-
         $service->user_id = $usuarioLogado->id; //atribuindo o id do usuario logado no data base
-
-
-          $service->save();
-
-      
+        $service->save();
 
         return redirect('/');
     }
 
-        public function show($id){
-            $servico = Servico::findOrFail($id); //filtro de registros
-
-
+    public function show($id)
+    {
+        $servico = Servico::findOrFail($id); //filtro de registros
         $donoDoServico = User::where('id', $servico->user_id)->first()->toArray();
 
-    
-
-      
-        return view('Servicos.resultado',['resultadoId'=>$servico, 'donoDoServico'=>$donoDoServico]);
-        }
+        return view('Servicos.resultado', ['resultadoId' => $servico, 'donoDoServico' => $donoDoServico]);
+    }
 
 
-        public function showNoticias($id){
-            $resultado = Inicio::findOrFail($id);
-        
-            $buscaFilttrada = User::where('id', $resultado->user_id)->first()->toArray();
-            
-            return view('Inicio.resultado',['resultadoNoticia'=>$resultado,'buscaFilttrada'=>$buscaFilttrada]);
-        }
+    public function showNoticias($id)
+    {
+        $resultado = Inicio::findOrFail($id);
+        $buscaFilttrada = User::where('id', $resultado->user_id)->first()->toArray();
+        return view('Inicio.resultado', ['resultadoNoticia' => $resultado, 'buscaFilttrada' => $buscaFilttrada]);
+    }
 
-        public function MessContats(Request $request){
-            $contatos = new Contato();
-            $contatos->usuario = $request->usuario;
-            $contatos->mensagem = $request->mensagem;
-            $contatos->save();        
-            return redirect('/')->with('contato','Mensagem enviada com sucesso!');
-        }
+    public function MessContats(Request $request)
+    {
+        $contatos = new Contato();
+        $contatos->usuario = $request->usuario;
+        $contatos->mensagem = $request->mensagem;
+        $contatos->save();
+        return redirect('/')->with('contato', 'Mensagem enviada com sucesso!');
+    }
 
-        public function Dash(){
+    public function Dash()
+    {
         $usuarioLogado = auth()->user();
-
         $servico = $usuarioLogado->servicos;
         $noticias = $usuarioLogado->noticias;
-        
-        
-     
 
-      
-            
-        return view('dashboard', ['servico' => $servico,'noticias' => $noticias]);
+        return view('dashboard', ['servico' => $servico, 'noticias' => $noticias]);
+    }
 
-        }
-
-        public function destroy($id){
+    public function destroy($id)
+    {
 
         Servico::FindOrFail($id)->delete();
-
         return redirect('/');
-        
-        }
+    }
 
     public function destroyeNotice($id)
     {
-        
+
         Inicio::FindOrFail($id)->delete();
-        
         return redirect('/');
     }
     public function visualizacao($id)
     {
         $servico = Servico::FindOrFail($id);
-
-        return view('Edition.visualizacao',['servico'=> $servico]);
+        return view('Edition.visualizacao', ['servico' => $servico]);
     }
 
-    public function editar($id){
+    public function editar($id)
+    {
         $servico = Servico::FindOrFail($id);
-
-        return view('Edition.edition',['servico'=> $servico]);
+        return view('Edition.edition', ['servico' => $servico]);
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
 
         $data = $request->all();
 
-        if($request->hasFile('imagem') && $request->file('imagem')->isValid()){
+        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
             $requisaoImagem = $request->imagem;
             $extensao = $requisaoImagem->extension();
             $nomeImagem = md5($requisaoImagem->getClientOriginalName() . strtotime("now") . $extensao);
@@ -217,20 +201,21 @@ class EnounController extends Controller
     public function visualizarNoticia($id)
     {
         $noticia = Inicio::FindOrFail($id);
-
-        return view('Edition.noticiaVisu',['noticia' => $noticia]);
+        return view('Edition.noticiaVisu', ['noticia' => $noticia]);
     }
 
-  public function editarNoticia($id){
-    $noticia = Inicio::FindOrFail($id);
-    return view('Edition.noticiaEdit',['noticia' => $noticia]);
-  }
+    public function editarNoticia($id)
+    {
+        $noticia = Inicio::FindOrFail($id);
+        return view('Edition.noticiaEdit', ['noticia' => $noticia]);
+    }
 
-    public function atualizarNoticia(Request $request){
+    public function atualizarNoticia(Request $request)
+    {
 
         $data = $request->all();
 
-        if($request->hasFile('imagem') && $request->file('imagem')->isValid()){
+        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
             $requisaoImagem = $request->imagem;
             $extensao = $requisaoImagem->extension();
             $nomeImagem = md5($requisaoImagem->getClientOriginalName() . strtotime("now") . $extensao);
@@ -243,47 +228,28 @@ class EnounController extends Controller
     }
 
 
-    public function carrinho(){
+    public function carrinho()
+    {
 
 
         $google = Servico::all();
-
-
-
-        if(auth()){
+        if (auth()) {
             $user = auth()->user();
             $addItem = $user->servicosAsCar;
-        }else{
+        } else {
             $addItem = null;
             return redirect('/');
         }
 
-    
-
-        return view('Car.carrinho',['addItem' => $addItem, 'google' => $google]);
-        
+        return view('Car.carrinho', ['addItem' => $addItem, 'google' => $google]);
     }
 
 
-    public function addCarrinho($id){
-
+    public function addCarrinho($id)
+    {
         $usuarioLogado = auth()->user();
+        $usuarioLogado->servicosAsCar()->attach($id, ['quantidade' => 1]);
 
-        
-
-        $usuarioLogado->servicosAsCar()->attach($id,['quantidade' => 1]);
-
-
-
-
-        
-       
-       
-       return redirect('/carrinho');
+        return redirect('/carrinho');
     }
-
-
-
-
-
 }
