@@ -14,6 +14,11 @@
 
         <div>
         </div>
+        <div class="text-center float-end m-2">
+            <button class="btn btn-info text-white text-capitalize">
+                <a href="{{route('pedidos')}}" class=" text-white text-capitalize text-decoration-none">Meus pedidos realizados</a>
+            </button>
+        </div>
         <table class="table table-auto table-light table-hover table-bordered m-2 mt-5 table-responsive">
             <thead>
                 <tr class="text-center">
@@ -138,7 +143,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
-                    <button type="button" class="btn btn-primary">Finalizar pedido</button>
+                    <button type="button" class="btn btn-primary">
+                        <a href="{{route('pedidos')}}" class="text-white text-decoration-none">Finalizar pedido</a>
+                    </button>
+                   
                 </div>
             </div>
         </div>

@@ -11,12 +11,12 @@
             @method('PUT')
             <div class="mb-3">
                 <label for="nome" class="form-label">Titulo do serviço</label>
-                <input type="text" class="form-control" id="nome" name="nome" placeholder="Titulo" required
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Titulo" 
                     value="{{ $servico->nome }}">
             </div>
             <div class="mb-3">
                 <label for="imagem" class="form-label">Imagem:</label>
-                <input type="file" class="form-control" id="imagem" name="imagem" required>
+                <input type="file" class="form-control" id="imagem" name="imagem" >
                 <div class="card mt-2" style="width: 18rem;">
                     <img src="/img/publicserivces/{{ $servico->imagem }}" class="card-img-top" alt="...">
 
@@ -35,12 +35,12 @@
             <div class="mb-3">
                 <label for="codigo" class="form-label">Codigo</label>
                 <input type="text" class="form-control" id="codigo" name="codigo" placeholder="Código do serviço"
-                    required value="{{ $servico->codigo }}">
+                     value="{{ $servico->codigo }}">
             </div>
             <div class="mb-3">
                 <label for="descricao" class="form-label">Descrição:</label>
-                <textarea class="form-control" id="descricao" name="descricao" rows="3" required
-                    placeholder="{{ $servico->descricao }}"></textarea>
+                <textarea class="form-control" id="descricao" name="descricao" rows="3" 
+                   >{{ $servico->descricao }}</textarea>
             </div>
 
             <div class="mb-3 form-check">

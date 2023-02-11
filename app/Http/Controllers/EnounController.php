@@ -262,4 +262,9 @@ class EnounController extends Controller
 
         return redirect('/carrinho');
     }
+
+    public function verPedidos(){
+
+        return view('Car.pedidoRe');
+    }
 }
