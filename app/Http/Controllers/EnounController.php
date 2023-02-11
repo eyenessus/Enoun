@@ -101,6 +101,7 @@ class EnounController extends Controller
         $service->categoria = $request->categoria;
         $service->codigo = $request->codigo;
         $service->inforextra = $request->inforextra;
+        $service->preco = $request->preco;
 
         //imagem
         if($request->hasFile('imagem') && $request->file('imagem')->isValid()){
@@ -244,26 +245,41 @@ class EnounController extends Controller
 
     public function carrinho(){
 
+
+        $google = Servico::all();
+
+
+
         if(auth()){
             $user = auth()->user();
             $addItem = $user->servicosAsCar;
-            
         }else{
             $addItem = null;
+            return redirect('/');
         }
-      
-        
 
-        return view('Car.carrinho',['addItem' => $addItem]);
+    
+
+        return view('Car.carrinho',['addItem' => $addItem, 'google' => $google]);
         
     }
 
 
     public function addCarrinho($id){
-        $usuarioLogado = auth()->user();
-        $usuarioLogado->servicosAsCar()->attach($id);
 
-       return redirect('/');
+        $usuarioLogado = auth()->user();
+
+        
+
+        $usuarioLogado->servicosAsCar()->attach($id,['quantidade' => 1]);
+
+
+
+
+        
+       
+       
+       return redirect('/carrinho');
     }
 
 

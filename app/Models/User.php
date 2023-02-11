@@ -77,7 +77,7 @@ class User extends Authenticatable
 
 
     public function servicosAsCar (){
-        return $this->belongsToMany('App\Models\Servico')->withPivot(['servico_id']);
+        return $this->belongsToMany('App\Models\Servico')->withPivot(['quantidade']);
     }
 
     

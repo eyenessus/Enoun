@@ -15,6 +15,7 @@
       <img src="/img/publicserivces/{{$servicos->imagem}}" class="card-img-top" alt="...">
       <div class="card-body ">
         <h5 class="card-title">{{$servicos->nome}}</h5>
+        <h6 class="card-title text-end">R$ {{$servicos->preco}}</h6>
         <p class="card-text">{{$servicos->descricao}}</p>
         @foreach($servicos->inforextra as $servi)
         <p class="text-capitalize "> <i class="bi bi-check-circle-fill m-2" style="font-size: 30px; color: cornflowerblue;"></i>{{$servi}}</p>
@@ -24,9 +25,9 @@
 <div class="row">
 
 <div class="col">
-  <button class="btn btn-primary"> Saiba mais
-    <a href="service/show/{{$servicos->id}}"></a>
-  </button>
+  
+    <a href="service/show/{{$servicos->id}}" class="btn btn-primary"> Saiba mais </a>
+
 </div>
 
 <div class="col">

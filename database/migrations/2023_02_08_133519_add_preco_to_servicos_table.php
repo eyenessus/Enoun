@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateServicoUserTable extends Migration
+class AddPrecoToServicosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateServicoUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('servico_user', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('servico_id')->constrained();
-            $table->foreignId('quantidade')->nullable();
-            $table->timestamps();
+        Schema::table('servicos', function (Blueprint $table) {
+            $table->integer('preco');
         });
     }
 
@@ -28,6 +25,8 @@ class CreateServicoUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('servico_user');
+        Schema::table('servicos', function (Blueprint $table) {
+            //
+        });
     }
 }

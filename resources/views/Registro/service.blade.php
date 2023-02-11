@@ -12,6 +12,10 @@
   <input type="text" class="form-control" id="nome" name="nome" placeholder="Titulo" required>
 </div>
 <div class="mb-3">
+  <label for="preco" class="form-label">Valor :</label>
+  <input type="tel  " class="form-control" id="preco" name="preco" placeholder="Preço do serviço" required>
+</div>
+<div class="mb-3">
   <label for="imagem" class="form-label">Imagem:</label>
   <input type="file" class="form-control" id="imagem" name="imagem" required>
 </div>
