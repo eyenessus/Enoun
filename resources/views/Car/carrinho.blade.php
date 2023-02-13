@@ -2,12 +2,12 @@
 @section('titulo', 'Carrinho de compras')
 @section('conteudo')
 
-<script>
-  {{ $valorFinal = null }}
-  @foreach ($addItem as $valores)
-      {{ $valorFinal += $valores['preco'] * $valores->pivot['quantidade'] }}
-  @endforeach
-</script>
+    <script>
+        {{ $valorFinal = null }}
+        @foreach ($addItem as $valores)
+            {{ $valorFinal += $valores['preco'] * $valores->pivot['quantidade'] }}
+        @endforeach
+    </script>
 
     <div class="container">
 
@@ -16,7 +16,8 @@
         </div>
         <div class="text-center float-end m-2">
             <button class="btn btn-info text-white text-capitalize">
-                <a href="{{route('pedidos')}}" class=" text-white text-capitalize text-decoration-none">Meus pedidos realizados</a>
+                <a href="{{ route('pedidos') }}" class=" text-white text-capitalize text-decoration-none">Meus pedidos
+                    realizados</a>
             </button>
         </div>
         <table class="table table-auto table-light table-hover table-bordered m-2 mt-5 table-responsive">
@@ -37,28 +38,29 @@
                         <td>R$ <span id="valorItem"> {{ $valuer->preco }}</span>,00</td>
                         <th scope="row"> <input type="number" value="{{ $valuer->pivot['quantidade'] }}"
                                 class="text-center"></th>
-                        <td >
+                        <td>
 
 
 
-                        
-                           <form action="serviceDeletCar/{{$valuer->id}}" method="POST">
-                            
-                            @csrf
-                           @method('DELETE')
 
-                       <button class="btn btn-danger">  <i class="  float-end bi bi-trash3-fill"> Deletar</i> </button>
-                        
-                        </form>
+                            <form action="serviceDeletCar/{{ $valuer->id }}" method="POST">
+
+                                @csrf
+                                @method('DELETE')
+
+                                <button class="btn btn-danger"> <i class="  float-end bi bi-trash3-fill"> Deletar</i>
+                                </button>
+
+                            </form>
 
 
-                    </td>
+                        </td>
                     </tr>
                 @endforeach
 
             </tbody>
 
-     
+
 
             <td colspan="4"> <span class="float-end">Valor Total: R$ {{ number_format($valorFinal, 2, ',', '.') }}</span>
             </td>
@@ -98,18 +100,20 @@
 
                         <div class="d-flex m-2">
                             <div class="form-check m-1">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                    id="flexRadioDefault1">
                                 <label class="form-check-label" for="flexRadioDefault1">
-                                  Visa
+                                    Visa
                                 </label>
-                              </div>
-                              <div class="form-check m-1">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                            </div>
+                            <div class="form-check m-1">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                    id="flexRadioDefault2">
                                 <label class="form-check-label" for="flexRadioDefault2">
-                                  Mastercard
+                                    Mastercard
                                 </label>
-                              </div>
-                              
+                            </div>
+
                         </div>
 
 
@@ -137,42 +141,53 @@
                         </label>
                     </div>
 
-                      <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="99"
+                        aria-valuemin="0" aria-valuemax="100">
                         <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 75%"></div>
-                      </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
-                    <button type="button" class="btn btn-primary">
-                        <a href="{{route('pedidos')}}" class="text-white text-decoration-none">Finalizar pedido</a>
-                    </button>
-                   
+                    <form action="{{ route('finalizarp') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="valor" id="valor" value="{{ $valorFinal }}">
+
+                        @foreach ($addItem as $valuer)
+                            <input type="hidden" id="descricao" value="{{ $valuer->nome }}" name="descricao[]">
+                        @endforeach
+
+                        <button class="btn btn-primary">Finalizar pedido</button>
+                    </form>
+
+
                 </div>
             </div>
         </div>
     </div>
 
-    
+
+
+
 
     <?php
     require_once 'C:\Users\eyeth\Desktop\Enoun\vendor\autoload.php'; // You have to require the library from your Composer vendor folder
-    MercadoPago\SDK::setAccessToken("TEST-4916438875999206-020812-1f00891690dc9573a59ecc3bdac77ffd-358481091"); // Either Production or SandBox AccessToken
-
+    MercadoPago\SDK::setAccessToken('TEST-4916438875999206-020812-1f00891690dc9573a59ecc3bdac77ffd-358481091'); // Either Production or SandBox AccessToken
+    
     $payment = new MercadoPago\Payment();
     
     $payment->transaction_amount = 141;
-    $payment->token = "";
-    $payment->description = "Ergonomic Silk Shirt";
+    $payment->token = '';
+    $payment->description = 'Ergonomic Silk Shirt';
     $payment->installments = 1;
-    $payment->payment_method_id = "visa";
-    $payment->payer = array(
-      "email" => "larue.nienow@email.com"
-    );
-
+    $payment->payment_method_id = 'visa';
+    $payment->payer = [
+        'email' => 'larue.nienow@email.com',
+    ];
+    
     $payment->save();
-
+    
     echo $payment->status;
-  ?>
+    ?>
 
 
 

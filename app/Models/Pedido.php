@@ -9,8 +9,18 @@ class Pedido extends Model
 {
 
     public function usuario(){
-        $this->belongsTo('App\Models\Servico\User');
-    }
+        return $this->belongsTo('\App\Models\User');
+    } 
+
+    protected $fillable =
+     [
+        'user_id',
+        'nome'
+    ];
+    protected $casts = 
+    [
+        'descricao' => 'array'
+    ];
 
     use HasFactory;
 }

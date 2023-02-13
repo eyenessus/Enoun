@@ -65,7 +65,7 @@
                                     <p class="text-capitalize "> <i class="bi bi-check-circle-fill m-2"
                                             style="font-size: 30px; color: cornflowerblue;"></i>{{ $servi }}</p>
                                 @endforeach
-                               
+
 
 
                                 <div class="row">
@@ -107,8 +107,8 @@
                                     <p class="text-capitalize "> <i class="bi bi-check-circle-fill m-2"
                                             style="font-size: 30px; color: cornflowerblue;"></i>{{ $servi }}</p>
                                 @endforeach
-                               
-                                
+
+
                                 <div class="row">
 
                                     <div class="col">

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserPedidosTable extends Migration
+class CreatePedidosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateUserPedidosTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_pedidos', function (Blueprint $table) {
+        Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->string('nome');
-            $table->string('descricao');
-            $table->integer('quantidade');
+            $table->json('descricao');
             $table->double('valor');
             $table->timestamps();
         });
@@ -31,6 +29,6 @@ class CreateUserPedidosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_pedidos');
+        Schema::dropIfExists('pedidos');
     }
 }

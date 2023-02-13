@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pedido;
 use App\Models\User;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\FuncCall;
@@ -241,7 +242,7 @@ class EnounController extends Controller
             return redirect('/');
         }
 
-        return view('Car.carrinho', ['addItem' => $addItem, 'google' => $google]);
+        return view('Car.carrinho', ['addItem' => $addItem]);
     }
 
 
@@ -255,7 +256,7 @@ class EnounController extends Controller
 
     public function removeCarr($id)
     {
-       
+
         $usuarioLogado = auth()->user();
         $usuarioLogado->servicosAsCar()->detach($id);
 
@@ -263,12 +264,26 @@ class EnounController extends Controller
         return redirect('/carrinho');
     }
 
-    public function verPedidos(){
+    public function verPedidos()
+    {
 
-        return view('Car.pedidoRe');
+        $user = auth()->user();
+        $pedidos = $user->pedidos;
+        $item = $user->servicosAsCar;
+        $item->toArray();
+        return view('Car.pedidoRe', ['pedidos' => $pedidos, 'teste' => $item]);
     }
 
 
-    
+    public function finalizarPedido(Request $request)
+    {
+        $pedido = new Pedido();
+        $user = auth()->user();
+        $pedido->user_id = $user->id;
+        $pedido->descricao = $request->descricao;
+        $pedido->valor = $request->valor;
+        $pedido->save();
 
+        return redirect('/pedidosFeito');
+    }
 }
