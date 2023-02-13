@@ -152,4 +152,29 @@
         </div>
     </div>
 
+    
+
+    <?php
+    require_once 'C:\Users\eyeth\Desktop\Enoun\vendor\autoload.php'; // You have to require the library from your Composer vendor folder
+    MercadoPago\SDK::setAccessToken("TEST-4916438875999206-020812-1f00891690dc9573a59ecc3bdac77ffd-358481091"); // Either Production or SandBox AccessToken
+
+   $payment = new MercadoPago\Item();
+    
+   $item = new MercadoPago\Item();
+    $item->title = 'Meu produto';
+    $item->quantity = 1;
+    $item->unit_price = 75.56;
+    $preference->items = array($item);
+    $preference->save();
+
+
+    echo $item->status;
+    
+  ?>
+
+
+
+
+
+
 @endsection
