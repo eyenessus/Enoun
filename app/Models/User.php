@@ -80,5 +80,9 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Models\Servico')->withPivot(['quantidade']);
     }
 
+    public function pedidos(){
+        return $this->hasMany('App\Models\Pedido');
+    }
+
     
 }

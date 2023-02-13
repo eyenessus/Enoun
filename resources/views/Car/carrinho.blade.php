@@ -158,20 +158,21 @@
     require_once 'C:\Users\eyeth\Desktop\Enoun\vendor\autoload.php'; // You have to require the library from your Composer vendor folder
     MercadoPago\SDK::setAccessToken("TEST-4916438875999206-020812-1f00891690dc9573a59ecc3bdac77ffd-358481091"); // Either Production or SandBox AccessToken
 
-   $payment = new MercadoPago\Item();
+    $payment = new MercadoPago\Payment();
     
-   $item = new MercadoPago\Item();
-    $item->title = 'Meu produto';
-    $item->quantity = 1;
-    $item->unit_price = 75.56;
-    $preference->items = array($item);
-    $preference->save();
+    $payment->transaction_amount = 141;
+    $payment->token = "";
+    $payment->description = "Ergonomic Silk Shirt";
+    $payment->installments = 1;
+    $payment->payment_method_id = "visa";
+    $payment->payer = array(
+      "email" => "larue.nienow@email.com"
+    );
 
+    $payment->save();
 
-    echo $item->status;
-    
+    echo $payment->status;
   ?>
-
 
 
 

@@ -267,4 +267,8 @@ class EnounController extends Controller
 
         return view('Car.pedidoRe');
     }
+
+
+    
+
 }

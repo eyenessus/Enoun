@@ -76,6 +76,7 @@ Route::post('/service/AddToCar/{id}', [EnounController::class, 'addCarrinho'])->
 Route::delete('/serviceDeletCar/{id}', [EnounController::class, 'removeCarr']);
 
 Route::get('/pedidosFeito', [EnounController::class, 'verPedidos'])->name('pedidos')->middleware('auth');
+
 //FALLBACKS
 Route::fallback(function () {
     return "ERROR, PÁGINA NÃO ENCONTRADA";
