@@ -294,6 +294,8 @@ class EnounController extends Controller
         $valorFinal = $item->where('preco')->sum('preco'); //soma do valor do carrinho
         $usuario->pedidosAswi()->attach($buscaDoID->id, ['servicos_identificao' => $item, 'valor' => $valorFinal]);
 
+        $usuario->servicosAsCar()->detach(); //remover itens ja enviado para pedido
+
         return redirect('/pedidosFeito');
     }
 }
