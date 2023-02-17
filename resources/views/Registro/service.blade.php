@@ -69,7 +69,6 @@
 
             <div class="mb-3">
 
-                <input type="text" name="inforextra[]" id="pagamento">
                 <button class="btn btn-success">Registrar</button>
             </div>
         </form>

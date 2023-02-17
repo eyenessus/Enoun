@@ -148,16 +148,12 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
-                    <form action="{{ route('finalizarp') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="valor" id="valor" value="{{ $valorFinal }}">
+               
 
-                        @foreach ($addItem as $valuer)
-                            <input type="hidden" id="descricao" value="{{ $valuer->nome }}" name="descricao[]">
-                        @endforeach
-
-                        <button class="btn btn-primary">Finalizar pedido</button>
-                    </form>
+                        <button class="btn btn-primary">
+                            <a href="{{route('finalizarp')}}"> Finalizar pedido</a>
+                      </button>
+                
 
 
                 </div>

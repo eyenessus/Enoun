@@ -25,6 +25,9 @@ class Servico extends Model
         
         }
 
+        public function pedidos(){
+            return $this->belongsToMany('App\Models\Pedido');
+        }
     protected $guarded = [];
     use HasFactory;
 }

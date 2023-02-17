@@ -12,15 +12,16 @@ class Pedido extends Model
         return $this->belongsTo('\App\Models\User');
     } 
 
-    protected $fillable =
-     [
-        'user_id',
-        'nome'
-    ];
-    protected $casts = 
-    [
-        'descricao' => 'array'
-    ];
+    public function usuariosPedido(){
+        return $this->belongsToMany('\App\Models\User');
+    }
 
+    protected $fillable = 
+    [
+        'user_id'
+    ];
+    protected $casts = [
+        'servico_id' => 'array'
+    ];
     use HasFactory;
 }

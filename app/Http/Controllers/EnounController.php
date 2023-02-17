@@ -256,7 +256,6 @@ class EnounController extends Controller
 
     public function removeCarr($id)
     {
-
         $usuarioLogado = auth()->user();
         $usuarioLogado->servicosAsCar()->detach($id);
 
@@ -266,23 +265,34 @@ class EnounController extends Controller
 
     public function verPedidos()
     {
-
         $user = auth()->user();
         $pedidos = $user->pedidos;
-        $item = $user->servicosAsCar;
-        $item->toArray();
-        return view('Car.pedidoRe', ['pedidos' => $pedidos, 'teste' => $item]);
+        $item = $user->pedidosAswi->toArray();
+        return view('Car.pedidoRe', ['pedidos' => $pedidos, 'item'=> $item]);
     }
 
 
-    public function finalizarPedido(Request $request)
+    public function finalizarPedido()
     {
-        $pedido = new Pedido();
-        $user = auth()->user();
-        $pedido->user_id = $user->id;
-        $pedido->descricao = $request->descricao;
-        $pedido->valor = $request->valor;
-        $pedido->save();
+        $usuario = auth()->user();
+        // $items = $usuario->servicosAsCar;
+
+        //inserção de pagamento
+        $datePagamento =
+            [
+                'user_id' => $usuario->id,
+                'pagamento' => 1
+            ];
+        Pedido::create($datePagamento);
+
+        $buscaDoID = Pedido::orderBy('id', 'desc')->first();
+        //busca do ultimo id a fazer o pedido
+
+
+        //registro de pedido valores e descricao
+        $item = $usuario->servicosAsCar; //busca de item no carrinho
+        $valorFinal = $item->where('preco')->sum('preco'); //soma do valor do carrinho
+        $usuario->pedidosAswi()->attach($buscaDoID->id, ['servicos_identificao' => $item, 'valor' => $valorFinal]);
 
         return redirect('/pedidosFeito');
     }

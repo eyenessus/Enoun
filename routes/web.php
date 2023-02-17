@@ -77,7 +77,7 @@ Route::delete('/serviceDeletCar/{id}', [EnounController::class, 'removeCarr']);
 
 Route::get('/pedidosFeito', [EnounController::class, 'verPedidos'])->name('pedidos')->middleware('auth');
 
-Route::post('/finalizarPedido', [EnounController::class, 'finalizarPedido'])->name('finalizarp');
+Route::get('/finalizarPedido', [EnounController::class, 'finalizarPedido'])->name('finalizarp');
 
 //FALLBACKS
 Route::fallback(function () {

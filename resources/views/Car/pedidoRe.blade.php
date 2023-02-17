@@ -22,9 +22,9 @@
                     <tr>
                         <th scope="row">{{ $valor->id }}</th>
 
-                        @foreach ($valor->descricao as $descricao)
-                            <td>{{ $descricao }}</td>
-                        @endforeach
+                   
+                            <td>desss</td>
+                      
 
                         <td>R$ {{ $valor->valor }}</td>
                         <td>{{ $valor->created_at }}</td>
@@ -36,5 +36,10 @@
             </table>
         @endforeach
     </div>
+
+@for ($i = 0; $i < count($item); $i++)
+    {{$item[$i]['id']}}
+@endfor
+
 
 @endsection
