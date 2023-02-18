@@ -80,12 +80,10 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Models\Servico')->withPivot(['quantidade']);
     }
 
-    public function pedidos(){
-        return $this->hasMany('App\Models\Pedido');
-    }
-
-    public function pedidosAswi(){
-        return $this->belongsToMany('App\Models\Pedido')->withPivot(['servicos_identificao','valor']);
+ 
+    
+    public function pedidosAsWith(){
+        return $this->belongsToMany('App\Models\Pedido');
     }
     
 }

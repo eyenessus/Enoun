@@ -52,7 +52,7 @@
 
 
         <h2 id="webti" class="mt-5">Desenvolvimento de website </h2>
-        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4">
+        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
             @foreach ($serv as $servicos)
                 @if ($servicos->categoria == 'developeweb')
                     <div class="col">
@@ -94,7 +94,7 @@
         </div>
 
         <h2 class="mt-5">Desenvolvimento de Aplicativos </h2>
-        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4">
+        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
             @foreach ($serv as $servicos)
                 @if ($servicos->categoria == 'developeApp')
                     <div class="col">
@@ -135,7 +135,7 @@
 
         <h2 id="system" class="mt-5">Sistemas Operacionais</h2>
 
-        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4">
+        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
             @foreach ($serv as $servicos)
                 @if ($servicos->categoria == 'system')
                     <div class="col">

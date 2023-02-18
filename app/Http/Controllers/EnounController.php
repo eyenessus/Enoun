@@ -232,8 +232,6 @@ class EnounController extends Controller
     public function carrinho()
     {
 
-
-        $google = Servico::all();
         if (auth()) {
             $user = auth()->user();
             $addItem = $user->servicosAsCar;
@@ -265,38 +263,45 @@ class EnounController extends Controller
 
     public function verPedidos()
     {
-        $user = auth()->user();
-        $pedidos = $user->pedidos;
-        $item = $user->pedidosAswi;
-    
-        return view('Car.pedidoRe', ['pedidos' => $pedidos, 'item'=> $item]);
+        $usuarioLogado = auth()->user();
+
+        $item = $usuarioLogado->pedidosAsWith;
+      
+       
+        return view('Car.pedidoRe',['item' => $item]);
     }
 
 
     public function finalizarPedido()
+
     {
-        $usuario = auth()->user();
-     
-        //inserção de pagamento
-        $datePagamento =
-            [
-                'user_id' => $usuario->id,
-                'pagamento' => true,
-            ];
-        Pedido::create($datePagamento);
+        
+        $usuarioLogado = auth()->user();
+        $carrinho = $usuarioLogado->servicosAsCar;
+        
+        $localearray = [];
+        for($i = 0; $i < count($carrinho); $i++){
+           
+            
+            array_push($localearray,$carrinho[$i]->pivot['quantidade'] .' '. $carrinho[$i]['nome']);
+        }
+        
+
+        $valorFinal =  $usuarioLogado->servicosAsCar->where('preco')->sum('preco'); 
+        //soma do valor do carrinho
+        $model = new Pedido();
+        $model->user_id = $usuarioLogado->id;
+        $model->descricao = $localearray;
+        $model->valor = $valorFinal;
+        $model->save();
 
         $buscaDoID = Pedido::orderBy('id', 'desc')->first();
-        //busca do ultimo id a fazer o pedido
+        //busca do ultimo id a da lista de pedidos
+    
 
+       $usuarioLogado->pedidosAsWith()->attach($buscaDoID);
 
-        //registro de pedido valores e descricao
-        $valorFinal =  $usuario->servicosAsCar->where('preco')->sum('preco'); //soma do valor do carrinho
-
-
-        $buscaDescricao =  $usuario->servicosAsCar;
-
-        $usuario->pedidosAswi()->attach($buscaDoID->id, ['servicos_identificao' => $buscaDescricao, 'valor' => $valorFinal]);
-        $usuario->servicosAsCar()->detach(); //limpa items do carrinho
+       $usuarioLogado->servicosAsCar()->detach(); //limpa items do carrinho
 
         return redirect('/pedidosFeito');
     }

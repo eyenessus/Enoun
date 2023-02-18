@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePedidoUserTable extends Migration
+class CreatePedidoUser extends Migration
 {
     /**
      * Run the migrations.
@@ -15,9 +15,7 @@ class CreatePedidoUserTable extends Migration
     {
         Schema::create('pedido_user', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained();
-            $table->json('servicos_identificao');
-            $table->foreignId('pedido_id')->unique()->constrained();
-            $table->string('valor');
+            $table->foreignId('pedido_id')->constrained();
             $table->timestamps();
         });
     }

@@ -6,7 +6,7 @@
     <div class="container bg-orange-200 mt-5">
         <h1>Seus pedidos realizados</h1>
         @foreach ($item as $valor)
-            <table class="table table-primary table-responsive-sm">
+            <table class="table table-light table-responsive-sm ">
                 <thead>
                     <tr>
                         <th scope="col">Número do pedido</th>
@@ -20,13 +20,23 @@
 
                 <tbody>
                     <tr>
-                        <th scope="row">{{ $valor->id }}</th>
+                        <th scope="row"> {{ $valor->id }}</th>
 
-                   
-                            <td>{{$valor->pivot['servicos_identificao']}}</td>
-                      
-                        <td>R$ {{$valor->pivot['valor']}}</td>
-                        <td>{{ $valor->created_at }}</td>
+                       
+                            <td>
+                                @foreach ($valor->descricao as $ok)
+                                <div class="bg-info text-white border rounded-2 m-2 text-bold">
+                                    
+                                    {{ $ok }} 
+                                   
+                                </div>
+                                @endforeach
+                            </td>
+                       
+
+
+                        <td>R$ {{ $valor->valor }} </td>
+                        <td> {{ $valor->created_at }}</td>
                     </tr>
                 </tbody>
             </table>
