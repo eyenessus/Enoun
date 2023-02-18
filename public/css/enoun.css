@@ -23,17 +23,18 @@
             height: 30vh;
           } 
 
+     
     }
  
     @media only screen and (min-width: 530px) and (max-width:1200px) {
         .carousel-inner, .carrousel-item{
             height: 50vh;
           } 
-    
+          
 
     }
 
-
+   
 
 /* XX-Large devices (larger desktops, 1400px and up)*/
 @media (min-width: 1400px) { 
@@ -55,5 +56,8 @@
             margin-bottom: 100px;
             color:white;
         }
-
+        .m-md-5 {
+            margin-left: 10rem!important ; 
+            margin-right: 10rem!important ; 
+        }
 }

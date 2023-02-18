@@ -6,7 +6,7 @@
     <div class="container bg-orange-200 mt-5">
         <h1>Seus pedidos realizados</h1>
         @foreach ($item as $valor)
-            <table class="table table-light table-responsive-sm ">
+            <table class="table table-light table-responsive-sm text-center ">
                 <thead>
                     <tr>
                         <th scope="col">Número do pedido</th>
@@ -25,7 +25,7 @@
                        
                             <td>
                                 @foreach ($valor->descricao as $ok)
-                                <div class="bg-info text-white border rounded-2 m-2 text-bold">
+                                <div class="bg-info text-white border rounded-2 m-2 text-bold text-start p-2">
                                     
                                     {{ $ok }} 
                                    

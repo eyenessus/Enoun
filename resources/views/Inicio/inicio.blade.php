@@ -129,7 +129,7 @@
                 <h1>Notícias</h1>
                 @if (count($inicio) > 0)
                     @foreach ($inicio as $value)
-                        <div class="card border-0 mt-3 w-100">
+                        <div class="card border-0 mt-3 w-100 m-md-5 mb-5">
                             <img src="/img/publicnoticias/{{ $value->imagem }}" class=" w-70 rounded" alt="..."
                                 id="imagemnote">
                             <div class="card-body">
