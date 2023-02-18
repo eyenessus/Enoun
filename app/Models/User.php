@@ -85,7 +85,7 @@ class User extends Authenticatable
     }
 
     public function pedidosAswi(){
-        return $this->belongsToMany('App\Models\Pedido')->withPivot(['servicos_identificao']);
+        return $this->belongsToMany('App\Models\Pedido')->withPivot(['servicos_identificao','valor']);
     }
     
 }

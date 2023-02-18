@@ -267,7 +267,8 @@ class EnounController extends Controller
     {
         $user = auth()->user();
         $pedidos = $user->pedidos;
-        $item = $user->pedidosAswi->toArray();
+        $item = $user->pedidosAswi;
+    
         return view('Car.pedidoRe', ['pedidos' => $pedidos, 'item'=> $item]);
     }
 
@@ -275,13 +276,12 @@ class EnounController extends Controller
     public function finalizarPedido()
     {
         $usuario = auth()->user();
-        // $items = $usuario->servicosAsCar;
-
+     
         //inserção de pagamento
         $datePagamento =
             [
                 'user_id' => $usuario->id,
-                'pagamento' => 1
+                'pagamento' => true,
             ];
         Pedido::create($datePagamento);
 
@@ -290,11 +290,13 @@ class EnounController extends Controller
 
 
         //registro de pedido valores e descricao
-        $item = $usuario->servicosAsCar; //busca de item no carrinho
-        $valorFinal = $item->where('preco')->sum('preco'); //soma do valor do carrinho
-        $usuario->pedidosAswi()->attach($buscaDoID->id, ['servicos_identificao' => $item, 'valor' => $valorFinal]);
+        $valorFinal =  $usuario->servicosAsCar->where('preco')->sum('preco'); //soma do valor do carrinho
 
-        $usuario->servicosAsCar()->detach(); //remover itens ja enviado para pedido
+
+        $buscaDescricao =  $usuario->servicosAsCar;
+
+        $usuario->pedidosAswi()->attach($buscaDoID->id, ['servicos_identificao' => $buscaDescricao, 'valor' => $valorFinal]);
+        $usuario->servicosAsCar()->detach(); //limpa items do carrinho
 
         return redirect('/pedidosFeito');
     }
