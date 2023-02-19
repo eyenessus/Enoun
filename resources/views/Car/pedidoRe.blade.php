@@ -5,7 +5,7 @@
 
     <div class="container bg-orange-200 mt-5">
         <h1 class="text-white">Seus pedidos realizados</h1>
-        @foreach ($item as $valor)
+        @foreach ($teste as $valor)
             <table class="table table-light table-responsive-sm text-center ">
                 <thead>
                     <tr>
@@ -40,7 +40,11 @@
                     </tr>
                 </tbody>
             </table>
+           
         @endforeach
     </div>
-
+    <div>
+        {{$teste}}
+        
+    </div>
 @endsection

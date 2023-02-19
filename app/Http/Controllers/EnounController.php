@@ -240,6 +240,8 @@ class EnounController extends Controller
             return redirect('/');
         }
 
+
+
         return view('Car.carrinho', ['addItem' => $addItem]);
     }
 
@@ -247,7 +249,8 @@ class EnounController extends Controller
     public function addCarrinho($id)
     {
         $usuarioLogado = auth()->user();
-        $usuarioLogado->servicosAsCar()->attach($id, ['quantidade' => 1]);
+     
+       $usuarioLogado->servicosAsCar()->syncWithoutDetaching($id);
 
         return redirect('/carrinho');
     }
@@ -267,8 +270,9 @@ class EnounController extends Controller
 
         $item = $usuarioLogado->pedidosAsWith;
       
+        $teste = Pedido::simplePaginate(3);
        
-        return view('Car.pedidoRe',['item' => $item]);
+        return view('Car.pedidoRe',['item' => $item,'teste'=>$teste]);
     }
 
 
