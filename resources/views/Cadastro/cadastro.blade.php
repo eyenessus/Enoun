@@ -1,10 +1,10 @@
-@extends('layouts.main')
+@extends('layouts.cadastro')
 @section('titulo', 'Cadastro')
 @section('conteudo')
 
     <div class="container">
 
-        <form class="row g-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded-3 m-3 mt-md-3 bg-light" method="POST"
+        <form class="row g-3 shadow-lg p-3 mb-5 rounded-3 m-3 mt-md-3 bg-light" method="POST"
             action="{{ route('register') }}">
             @csrf
             <h1 class="p-md-3">CADASTRO</h1>
@@ -58,7 +58,7 @@
 
 
             <div class="col-12">
-                <button class="btn btn-info float-end" type="submit">Cadastrar</button>
+                <button class="btn btn-info float-end text-white" type="submit">Cadastrar</button>
             </div>
         </form>
 

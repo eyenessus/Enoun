@@ -53,7 +53,7 @@
         </button>
     </div>
 
-    <h1 class="text-center col-auto m-lg-5 m-3 text-info  container-fluid text-uppercase w-5 w-md-0">A conexão
+    <h1 class="text-center col-auto m-lg-5 m-3 text-info  container-fluid text-uppercase w-5 w-md-0 text-white">A conexão
         começa aqui!</h1>
 
 
@@ -126,10 +126,10 @@
 
         <div class="row">
             <div class="col-12 col-md-12 mt-3">
-                <h1>Notícias</h1>
+                <h1 class="text-white">Notícias</h1>
                 @if (count($inicio) > 0)
                     @foreach ($inicio as $value)
-                        <div class="card border-0 mt-3 w-100 m-md-5 mb-5">
+                        <div class="card border-0 mt-3 w-100  mb-5">
                             <img src="/img/publicnoticias/{{ $value->imagem }}" class=" w-70 rounded" alt="..."
                                 id="imagemnote">
                             <div class="card-body">

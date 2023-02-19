@@ -15,7 +15,7 @@
 </script>
 </head>
 
-<body class="img-teste">
+<body>
     
     <header class="sticky-top">
         <nav class="navbar navbar-expand-lg border-bottom border-2 border-primary sticky-md-top"
@@ -78,7 +78,7 @@
         </ul>
        @auth
      
-       <a href="{{route('verCarrinho')}}" class="text-decoration-none"><i class="bi bi-cart3 btn bg-white d-none d-md-block d-sm-none mr-10 "> <span class="label label-danger m-1">  </span></i></a>
+       <a href="{{route('verCarrinho')}}" class="text-decoration-none"><i class="bi bi-cart3 btn bg-white d-none d-md-block d-sm-none mr-10 "><span class="label label-danger m-1"> </span></i></a>
     
 <div class="btn-group m-2">
     <button type="button" class="btn btn-info dropdown-toggle text-light border border-3 border-light bg-info text-light text-bold" data-bs-toggle="dropdown" aria-expanded="false">
@@ -137,135 +137,140 @@
 </div>
 </nav>
 </header>
+<body class="img-login">
+    <main>
 
-<main>
-    @if(session('mensagem'))
-    <p class="text-success text-uppercase text-center">{{session('mensagem')}}</p>
-    @endif
-    @if(session('contato'))
-    <p class="text-success text-uppercase text-center">{{session('contato')}}</p>
-    @endif
-    @yield('conteudo')
+        @if(session('mensagem'))
+        <p class="text-success text-uppercase text-center">{{session('mensagem')}}</p>
+        @endif
     
-</main>
-
-
-<!-- Footer -->
-<footer class="text-center text-lg-start bg-light text-muted border-top border-info">
-    <!-- Section: Social media -->
-    <section class="d-flex justify-content-center justify-content-lg-between ">
+        @if(session('contato'))
+        <p class="text-success text-uppercase text-center">{{session('contato')}}</p>
+        @endif
+    
+        @yield('conteudo')
         
-        <div>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-google"></i>
-            </a>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-github"></i>
-            </a>
-        </div>
-        <!-- Right -->
-    </section>
-    <!-- Section: Social media -->
+    </main>
     
-    <!-- Section: Links  -->
-    <section class="">
-        <div class="container text-center text-md-start mt-5">
-            <!-- Grid row -->
-            <div class="row mt-3">
-                <!-- Grid column -->
-                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                    <!-- Content -->
-                    <h6 class="text-uppercase fw-bold mb-4">
-                        <i class="fas fa-gem me-3"></i>Enou Company
-                    </h6>
-                    <p>
-                        Buscamos as melhores soluções para entrega com alta qualidade, no atendimento e nos serviços
-                        para você.
-                    </p>
-                </div>
-                <!-- Grid column -->
-                
-                <!-- Grid column -->
-                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                    <!-- Links -->
-                    <h6 class="text-uppercase fw-bold mb-4">
-                        Produtos
-                    </h6>
-                    <p>
-                        <a href="#!" class="text-reset">Acessórios</a>
-                    </p>
-                    <p>
-                        <a href="#!" class="text-reset">Eletrônicos</a>
-                    </p>
-                    <p>
-                        <a href="#!" class="text-reset">Produtos digitais</a>
-                    </p>
-                    <p>
-                        <a href="#!" class="text-reset">Cursos</a>
-                    </p>
-                </div>
-                <!-- Grid column -->
-                
-                <!-- Grid column -->
-                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                    <!-- Links -->
-                    <h6 class="text-uppercase fw-bold mb-4">
-                        Fundadores
-                    </h6>
-                    <p>
-                        <a href="#!" class="text-reset">Emerson S.</a>
-                    </p>
-                </div>
-                <!-- Grid column -->
-                
-                <!-- Grid column -->
-                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                    <!-- Links -->
-                    <h6 class="text-uppercase fw-bold mb-4">Contato</h6>
-                    <p><i class="fas fa-home me-3"></i> Rua Andrea Sansovino 278</p>
-                    <p>
-                        <i class="fas fa-envelope me-3"></i>
-                        atendimento@enoun.com
-                    </p>
-                    <p><i class="fas fa-phone me-3"></i> +55 (11) 9 9251-5755</p>
-                    
-                </div>
-                <!-- Grid column -->
+    
+    <!-- Footer -->
+    <footer class="text-center text-lg-start bg-light text-muted border-top border-info">
+        <!-- Section: Social media -->
+        <section class="d-flex justify-content-center justify-content-lg-between ">
+            
+            <div>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-github"></i>
+                </a>
             </div>
-            <!-- Grid row -->
-        </div>
-    </section>
-    <!-- Section: Links  -->
-    
-    <!-- Copyright -->
-    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-        © 2023 Copyright
+            <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
         
-    </div>
-    <!-- Copyright -->
+        <!-- Section: Links  -->
+        <section class="">
+            <div class="container text-center text-md-start mt-5">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <!-- Content -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            <i class="fas fa-gem me-3"></i>Enou Company
+                        </h6>
+                        <p>
+                            Buscamos as melhores soluções para entrega com alta qualidade, no atendimento e nos serviços
+                            para você.
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+                    
+                    <!-- Grid column -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Produtos
+                        </h6>
+                        <p>
+                            <a href="#!" class="text-reset">Acessórios</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Eletrônicos</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Produtos digitais</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Cursos</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+                    
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Fundadores
+                        </h6>
+                        <p>
+                            <a href="#!" class="text-reset">Emerson S.</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+                    
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">Contato</h6>
+                        <p><i class="fas fa-home me-3"></i> Rua Andrea Sansovino 278</p>
+                        <p>
+                            <i class="fas fa-envelope me-3"></i>
+                            atendimento@enoun.com
+                        </p>
+                        <p><i class="fas fa-phone me-3"></i> +55 (11) 9 9251-5755</p>
+                        
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+            </div>
+        </section>
+        <!-- Section: Links  -->
+        
+        <!-- Copyright -->
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2023 Copyright
+            
+        </div>
+        <!-- Copyright -->
+        
+    </footer>
+    <!-- Footer -->
+    <script src="/js/main.js"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
     
-</footer>
-<!-- Footer -->
-<script src="/js/main.js"></script>
-<script
-src="https://code.jquery.com/jquery-3.2.1.min.js"
-integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-crossorigin="anonymous"></script>
 </body>
+
 
 </html>

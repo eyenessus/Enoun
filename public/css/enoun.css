@@ -30,8 +30,7 @@
         .carousel-inner, .carrousel-item{
             height: 50vh;
           } 
-          
-
+        
     }
 
    
@@ -60,4 +59,24 @@
             margin-left: 10rem!important ; 
             margin-right: 10rem!important ; 
         }
+        .img-login{
+            background-image: url("/img/login.jpeg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: right 35% bottom 45%;
+        }
+        .img-cadastro{
+            background-image: url("/img/cadastro.jpeg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: bottom 20px right 100%;
+        }
+}
+
+.img-teste{
+    background-image: url("/img/cadastro.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom 50% right 30%;
+    background-attachment:inherit
 }

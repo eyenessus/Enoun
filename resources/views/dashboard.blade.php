@@ -3,9 +3,9 @@
 @section('conteudo')
 
     <div class="container">
-        <h1>Meus serviços</h1>
+        <h1 class="text-white">Meus serviços</h1>
         <table class="table table-light table-striped">
-            <h2>Serviços que você registrou:</h2>
+            <h2 >Serviços que você registrou:</h2>
             <thead>
                 <tr>
                     <th scope="col">ID</th>

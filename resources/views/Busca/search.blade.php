@@ -9,7 +9,7 @@
         @elseif(!$idbusca)
             <p> Digite alguma coisa para que seja exibido resultados correspondente </p>
         @else
-            <h1 class="mt-2">Exibindo resultado de {{ $idbusca }}:</h1>
+            <h1 class="mt-2 text-white">Exibindo resultado de {{ $idbusca }}:</h1>
 
 
             <div class="row row-cols-1 row-cols-md-5 g-4 h-100 m-2">
@@ -28,7 +28,7 @@
 
         @endif
 
-        <h2 id="titulobusca">Sugestões:</h2>
+        <h2 id="titulobusca" class="text-white">Sugestões:</h2>
     </div>
 
 @endsection

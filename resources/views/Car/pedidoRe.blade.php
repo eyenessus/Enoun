@@ -4,7 +4,7 @@
 
 
     <div class="container bg-orange-200 mt-5">
-        <h1>Seus pedidos realizados</h1>
+        <h1 class="text-white">Seus pedidos realizados</h1>
         @foreach ($item as $valor)
             <table class="table table-light table-responsive-sm text-center ">
                 <thead>

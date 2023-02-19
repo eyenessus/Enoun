@@ -4,8 +4,8 @@
 
 
     <div class="container">
-        <h1 class="pt-3 text-center">SERVIÇOS</h1>
-        <h2 id="informatica" class="mt-5">Informática</h2>
+        <h1 class="pt-3 text-center text-white">SERVIÇOS</h1>
+        <h2 id="informatica" class="mt-5 text-white">Informática</h2>
         <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4  g-4">
             @foreach ($serv as $servicos)
                 @if ($servicos->categoria == 'informatica')
@@ -51,7 +51,7 @@
 
 
 
-        <h2 id="webti" class="mt-5">Desenvolvimento de website </h2>
+        <h2 id="webti" class="mt-5 text-white">Desenvolvimento de website </h2>
         <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
             @foreach ($serv as $servicos)
                 @if ($servicos->categoria == 'developeweb')
@@ -93,7 +93,7 @@
             @endforeach
         </div>
 
-        <h2 class="mt-5">Desenvolvimento de Aplicativos </h2>
+        <h2 class="mt-5 text-white">Desenvolvimento de Aplicativos </h2>
         <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
             @foreach ($serv as $servicos)
                 @if ($servicos->categoria == 'developeApp')
@@ -133,9 +133,9 @@
             @endforeach
         </div>
 
-        <h2 id="system" class="mt-5">Sistemas Operacionais</h2>
+        <h2 id="system" class="mt-5 text-white">Sistemas Operacionais</h2>
 
-        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 mb-5">
             @foreach ($serv as $servicos)
                 @if ($servicos->categoria == 'system')
                     <div class="col">

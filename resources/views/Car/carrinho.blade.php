@@ -15,12 +15,12 @@
         <div>
         </div>
         <div class="text-center float-end m-2">
-            <button class="btn btn-info text-white text-capitalize">
+            <button class="btn btn-info text-white text-capitalize ">
                 <a href="{{ route('pedidos') }}" class=" text-white text-capitalize text-decoration-none">Meus pedidos
                     realizados</a>
             </button>
         </div>
-        <table class="table table-auto table-light table-hover table-bordered m-2 mt-5 table-responsive">
+        <table class="table table-auto table-light table-hover table-bordered mt-5 table-responsive border border-white mb-5 mt-5">
             <thead>
                 <tr class="text-center">
 
@@ -67,7 +67,7 @@
 
         </table>
 
-        <div class="p-2 pb-5">
+        <div class="p-2 pb-5 mb-5">
             <button class="btn btn-success float-end " data-bs-toggle="modal" data-bs-target="#exampleModal"> Finalizar
                 Pedido</button>
         </div>

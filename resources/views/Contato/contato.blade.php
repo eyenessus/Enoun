@@ -1,10 +1,10 @@
 @extends('layouts.main')
 @section('titulo', 'Contato')
 @section('conteudo')
-    <div class="container">
+    <div class="container p-5">
 
         <form action="{{ route('contate') }}" method="POST" name="cadastro"
-            class="row g-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded-3 m-3 mt-md-3 m-md-5 bg-light">
+            class="row g-3 shadow-lg p-3 bg-body-tertiary rounded-3 mt-md-3 m-md-5 bg-light m-md-5">
             @csrf
             <h1 class=" p-md-3">Contato</h1>
             <div class="mb-3">
