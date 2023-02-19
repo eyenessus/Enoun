@@ -234,7 +234,7 @@ class EnounController extends Controller
 
         if (auth()) {
             $user = auth()->user();
-            $addItem = $user->servicosAsCar;
+            $addItem = $user->servicosAsCar()->simplepaginate(5);
         } else {
             $addItem = null;
             return redirect('/');

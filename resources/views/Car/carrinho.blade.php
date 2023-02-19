@@ -68,11 +68,15 @@
         </table>
 
         <div class="p-2 pb-5 mb-5">
+            <div>
+            {{$addItem->links()}}
+            </div>
             <button class="btn btn-success float-end " data-bs-toggle="modal" data-bs-target="#exampleModal"> Finalizar
                 Pedido</button>
         </div>
     </div>
 
+    
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
