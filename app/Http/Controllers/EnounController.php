@@ -270,7 +270,7 @@ class EnounController extends Controller
 
         $item = $usuarioLogado->pedidosAsWith;
       
-        $teste = Pedido::simplePaginate(3);
+        $teste = Pedido::orderBy('descricao','asc')->simplePaginate(3);
        
         return view('Car.pedidoRe',['item' => $item,'teste'=>$teste]);
     }
