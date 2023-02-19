@@ -42,7 +42,7 @@
             </table>
            
         @endforeach
-       <div class="text-end m-5">
+       <div class="text-end m-5 text-decoration-none">
         {{$teste->links()}}
        </div>
     </div>

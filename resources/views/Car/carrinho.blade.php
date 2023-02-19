@@ -50,7 +50,7 @@
 
                                 <button class="btn btn-danger"> <i class="  float-end bi bi-trash3-fill"> Deletar</i>
                                 </button>
-
+                                
                             </form>
 
 
@@ -71,7 +71,7 @@
             <div>
             {{$addItem->links()}}
             </div>
-            <button class="btn btn-success float-end " data-bs-toggle="modal" data-bs-target="#exampleModal"> Finalizar
+            <button class="btn btn-success float-end botaopross " data-bs-toggle="modal" data-bs-target="#exampleModal" desable> Finalizar
                 Pedido</button>
         </div>
     </div>
@@ -97,7 +97,7 @@
 
                     </table>
 
-                    <h6>Valor Total: R$ {{ number_format($valorFinal, 2, ',', '.') }}</h6>
+                    <h6 >Valor Total: R$ <span class="valorFinal">{{ number_format($valorFinal, 2, ',', '.') }}</span></h6>
                     <div class="p-3">
 
                         <label for="bandeira">Bandeira</label>

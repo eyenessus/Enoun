@@ -9,7 +9,7 @@ $(document).ready(() => {
         $menu.slideToggle('fast');
     })
 
-    
+
 
 
 
@@ -151,7 +151,7 @@ $(document).ready(() => {
         <div class="text-capitalize">
         <h1>${$fotos[i].title}</h1>
         </div>`)
-            .append(`<img src="${$fotos[i].thumbnailUrl}"/>`)
+                .append(`<img src="${$fotos[i].thumbnailUrl}"/>`)
         }
 
     })
@@ -184,36 +184,44 @@ $(document).ready(() => {
     })
 
     //imagens de servicos
-    $('img').closest('.card').on('mouseenter',event => {
+    $('img').closest('.card').on('mouseenter', event => {
         $(event.currentTarget).toggleClass('shadow-lg  bg-body-tertiary rounded border-info border')
-    }).on('mouseleave',event => {
+    }).on('mouseleave', event => {
         $(event.currentTarget).toggleClass('shadow-lg  border-info  bg-body-tertiary rounded')
     })
 
 
 
     //aba de categorias
-    $botaocategoria.on('mouseenter',() => {
+    $botaocategoria.on('mouseenter', () => {
         $menu.show()
-    }).on('mouseleave',() => {
+    }).on('mouseleave', () => {
         $menu.hide()
     });
 
-    $menu.on('mouseenter',()=>{
+    $menu.on('mouseenter', () => {
         $menu.show()
-    }).on('mouseleave',()=>{
+    }).on('mouseleave', () => {
         $menu.hide()
     })
 
-        const $imagemNot = $('.noticias')
+    const $imagemNot = $('.noticias')
 
-        $($imagemNot).css({
-            backgroundColor: 'white',
-            width: '60rem',
-            height:'auto'
-        })
+    $($imagemNot).css({
+        backgroundColor: 'white',
+        width: '60rem',
+        height: 'auto'
+    })
 
-        $slide = $('.slide')
+    $slide = $('.slide')
 
+    //verificação de carrinho se existem itens dentro do carrinho
+    const $valorFinalCarrinho = $('.valorFinal').html();
+
+    if($valorFinalCarrinho === '0,00'){
+        $('.botaopross').toggleClass('disabled')
+    }else{
+        $('.botaopross').removeClass('disabled')
+    }
 
 })
