@@ -88,9 +88,10 @@
         <li>
             <h6 class="dropdown-header text-dark text-uppercase">Registrar</h6>
         </li>
+        <li><a class="dropdown-item" href="{{route('slides')}}">Registrar Slides</a></li> 
         <li><a class="dropdown-item" href="{{route('RegistrarServico')}}">Registra Serviços</a></li>
-        <li><a class="dropdown-item" href="{{route('RegistrarNoticia')}}">Registrar Notícias (Início)</a></li>
-        <li><a class="dropdown-item" href="{{route('slides')}}">Registrar Slides (Início)</a></li>  
+        <li><a class="dropdown-item" href="{{route('RegistrarNoticia')}}">Registrar Notícias</a></li>
+        
         
       <li><hr class="dropdown-divider"></li>
       

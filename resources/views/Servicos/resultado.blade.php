@@ -3,7 +3,7 @@
 @section('conteudo')
     <div class="container-fluid p-5">
         <div class="bg-light rounded mb-3">
-            <img src="/img/publicserivces/{{ $resultadoId->imagem }}" id="resultadoimagem" class="rounded shadow ml-5"
+            <img src="/img/publicserivces/{{ $resultadoId->imagem }}" id="resultadoimagem" class="rounded ml-5"
                 alt="...">
             <div class="">
                 <h1 class="card-title text-info text-center">{{ $resultadoId->nome }}</h1>

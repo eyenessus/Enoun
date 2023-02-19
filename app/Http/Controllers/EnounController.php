@@ -268,9 +268,10 @@ class EnounController extends Controller
     {
         $usuarioLogado = auth()->user();
 
-        $item = $usuarioLogado->pedidosAsWith;
-      
-        $teste = Pedido::orderBy('id','desc')->simplePaginate(3);
+        $item = $usuarioLogado->pedidosAsWith()->orderBy('id', 'desc')->simplePaginate(4);;
+        
+        $teste = $item;
+        //Pedido::orderBy('id','desc')->simplePaginate(3);
        
         return view('Car.pedidoRe',['item' => $item,'teste'=>$teste]);
     }

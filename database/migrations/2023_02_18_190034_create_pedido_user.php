@@ -15,7 +15,7 @@ class CreatePedidoUser extends Migration
     {
         Schema::create('pedido_user', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('pedido_id')->constrained();
+            $table->foreignId('pedido_id')->constrained()->start_from(140000);
             $table->timestamps();
         });
     }
