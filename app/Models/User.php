@@ -85,5 +85,9 @@ class User extends Authenticatable
     public function pedidosAsWith(){
         return $this->belongsToMany('App\Models\Pedido');
     }
+
+    public function slides(){
+        return $this->hasMany('App\Models\Slide');
+    }
     
 }

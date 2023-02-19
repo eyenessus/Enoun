@@ -4,7 +4,7 @@
 
 <div class="container">
 
-    <form method="POST" action="{{ route('savenoti') }}" enctype="multipart/form-data"
+    <form method="POST" action="regSlides" enctype="multipart/form-data"
         class="bg-light p-5 rounded shadow m-5">
         <h1>Registro de Slides</h1>
         @csrf

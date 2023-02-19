@@ -20,7 +20,7 @@
         <div class="carousel-inner">
             @for ($i = 0; $i < count($slides); $i++)
                 <div class="carousel-item active">
-                    <img src="/img/publicnoticias/{{ $slides[$i]->imagem }}" class="d-block w-100 img-fluid slide"
+                    <img src="/img/slides/{{ $slides[$i]->imagem }}" class="d-block w-100 img-fluid slide"
                         alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>{{ $slides[$i]->titulo }}</h5>
@@ -29,7 +29,7 @@
                 </div>
                 @for ($i = 1; $i < count($slides); $i++)
                     <div class="carousel-item">
-                        <img src="/img/publicnoticias/{{ $slides[$i]->imagem }}" class="d-block w-100 img-fluid slide"
+                        <img src="/img/slides/{{ $slides[$i]->imagem }}" class="d-block w-100 img-fluid slide"
                             alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>{{ $slides[$i]->titulo }}</h5>
@@ -59,7 +59,7 @@
 
     <div class="container">
 
-        <div class="row row-cols-2 row-cols-md-6 g-4 mb-3 w-10">
+        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-6 row-cols-lg-6 g-3 mb-3 w-10">
             <div class="col">
                 <div class="card h-100">
                     <img src="/img/icons/Ativo 6.png" class="card-img-top p-md-5 p-3" alt="...">
@@ -73,7 +73,7 @@
 
             <div class="col">
                 <div class="card h-100">
-                    <img src="/img/icons/Ativo 7.png" class="card-img-top p-md-5 p-3 " alt="...">
+                    <img src="/img/icons/Ativo 7.png" class="card-img-top p-md-5 p-3" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Conversas em tempo real</h5>
                         <p class="card-text">Conversas em tempo real com os especialista, para sanar dúvidas e
@@ -152,7 +152,7 @@
             </div>
 
         </div>
-
+    
     </div>
     </div>
 

@@ -3,26 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pedido;
+use App\Models\Slide;
 use App\Models\User;
 use Illuminate\Http\Request;
-use PhpParser\Node\Expr\FuncCall;
 use App\Models\Produto;
 use App\Models\Servico;
 use App\Models\Usuario;
 use App\Models\Inicio;
 use App\Models\Contato;
-use Illuminate\Support\Facades\Auth;
-use PHPUnit\Framework\Error\Notice;
+
 
 class EnounController extends Controller
 {
     public function index()
     {
         //pagina inicial
-        $inforday = Inicio::all();
+        $inforday = Slide::all();
+        $noticias = Inicio::all();
         return view(
             'Inicio.inicio',
-            ['inicio' => $inforday, 'slides' => $inforday]
+            ['inicio' => $noticias, 'slides' => $inforday]
         );
     }
 
@@ -152,8 +152,8 @@ class EnounController extends Controller
         $usuarioLogado = auth()->user();
         $servico = $usuarioLogado->servicos;
         $noticias = $usuarioLogado->noticias;
-
-        return view('dashboard', ['servico' => $servico, 'noticias' => $noticias]);
+        $slide = $usuarioLogado->slides;
+        return view('dashboard', ['servico' => $servico, 'noticias' => $noticias, 'slides'=> $slide]);
     }
 
     public function destroy($id)
@@ -312,5 +312,22 @@ class EnounController extends Controller
 
     public function slides(){
         return view('Registro.slides');
+    }
+    public function registroSlide(Request $request){
+        $autenticado = auth()->user();
+        $slide = new Slide();
+        $slide->titulo = $request->titulo;
+        $slide->descricao = $request->descricao;
+
+        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
+            $requisaoImagem = $request->imagem;
+            $extensao = $requisaoImagem->extension();
+            $nomeImagem = md5($requisaoImagem->getClientOriginalName() . strtotime("now") . $extensao);
+            $requisaoImagem->move(public_path('img/slides'), $nomeImagem);
+            $slide->imagem = $nomeImagem;
+        }
+        $slide->user_id = $autenticado->id;
+        $slide->save();
+        return redirect('/');
     }
 }

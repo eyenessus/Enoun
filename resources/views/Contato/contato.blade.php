@@ -9,7 +9,7 @@
             <h1 class=" p-md-3">Contato</h1>
             <div class="mb-3">
                 <label for="user" class="form-label">Usuário</label>
-                <input type="text" class="form-control" id="user" placeholder="EXEMPLO22" name="usuario" required>
+                <input type="text" class="form-control" id="user" placeholder="Usuário" name="usuario" required>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Mensagem</label>
