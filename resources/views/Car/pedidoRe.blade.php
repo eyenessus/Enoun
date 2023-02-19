@@ -42,9 +42,9 @@
             </table>
            
         @endforeach
+       <div class="text-end m-5">
+        {{$teste->links()}}
+       </div>
     </div>
-    <div>
-        {{$teste}}
-        
-    </div>
+
 @endsection
