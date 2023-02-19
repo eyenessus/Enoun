@@ -79,6 +79,7 @@ Route::get('/pedidosFeito', [EnounController::class, 'verPedidos'])->name('pedid
 
 Route::get('/finalizarPedido', [EnounController::class, 'finalizarPedido'])->name('finalizarp');
 
+Route::get('/registroSlides',[EnounController::class,'slides'])->name('slides');
 //FALLBACKS
 Route::fallback(function () {
     return "ERROR, PÁGINA NÃO ENCONTRADA";

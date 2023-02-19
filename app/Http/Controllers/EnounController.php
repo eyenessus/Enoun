@@ -270,13 +270,13 @@ class EnounController extends Controller
 
         $item = $usuarioLogado->pedidosAsWith;
       
-        $teste = Pedido::orderBy('descricao','asc')->simplePaginate(3);
+        $teste = Pedido::orderBy('id','desc')->simplePaginate(3);
        
         return view('Car.pedidoRe',['item' => $item,'teste'=>$teste]);
     }
 
 
-    public function finalizarPedido()
+        public function finalizarPedido()
 
     {
         
@@ -308,5 +308,9 @@ class EnounController extends Controller
        $usuarioLogado->servicosAsCar()->detach(); //limpa items do carrinho
 
         return redirect('/pedidosFeito');
+    }
+
+    public function slides(){
+        return view('Registro.slides');
     }
 }
