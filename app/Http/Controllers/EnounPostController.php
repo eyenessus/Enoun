@@ -69,7 +69,7 @@ class EnounPostController extends Controller
 
     public function enviarMensagem(Request $request)
     {
-        
+        Contato::create($request->all());
         return redirect('/')->with('contato', 'Mensagem enviada com sucesso!');
     }
 
