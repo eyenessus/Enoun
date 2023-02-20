@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pedido;
+use App\Models\Inicio;
+use App\Models\Servico;
 use App\Models\Slide;
 use App\Models\User;
-use Illuminate\Http\Request;
-use App\Models\Produto;
-use App\Models\Servico;
-use App\Models\Usuario;
-use App\Models\Inicio;
-use App\Models\Contato;
+
 
 
 class EnounController extends Controller

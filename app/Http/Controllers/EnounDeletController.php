@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Inicio;
 use App\Models\Servico;
-use Illuminate\Http\Request;
+
 
 class EnounDeletController extends Controller
 {
@@ -25,7 +25,6 @@ class EnounDeletController extends Controller
     
     public function deletarNoticia($id)
     {
-        
         Inicio::FindOrFail($id)->delete();
         return redirect('/');
     }

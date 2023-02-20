@@ -80,5 +80,5 @@ Route::delete('/removerDoCarrinho/{id}', [EnounDeletController::class, 'removerD
 
 //PEDIDOS
 Route::get('/exibirPedidos', [EnounController::class, 'verPedidos'])->name('pedidos')->middleware('auth');
-Route::get('/finalizarPedido', [EnounPostController::class, 'finalizarPedido'])->name('finalizarp')->middleware('auth');
+Route::get('/finalizarPedido', [EnounPostController::class, 'finalizarPedido'])->name('finalizarPedido')->middleware('auth');
 

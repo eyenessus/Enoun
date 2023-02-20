@@ -69,10 +69,7 @@ class EnounPostController extends Controller
 
     public function enviarMensagem(Request $request)
     {
-        $contatos = new Contato();
-        $contatos->usuario = $request->usuario;
-        $contatos->mensagem = $request->mensagem;
-        $contatos->save();
+        
         return redirect('/')->with('contato', 'Mensagem enviada com sucesso!');
     }
 
@@ -133,6 +130,6 @@ class EnounPostController extends Controller
         
         $usuarioLogado->servicosAsCar()->detach(); //limpa items do carrinho
         
-        return redirect('/pedidosFeito');
+        return redirect('/exibirPedidos');
     }
 }

@@ -155,7 +155,7 @@
                
 
                         <button class="btn btn-primary">
-                            <a href="{{route('finalizarp')}}" class="text-center text-white text-decoration-none"> Finalizar pedido</a>
+                            <a href="{{route('finalizarPedido')}}" class="text-center text-white text-decoration-none"> Finalizar pedido</a>
                       </button>
                 
 
