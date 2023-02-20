@@ -9,7 +9,7 @@
                 {{ $resultadoNoticia->titulo }}
             </h1>
         <p class="text-center bg-light text-dark">{{ $resultadoNoticia->descricao }}</p>
-        <p>Publicado por: {{ $buscaFilttrada['name'] }}.</p>
+        <p>Publicado por: {{ $autor['name'] }}.</p>
     </div>
 
 @endsection

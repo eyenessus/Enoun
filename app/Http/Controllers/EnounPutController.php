@@ -14,7 +14,7 @@ class EnounPutController extends Controller
         $data = $request->all();
         
         if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-            $requisaoImagem = $request->imagem;
+            $requisaoImagem = $data['imagem'];
             $extensao = $requisaoImagem->extension();
             $nomeImagem = md5($requisaoImagem->getClientOriginalName() . strtotime("now") . $extensao);
             $requisaoImagem->move(public_path('img/publicserivces'), $nomeImagem);
@@ -31,13 +31,13 @@ class EnounPutController extends Controller
         $data = $request->all();
         
         if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-            $requisaoImagem = $request->imagem;
+            $requisaoImagem = $data['imagem'];
             $extensao = $requisaoImagem->extension();
             $nomeImagem = md5($requisaoImagem->getClientOriginalName() . strtotime("now") . $extensao);
             $requisaoImagem->move(public_path('img/publicnoticias'), $nomeImagem);
             $data['imagem'] = $nomeImagem;
         }
-        
+        dd($request->id);
         Inicio::findOrFail($request->id)->update($data);
         return redirect('/');
     }

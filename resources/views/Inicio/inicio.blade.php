@@ -137,7 +137,7 @@
                                 <p class="card-text">{{ $value->descricao }}</p>
                                 <p class="card-text"><small
                                         class="text-muted">{{ date('d/m/Y', strtotime($value->updated_at)) }}</small></p>
-                                <a href="/resultadoNoticias/{{ $value->id }}" class="btn btn-primary">Saiba mais</a>
+                                <a href="/resultadoNoticia/{{ $value->id }}" class="btn btn-primary">Saiba mais</a>
 
                             </div>
                         </div>

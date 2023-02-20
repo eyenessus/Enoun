@@ -4,7 +4,7 @@
 
     <div class="container">
 
-        <form method="POST" action="/editar/update/{{ $servico->id }}" enctype="multipart/form-data"
+        <form method="POST" action="/editarServico/{{ $servico->id }}" enctype="multipart/form-data"
             class="bg-light p-4 m-1 mt-5 mb-5 rounded shadow card w-100">
             <h1>Edição de serviço</h1>
             @csrf

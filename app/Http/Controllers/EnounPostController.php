@@ -24,7 +24,7 @@ class EnounPostController extends Controller
         $data['user_id'] = $obterUser->id;
 
         if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-            $requisaoImagem = $request->imagem;
+            $requisaoImagem = $data['imagem'];
             $extensao = $requisaoImagem->extension();
             $nomeImagem = md5($requisaoImagem->getClientOriginalName() . strtotime("now") . $extensao);
             $requisaoImagem->move(public_path('img/publicnoticias'), $nomeImagem);
@@ -42,7 +42,7 @@ class EnounPostController extends Controller
         $data['user_id'] = $usuarioLogado->id;
         //imagem
         if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-            $requisaoImagem = $request->imagem;
+            $requisaoImagem = $data['imagem'];
             $extensao = $requisaoImagem->extension();
             $nomeImagem = md5($requisaoImagem->getClientOriginalName() . strtotime("now") . $extensao);
             $requisaoImagem->move(public_path('img/publicserivces'), $nomeImagem);
@@ -73,7 +73,7 @@ class EnounPostController extends Controller
         $data['user_id'] = $autenticado->id;
         
         if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-            $requisaoImagem = $request->imagem;
+            $requisaoImagem = $data['imagem'];
             $extensao = $requisaoImagem->extension();
             $nomeImagem = md5($requisaoImagem->getClientOriginalName() . strtotime("now") . $extensao);
             $requisaoImagem->move(public_path('img/slides'), $nomeImagem);
