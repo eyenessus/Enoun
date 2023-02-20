@@ -15,18 +15,18 @@ class Servico extends Model
         public function usuario(){//singular
             //PERTEBCE A UM
             //relacao que tal servico pertence a um usuario 
-            return $this->belongsTo('App\Models\User'); //pertence  a um
+            return $this->belongsTo(User::class); //pertence  a um
         }
 
         
         public function UsuariosPlus(){
 
-        return $this->belongsToMany('App\Models\User');
+        return $this->belongsToMany(User::class);
         
         }
 
         public function pedidos(){
-            return $this->belongsToMany('App\Models\Pedido');
+            return $this->belongsToMany(Pedido::class);
         }
     protected $guarded = [];
     use HasFactory;

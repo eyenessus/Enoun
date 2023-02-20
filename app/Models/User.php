@@ -68,26 +68,24 @@ class User extends Authenticatable
     public function servicos (){ //plurak
         //USUARIO TEM MUITOS SERVICOS 
         //PARA MUITOS 
-        return $this->hasMany('App\Models\Servico'); //pertecem a varios servicos
+        return $this->hasMany(Servico::class); //pertecem a varios servicos
     }
     
     public function noticias (){
-        return $this->hasMany('App\Models\Inicio');
+        return $this->hasMany(Inicio::class);
     }
 
 
     public function servicosAsCar (){
-        return $this->belongsToMany('App\Models\Servico')->withPivot(['quantidade']);
+        return $this->belongsToMany(Servico::class)->withPivot(['quantidade']);
     }
 
- 
-    
     public function pedidosAsWith(){
-        return $this->belongsToMany('App\Models\Pedido');
+        return $this->belongsToMany(Pedido::class);
     }
 
     public function slides(){
-        return $this->hasMany('App\Models\Slide');
+        return $this->hasMany(Slide::class);
     }
     
 }

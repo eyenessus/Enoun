@@ -20,7 +20,7 @@
                     realizados</a>
             </button>
         </div>
-        <table class="table table-auto table-light table-hover table-bordered mt-5 table-responsive border border-white mb-5 mt-5">
+        <table class="table table-auto table-light table-hover table-border table-responsive border border-white mb-5 mt-5">
             <thead>
                 <tr class="text-center">
 

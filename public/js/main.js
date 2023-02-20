@@ -1,7 +1,6 @@
 $(document).ready(() => {
     //menu categorias
-
-
+  
     const $menu = $('#menu');
     const $botaocategoria = $('#botaocategoria')
 
@@ -225,3 +224,4 @@ $(document).ready(() => {
     }
 
 })
+

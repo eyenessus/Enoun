@@ -9,5 +9,7 @@ class Contato extends Model
 {
     protected $fillable =
     ['usuario', 'mensagem'];
+
+    
     use HasFactory;
 }

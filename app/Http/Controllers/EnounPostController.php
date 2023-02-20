@@ -42,6 +42,7 @@ class EnounPostController extends Controller
 
     public function registrarServico(Request $request)
     {
+        
         $service = new Servico;
         $service->nome = $request->nome;
         $service->descricao = $request->descricao;

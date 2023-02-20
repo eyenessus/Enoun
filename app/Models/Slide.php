@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Slide extends Model
 {
     public function usuario(){
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
 
     use HasFactory;

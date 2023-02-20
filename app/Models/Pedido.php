@@ -10,7 +10,7 @@ class Pedido extends Model
     use HasFactory;
 
     public function usuarios(){
-        return $this->belongsToMany('App\Models\User');
+        return $this->belongsToMany(User::class);
     }
    
     protected $fillable = ['user_id'];

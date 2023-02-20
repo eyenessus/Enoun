@@ -8,8 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Inicio extends Model
 {
   public function usuario(){
-        return $this->belongsTo('\App\Models\User');
+        return $this->belongsTo(User::class);
   }
   protected $guarded = [];
+
+
+
     use HasFactory;
 }
