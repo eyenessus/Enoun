@@ -25,12 +25,12 @@
 
                                     <div class="col">
 
-                                        <a href="service/show/{{ $servicos->id }}" class="btn btn-primary"> Saiba mais </a>
+                                        <a href="/servicos/mostrar/{{ $servicos->id }}" class="btn btn-primary"> Saiba mais </a>
 
                                     </div>
 
                                     <div class="col">
-                                        <form action="/service/AddToCar/{{ $servicos->id }}" method="POST" id="formCar">
+                                        <form action="/adicionarItemCarrinho/{{ $servicos->id }}" method="POST" id="formCar">
                                             @csrf
                                             <button class="btn float-end"><i
                                                     class="bi bi-cart-plus-fill btn btn-success"></i></button>

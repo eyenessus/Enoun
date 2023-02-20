@@ -25,7 +25,7 @@
 
                                 <div class="col m-1">
 
-                                    <a href="/visualizar/{{ $servicos->id }}">
+                                    <a href="/exibirServicoDash/{{ $servicos->id }}">
                                         <button type="submit" class="btn btn-success btn-delete">
                                             <i class="bi bi-eye-fill"></i>
                                         </button>
@@ -36,14 +36,14 @@
 
 
                                 <div class="col m-1">
-                                    <a href="/editar/{{ $servicos->id }}">
+                                    <a href="/formEditServico/{{ $servicos->id }}">
                                         <button type="submit" class="btn btn-info text-light"><i
                                                 class="bi bi-pencil-square"></i></button>
                                     </a>
                                 </div>
 
                                 <div class="col m-1">
-                                    <form action="serviceDelete/{{ $servicos->id }}" method="POST" class="">
+                                    <form action="/excluirServico/{{ $servicos->id }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-delete"><i
@@ -93,14 +93,14 @@
 
 
                                 <div class="col m-1">
-                                    <a href="/editarNoticia/{{ $note->id }}">
+                                    <a href="/formEditNoticia/{{ $note->id }}">
                                         <button type="submit" class="btn btn-info text-light"><i
                                                 class="bi bi-pencil-square"></i></button>
                                     </a>
                                 </div>
 
                                 <div class="col m-1">
-                                    <form action="noticeDelete/{{ $note->id }}" method="POST" class="">
+                                    <form action="/excluirNoticia/{{ $note->id }}" method="POST" class="">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-delete"><i
@@ -137,7 +137,7 @@
 
                                 <div class="col m-1">
 
-                                    <a href="/visualizarNoticia/{{ $note->id }}">
+                                    <a href="/">
                                         <button type="submit" class="btn btn-success btn-delete">
                                             <i class="bi bi-eye-fill"></i>
                                         </button>
@@ -148,14 +148,14 @@
 
 
                                 <div class="col m-1">
-                                    <a href="/editarNoticia/{{ $note->id }}">
+                                    <a href="/">
                                         <button type="submit" class="btn btn-info text-light"><i
                                                 class="bi bi-pencil-square"></i></button>
                                     </a>
                                 </div>
 
                                 <div class="col m-1">
-                                    <form action="noticeDelete/{{ $note->id }}" method="POST" class="">
+                                    <form action="/" method="POST" class="">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-delete"><i

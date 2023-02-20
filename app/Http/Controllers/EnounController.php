@@ -28,7 +28,6 @@ class EnounController extends Controller
 
     public function login()
     {
-
         return view('Login.login');
     }
 
@@ -46,6 +45,18 @@ class EnounController extends Controller
         $services = Servico::all();
         return view('Servicos.servicos', ['serv' => $services]);
     }
+    public function exibirServico($id)
+    {
+        $servico = Servico::findOrFail($id); //filtro de registros
+        $donoDoServico = User::where('id', $servico->user_id)->first()->toArray();
+        return view('Servicos.resultadoServico', ['resultadoId' => $servico, 'donoDoServico' => $donoDoServico]);
+    }
+    public function exbirNoticia($id)
+    {
+        $resultado = Inicio::findOrFail($id);
+        $buscaFilttrada = User::where('id', $resultado->user_id)->first()->toArray();
+        return view('Inicio.resultado', ['resultadoNoticia' => $resultado, 'buscaFilttrada' => $buscaFilttrada]);
+    }
 
     public function search()
     {
@@ -58,33 +69,10 @@ class EnounController extends Controller
         return view('Busca.search', ['idbusca' => $busca, 'services' => $servicosBusca]);
     }
 
-    public function formServico()
-    {
-        return view('Registro.service');
-    }
 
-    public function formNoticia()
-    {
-        return view('Registro.noticiasini');
-    }
+  
 
-
-
-    public function exibirServico($id)
-    {
-        $servico = Servico::findOrFail($id); //filtro de registros
-        $donoDoServico = User::where('id', $servico->user_id)->first()->toArray();
-        return view('Servicos.resultado', ['resultadoId' => $servico, 'donoDoServico' => $donoDoServico]);
-    }
-
-
-    public function exbirNoticia($id)
-    {
-        $resultado = Inicio::findOrFail($id);
-        $buscaFilttrada = User::where('id', $resultado->user_id)->first()->toArray();
-        return view('Inicio.resultado', ['resultadoNoticia' => $resultado, 'buscaFilttrada' => $buscaFilttrada]);
-    }
-
+    //DASHBOARD
     public function dashboard()
     {
         $usuarioLogado = auth()->user();
@@ -93,7 +81,11 @@ class EnounController extends Controller
         $slide = $usuarioLogado->slides;
         return view('dashboard', ['servico' => $servico, 'noticias' => $noticias, 'slides' => $slide]);
     }
-
+    public function exibirNoticiaDash($id)
+    {
+        $noticia = Inicio::FindOrFail($id);
+        return view('Edition.noticiaVisu', ['noticia' => $noticia]);
+    }
 
     public function exibirServicoDash($id)
     {
@@ -101,30 +93,9 @@ class EnounController extends Controller
         return view('Edition.visualizacao', ['servico' => $servico]);
     }
 
-    public function formEditServico($id)
-    {
-        $servico = Servico::FindOrFail($id);
-        return view('Edition.edition', ['servico' => $servico]);
-    }
-
-
-
-
-    public function exibirNoticiaDash($id)
-    {
-        $noticia = Inicio::FindOrFail($id);
-        return view('Edition.noticiaVisu', ['noticia' => $noticia]);
-    }
-
-    public function formEditNoticia($id)
-    {
-        $noticia = Inicio::FindOrFail($id);
-        return view('Edition.noticiaEdit', ['noticia' => $noticia]);
-    }
-
-
-
-
+ 
+   
+    //CARRINHO E PEDIDOS
     public function exibirCarrinho()
     {
 
@@ -141,11 +112,6 @@ class EnounController extends Controller
         return view('Car.carrinho', ['addItem' => $addItem]);
     }
 
-
-
-
-
-
     public function verPedidos()
     {
         $usuarioLogado = auth()->user();
@@ -158,8 +124,33 @@ class EnounController extends Controller
         return view('Car.pedidoRe', ['item' => $item, 'teste' => $teste]);
     }
 
+
+    //FORMS
+    
+    public function formEditNoticia($id)
+    {
+        $noticia = Inicio::FindOrFail($id);
+        return view('Edition.noticiaEdit', ['noticia' => $noticia]);
+    }
     public function formSlides()
     {
-        return view('Registro.slides');
+        return view('Registro.slide');
     }
+
+    public function formEditServico($id)
+    {
+        $servico = Servico::FindOrFail($id);
+        return view('Edition.edition', ['servico' => $servico]);
+    }
+
+    public function formServico()
+    {
+        return view('Registro.servico');
+    }
+
+    public function formNoticia()
+    {
+        return view('Registro.noticia');
+    }
+
 }

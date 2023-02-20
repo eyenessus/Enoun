@@ -6,6 +6,7 @@ use App\Models\Contato;
 use App\Models\Inicio;
 use App\Models\Pedido;
 use App\Models\Servico;
+use App\Models\Slide;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 

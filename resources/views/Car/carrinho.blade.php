@@ -43,7 +43,7 @@
 
 
 
-                            <form action="serviceDeletCar/{{ $valuer->id }}" method="POST">
+                            <form action="/removerDoCarrinho/{{ $valuer->id }}" method="POST">
 
                                 @csrf
                                 @method('DELETE')
