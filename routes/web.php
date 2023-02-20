@@ -73,7 +73,7 @@ Route::post('/registrarSlide', [EnounPostController::class, 'registroSlide'])->m
 
 //CARRINHO
 Route::get('/carrinho', [EnounController::class, 'exibirCarrinho'])->name('verCarrinho')->middleware('auth');
-Route::post('/adicionarItemCarrinho/{id}', [EnounPostController::class, 'adicionarAoCarrinho'])->middleware('auth');
+Route::post('/adicionarItemCarrinho/{id}', [EnounPostController::class, 'adicionarAoCarrinho'])->name('adicionar')->middleware('auth');
 Route::delete('/removerDoCarrinho/{id}', [EnounDeletController::class, 'removerDoCarrinho'])->middleware('auth');
 
 

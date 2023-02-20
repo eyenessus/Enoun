@@ -3,7 +3,6 @@
     box-sizing: border-box;
 }
 
-
 h1 {
         color: rgb(102, 176, 241);
     }
@@ -36,6 +35,9 @@ h1 {
         .carousel-inner, .carrousel-item{
             height: 50vh;
           } 
+         .navba{
+            flex-direction: column;
+         }
         
     }
 

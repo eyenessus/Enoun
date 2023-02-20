@@ -18,11 +18,11 @@
 <body class="img-teste">
     
     <header class="sticky-top">
-        <nav class="navbar navbar-expand-lg border-bottom border-2 border-primary sticky-md-top"
+        <nav class="navbar navbar-expand-lg border-bottom border-2 border-primary sticky-md-top "
         style="background-color: #00c8ff;">
         <div class="container-fluid ">
-            <a class="navbar-brand text-dark text-uppercase " href="{{route('inicio')}}">
-                <img src="/img/logoCentral/logo.png" alt="" height="30">
+            <a class="navbar-brand text-dark text-uppercase" href="{{route('inicio')}}">
+                <img src="/img/logoCentral/logo.png" height="30">
             </a>
             <button class="navbar-toggler border-top border border-info bg-light" type="button"
             data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

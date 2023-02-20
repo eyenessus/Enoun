@@ -49,7 +49,7 @@ class EnounPostController extends Controller
             $data['imagem'] = $nomeImagem;
         }
         Servico::create($data);
-        return redirect('/');
+        return redirect('/servicos');
     }
 
     public function enviarMensagem(Request $request)

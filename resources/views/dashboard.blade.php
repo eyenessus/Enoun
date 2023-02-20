@@ -36,7 +36,7 @@
 
 
                                 <div class="col m-1">
-                                    <a href="/formEditServico/{{ $servicos->id }}">
+                                    <a href="/editarServico/{{ $servicos->id }}">
                                         <button type="submit" class="btn btn-info text-light"><i
                                                 class="bi bi-pencil-square"></i></button>
                                     </a>
@@ -148,7 +148,7 @@
 
 
                                 <div class="col m-1">
-                                    <a href="/">
+                                    <a href="/formSlides/{{ $note->id }}">
                                         <button type="submit" class="btn btn-info text-light"><i
                                                 class="bi bi-pencil-square"></i></button>
                                     </a>
