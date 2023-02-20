@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EnounController;
+use App\Http\Controllers\EnounDeletController;
+use App\Http\Controllers\EnounPostController;
+use App\Http\Controllers\EnounPutController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,68 +24,60 @@ use App\Http\Controllers\EnounController;
 //GETS
 Route::get('/',[EnounController::class,"index"])->name('inicio');
 
-
-
-
-
 Route::get('/signin',[EnounController::class,"create"])->name('cadastro');
 
-Route::get('/service', [EnounController::class, "Servicos"])->name('servicos');
+Route::get('/servicos', [EnounController::class, "servicos"])->name('servicos');
 
-Route::get('/service/show/{id}', [EnounController::class,"show"])->name('showService');
+Route::get('/servicos/mostrar/{id}', [EnounController::class,"exibirServico"])->name('showService');
 
-Route::get('/contact', [EnounController::class,"Contato"])->name('contato');
+Route::get('/contato', [EnounController::class,"contato"])->name('contato');
 
-Route::get('/search/{id?}', [EnounController::class,'Buscar'])->name('buscar');
+Route::get('/search/{id?}', [EnounController::class,'search'])->name('buscar');
 
-Route::post('/insert',[EnounController::class,'store'])->name('inserir');
+Route::get('/formNoticias', [EnounController::class, 'formNoticia'])->name('RegistrarNoticia')->middleware('auth');
 
-Route::get('/formNoticias', [EnounController::class, 'RNoti'])->name('RegistrarNoticia')->middleware('auth');
-Route::get('/formServicos', [EnounController::class, 'RService'])->name('RegistrarServico')->middleware('auth');
+Route::get('/formServicos', [EnounController::class, 'exibirServico'])->name('RegistrarServico')->middleware('auth');
 
-Route::get('/resultadoNoticias/{id}', [EnounController::class, 'showNoticias']);
+Route::get('/resultadoNoticia/{id}', [EnounController::class, 'exbirNoticia']);
 
 
 //POSTS
-Route::post('/regsave',[EnounController::class,'SaveService'])->name('saveservice');
-Route::post('/regnoti',[EnounController::class,'SaveNoticia'])->name('savenoti');
-
-Route::post('/registraContato', [EnounController::class, 'MessContats'])->name('contate');
+Route::post('/registrarServico',[EnounPostController::class,'registrarServico'])->name('saveservice');
+Route::post('/registrarNoticia',[EnounPostController::class,'registrarNoticia'])->name('savenoti');
+Route::post('/cadastrarUsuario',[EnounPostController::class,'cadastrarUsuario'])->name('inserir');
+Route::post('/enviarMensagem', [EnounPostController::class, 'enviarMensagem'])->name('contate');
 
 //SERVIÇOS DASHBOARD 
+Route::delete('/excluirServico/{id}', [EnounDeletController::class, 'deletarServico']);
 
-Route::delete('/serviceDelete/{id}', [EnounController::class, 'destroy']);
+Route::put('/editarServico/{id}', [EnounPutController::class, 'editarServico']);
 
-Route::put('/editar/update/{id}', [EnounController::class, 'update']);
+Route::get('/formEditServico/{id}', [EnounController::class, 'formEditServico']);
 
-Route::get('/editar/{id}', [EnounController::class, 'editar']);
-
-Route::get('/visualizar/{id}', [EnounController::class, 'visualizacao']);
+Route::get('/exibirServicoDash/{id}', [EnounController::class, 'exibirServicoDash']);
 
 //NOTICIAS DASHBOARD 
+Route::get('/visualizarNoticia/{id}', [EnounController::class, 'exibirNoticiaDash']);
 
-Route::get('/visualizarNoticia/{id}', [EnounController::class, 'visualizarNoticia']);
+Route::get('/formEditNoticia/{id}', [EnounController::class, 'formEditNoticia']);
 
-Route::get('/editarNoticia/{id}', [EnounController::class, 'editarNoticia']);
+Route::delete('/excluirNoticia/{id}', [EnounDeletController::class, 'deletarNoticia']);
 
-Route::delete('/noticeDelete/{id}', [EnounController::class, 'destroyeNotice']);
+Route::put('/editarNoticia/{id}', [EnounPutController::class, 'editarNoticia']);
 
-Route::put('/editarNoticia/update/{id}', [EnounController::class, 'atualizarNoticia']);
+Route::get('/carrinho', [EnounController::class, 'exibirCarrinho'])->name('verCarrinho')->middleware('auth');
 
+Route::post('/adicionarItemCarrinho/{id}', [EnounPostController::class, 'adicionarAoCarrinho'])->middleware('auth');
 
-Route::get('/carrinho', [EnounController::class, 'carrinho'])->name('verCarrinho')->middleware('auth');
+Route::delete('/removerDoCarrinho/{id}', [EnounDeletController::class, 'removerDoCarrinho']);
 
-Route::post('/service/AddToCar/{id}', [EnounController::class, 'addCarrinho'])->middleware('auth');
+Route::get('/exibirPedidos', [EnounController::class, 'verPedidos'])->name('pedidos')->middleware('auth');
 
-Route::delete('/serviceDeletCar/{id}', [EnounController::class, 'removeCarr']);
+Route::get('/finalizarPedido', [EnounPostController::class, 'finalizarPedido'])->name('finalizarp');
 
-Route::get('/pedidosFeito', [EnounController::class, 'verPedidos'])->name('pedidos')->middleware('auth');
+Route::get('/formSlides',[EnounController::class,'formSlides'])->name('slides');
 
-Route::get('/finalizarPedido', [EnounController::class, 'finalizarPedido'])->name('finalizarp');
-
-Route::get('/registroSlides',[EnounController::class,'slides'])->name('slides');
-
-Route::post('/regSlides', [EnounController::class, 'registroSlide']);
+Route::post('/registrarSlide', [EnounPostController::class, 'registroSlide']);
 
 //FALLBACKS
 Route::fallback(function () {
@@ -97,4 +93,5 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/dashboard', [EnounController::class, 'Dash'])->name('dash')->middleware('auth');
+
+Route::get('/dashboard', [EnounController::class, 'dashboard'])->name('dash')->middleware('auth');

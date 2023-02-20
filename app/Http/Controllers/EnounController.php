@@ -26,7 +26,7 @@ class EnounController extends Controller
         );
     }
 
-    public function Login()
+    public function login()
     {
 
         return view('Login.login');
@@ -36,19 +36,18 @@ class EnounController extends Controller
     {
         return view('Cadastro.cadastro');
     }
-
-    public function Contato()
+    public function contato()
     {
         return view('Contato.contato');
     }
 
-    public function Servicos()
+    public function servicos()
     {
-        $services =  Servico::all();
+        $services = Servico::all();
         return view('Servicos.servicos', ['serv' => $services]);
     }
 
-    public function Buscar()
+    public function search()
     {
         $busca = request('pesquisa');
         if ($busca) {
@@ -59,177 +58,74 @@ class EnounController extends Controller
         return view('Busca.search', ['idbusca' => $busca, 'services' => $servicosBusca]);
     }
 
-    public function store(Request $requisicao)
-    {
-        Usuario::create($requisicao->all());
-        return redirect('/')->with('mensagem', 'Cadastrado com sucesso!');
-    }
-
-    public function RService()
+    public function formServico()
     {
         return view('Registro.service');
     }
 
-    public function RNoti()
+    public function formNoticia()
     {
         return view('Registro.noticiasini');
     }
-    public function SaveNoticia(Request $request)
-    {
-
-        $noticias = new Inicio;
-        $noticias->titulo = $request->titulo;
-        $noticias->descricao = $request->descricao;
-        //imagem
-        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-            $requisaoImagem = $request->imagem;
-            $extensao = $requisaoImagem->extension();
-            $nomeImagem = md5($requisaoImagem->getClientOriginalName() . strtotime("now") . $extensao);
-            $requisaoImagem->move(public_path('img/publicnoticias'), $nomeImagem);
-            $noticias->imagem = $nomeImagem;
-        }
-
-        $obterUser = auth()->user();
-        $noticias->user_id = $obterUser->id;
-        $noticias->save();
-
-        return redirect('/');
-    }
-    public function SaveService(Request $request)
-    {
-        $service = new Servico;
-        $service->nome = $request->nome;
-        $service->descricao = $request->descricao;
-        $service->categoria = $request->categoria;
-        $service->codigo = $request->codigo;
-        $service->inforextra = $request->inforextra;
-        $service->preco = $request->preco;
-
-        //imagem
-        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-            $requisaoImagem = $request->imagem;
-            $extensao = $requisaoImagem->extension();
-            $nomeImagem = md5($requisaoImagem->getClientOriginalName() . strtotime("now") . $extensao);
-            $requisaoImagem->move(public_path('img/publicserivces'), $nomeImagem);
-            $service->imagem = $nomeImagem;
-        }
 
 
-        $usuarioLogado = auth()->user(); //usuario logado
-        $service->user_id = $usuarioLogado->id; //atribuindo o id do usuario logado no data base
-        $service->save();
 
-        return redirect('/');
-    }
-
-    public function show($id)
+    public function exibirServico($id)
     {
         $servico = Servico::findOrFail($id); //filtro de registros
         $donoDoServico = User::where('id', $servico->user_id)->first()->toArray();
-
         return view('Servicos.resultado', ['resultadoId' => $servico, 'donoDoServico' => $donoDoServico]);
     }
 
 
-    public function showNoticias($id)
+    public function exbirNoticia($id)
     {
         $resultado = Inicio::findOrFail($id);
         $buscaFilttrada = User::where('id', $resultado->user_id)->first()->toArray();
         return view('Inicio.resultado', ['resultadoNoticia' => $resultado, 'buscaFilttrada' => $buscaFilttrada]);
     }
 
-    public function MessContats(Request $request)
-    {
-        $contatos = new Contato();
-        $contatos->usuario = $request->usuario;
-        $contatos->mensagem = $request->mensagem;
-        $contatos->save();
-        return redirect('/')->with('contato', 'Mensagem enviada com sucesso!');
-    }
-
-    public function Dash()
+    public function dashboard()
     {
         $usuarioLogado = auth()->user();
         $servico = $usuarioLogado->servicos;
         $noticias = $usuarioLogado->noticias;
         $slide = $usuarioLogado->slides;
-        return view('dashboard', ['servico' => $servico, 'noticias' => $noticias, 'slides'=> $slide]);
+        return view('dashboard', ['servico' => $servico, 'noticias' => $noticias, 'slides' => $slide]);
     }
 
-    public function destroy($id)
-    {
 
-        Servico::FindOrFail($id)->delete();
-        return redirect('/');
-    }
-
-    public function destroyeNotice($id)
-    {
-
-        Inicio::FindOrFail($id)->delete();
-        return redirect('/');
-    }
-    public function visualizacao($id)
+    public function exibirServicoDash($id)
     {
         $servico = Servico::FindOrFail($id);
         return view('Edition.visualizacao', ['servico' => $servico]);
     }
 
-    public function editar($id)
+    public function formEditServico($id)
     {
         $servico = Servico::FindOrFail($id);
         return view('Edition.edition', ['servico' => $servico]);
     }
 
-    public function update(Request $request)
-    {
-
-        $data = $request->all();
-
-        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-            $requisaoImagem = $request->imagem;
-            $extensao = $requisaoImagem->extension();
-            $nomeImagem = md5($requisaoImagem->getClientOriginalName() . strtotime("now") . $extensao);
-            $requisaoImagem->move(public_path('img/publicserivces'), $nomeImagem);
-            $data['imagem'] = $nomeImagem;
-        }
-
-        Servico::findOrFail($request->id)->update($data);
-        return redirect('/');
-    }
 
 
-    public function visualizarNoticia($id)
+
+    public function exibirNoticiaDash($id)
     {
         $noticia = Inicio::FindOrFail($id);
         return view('Edition.noticiaVisu', ['noticia' => $noticia]);
     }
 
-    public function editarNoticia($id)
+    public function formEditNoticia($id)
     {
         $noticia = Inicio::FindOrFail($id);
         return view('Edition.noticiaEdit', ['noticia' => $noticia]);
     }
 
-    public function atualizarNoticia(Request $request)
-    {
-
-        $data = $request->all();
-
-        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-            $requisaoImagem = $request->imagem;
-            $extensao = $requisaoImagem->extension();
-            $nomeImagem = md5($requisaoImagem->getClientOriginalName() . strtotime("now") . $extensao);
-            $requisaoImagem->move(public_path('img/publicnoticias'), $nomeImagem);
-            $data['imagem'] = $nomeImagem;
-        }
-
-        Inicio::findOrFail($request->id)->update($data);
-        return redirect('/');
-    }
 
 
-    public function carrinho()
+
+    public function exibirCarrinho()
     {
 
         if (auth()) {
@@ -246,89 +142,24 @@ class EnounController extends Controller
     }
 
 
-    public function addCarrinho($id)
-    {
-        $usuarioLogado = auth()->user();
-     
-       $usuarioLogado->servicosAsCar()->syncWithoutDetaching($id);
-
-        return redirect('/carrinho');
-    }
-
-    public function removeCarr($id)
-    {
-        $usuarioLogado = auth()->user();
-        $usuarioLogado->servicosAsCar()->detach($id);
 
 
-        return redirect('/carrinho');
-    }
+
 
     public function verPedidos()
     {
         $usuarioLogado = auth()->user();
 
         $item = $usuarioLogado->pedidosAsWith()->orderBy('id', 'desc')->simplePaginate(4);;
-        
+
         $teste = $item;
-        //Pedido::orderBy('id','desc')->simplePaginate(3);
-       
-        return view('Car.pedidoRe',['item' => $item,'teste'=>$teste]);
+
+
+        return view('Car.pedidoRe', ['item' => $item, 'teste' => $teste]);
     }
 
-
-        public function finalizarPedido()
-
+    public function formSlides()
     {
-        
-        $usuarioLogado = auth()->user();
-        $carrinho = $usuarioLogado->servicosAsCar;
-        
-        $localearray = [];
-        for($i = 0; $i < count($carrinho); $i++){
-           
-            
-            array_push($localearray,$carrinho[$i]->pivot['quantidade'] .' '. $carrinho[$i]['nome']);
-        }
-        
-
-        $valorFinal =  $usuarioLogado->servicosAsCar->where('preco')->sum('preco'); 
-        //soma do valor do carrinho
-        $model = new Pedido();
-        $model->user_id = $usuarioLogado->id;
-        $model->descricao = $localearray;
-        $model->valor = $valorFinal;
-        $model->save();
-
-        $buscaDoID = Pedido::orderBy('id', 'desc')->first();
-        //busca do ultimo id a da lista de pedidos
-    
-
-       $usuarioLogado->pedidosAsWith()->attach($buscaDoID);
-
-       $usuarioLogado->servicosAsCar()->detach(); //limpa items do carrinho
-
-        return redirect('/pedidosFeito');
-    }
-
-    public function slides(){
         return view('Registro.slides');
-    }
-    public function registroSlide(Request $request){
-        $autenticado = auth()->user();
-        $slide = new Slide();
-        $slide->titulo = $request->titulo;
-        $slide->descricao = $request->descricao;
-
-        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-            $requisaoImagem = $request->imagem;
-            $extensao = $requisaoImagem->extension();
-            $nomeImagem = md5($requisaoImagem->getClientOriginalName() . strtotime("now") . $extensao);
-            $requisaoImagem->move(public_path('img/slides'), $nomeImagem);
-            $slide->imagem = $nomeImagem;
-        }
-        $slide->user_id = $autenticado->id;
-        $slide->save();
-        return redirect('/');
     }
 }
