@@ -18,14 +18,14 @@ class EnounDeletController extends Controller
 
     public function deletarServico($id)
     {
-        Servico::FindOrFail($id)->delete();
-        return redirect('/');
+        Servico::destroy($id);
+        return redirect('/dashboard');
     }
     
     public function deletarNoticia($id)
     {
-        Inicio::FindOrFail($id)->delete();
-        return redirect('/');
+        Inicio::destroy($id);
+        return redirect('/dashboard');
     }
 
     
