@@ -90,15 +90,26 @@ class EnounPostController extends Controller
 
     public function finalizarPedido()
     {   
+       
         $usuarioLogado = auth()->user();
         $carrinho = $usuarioLogado->servicosAsCar;
         
+        //descrição do produto
         $localearray = [];
         for ($i = 0; $i < count($carrinho); $i++) {
-            array_push($localearray, $carrinho[$i]->pivot['quantidade'] . ' ' . $carrinho[$i]['nome']);
+            array_push($localearray, $carrinho[$i]->pivot['quantidade'] . ' ' . $carrinho[$i]['nome'] . '---------------' . 'R$ ' . $carrinho[$i]['preco'] * $carrinho[$i]->pivot['quantidade'].',00');
         }
         
-        $valorFinal = $carrinho->where('preco')->sum('preco');
+      
+       
+        $valorFinal = 0;
+
+       foreach($carrinho as $valor){
+        $valorFinal += $valor['preco'] * $valor->pivot['quantidade'];
+       }
+   
+
+    
         //soma do valor do carrinho
         $model = new Pedido;
         $model->user_id = $usuarioLogado->id;
