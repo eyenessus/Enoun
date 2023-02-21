@@ -36,22 +36,46 @@
                     <tr class="text-center">
                         <td>{{ $valuer->nome }}</td>
                         <td>R$ <span id="valorItem"> {{ $valuer->preco }}</span>,00</td>
-                        <th scope="row"> <input type="number" value="{{ $valuer->pivot['quantidade'] }}"
+                        <th scope="row"> <input type="number" min="1" value="{{ $valuer->pivot['quantidade'] }}"
                                 class="text-center"></th>
                         <td>
+                            <div class="row">
 
 
+                                <div class="col m-1">
+                                    <form action="{{route('diminuirItem',$valuer->id)}}" method="GET">
+                                        <button class="btn btn-warning">   <i class="bi bi-dash"></i>
+                                        </button>
+                                    </form>
+                                   
 
+                                </div>
 
-                            <form action="/removerDoCarrinho/{{ $valuer->id }}" method="POST">
+                                <div class="col m-1">
 
-                                @csrf
-                                @method('DELETE')
+                                    <form action="/removerDoCarrinho/{{ $valuer->id }}" method="POST">
 
-                                <button class="btn btn-danger"> <i class="  float-end bi bi-trash3-fill"> Deletar</i>
-                                </button>
-                                
-                            </form>
+                                        @csrf
+                                        @method('DELETE')
+        
+                                        <button class="btn btn-danger"> <i class="  float-end bi bi-trash3-fill"></i>
+                                        </button>
+                                    </form>
+                                </div>
+
+                                <div class="col m-1">
+                                    <form action="{{route('aumentarItem',$valuer->id)}}" method="GET">
+                                        <button class="btn btn-success">
+                                            <i class="bi bi-plus-circle-fill"></i>
+                                        </button>
+                                    </form>
+                                   
+
+                                </div>
+
+                            </div>
+
+                            
 
 
                         </td>

@@ -60,12 +60,17 @@ class EnounPostController extends Controller
 
     public function adicionarAoCarrinho($id)
     {
-        $usuarioLogado = auth()->user();
-        $usuarioLogado->servicosAsCar()->syncWithoutDetaching($id);
-        
+        $usuarioLogado = auth()->user()->servicosAsCar();
+        $usuarioLogado->syncWithoutDetaching($id);
+        $usuarioLogado->where('id', $id)->increment('quantidade');
+
+
+       
+
         return redirect('/carrinho');
     }
     
+
     public function registroSlide(Request $request)
     {
         $autenticado = auth()->user();

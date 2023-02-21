@@ -21,12 +21,12 @@ class EnounController extends Controller
             ['inicio' => $noticias, 'slides' => $inforday]
         );
     }
-    
+
     public function login()
     {
         return view('Login.login');
     }
-    
+
     public function create()
     {
         return view('Cadastro.cadastro');
@@ -35,7 +35,7 @@ class EnounController extends Controller
     {
         return view('Contato.contato');
     }
-    
+
     public function servicos()
     {
         $services = Servico::all();
@@ -55,7 +55,7 @@ class EnounController extends Controller
         $autorNoticia = User::where('id', $noticia->user_id)->first()->toArray();
         return view('Inicio.resultado', ['resultadoNoticia' => $noticia, 'autor' => $autorNoticia]);
     }
-    
+
     public function search()
     {
         $busca = request('pesquisa');
@@ -66,7 +66,7 @@ class EnounController extends Controller
         }
         return view('Busca.search', ['idbusca' => $busca, 'services' => $servicosBusca]);
     }
-    
+
     //DASHBOARD
     public function dashboard()
     {
@@ -74,7 +74,7 @@ class EnounController extends Controller
         $servico = $usuarioLogado->servicos;
         $noticias = $usuarioLogado->noticias;
         $slide = $usuarioLogado->slides;
-        
+
         return view('dashboard', ['servico' => $servico, 'noticias' => $noticias, 'slides' => $slide]);
     }
     public function exibirNoticiaDash($id)
@@ -82,38 +82,47 @@ class EnounController extends Controller
         $noticia = Inicio::FindOrFail($id);
         return view('Edition.noticiaVisu', ['noticia' => $noticia]);
     }
-    
+
     public function exibirServicoDash($id)
     {
         $servico = Servico::FindOrFail($id);
         return view('Edition.visualizacao', ['servico' => $servico]);
     }
-    
+
     //CARRINHO E PEDIDOS
     public function exibirCarrinho()
     {
-        
+
+
         if (auth()) {
             $user = auth()->user();
+
+            $itemSemQuantidade = $user->servicosAsCar()->where('quantidade', '<', 1)->get()->toArray();
+
+            foreach ($itemSemQuantidade as $item) 
+            {
+                $user->servicosAsCar()->detach($item['id']);
+            }
+
             $addItem = $user->servicosAsCar()->simplepaginate(5);
-        } else {
+        } 
+        else {
             $addItem = null;
             return redirect('/');
         }
-        
+
         return view('Car.carrinho', ['addItem' => $addItem]);
     }
-    
+
     public function verPedidos()
     {
         $usuarioLogado = auth()->user();
-        
         $listaDePedidos = $usuarioLogado->pedidosAsWith()->orderBy('id', 'desc')->simplePaginate(4);
-       
+
         return view('Car.pedidoRe', ['listaDePedidos' => $listaDePedidos]);
     }
-    
-    
+
+
     //FORMS
     public function formEditNoticia($id)
     {
@@ -125,18 +134,18 @@ class EnounController extends Controller
     {
         return view('Registro.slide');
     }
-    
+
     public function formEditServico($id)
     {
         $servico = Servico::FindOrFail($id);
         return view('Edition.servicoEdit', ['servico' => $servico]);
     }
-    
+
     public function formServico()
     {
         return view('Registro.servico');
     }
-    
+
     public function formNoticia()
     {
         return view('Registro.noticia');

@@ -42,5 +42,17 @@ class EnounPutController extends Controller
         return redirect('/');
     }
 
+    public function aumentarItem($id){
+        $usuarioLogado = auth()->user()->servicosAsCar();
+        $usuarioLogado->syncWithoutDetaching($id);
+        $usuarioLogado->where('id', $id)->increment('quantidade');
+        return redirect('/carrinho');
+    }
+
+    public function diminuirItem($id){
+        $usuarioLogado = auth()->user()->servicosAsCar();
+        $usuarioLogado->where('id', $id)->decrement('quantidade');
+        return redirect('/carrinho');
+    }
     
 }
