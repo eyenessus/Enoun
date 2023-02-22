@@ -6,6 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('titulo')</title>
+    <meta name="copyright" content="© 2022 Enoun" />
+    <meta name="description" content="Suporte, Tecnologias e qualidades" />
+    <meta name="DC.creator.address" content=enoun@gmail.com" />
+    <meta name="DC.date.created" content="2022-08-12" />
+    <meta name="DC.Identifier" content="http://www.enoun.com.br/">
+    <meta name="DC.format" content="text/html" />
+    <meta property="og:title" content="Enoun exclusiva para você" />
+    <meta property="og:url" content="http://enoun.com.br/">
+    <meta property="og: image" content="/Imagens/images/logoexemplo.png" />
+    <meta name="keywords" content="tecnologias, informatica, web, suporte, TI" />
+    <meta name="DC.publisher" content="Enoun" />
+    <meta name="Custodian" content="Emerson Sousa" />
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
