@@ -20,8 +20,7 @@
         <div class="carousel-inner">
             @for ($i = 0; $i < count($slides); $i++)
                 <div class="carousel-item active">
-                    <img src="/img/slides/{{ $slides[$i]->imagem }}" class="d-block w-100 img-fluid slide"
-                        alt="...">
+                    <img src="/img/slides/{{ $slides[$i]->imagem }}" class="d-block w-100 img-fluid slide" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>{{ $slides[$i]->titulo }}</h5>
                         <p>{{ $slides[$i]->descricao }}</p>
@@ -53,7 +52,10 @@
         </button>
     </div>
 
-    <h1 class="text-center col-auto m-lg-5 m-3 text-info  container-fluid text-uppercase w-5 w-md-0 text-white">A conexão
+    <h1 class="text-center col-auto m-lg-5 m-3 text-info  container-fluid text-uppercase w-5 w-md-0 text-white">
+    @auth
+    {{$user->name}}    
+    @endauth A conexão
         começa aqui!</h1>
 
 
@@ -152,7 +154,7 @@
             </div>
 
         </div>
-    
+
     </div>
     </div>
 

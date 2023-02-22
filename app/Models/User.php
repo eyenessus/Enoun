@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -66,18 +67,21 @@ class User extends Authenticatable
     ];
 
 
-    public function servicos (){ //plurak
+    public function servicos () : HasMany
+    { //plurak
         //USUARIO TEM MUITOS SERVICOS 
         //PARA MUITOS 
         return $this->hasMany(Servico::class); //pertecem a varios servicos
     }
     
-    public function noticias (){
+    public function noticias () : HasMany
+    {
         return $this->hasMany(Inicio::class);
     }
 
 
-    public function servicosAsCar (){
+    public function servicosAsCar (): BelongsToMany
+    {
         return $this->belongsToMany(Servico::class)->withPivot(['quantidade']);
     }
 
@@ -86,7 +90,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Pedido::class);
     }
 
-    public function slides(){
+    public function slides() : HasMany
+    {
         return $this->hasMany(Slide::class);
     }
     

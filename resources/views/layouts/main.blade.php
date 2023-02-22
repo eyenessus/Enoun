@@ -48,16 +48,16 @@
                     <li>
                         <h6 class="dropdown-header text-dark text-uppercase">Informática</h6>
                     </li>
-                    <li><a class="dropdown-item" href="/service/#informatica" >Serviços digitais</a></li>
-                    <li><a class="dropdown-item" href="/service/#informatica">Revelações de fotos</a></li>
+                    <li><a class="dropdown-item" href="/servicos/#informatica" >Serviços digitais</a></li>
+                    <li><a class="dropdown-item" href="/servicos/#informatica">Revelações de fotos</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
                     <li>
                         <h6 class="dropdown-header text-dark text-uppercase">Softwares</h6>
                     </li>
-                    <li><a class="dropdown-item" href="/service/#system">Windows 11 Pro</a></li>
-                    <li><a class="dropdown-item" href="/service/#system">Desenvolvimento de softwares</a></li>
+                    <li><a class="dropdown-item" href="/servicos/#system">Windows 11 Pro</a></li>
+                    <li><a class="dropdown-item" href="/servicos/#system">Desenvolvimento de softwares</a></li>
                     
                     <li>
                         <hr class="dropdown-divider">
@@ -65,8 +65,8 @@
                     <li>
                         <h6 class="dropdown-header text-dark text-uppercase">Acessórios</h6>
                     </li>
-                    <li><a class="dropdown-item" href="/service/#acess">Monitores</a></li>
-                    <li><a class="dropdown-item" href="/service/#acess">Roteador Wireless</a></li>
+                    <li><a class="dropdown-item" href="/servicos/#acess">Monitores</a></li>
+                    <li><a class="dropdown-item" href="/servicos/#acess">Roteador Wireless</a></li>
                   
                 </ul>
             </li>
@@ -130,7 +130,7 @@
             @csrf
             <a href="/logout" id="botaoSair">
                 <button
-                class="btn btn-primary text-center text-light float-end mt-5 mt-md-0 mt-md-0 m-2 m-md-1 m-lg-1">Sair</button>
+                class="btn btn-primary text-center text-light float-end mt-5 mt-md-0 mt-md-0 m-2 m-md-1 m-lg-1"><i class="bi bi-box-arrow-right"></i> Sair</button>
             </a>
         </form>
        
@@ -207,16 +207,16 @@
                         Produtos
                     </h6>
                     <p>
-                        <a href="#!" class="text-reset">Acessórios</a>
+                        <a href="/servicos/#acess" class="text-reset">Acessórios</a>
                     </p>
                     <p>
-                        <a href="#!" class="text-reset">Eletrônicos</a>
+                        <a href="/servicos/#informatica" class="text-reset">Eletrônicos</a>
                     </p>
                     <p>
-                        <a href="#!" class="text-reset">Produtos digitais</a>
+                        <a href="/servicos/#informatica" class="text-reset">Produtos digitais</a>
                     </p>
                     <p>
-                        <a href="#!" class="text-reset">Cursos</a>
+                        <a href="/servicos/#informatica" class="text-reset">Cursos</a>
                     </p>
                 </div>
                 <!-- Grid column -->
@@ -228,7 +228,7 @@
                         Fundadores
                     </h6>
                     <p>
-                        <a href="#!" class="text-reset">Emerson S.</a>
+                        <a href="https://github.com/eyenessus" target="_blank" class="text-info text-decoration-none">Emerson S. <i class="bi bi-star-fill"></i></a>
                     </p>
                 </div>
                 <!-- Grid column -->

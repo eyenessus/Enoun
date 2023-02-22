@@ -16,9 +16,12 @@ class EnounController extends Controller
         //pagina inicial
         $inforday = Slide::all();
         $noticias = Inicio::all();
+        if(auth()){
+            $user = auth()->user();
+        }
         return view(
             'Inicio.inicio',
-            ['inicio' => $noticias, 'slides' => $inforday]
+            ['inicio' => $noticias, 'slides' => $inforday,'user' => $user]
         );
     }
 

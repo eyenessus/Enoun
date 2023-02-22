@@ -103,12 +103,10 @@ class EnounPostController extends Controller
       
        
         $valorFinal = 0;
-
        foreach($carrinho as $valor){
         $valorFinal += $valor['preco'] * $valor->pivot['quantidade'];
        }
    
-
     
         //soma do valor do carrinho
         $model = new Pedido;
