@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('titulo')</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/css/enoun.css">
-    <script
-    src="https://code.jquery.com/jquery-3.6.3.js"
-    integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
-    crossorigin="anonymous">
-</script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+    crossorigin="anonymous"></script>
 </head>
 
 <body class="img-teste">
@@ -21,7 +20,7 @@
         <nav class="navbar navbar-expand-lg border-bottom border-2 border-primary sticky-md-top "
         style="background-color: #00c8ff;">
         <div class="container-fluid ">
-            <a class="navbar-brand text-dark text-uppercase" href="{{route('inicio')}}">
+            <a class="navbar-brand text-dark text-uppercase" href="{{ route('inicio') }}">
                 <img src="/img/logoCentral/logo.png" height="30">
             </a>
             <button class="navbar-toggler border-top border border-info bg-light" type="button"
@@ -30,25 +29,26 @@
             <span class="navbar-toggler-icon border-info"></span>
         </button>
         
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             
             <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="lista">
                 <li class="nav-item">
-                    <a class="nav-link active text-light text-uppercase" aria-current="page" href="{{route('inicio')}}">Início</a>
+                    <a class="nav-link active text-light text-uppercase" aria-current="page"
+                    href="{{ route('inicio') }}">Início</a>
                 </li>
-                <li class="nav-item" >
-                    <a class="nav-link text-light text-uppercase" href="{{route('servicos')}}" >Serviços</a>
+                <li class="nav-item">
+                    <a class="nav-link text-light text-uppercase" href="{{ route('servicos') }}">Serviços</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-light text-uppercase " href="#" role="button"
-                    data-bs-toggle="dropdown" aria-expanded="false" id="botaocategoria" >
+                    data-bs-toggle="dropdown" aria-expanded="false" id="botaocategoria">
                     Categorias
                 </a>
                 <ul class="dropdown-menu" id="menu">
                     <li>
                         <h6 class="dropdown-header text-dark text-uppercase">Informática</h6>
                     </li>
-                    <li><a class="dropdown-item" href="/servicos/#informatica" >Serviços digitais</a></li>
+                    <li><a class="dropdown-item" href="/servicos/#informatica">Serviços digitais</a></li>
                     <li><a class="dropdown-item" href="/servicos/#informatica">Revelações de fotos</a></li>
                     <li>
                         <hr class="dropdown-divider">
@@ -57,7 +57,8 @@
                         <h6 class="dropdown-header text-dark text-uppercase">Softwares</h6>
                     </li>
                     <li><a class="dropdown-item" href="/servicos/#system">Windows 11 Pro</a></li>
-                    <li><a class="dropdown-item" href="/servicos/#system">Desenvolvimento de softwares</a></li>
+                    <li><a class="dropdown-item" href="/servicos/#system">Desenvolvimento de softwares</a>
+                    </li>
                     
                     <li>
                         <hr class="dropdown-divider">
@@ -67,86 +68,99 @@
                     </li>
                     <li><a class="dropdown-item" href="/servicos/#acess">Monitores</a></li>
                     <li><a class="dropdown-item" href="/servicos/#acess">Roteador Wireless</a></li>
-                  
+                    
                 </ul>
             </li>
             <li>
-                <a href="{{route('contato')}}" class="nav-link text-light text-uppercase">Contato</a>
+                <a href="{{ route('contato') }}" class="nav-link text-light text-uppercase">Contato</a>
             </li>
-
+            
             
         </ul>
-       @auth
-     
-       <a href="{{route('verCarrinho')}}" class="text-decoration-none"><i class="bi bi-cart3 btn bg-white d-none d-md-block d-sm-none mr-10 "> <span class="label label-danger m-1">  </span></i></a>
-    
-<div class="btn-group m-2">
-    <button type="button" class="btn btn-info dropdown-toggle text-light border border-3 border-light bg-info text-light text-bold" data-bs-toggle="dropdown" aria-expanded="false">
-      MENU
-    </button>
-    <ul class="dropdown-menu">
-        <li>
-            <h6 class="dropdown-header text-dark text-uppercase">Registrar</h6>
-        </li>
-        <li><a class="dropdown-item" href="{{route('slides')}}">Registrar Slides</a></li> 
-        <li><a class="dropdown-item" href="{{route('RegistrarServico')}}">Registra Serviços</a></li>
-        <li><a class="dropdown-item" href="{{route('RegistrarNoticia')}}">Registrar Notícias</a></li>
+        @auth
         
-        
-      <li><hr class="dropdown-divider"></li>
-      
-      <li>
-        <h6 class="dropdown-header text-dark text-uppercase">Dashboard</h6>
-    </li>
-    <li><a class="dropdown-item" href="{{route('dash')}}">Menu Dashboard</a></li>
-    </ul>
-  </div>
-  @endauth
-        <form class="d-flex" role="search" action="{{route('buscar')}}" >
-            <input class="form-control me-2" type="search" placeholder="Pesquisa" aria-label="Search" name="pesquisa">
+        <a href="{{ route('verCarrinho') }}" class="text-decoration-none"><i
+            class="bi bi-cart3 btn bg-white d-none d-md-block d-sm-none mr-10 "> <span
+            class="label label-danger m-1"> </span></i></a>
+            
+            <div class="btn-group m-2">
+                <button type="button"
+                class="btn btn-info dropdown-toggle text-light border border-3 border-light bg-info text-light text-bold"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                MENU
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <h6 class="dropdown-header text-dark text-uppercase">Registrar</h6>
+                </li>
+                <li><a class="dropdown-item" href="{{ route('slides') }}">Registrar Slides</a></li>
+                <li><a class="dropdown-item" href="{{ route('RegistrarServico') }}">Registra Serviços</a>
+                </li>
+                <li><a class="dropdown-item" href="{{ route('RegistrarNoticia') }}">Registrar Notícias</a>
+                </li>
+                
+                
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                
+                <li>
+                    <h6 class="dropdown-header text-dark text-uppercase">Dashboard</h6>
+                </li>
+                <li><a class="dropdown-item" href="{{ route('dash') }}">Menu Dashboard</a></li>
+            </ul>
+        </div>
+        @endauth
+        <form class="d-flex" role="search" action="{{ route('buscar') }}">
+            <input class="form-control me-2" type="search" placeholder="Pesquisa" aria-label="Search"
+            name="pesquisa">
             <button class="btn btn-outline-info bg-info text-info bg-light border-2 border-info"
-            type="submit">Buscar</button>
+            type="submit"><i class="bi bi-search"></i></button>
         </form>
         @guest
-        <a href="{{route('login')}}">
+        <a href="{{ route('login') }}">
             <button
             class="btn btn-primary text-center text-light float-end mt-5 mt-md-0 mt-md-0 m-2 m-md-1 m-lg-1">Login</button>
         </a>
         
-        <a href="{{route('cadastro')}}">
-            <button class="btn btn-primary text-center d-flex float-start mt-5 mt-md-0">Cadastra-se</button>
+        <a href="{{ route('cadastro') }}">
+            <button
+            class="btn btn-primary text-center d-flex float-start mt-5 mt-md-0">Cadastra-se</button>
         </a>
         @endguest
-       
+        
         @auth
-      <button class="btn ">
-        <a  href="{{route('verCarrinho')}}"> <i class="bi bi-cart3 btn bg-white d-block d-md-none d-sm-block" ><span class="label label-danger m-1"> </span></i></a>
-       
+        <button class="btn ">
+            <a href="{{ route('verCarrinho') }}"> <i
+                class="bi bi-cart3 btn bg-white d-block d-md-none d-sm-block"><span
+                class="label label-danger m-1"> </span></i></a>
+                
+                
+            </button>
+            
+            
+            <form action="/logout" method="POST">
+                @csrf
+                <a href="/logout" id="botaoSair">
+                    <button
+                    class="btn btn-primary text-center text-light float-end mt-5 mt-md-0 mt-md-0 m-2 m-md-1 m-lg-1"><i
+                    class="bi bi-box-arrow-right"></i> Sair</button>
+                </a>
+            </form>
+            
+            @endauth
+        </div>
         
-      </button>
-        
-        
-        <form action="/logout" method="POST">
-            @csrf
-            <a href="/logout" id="botaoSair">
-                <button
-                class="btn btn-primary text-center text-light float-end mt-5 mt-md-0 mt-md-0 m-2 m-md-1 m-lg-1"><i class="bi bi-box-arrow-right"></i> Sair</button>
-            </a>
-        </form>
-       
-        @endauth
     </div>
-    
-</div>
 </nav>
 </header>
 
 <main>
-    @if(session('mensagem'))
-    <p class="text-success text-uppercase text-center">{{session('mensagem')}}</p>
+    @if (session('mensagem'))
+    <p class="text-success text-uppercase text-center">{{ session('mensagem') }}</p>
     @endif
-    @if(session('contato'))
-    <p class="text-success text-uppercase text-center">{{session('contato')}}</p>
+    @if (session('contato'))
+    <p class="text-success text-uppercase text-center">{{ session('contato') }}</p>
     @endif
     @yield('conteudo')
     
@@ -228,7 +242,8 @@
                         Fundadores
                     </h6>
                     <p>
-                        <a href="https://github.com/eyenessus" target="_blank" class="text-info text-decoration-none">Emerson S. <i class="bi bi-star-fill"></i></a>
+                        <a href="https://github.com/eyenessus" target="_blank"
+                        class="text-info text-decoration-none">Emerson S. <i class="bi bi-star-fill"></i></a>
                     </p>
                 </div>
                 <!-- Grid column -->
@@ -262,13 +277,11 @@
 </footer>
 <!-- Footer -->
 <script src="/js/main.js"></script>
-<script
-src="https://code.jquery.com/jquery-3.2.1.min.js"
-integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-crossorigin="anonymous"></script>
+integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+</script>
 </body>
 
 </html>

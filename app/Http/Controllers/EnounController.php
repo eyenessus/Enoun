@@ -95,8 +95,6 @@ class EnounController extends Controller
     //CARRINHO E PEDIDOS
     public function exibirCarrinho()
     {
-
-
         if (auth()) {
             $user = auth()->user();
 

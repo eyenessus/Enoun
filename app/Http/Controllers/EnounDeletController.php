@@ -12,7 +12,6 @@ class EnounDeletController extends Controller
     {
         $usuarioLogado = auth()->user();
         $usuarioLogado->servicosAsCar()->detach($id);
- 
         return redirect('/carrinho');
     }
 
