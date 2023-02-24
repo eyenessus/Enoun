@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Inicio;
 use App\Models\Servico;
+use App\Models\Slide;
 
 
 class EnounDeletController extends Controller
@@ -26,6 +27,6 @@ class EnounDeletController extends Controller
         Inicio::destroy($id);
         return redirect('/dashboard');
     }
-
+ 
     
 }

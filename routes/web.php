@@ -54,7 +54,7 @@ Route::get('/dashboard', [EnounController::class, 'dashboard'])->name('dash')->m
 
 
 //SERVIÇOS DASHBOARD 
-Route::get('/formEditServico/{id}', [EnounController::class, 'formEditServico'])->middleware('auth');
+Route::get('/formEditServico/{id}', [EnounController::class, 'formEditServico'])->name('formEditServico')->middleware('auth');
 Route::get('/exibirServicoDash/{id}', [EnounController::class, 'exibirServicoDash'])->middleware('auth');
 Route::delete('/excluirServico/{id}', [EnounDeletController::class, 'deletarServico'])->middleware('auth');
 Route::put('/editarServico/{id}', [EnounPutController::class, 'editarServico'])->middleware('auth');
@@ -68,7 +68,10 @@ Route::delete('/excluirNoticia/{id}', [EnounDeletController::class, 'deletarNoti
 
 //SLIDES DASHBOARD
 Route::get('/formSlides',[EnounController::class,'formSlides'])->name('slides')->middleware('auth');
-Route::post('/registrarSlide', [EnounPostController::class, 'registroSlide'])->middleware('auth');
+Route::post('/registrarSlide', [EnounPostController::class, 'registroSlide'])->name('registroSlide')->middleware('auth');
+Route::get('/verSlide/{id}', [EnounController::class,'exibirSlide' ])->name('verSlide')->middleware('auth');
+
+
 
 
 //CARRINHO

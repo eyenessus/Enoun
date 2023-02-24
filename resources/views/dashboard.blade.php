@@ -36,7 +36,7 @@
 
 
                                 <div class="col m-1">
-                                    <a href="/editarServico/{{ $servicos->id }}">
+                                    <a href="{{route('formEditServico',$servicos->id)}}">
                                         <button type="submit" class="btn btn-info text-light"><i
                                                 class="bi bi-pencil-square"></i></button>
                                     </a>
@@ -137,7 +137,7 @@
 
                                 <div class="col m-1">
 
-                                    <a href="/">
+                                    <a href="{{route('verSlide',$note->id)}}">
                                         <button type="submit" class="btn btn-success btn-delete">
                                             <i class="bi bi-eye-fill"></i>
                                         </button>
@@ -148,7 +148,7 @@
 
 
                                 <div class="col m-1">
-                                    <a href="/formSlides/{{ $note->id }}">
+                                    <a href="/">
                                         <button type="submit" class="btn btn-info text-light"><i
                                                 class="bi bi-pencil-square"></i></button>
                                     </a>
@@ -156,12 +156,14 @@
 
                                 <div class="col m-1">
                                     <form action="/" method="POST" class="">
-                                        @csrf
-                                        @method('DELETE')
+                                       
                                         <button type="submit" class="btn btn-danger btn-delete"><i
                                                 class="bi bi-trash3-fill"></i></button>
                                     </form>
                                 </div>
+
+
+
                             </div>
                         </td>
                     </tr>
@@ -170,5 +172,5 @@
         </table>
     </div>
 
-
+  
 @endsection

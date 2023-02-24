@@ -77,7 +77,6 @@ class EnounController extends Controller
         $servico = $usuarioLogado->servicos;
         $noticias = $usuarioLogado->noticias;
         $slide = $usuarioLogado->slides;
-
         return view('dashboard', ['servico' => $servico, 'noticias' => $noticias, 'slides' => $slide]);
     }
     public function exibirNoticiaDash($id)
@@ -89,7 +88,7 @@ class EnounController extends Controller
     public function exibirServicoDash($id)
     {
         $servico = Servico::FindOrFail($id);
-        return view('Edition.visualizacao', ['servico' => $servico]);
+        return view('Edition.servicoVisu', ['servico' => $servico]);
     }
 
     //CARRINHO E PEDIDOS
@@ -133,7 +132,7 @@ class EnounController extends Controller
 
     public function formSlides()
     {
-        return view('Registro.slide');
+        return view('Registro.slides');
     }
 
     public function formEditServico($id)
@@ -151,4 +150,14 @@ class EnounController extends Controller
     {
         return view('Registro.noticia');
     }
+
+    public function exibirSlide($id){
+        $slide = Slide::FindOrFail($id);
+
+        return view('Edition.slideview',['slide' => $slide]);
+    }
+
+   
+
+
 }

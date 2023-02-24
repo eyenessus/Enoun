@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Inicio;
 use App\Models\Servico;
+use App\Models\Slide;
 use Illuminate\Http\Request;
 
 class EnounPutController extends Controller
@@ -55,4 +56,19 @@ class EnounPutController extends Controller
         return redirect('/carrinho');
     }
     
+    public function editarSlide(Request $request){
+        
+        $data = $request->all();
+        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
+            $requisaoImagem = $data['imagem'];
+            $extensao = $requisaoImagem->extension();
+            $nomeImagem = md5($requisaoImagem->getClientOriginalName() . strtotime("now") . $extensao);
+            $requisaoImagem->move(public_path('img/slides'), $nomeImagem);
+            $data['imagem'] = $nomeImagem;
+        }
+
+        Slide::findOrFail($request->id)->update($data);
+
+        return view('/dashboard');
+    }
 }
