@@ -9,6 +9,7 @@ use App\Models\Servico;
 use App\Models\Slide;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+
 class EnounPostController extends Controller
 {
     public function cadastrarUsuario(Request $requisicao)
@@ -31,7 +32,7 @@ class EnounPostController extends Controller
             $data['imagem'] = $nomeImagem;
         }
         Inicio::create($data);
-        
+
         return redirect('/');
     }
 
@@ -65,18 +66,18 @@ class EnounPostController extends Controller
         $usuarioLogado->where('id', $id)->increment('quantidade');
 
 
-       
+
 
         return redirect('/carrinho');
     }
-    
+
 
     public function registroSlide(Request $request)
     {
         $autenticado = auth()->user();
         $data = $request->all();
         $data['user_id'] = $autenticado->id;
-        
+
         if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
             $requisaoImagem = $data['imagem'];
             $extensao = $requisaoImagem->extension();
@@ -89,40 +90,57 @@ class EnounPostController extends Controller
     }
 
     public function finalizarPedido()
-    {   
-       
+    {
+
         $usuarioLogado = auth()->user();
         $carrinho = $usuarioLogado->servicosAsCar;
-        
+
+
+        //valor final
+        $valorFinal = 0;
+        foreach ($carrinho as $valor) {
+            $valorFinal += $valor['preco'] * $valor->pivot['quantidade'];
+        }
+
         //descrição do produto
         $localearray = [];
         for ($i = 0; $i < count($carrinho); $i++) {
-            array_push($localearray, $carrinho[$i]->pivot['quantidade'] . ' ' . $carrinho[$i]['nome'] . '---------------' . 'R$ ' . $carrinho[$i]['preco'] * $carrinho[$i]->pivot['quantidade'].',00');
+            // array_push($localearray, $carrinho[$i]->pivot['quantidade'] . ' ' . $carrinho[$i]['nome'] . '---------------' . 'R$ ' . $carrinho[$i]['preco'] * $carrinho[$i]->pivot['quantidade'].',00');
+            array_push($localearray, $carrinho[$i]['nome']);
         }
-        
-      
-       
-        $valorFinal = 0;
-       foreach($carrinho as $valor){
-        $valorFinal += $valor['preco'] * $valor->pivot['quantidade'];
-       }
-   
-    
-        //soma do valor do carrinho
+
+
+        //valor Unitario
+        $valorUnitario = [];
+        for ($i = 0; $i < count($carrinho); $i++){
+            array_push($valorUnitario, $carrinho[$i]['preco']);
+        }
+
+
+        //Quantidade unitaria
+        $qUnitario = [];
+        for ($i = 0; $i < count($carrinho); $i++) {
+            array_push($qUnitario, $carrinho[$i]->pivot['quantidade']);
+        }
+
+
+        //registro de pedido
         $model = new Pedido;
         $model->user_id = $usuarioLogado->id;
         $model->descricao = $localearray;
         $model->valor = $valorFinal;
+        $model->quantidadeUnitaria = $qUnitario;
+        $model->valorUnitario = $valorUnitario;
         $model->save();
         $model->refresh();
 
         $buscaDoID = $model::orderBy('id', 'desc')->first();
         //busca do ultimo id a da lista de pedidos
-        
+
         $usuarioLogado->pedidosAsWith()->attach($buscaDoID);
-        
+
         $usuarioLogado->servicosAsCar()->detach(); //limpa items do carrinho
-        
+
         return redirect('/exibirPedidos');
     }
 }

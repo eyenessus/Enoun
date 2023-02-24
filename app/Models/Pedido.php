@@ -17,5 +17,9 @@ class Pedido extends Model
 
     protected $fillable = ['user_id'];
 
-    protected $casts = ['descricao' => 'array'];
+    protected $casts = [
+        'descricao' => 'array',
+        'quantidadeUnitaria' => 'array',
+        'valorUnitario' => 'array'
+];
 }

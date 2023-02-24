@@ -119,7 +119,7 @@ class EnounController extends Controller
     {
         $usuarioLogado = auth()->user();
         $listaDePedidos = $usuarioLogado->pedidosAsWith()->orderBy('id', 'desc')->simplePaginate(4);
-
+        
         return view('Car.pedidoRe', ['listaDePedidos' => $listaDePedidos]);
     }
 

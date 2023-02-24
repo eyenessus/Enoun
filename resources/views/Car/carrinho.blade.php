@@ -16,8 +16,8 @@
         </div>
         <div class="text-center float-end m-2">
             <button class="btn btn-info text-white text-capitalize ">
-                <a href="{{ route('pedidos') }}" class=" text-white text-capitalize text-decoration-none">Meus pedidos
-                    realizados</a>
+                <a href="{{ route('pedidos') }}" class=" text-white text-capitalize text-decoration-none"><i class="bi bi-box-seam-fill"></i> Meus pedidos
+                    </a>
             </button>
         </div>
         <table class="table table-auto table-light table-hover table-border table-responsive border border-white mb-5 mt-5">
@@ -34,17 +34,22 @@
 
                 @foreach ($addItem as $valuer)
                     <tr class="text-center">
-                        <td>{{ $valuer->nome }}</td>
+                        <td class="text-uppercase fw-bold">{{ $valuer->nome }}</td>
                         <td>R$ <span id="valorItem"> {{ $valuer->preco }}</span>,00</td>
-                        <th scope="row"> <input type="number" min="1" value="{{ $valuer->pivot['quantidade'] }}"
-                                class="text-center"></th>
+                        <th scope="row"> 
+                            <button class="btn btn-info text-white">
+                                <i class="bi bi-basket2 p-2"></i>
+                                <span class="badge bg-white rounded-pill text-dark">{{ $valuer->pivot['quantidade'] }}</span>
+                            </button>
+                            
+                                </th>
                         <td>
                             <div class="row">
 
 
                                 <div class="col m-1">
                                     <form action="{{route('diminuirItem',$valuer->id)}}" method="GET">
-                                        <button class="btn btn-warning">   <i class="bi bi-dash"></i>
+                                        <button class="btn btn-warning text-white">  <i class="bi bi-bag-dash"></i>
                                         </button>
                                     </form>
                                    
@@ -65,8 +70,8 @@
 
                                 <div class="col m-1">
                                     <form action="{{route('aumentarItem',$valuer->id)}}" method="GET">
-                                        <button class="btn btn-success">
-                                            <i class="bi bi-plus-circle-fill"></i>
+                                        <button class="btn btn-success text-white">
+                                            <i class="bi bi-bag-plus"></i>
                                         </button>
                                     </form>
                                    
@@ -86,7 +91,7 @@
 
 
 
-            <td colspan="4"> <span class="float-end">Valor Total: R$ {{ number_format($valorFinal, 2, ',', '.') }}</span>
+            <td colspan="4" class="text-success"> <span class="float-end ">Valor Total: R$ {{ number_format($valorFinal, 2, ',', '.') }}</span>
             </td>
 
         </table>
