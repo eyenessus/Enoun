@@ -2,12 +2,7 @@
 @section('titulo', 'Carrinho de compras')
 @section('conteudo')
 
-    <script>
-        {{ $valorFinal = null }}
-        @foreach ($addItem as $valores)
-            {{ $valorFinal += $valores['preco'] * $valores->pivot['quantidade'] }}
-        @endforeach
-    </script>
+   
 
     <div class="container">
 

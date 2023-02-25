@@ -143,4 +143,11 @@ class EnounPostController extends Controller
 
         return redirect('/exibirPedidos');
     }
+
+    public function editarSlide(Request $request){
+        Slide::findOrFail($request->id)->update($request->all());
+        return redirect('/dashboard');
+    }
+
+
 }

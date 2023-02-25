@@ -94,6 +94,7 @@ class EnounController extends Controller
     //CARRINHO E PEDIDOS
     public function exibirCarrinho()
     {
+        
         if (auth()) {
             $user = auth()->user();
 
@@ -104,6 +105,13 @@ class EnounController extends Controller
                 $user->servicosAsCar()->detach($item['id']);
             }
 
+            
+            $carrinho = $user->servicosAsCar;
+            $valorFinal = 0;
+            foreach ($carrinho as $valor) {
+                $valorFinal += $valor['preco'] * $valor->pivot['quantidade'];
+            }
+
             $addItem = $user->servicosAsCar()->simplepaginate(5);
         } 
         else {
@@ -111,7 +119,8 @@ class EnounController extends Controller
             return redirect('/');
         }
 
-        return view('Car.carrinho', ['addItem' => $addItem]);
+
+        return view('Car.carrinho', ['addItem' => $addItem,'valorFinal' => $valorFinal]);
     }
 
     public function verPedidos()
