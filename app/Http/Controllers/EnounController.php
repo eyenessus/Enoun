@@ -158,7 +158,10 @@ class EnounController extends Controller
     }
 
     
-
- 
+    public function formEditSlide($id)
+    {
+        $slide = Slide::FindOrFail($id);
+        return view('Edition.slideFormEdit', ['slide' => $slide]);
+    }
 
 }

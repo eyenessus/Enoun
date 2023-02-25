@@ -4,8 +4,14 @@
 
 
     <div class="container mt-5">
+        <div class="text-end">
+            <button class="btn btn-warning text-white">
+                <i class="bi bi-calendar-date-fill"></i>
+            </button>
+        </div>
         <div class="text-center ">
             <h1><i class="bi bi-box-seam-fill text-white "></i></h1>
+             
         </div>
         <h1 class="text-white fw-bolder text-center text-md-start">Seus pedidos realizados</h1>
         

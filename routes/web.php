@@ -90,3 +90,4 @@ Route::get('/finalizarPedido', [EnounPostController::class, 'finalizarPedido'])-
 //Slide
 Route::delete('/excluirSlide/{id}', [EnounDeletController::class, 'excluirSlide'])->middleware('auth');
 Route::put('/atualizarSlide/{id}', [EnounPostController::class, 'editarSlide'])->name('atualizarSlide');
+Route::get('/exibirSlideDash/{id}', [EnounController::class,'formEditSlide']);

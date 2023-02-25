@@ -146,7 +146,7 @@
                                 </div>
 
                                 <div class="col m-1">
-                                    <a href="/formEditSlide/{{ $note->id }}">
+                                    <a href="/exibirSlideDash/{{ $note->id }}">
                                         <button type="submit" class="btn btn-info text-light"><i
                                                 class="bi bi-pencil-square"></i></button>
                                     </a>
