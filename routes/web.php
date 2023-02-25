@@ -85,3 +85,8 @@ Route::get('/lessItemCarrinho/{id}', [EnounPutController::class,'diminuirItem'])
 Route::get('/exibirPedidos', [EnounController::class, 'verPedidos'])->name('pedidos')->middleware('auth');
 Route::get('/finalizarPedido', [EnounPostController::class, 'finalizarPedido'])->name('finalizarPedido')->middleware('auth');
 
+
+
+//Slide
+Route::delete('/excluirSlide/{id}', [EnounDeletController::class, 'excluirSlide'])->middleware('auth');
+Route::put('/atualizarSlide/{id}', [EnounPostController::class, 'editarSlide'])->name('atualizarSlide');

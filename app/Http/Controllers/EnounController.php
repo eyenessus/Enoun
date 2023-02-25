@@ -157,7 +157,8 @@ class EnounController extends Controller
         return view('Edition.slideview',['slide' => $slide]);
     }
 
-   
+    
 
+ 
 
 }

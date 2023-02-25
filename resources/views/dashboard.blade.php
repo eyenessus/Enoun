@@ -145,23 +145,21 @@
 
                                 </div>
 
-
-
                                 <div class="col m-1">
-                                    <a href="/">
+                                    <a href="/formEditSlide/{{ $note->id }}">
                                         <button type="submit" class="btn btn-info text-light"><i
                                                 class="bi bi-pencil-square"></i></button>
                                     </a>
                                 </div>
 
                                 <div class="col m-1">
-                                    <form action="/" method="POST" class="">
-                                       
+                                    <form action="/excluirSlide/{{ $note->id }}" method="POST" class="">
+                                        @csrf
+                                        @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-delete"><i
                                                 class="bi bi-trash3-fill"></i></button>
                                     </form>
                                 </div>
-
 
 
                             </div>
@@ -174,3 +172,5 @@
 
   
 @endsection
+
+

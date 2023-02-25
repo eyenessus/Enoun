@@ -27,6 +27,10 @@ class EnounDeletController extends Controller
         Inicio::destroy($id);
         return redirect('/dashboard');
     }
- 
+    public function excluirSlide($id)
+    {
+        Slide::destroy($id);
+        return redirect('/dashboard');
+    }
     
 }
