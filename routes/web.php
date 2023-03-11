@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\MercadoPagoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EnounController;
 use App\Http\Controllers\EnounDeletController;
 use App\Http\Controllers\EnounPostController;
 use App\Http\Controllers\EnounPutController;
-
+use App\Http\Controllers\PagamentoController;
 
 //FALLBACKS
 Route::fallback(function () {
@@ -91,3 +92,5 @@ Route::get('/finalizarPedido', [EnounPostController::class, 'finalizarPedido'])-
 Route::delete('/excluirSlide/{id}', [EnounDeletController::class, 'excluirSlide'])->middleware('auth');
 Route::put('/atualizarSlide/{id}', [EnounPostController::class, 'editarSlide'])->name('atualizarSlide');
 Route::get('/exibirSlideDash/{id}', [EnounController::class,'formEditSlide']);
+
+Route::get('/pagamento',[MercadoPagoController::class,'criarPagamento']);

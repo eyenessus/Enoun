@@ -19,6 +19,7 @@ class EnounDeletController extends Controller
     public function deletarServico($id)
     {
         Servico::destroy($id);
+       
         return redirect('/dashboard');
     }
     
