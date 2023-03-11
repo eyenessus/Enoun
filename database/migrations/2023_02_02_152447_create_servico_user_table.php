@@ -16,7 +16,7 @@ class CreateServicoUserTable extends Migration
         Schema::create('servico_user', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained();
             $table->foreignId('servico_id')->constrained();
-            $table->foreignId('quantidade')->nullable()->default(1);
+            $table->foreignId('quantidade')->nullable()->default(0);
             $table->timestamps();
         });
     }

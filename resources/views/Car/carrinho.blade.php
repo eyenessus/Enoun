@@ -114,8 +114,9 @@
                     <table class="table table-sm">
                         @foreach ($addItem as $valuer)
                             <tr>
+                                <th>{{ $valuer->pivot['quantidade'] }}</th>
                                 <th>{{ $valuer->nome }}</th>
-                                <td>R${{ number_format($valuer->preco, 2, ',', '.') }}</td>
+                                <td class="mt-2">R${{ number_format($valuer->preco, 2, ',', '.') }}</td>
                             </tr>
                         @endforeach
 
