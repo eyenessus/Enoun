@@ -26,26 +26,26 @@ class MercadoPagoController extends Controller
         $produtos = [
             [
                 "id"=> 1,
-                 "category_id" => 2,
+                "category_id" => 2,
                 'title' => 'Scient teste',
                 'description' => 'Descrição do produto 1',
-                'quantity' => 4,
-                'unit_price' => 9.0,
+                'quantity' => 1,
+                'unit_price' => 0.1,
             ],
             [
                 "id"=> 2,
-                 "category_id" => 3,
+                "category_id" => 3,
                 'title' => 'Homem aranha',
                 'description' => 'Descrição do produto 2',
                 'quantity' => 1,
-                'unit_price' => 4.0,
+                'unit_price' => 0.1,
             ], [
                 "id"=> 4,
                  "category_id" => 5,
                 'title' => 'Scient teste',
                 'description' => 'Descrição do produto 1',
                 'quantity' => 4,
-                'unit_price' => 9.0,
+                'unit_price' => 0.1,
             ],
             [
                 "id"=> 56,
@@ -53,7 +53,7 @@ class MercadoPagoController extends Controller
                 'title' => 'Homem aranha',
                 'description' => 'Descrição do produto 2',
                 'quantity' => 1,
-                'unit_price' => 4.0,
+                'unit_price' => 0.1,
             ],
         ];
 
@@ -116,50 +116,62 @@ class MercadoPagoController extends Controller
         return redirect($preference->init_point);
     }
     public function receberNotificacao(Request $request)
-{
-    SDK::initialize();
-    SDK::setAccessToken(env('MERCADO_PAGO_ACCESS_TOKEN'));
+    {
+        SDK::setAccessToken(env('MERCADO_PAGO_ACCESS_TOKEN'));
     
-    // Verifica se a notificação contém os campos necessários
-    if (!$request->has('id') || !$request->has('topic')) {
+        // Verifica se a notificação contém os campos necessários
+        if (!$request->has('id') || !$request->has('topic')) {
+            return response('NOK', 400);
+        }
+    
+        // Verifica se a notificação é autêntica
+        if ($request->input('topic') == 'payment') {
+            $payment = \MercadoPago\Payment::find_by_id($request->input('id'));
+            // Verifica o status do pagamento e atualiza o status do pedido no seu sistema
+    
+            switch ($payment->status) {
+                case 'approved':
+                    // Pagamento aprovado
+                    // Atualize o status do pedido para "Pago"
+                    dd($payment->status);
+                    break;
+                case 'pending':
+                    // Pagamento pendente
+                    // Atualize o status do pedido para "Pendente de pagamento"
+                    dd('Está pendente');
+                    break;
+                case 'in_process':
+                    // Pagamento em processo
+                    // Atualize o status do pedido para "Pagamento em processo"
+                    dd('Está processando');
+                    break;
+                case 'rejected':
+                    // Pagamento rejeitado
+                    // Atualize o status do pedido para "Pagamento rejeitado"
+                    dd('Está rejeitado');
+                    break;
+                case 'cancelled':
+                    // Pagamento cancelado
+                    // Atualize o status do pedido para "Pagamento cancelado"
+                    break;
+                case 'refunded':
+                    // Pagamento reembolsado
+                    // Atualize o status do pedido para "Pagamento reembolsado"
+                    break;
+                case 'charged_back':
+                    // Pagamento estornado
+                    // Atualize o status do pedido para "Pagamento estornado"
+                    break;
+                default:
+                    // Status de pagamento não reconhecido
+                    return response('NOK', 400);
+            }
+            
+            return response('OK', 200);
+        }
+    
         return response('NOK', 400);
     }
     
-    // Verifica se a notificação é autêntica
-    if ($request->input('topic') == 'payment') {
-        $payment = \MercadoPago\Payment::find_by_id($request->input('id'));
-        // Verifica o status do pagamento e atualiza o status do pedido no seu sistema
-        if ($payment->status == 'approved') {
-            // Pagamento aprovado
-    
-            // Atualize o status do pedido para "Pago"
-        } else if ($payment->status == 'pending') {
-            // Pagamento pendente
-            // Atualize o status do pedido para "Pendente de pagamento"
-        } else if ($payment->status == 'in_process') {
-            // Pagamento em processo
-            
-            // Atualize o status do pedido para "Pagamento em processo"
-        } else if ($payment->status == 'rejected') {
-            // Pagamento rejeitado
-            
-            // Atualize o status do pedido para "Pagamento rejeitado"
-        } else if ($payment->status == 'cancelled') {
-            // Pagamento cancelado
-            // Atualize o status do pedido para "Pagamento cancelado"
-        } else if ($payment->status == 'refunded') {
-            // Pagamento reembolsado
-            // Atualize o status do pedido para "Pagamento reembolsado"
-        } else if ($payment->status == 'charged_back') {
-            // Pagamento estornado
-            // Atualize o status do pedido para "Pagamento estornado"
-        }
-        
-        return response('OK', 200);
-    }
-    
-    return response('NOK', 400);
-    
-}
 
 }
