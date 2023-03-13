@@ -94,3 +94,5 @@ Route::put('/atualizarSlide/{id}', [EnounPostController::class, 'editarSlide'])-
 Route::get('/exibirSlideDash/{id}', [EnounController::class,'formEditSlide']);
 
 Route::get('/pagamento',[MercadoPagoController::class,'criarPagamento']);
+
+Route::post('/notificacao', [MercadoPagoController::class, 'receberNotificacao'])->name('notificacaoMercadoPago');

@@ -9,9 +9,16 @@ use App\Models\Servico;
 use App\Models\Slide;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use App\Http\Controllers\MercadoPagoController;
 
 class EnounPostController extends Controller
-{
+{  
+    protected $MercadoPago;
+
+    public function __construct(MercadoPagoController $MercadoPago)
+    {
+        $this->MercadoPago = $MercadoPago;
+    }
     public function cadastrarUsuario(Request $requisicao)
     {
         Usuario::create($requisicao->all());
@@ -64,10 +71,6 @@ class EnounPostController extends Controller
         $usuarioLogado = auth()->user()->servicosAsCar();
         $usuarioLogado->syncWithoutDetaching($id);
         $usuarioLogado->where('id', $id)->increment('quantidade');
-
-
-
-
         return redirect('/carrinho');
     }
 
@@ -95,6 +98,7 @@ class EnounPostController extends Controller
         $usuarioLogado = auth()->user();
         $carrinho = $usuarioLogado->servicosAsCar;
 
+        $this->MercadoPago->criarPagamento();
 
         //valor final
         $valorFinal = 0;
