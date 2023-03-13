@@ -13,7 +13,7 @@ class MercadoPagoController extends Controller
 {
     public function criarPagamento($itemsCar,$cliente)
     {
-        dd($cliente);
+       
         SDK::initialize();
         SDK::setAccessToken(env('MERCADO_PAGO_ACCESS_TOKEN'));
         SDK::setIntegratorId('INTEGRATOR_ID');
@@ -55,8 +55,8 @@ class MercadoPagoController extends Controller
         ];
         $payer->address = [
             'zip_code' => $cliente->cep,
-            'street_name' => $cliente->endereco,
-            'street_number' => $cliente->nome,
+            'street_name' => $cliente->rua,
+            'street_number' => '123',
             'floor' => '8',
             'apartment' => '85',
             'city' => $cliente->cidade,
@@ -102,6 +102,7 @@ class MercadoPagoController extends Controller
                 case 'approved':
                     // Pagamento aprovado
                     // Atualize o status do pedido para "Pago"
+            
                     dd("aprovado");
                     break;
                 case 'pending':
