@@ -123,58 +123,7 @@
                     </table>
 
                     <h6 >Valor Total: R$ <span class="valorFinal">{{ number_format($valorFinal, 2, ',', '.') }}</span></h6>
-                    <div class="p-3">
-
-                        <label for="bandeira">Bandeira</label>
-
-                        <div class="d-flex m-2">
-                            <div class="form-check m-1">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                    id="flexRadioDefault1">
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                    Visa
-                                </label>
-                            </div>
-                            <div class="form-check m-1">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                    id="flexRadioDefault2">
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                    Mastercard
-                                </label>
-                            </div>
-
-                        </div>
-
-
-                        <label>Nome escrito no cartão</label>
-                        <input class="form-control form-control-sm" type="text">
-
-                        <label>Numero do cartão</label>
-                        <input class="form-control form-control-sm" type="text">
-
-                        <label>Codigo de segurança</label>
-                        <input class="form-control form-control-sm " type="text">
-                    </div>
-
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
-                            checked>
-                        <label class="form-check-label" for="flexRadioDefault2">
-                            Cartão de credito
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            Cartão de debito
-                        </label>
-                    </div>
-
-                    <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="99"
-                        aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 75%"></div>
-                    </div>
-                </div>
+                  
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
                

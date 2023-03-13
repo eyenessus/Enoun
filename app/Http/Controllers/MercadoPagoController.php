@@ -11,8 +11,9 @@ use MercadoPago\SDK;
 
 class MercadoPagoController extends Controller
 {
-    public function criarPagamento()
+    public function criarPagamento($itemsCar,$cliente)
     {
+        dd($cliente);
         SDK::initialize();
         SDK::setAccessToken(env('MERCADO_PAGO_ACCESS_TOKEN'));
         SDK::setIntegratorId('INTEGRATOR_ID');
@@ -20,49 +21,17 @@ class MercadoPagoController extends Controller
         // Crie uma nova preferência
         $preference = new Preference();
 
+        
         // Configure os itens que serão incluídos na preferência
         $items = [];
 
-        $produtos = [
-            [
-                "id"=> 1,
-                "category_id" => 2,
-                'title' => 'Scient teste',
-                'description' => 'Descrição do produto 1',
-                'quantity' => 1,
-                'unit_price' => 0.1,
-            ],
-            [
-                "id"=> 2,
-                "category_id" => 3,
-                'title' => 'Homem aranha',
-                'description' => 'Descrição do produto 2',
-                'quantity' => 1,
-                'unit_price' => 0.1,
-            ], [
-                "id"=> 4,
-                 "category_id" => 5,
-                'title' => 'Scient teste',
-                'description' => 'Descrição do produto 1',
-                'quantity' => 4,
-                'unit_price' => 0.1,
-            ],
-            [
-                "id"=> 56,
-                 "category_id" => 88,
-                'title' => 'Homem aranha',
-                'description' => 'Descrição do produto 2',
-                'quantity' => 1,
-                'unit_price' => 0.1,
-            ],
-        ];
-
-        foreach ($produtos as $produto) {
+        foreach ($itemsCar as $servico) {
+          
             $item = new Item();
-            $item->title = $produto['title'];
-            $item->description = $produto['description'];
-            $item->quantity = $produto['quantity'];
-            $item->unit_price = $produto['unit_price'];
+            $item->title = $servico['nome'];
+            $item->description = $servico['descricao'];
+            $item->quantity = $servico->pivot['quantidade'];
+            $item->unit_price = $servico['preco'];
 
             $items[] = $item;
         }
@@ -73,9 +42,9 @@ class MercadoPagoController extends Controller
         // Configure o pagador da preferência
         $payer = new Payer();
         
-        $payer->email = 'e@exemplo.com';
-        $payer->name = 'João';
-        $payer->surname = 'Silva';
+        $payer->email = $cliente->email;
+        $payer->name = $cliente->nome;
+        $payer->surname = $cliente->nome;
         $payer->phone = [
             'area_code' => '11',
             'number' => '12345678'
@@ -85,16 +54,16 @@ class MercadoPagoController extends Controller
             'number' => '12345678900'
         ];
         $payer->address = [
-            'zip_code' => '01234-567',
-            'street_name' => 'Rua Teste',
-            'street_number' => '123',
+            'zip_code' => $cliente->cep,
+            'street_name' => $cliente->endereco,
+            'street_number' => $cliente->nome,
             'floor' => '8',
             'apartment' => '85',
-            'city' => 'São Paulo',
-            'state' => 'SP',
+            'city' => $cliente->cidade,
+            'state' => $cliente->estado,
             'country' => 'BR'
         ];
-        $preference->external_reference = '007';
+        $preference->external_reference = $cliente->id;
         $preference->payer = $payer;
 
 
@@ -133,7 +102,7 @@ class MercadoPagoController extends Controller
                 case 'approved':
                     // Pagamento aprovado
                     // Atualize o status do pedido para "Pago"
-                    dd($payment->status);
+                    dd("aprovado");
                     break;
                 case 'pending':
                     // Pagamento pendente

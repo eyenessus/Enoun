@@ -28,6 +28,7 @@
                         <th scope="col">Quantidade</th>
                         <th scope="col">Valor Unitário</th>
                         <th scope="col">Valor final</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Data</th>
                     </tr>
                 </thead>
@@ -66,9 +67,10 @@
 
                         </td>
 
-
-
                         <td> <span class="badge bg-primary rounded-pill"> R$ {{ $valor->valor }}</span> </td>
+                  
+                        <td>{{ $valor->status }}</td>
+
                         <td> {{ $valor->created_at }}</td>
                     </tr>
                 </tbody>

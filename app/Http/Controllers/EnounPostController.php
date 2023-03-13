@@ -97,9 +97,9 @@ class EnounPostController extends Controller
 
         $usuarioLogado = auth()->user();
         $carrinho = $usuarioLogado->servicosAsCar;
-
-        $this->MercadoPago->criarPagamento();
-
+        
+        
+       
         //valor final
         $valorFinal = 0;
         foreach ($carrinho as $valor) {
@@ -135,6 +135,7 @@ class EnounPostController extends Controller
         $model->valor = $valorFinal;
         $model->quantidadeUnitaria = $qUnitario;
         $model->valorUnitario = $valorUnitario;
+        $model->status = 'Processando';
         $model->save();
         $model->refresh();
 
@@ -144,8 +145,10 @@ class EnounPostController extends Controller
         $usuarioLogado->pedidosAsWith()->attach($buscaDoID);
 
         $usuarioLogado->servicosAsCar()->detach(); //limpa items do carrinho
+       
+        
 
-        return redirect('/exibirPedidos');
+        return $this->MercadoPago->criarPagamento($carrinho,$usuarioLogado);;
     }
 
     public function editarSlide(Request $request){
