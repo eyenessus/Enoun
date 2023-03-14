@@ -58,8 +58,7 @@ class EnounPutController extends Controller
     
     public function editarSlide(Request $request){
         $data = $request->all();
-
-        
+       
         if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
             $requisaoImagem = $data['imagem'];
             $extensao = $requisaoImagem->extension();
@@ -69,7 +68,6 @@ class EnounPutController extends Controller
         }
         
         Slide::findOrFail($request->id)->update($data);
-
-        return view('/dashboard');
+        return redirect('/');
     }
 }

@@ -90,9 +90,11 @@ Route::get('/finalizarPedido', [EnounPostController::class, 'finalizarPedido'])-
 
 //Slide
 Route::delete('/excluirSlide/{id}', [EnounDeletController::class, 'excluirSlide'])->middleware('auth');
-Route::put('/atualizarSlide/{id}', [EnounPostController::class, 'editarSlide'])->name('atualizarSlide');
+Route::put('/atualizarSlide/{id}', [EnounPutController::class,'editarSlide'])->name('atualizarSlide');
 Route::get('/exibirSlideDash/{id}', [EnounController::class,'formEditSlide']);
 
 Route::get('/pagamento',[MercadoPagoController::class,'criarPagamento']);
 
 Route::post('/notificacao', [MercadoPagoController::class, 'receberNotificacao'])->name('notificacaoMercadoPago');
+Route::get('/qrcode',[MercadoPagoController::class,'gerarQRCodePix']);
+

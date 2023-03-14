@@ -139,22 +139,19 @@ class EnounPostController extends Controller
         $model->save();
         $model->refresh();
 
-        $buscaDoID = $model::orderBy('id', 'desc')->first();
+        $encontraPedidoFeito = $model::orderBy('id', 'desc')->first();
         //busca do ultimo id a da lista de pedidos
 
-        $usuarioLogado->pedidosAsWith()->attach($buscaDoID);
+        $usuarioLogado->pedidosAsWith()->attach($encontraPedidoFeito);
 
         $usuarioLogado->servicosAsCar()->detach(); //limpa items do carrinho
        
         
 
-        return $this->MercadoPago->criarPagamento($carrinho,$usuarioLogado);;
+        return $this->MercadoPago->criarPagamento($carrinho,$usuarioLogado,$encontraPedidoFeito);;
     }
 
-    public function editarSlide(Request $request){
-        Slide::findOrFail($request->id)->update($request->all());
-        return redirect('/dashboard');
-    }
+  
 
 
 }

@@ -18,6 +18,7 @@ class CreatePedidosTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->json('descricao');
             $table->integer('valor');
+            $table->text('status');
             $table->timestamps();
         });
     }

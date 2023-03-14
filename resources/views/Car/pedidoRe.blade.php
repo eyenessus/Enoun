@@ -69,7 +69,7 @@
 
                         <td> <span class="badge bg-primary rounded-pill"> R$ {{ $valor->valor }}</span> </td>
                   
-                        <td>{{ $valor->status }}</td>
+                        <td id="status">{{ $valor->status }}</td>
 
                         <td> {{ $valor->created_at }}</td>
                     </tr>
