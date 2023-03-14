@@ -172,8 +172,14 @@ class MercadoPagoController extends Controller
             "email" => "exemplo@email.com"
         );
         $payment->notification_url = "https://exemplo.com/notificacao"; // URL de notificação para receber informações sobre o pagamento
-
+        $payment->external_reference = uniqid(); // Identificação do pagamento Pix
         // Salve o pagamento para obter o QR Code em diferentes formatos
+        $payment->metadata = array(
+            "produto" => "camisa",
+            "tamanho" => "M",
+            "cor" => "azul"
+        );
+        $payment->statement_descriptor = "XPTO Store";
         $payment->save();
 
         // Obtenha o QR Code em formato base64
@@ -183,8 +189,8 @@ class MercadoPagoController extends Controller
         // Obtenha o link do QR Code Pix
         $qrCodePixUrl = $payment->point_of_interaction->transaction_data->ticket_url;
 
-
+        $url = $payment->point_of_interaction->transaction_data->qr_code;
         // Retorne o QR Code Pix em formato base64 e o link para a view
-        return view('gerar_qr_code_pix', compact('qrCodePixBase64', 'qrCodePixUrl'));
+        return view('gerar_qr_code_pix', compact('qrCodePixBase64', 'qrCodePixUrl'),['url'=> $url]);
     }
 }
