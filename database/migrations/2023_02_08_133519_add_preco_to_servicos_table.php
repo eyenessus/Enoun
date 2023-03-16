@@ -14,7 +14,7 @@ class AddPrecoToServicosTable extends Migration
     public function up()
     {
         Schema::table('servicos', function (Blueprint $table) {
-            $table->integer('preco');
+            $table->double('preco');
         });
     }
 

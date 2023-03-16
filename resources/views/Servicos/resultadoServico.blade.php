@@ -1,15 +1,16 @@
 @extends('layouts.main')
 @section('titulo', $resultadoId->nome)
 @section('conteudo')
-    <div class="container-fluid p-5">
-        <div class="bg-light rounded mb-3">
+    <div class="container w-auto ">
+        <div class="bg-light rounded mt-5 w-100 ">
             <img src="/img/publicserivces/{{ $resultadoId->imagem }}" id="resultadoimagem" class="rounded ml-5"
                 alt="...">
             <div class="">
                 <h1 class="card-title text-info text-center">{{ $resultadoId->nome }}</h1>
-                <p class="text-uppercase p-3">{{ $resultadoId->descricao }}</p>
+                <p class="text-uppercase p-3 text-center">{{ $resultadoId->descricao }}</p>
+
                 <p class="text-uppercase p-2"><small class="text-muted">{{ $resultadoId->categoria }}</small></p>
-                <div>
+                <div class="m-5 p-5">
                     Publico por: {{ $donoDoServico['name'] }}
                 </div>
             </div>

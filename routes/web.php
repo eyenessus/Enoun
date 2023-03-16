@@ -98,3 +98,6 @@ Route::get('/pagamento',[MercadoPagoController::class,'criarPagamento']);
 Route::post('/notificacao', [MercadoPagoController::class, 'receberNotificacao'])->name('notificacaoMercadoPago');
 Route::get('/qrcode',[MercadoPagoController::class,'gerarQRCodePix']);
 
+Route::post('/assinatura', [MercadoPagoController::class,'assinatura']);
+Route::post('/plano', [MercadoPagoController::class,'plano'])->name('criarPlano');
+
