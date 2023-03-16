@@ -14,6 +14,8 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         'notificacao',
         'assinatura',
-        'plano'
+        'plano',
+        'token',
+        'cliente'
     ];
 }
