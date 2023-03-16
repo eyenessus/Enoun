@@ -321,7 +321,6 @@ class MercadoPagoController extends Controller
     }
 
     public function buscarCliente(){
-        
         $email = ['email'=>'e@gmail.com'];
         $response = Http::withToken(env('MERCADO_PAGO_ACCESS_TOKEN'))
         ->withHeaders([
@@ -330,5 +329,13 @@ class MercadoPagoController extends Controller
         ->get('https://api.mercadopago.com//v1/customers/search?', $email);
         
             $resultaado = $response->json();
+    }
+    public function exibirCliente(){
+        //retorna todos dados completo do cliente
+        $id = '';
+        $response = Http::withToken(env('MERCADO_PAGO_ACCESS'))
+        ->withHeaders(['Content-Type' => 'application/json'])
+        ->get('https://api.mercadopago.com/v1/customers/',$id);
+        $resultado = $response->json();
     }
 }
