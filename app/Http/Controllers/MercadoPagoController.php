@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Pedido;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use MercadoPago\Card;
+use MercadoPago\CardToken;
+use MercadoPago\Customer;
 use MercadoPago\Item;
 use MercadoPago\Payer;
 use MercadoPago\Plan;
@@ -17,6 +20,8 @@ use MercadoPago\PreapprovalPlan;
 use MercadoPago\Subscription;
 use Symfony\Component\HttpClient\HttpClient;
 use MercadoPago\SubscriptionPlan;
+use Symfony\Component\VarDumper\Caster\CutStub;
+
 class MercadoPagoController extends Controller
 {
     public function __construct()
@@ -89,6 +94,7 @@ class MercadoPagoController extends Controller
 
         // Salve a preferência
         $preference->save();
+        dd($preference);
 
         // Redirecione o usuário para a página de pagamento do Mercado Pago
         return redirect($preference->init_point);
@@ -199,92 +205,84 @@ class MercadoPagoController extends Controller
     }
 
 
-    public function xxoff(Request $request)
-{
-    // Define os dados do plano
-   // Define os dados do plano
-   $plano = new Preapproval();
-   $plano->payer_email = 'emersonsilva@gmail.com';
-   $plano->auto_recurring = array(
-       "frequency" => 1,
-       "frequency_type" => "months",
-       "transaction_amount" => 0.50,
-       "currency_id" => "BRL"
-   );
-   $plano->description = "Plano Mensal";
-   $plano->external_reference = "001";
-   $plano->back_url = route('inicio');
-   $plano->reason = "Assinatura de Serviços";
 
-   // Salva o plano no Mercado Pago
-   $plano->save();
+    public function plano(Request $request)
+    {
 
-   // Retorna a página de confirmação com o ID do plano criado
-   return view('planos.confirmacao', ['planoId' => $plano->id]);
-}
-
-
-public function plano(Request $request)
-{
-   
-    $params = array(
-        "reason" => "Yoga classes",
-        "auto_recurring" => array(
-            "frequency" => 1,
-            "frequency_type" => "months",
-            "repetitions" => 12,
-            "billing_day" => 10,
-            "billing_day_proportional" => true,
-            "free_trial" => array(
+        $params = array(
+            "reason" => "Enoun",
+            "auto_recurring" => array(
                 "frequency" => 1,
-                "frequency_type" => "months"
+                "frequency_type" => "months",
+                "repetitions" => 1,
+                "billing_day" => 5,
+                "billing_day_proportional" => true,
+                "free_trial" => array(
+                    "frequency" => 3,
+                    "frequency_type" => "months"
+                ),
+                "transaction_amount" => 1,
+                "currency_id" => "BRL"
             ),
-            "transaction_amount" => 10,
-            "currency_id" => "BRL"
-        ),
-        "payment_methods_allowed" => array(
-            "excluded_payment_types" => array(
-                array(
-                    "id" => "ticket"
+            "payment_methods_allowed" => array(
+                "excluded_payment_types" => array(
+                    array(
+                        "id" => "ticket"
+                    )
+                ),
+                "excluded_payment_methods" => array(
+                    array(
+                        "id" => "amex"
+                    )
                 )
             ),
-            "excluded_payment_methods" => array(
-                array(
-                    "id" => "amex"
-                )
-            )
-        ),
-        "back_url" => "https://www.yoursite.com"
-    );
+            "back_url" => "https://www.yoursite.com"
+        );
+
+        $response = Http::withToken(env('MERCADO_PAGO_ACCESS_TOKEN'))
+            ->withHeaders([
+                'Content-Type' => 'application/json'
+            ])
+            ->post('https://api.mercadopago.com/preapproval_plan', $params);
 
 
-    $response = Http::withToken(env('MERCADO_PAGO_ACCESS_TOKEN'))
-                    ->withHeaders([
-                        'Content-Type' => 'application/json'
-                    ])
-                    ->post('https://api.mercadopago.com/preapproval_plan', $params);
+        if ($response->failed()) {
+            $error = $response->json();
+            return response()->json($error, $response->status());
+        }
 
-  
-    if ($response->failed()) {
-        $error = $response->json();
-        return response()->json($error, $response->status());
+        $result = $response->json();
+        return response()->json($result, $response->status());
     }
 
-    $result = $response->json();
-    dd($result);
-    return response()->json($result, $response->status());
-}
+    public function geradorToken()
+    {
 
+        $cardToken = new CardToken();
+        $cardToken->cardholderName = '[REDACTED_NAME]';
+        $cardToken->cardNumber = '[REDACTED_CARD_NUMBER]';
+        $cardToken->securityCode = '013';
+        $cardToken->expirationMonth = '03';
+        $cardToken->expirationYear = '2028';
+        $cardToken->identificationType = 'CPF';
+        $cardToken->identificationNumber = '[REDACTED_CPF]'; // insira o CPF do usuário aqui
 
+        $cardToken->save();
+        $cardTokenId = $cardToken->id;
+
+        return $cardTokenId;
+    }
     public function assinatura(Request $request)
-{
-    
-       
+    {
+
+
         $plano = new Preapproval();
-     
+
         $plano->description = $request->input('descricao');
         $plano->external_reference = $request->input('referencia');
         $plano->payer_email = 'eyenessus@email.com';
+        $plano->preapproval_plan_id = '2c93808486e9fd3d0186ec7c1560010f';
+        $plano->card_token_id = $this->geradorToken();
         $plano->auto_recurring = array(
             "frequency" => $request->input('frequencia'),
             "frequency_type" => $request->input('tipo_frequencia'),
@@ -298,14 +296,39 @@ public function plano(Request $request)
         );
         $plano->back_url = route('inicio');
         $plano->reason = "Xtu";
-       
-        $plano->save();
-        dd($plano);
-        // Retorna o ID do plano criado
-        
-        return response()->json(['plano_id' => $plano->id]);
 
+        $plano->save();
+
+        return response()->json(['plano_id' => $plano->id]);
     }
 
 
+    public function criarCliente()
+    {
+        //cria cliente e cartão
+        $cliente = new Customer();
+        $cliente->email = 'osd@gmail.com';
+        $cliente->save();
+        
+        $card = new Card();
+        $card->token = $this->geradorToken();
+        $card->customer_id = $cliente->id;
+        $card->issuer = array("id" => "3245612");
+        $card->payment_method = array("id" => "debit_card");
+        $card->save();
+       
+      
+    }
+
+    public function buscarCliente(){
+        
+        $email = ['email'=>'e@gmail.com'];
+        $response = Http::withToken(env('MERCADO_PAGO_ACCESS_TOKEN'))
+        ->withHeaders([
+            'Content-Type' => 'application/json'
+        ])
+        ->get('https://api.mercadopago.com//v1/customers/search?', $email);
+        
+            $resultaado = $response->json();
+    }
 }
