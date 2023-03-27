@@ -1,15 +1,12 @@
 $(document).ready(() => {
     //menu categorias
-  
+
     const $menu = $('#menu');
     const $botaocategoria = $('#botaocategoria')
 
     $botaocategoria.on('click', () => {
         $menu.slideToggle('fast');
     })
-
-
-
 
 
     //fomrmulario login
@@ -217,11 +214,32 @@ $(document).ready(() => {
     //verificação de carrinho se existem itens dentro do carrinho
     const $valorFinalCarrinho = $('.valorFinal').html();
 
-    if($valorFinalCarrinho === '0,00'){
+    if ($valorFinalCarrinho === '0,00') {
         $('.botaopross').toggleClass('disabled')
-    }else{
+    } else {
         $('.botaopross').removeClass('disabled')
     }
 
-})
 
+    setInterval(() => {
+        $.ajax({
+            type: "GET",
+            url: "http://127.0.0.1:8000/obterInfor",
+            dataType: "json",
+            success: function (response) {
+                $.each(response, function (indexInArray, valueOfElement) {
+                   
+                        $(`#status-${valueOfElement.id}`).html(valueOfElement.status)
+                    
+                });
+
+
+            },
+            error: function (error) {
+                console.log(error)
+            }
+        });
+    }, 8000);
+
+
+})

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Inicio;
+use App\Models\Pedido;
 use App\Models\Servico;
 use App\Models\Slide;
 use App\Models\User;
@@ -171,6 +172,14 @@ class EnounController extends Controller
     {
         $slide = Slide::FindOrFail($id);
         return view('Edition.slideFormEdit', ['slide' => $slide]);
+    }
+
+    public function obterInfor(){
+        $usuarioLogado = auth()->user();
+        $listaDePedidos = Pedido::all();
+        $filtro = $listaDePedidos->where('user_id', $usuarioLogado->id);
+    
+        return response()->json($filtro);
     }
 
 }

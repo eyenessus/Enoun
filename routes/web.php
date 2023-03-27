@@ -101,8 +101,13 @@ Route::get('/qrcode',[MercadoPagoController::class,'gerarQRCodePix']);
 Route::post('/assinatura', [MercadoPagoController::class,'assinatura'])->name('assinatura');
 Route::post('/plano', [MercadoPagoController::class,'plano'])->name('criarPlano');
 
-Route::get('/testeAgora',[MercadoPagoController::class,'teste']);
-
 Route::post('/token', 'App\Http\Controllers\MercadoPagoController@geradorToken')->name('criar-token-cartao');
 
 Route::post('/cliente',[MercadoPagoController::class,'criarCliente']);
+
+Route::get('/assinaturaa', function () {
+    return view('mercado');
+});
+Route::post('/gerar-token-cartao', [MercadoPagoController::class,'gerarAssinatura']);
+
+Route::get('/obterInfor', [EnounController::class, 'obterInfor']);
