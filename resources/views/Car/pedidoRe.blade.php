@@ -61,7 +61,7 @@
 
                             <ul class="list-group">
                                 @foreach ($valor->valorUnitario as $valorU)
-                                    <li class="list-group-item m-1"><span>R$ {{ $valorU }},00</span></li>
+                                    <li class="list-group-item m-1"><span>R$ {{ $valorU }}</span></li>
                                 @endforeach
                             </ul>
 
@@ -69,7 +69,7 @@
 
                         <td> <span class="badge bg-primary rounded-pill"> R$ {{ $valor->valor }}</span> </td>
                   
-                        <td id="status">{{ $valor->status }}</td>
+                        <td id="status-{{ $valor->id }}">{{ $valor->status }}</td>
 
                         <td> {{ $valor->created_at }}</td>
                     </tr>

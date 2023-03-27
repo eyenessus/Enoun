@@ -30,7 +30,7 @@
                 @foreach ($addItem as $valuer)
                     <tr class="text-center">
                         <td class="text-uppercase fw-bold">{{ $valuer->nome }}</td>
-                        <td>R$ <span id="valorItem"> {{ $valuer->preco }}</span>,00</td>
+                        <td>R$ <span id="valorItem"> {{ $valuer->preco }}</span></td>
                         <th scope="row"> 
                             <button class="btn btn-info text-white">
                                 <i class="bi bi-basket2 p-2"></i>

@@ -11,16 +11,11 @@ use MercadoPago\CardToken;
 use MercadoPago\Customer;
 use MercadoPago\Item;
 use MercadoPago\Payer;
-use MercadoPago\Plan;
 use MercadoPago\Preapproval;
 use MercadoPago\Preference;
 use MercadoPago\SDK;
 use MercadoPago\Payment;
-use MercadoPago\PreapprovalPlan;
-use MercadoPago\Subscription;
-use Symfony\Component\HttpClient\HttpClient;
-use MercadoPago\SubscriptionPlan;
-use Symfony\Component\VarDumper\Caster\CutStub;
+use Symfony\Component\Console\Input\Input;
 
 class MercadoPagoController extends Controller
 {
@@ -221,7 +216,7 @@ class MercadoPagoController extends Controller
                     "frequency" => 3,
                     "frequency_type" => "months"
                 ),
-                "transaction_amount" => 1,
+                "transaction_amount" => 500,
                 "currency_id" => "BRL"
             ),
             "payment_methods_allowed" => array(
@@ -255,87 +250,148 @@ class MercadoPagoController extends Controller
         return response()->json($result, $response->status());
     }
 
-    public function geradorToken()
+    public function assinaturaa(Request $request)
     {
-
-        $cardToken = new CardToken();
-        $cardToken->cardholderName = 'Emerson dos santos sousa';
-        $cardToken->cardNumber = '4092800152289025';
-        $cardToken->securityCode = '013';
-        $cardToken->expirationMonth = '03';
-        $cardToken->expirationYear = '2028';
-        $cardToken->identificationType = 'CPF';
-        $cardToken->identificationNumber = '52781012882'; // insira o CPF do usuário aqui
-
-        $cardToken->save();
-        $cardTokenId = $cardToken->id;
-
-        return $cardTokenId;
-    }
-    public function assinatura(Request $request)
-    {
-
 
         $plano = new Preapproval();
-
-        $plano->description = $request->input('descricao');
-        $plano->external_reference = $request->input('referencia');
-        $plano->payer_email = 'eyenessus@email.com';
-        $plano->preapproval_plan_id = '2c93808486e9fd3d0186ec7c1560010f';
-        $plano->card_token_id = $this->geradorToken();
+        $plano->external_reference = '202212312359';
+        $plano->payer_email = $request->input('email');
+        $plano->card_token_id = $request->input('token');
+        $plano->preapproval_plan_id = '';
         $plano->auto_recurring = array(
-            "frequency" => $request->input('frequencia'),
-            "frequency_type" => $request->input('tipo_frequencia'),
-            "transaction_amount" => $request->input('valor'),
-            "currency_id" => $request->input('moeda'),
-            "repetitions" => $request->input('repeticoes'),
+            "frequency" => 1,
+            "frequency_type" => "months",
+            "transaction_amount" => 500,
+            "currency_id" => "BRL",
+            "repetitions" => 12,
             "free_trial" => array(
-                "frequency" => $request->input('frequencia_teste'),
-                "frequency_type" => $request->input('tipo_frequencia_teste')
+                "frequency" => 1,
+                "frequency_type" => "weeks"
             )
         );
+
         $plano->back_url = route('inicio');
         $plano->reason = "Xtu";
+        $plano->status = "authorized";
 
         $plano->save();
-
+        var_dump($plano);
         return response()->json(['plano_id' => $plano->id]);
     }
 
+    public function assinatura(Request $request)
+    {
+        $cartao = new Card();
+        $cartao->customer_id = '1330581867-sELyj5ZR8D91No';
+        $cartao->token=$request['token'];
+        $cartao->save();
+        //ofc
+        $preapproval = new Preapproval();
+        $preapproval->payer_email = $request['email'];
+        $preapproval->preapproval_plan_id = '2c93808486feba790186ff29bc600037';
+        $preapproval->back_url = 'https://www.yourwebsite.com/return';
+        $preapproval->auto_recurring = array(
+            "frequency" => 1,
+            "frequency_type" => "months",
+            "transaction_amount" => 500,
+            "currency_id" => "BRL",
+            "repetitions" => 12
+        );
+        $preapproval->status = "authorized";
+        $preapproval->external_reference = "ok ok";
+        $preapproval->card_token_id = $request['token'];
+        $preapproval->reason = "Some reason";
+       
+        $preapproval->save();
+      dd($preapproval);
+      var_dump($preapproval);
+    }
+    public function pagamentoCheckoutTransparente(Request $request)
+    {
 
-    public function criarCliente()
+        $payment = new Payment();
+        $payment->transaction_amount = (float)$request->input('transactionAmount');
+        $payment->token = $request->input('token');
+        $payment->description = $request->input('description');
+        $payment->installments = (int)$request->input('installments');
+        $payment->payment_method_id = $request->input('paymentMethodId');
+        $payment->issuer_id = (int)$request->input('issuer');
+
+        $payer = new Payer();
+        $payer->email = $request->input('email');
+        $payer->identification = array(
+            "type" => $request->input('identificationType'),
+            "number" => $request->input('identificationNumber')
+        );
+        $payment->payer = $payer;
+        $payment->save();
+
+        $response = array(
+            'status' => $payment->status,
+            'status_detail' => $payment->status_detail,
+            'id' => $payment->id
+        );
+        dd($response);
+    }
+
+    public function criarCliente(Request  $request)
     {
         //cria cliente e cartão
-        $cliente = new Customer();
-        $cliente->email = 'osd@gmail.com';
-        $cliente->save();
-        
+        $customer = new Customer();
+        $customer->email = 'testeone98675645@gmail.com';
+        $customer->first_name = 'Emerson';
+        $customer->last_name = 'Sousa';
+        $customer->phone = array(
+            'area_code' => '11',
+            'number' => '11992515755'
+        );
+        $customer->identification = array(
+            'type' => 'CPF',
+            'number' => '52781012882'
+        );
+        $customer->address = array(
+            'zip_code' => '05878180',
+            'street_name' => 'Rua Vanio Mondini',
+            'street_number' => 38,
+            'neighborhood' => 'Parque independencia',
+            'city' => array(
+                'name' => 'São Paulo',
+                'id' => 'BR-SP-44'
+            ),
+            'federal_unit' => 'SP',
+            'country' => 'BR'
+        );
+
+        // Salve o novo cliente na plataforma de pagamentos do MercadoPago
+        $customer->save();
+
         $card = new Card();
-        $card->token = $this->geradorToken();
-        $card->customer_id = $cliente->id;
-        $card->issuer = array("id" => "3245612");
-        $card->payment_method = array("id" => "debit_card");
+        $card->token = $request->input('token');
+        $card->customer_id = $customer->id;
+        $card->issuer = array("id" => "25");
+        $card->payment_method = array("id" => "credit_card");
         $card->save();
-       
-      
+        dd($card);
     }
 
-    public function buscarCliente(){
-        $email = ['email'=>'e@gmail.com'];
+    public function buscarCliente()
+    {
+        $email = ['email' => 'e@gmail.com'];
         $response = Http::withToken(env('MERCADO_PAGO_ACCESS_TOKEN'))
-        ->withHeaders([
-            'Content-Type' => 'application/json'
-        ])
-        ->get('https://api.mercadopago.com//v1/customers/search?', $email);
-        
-            $resultaado = $response->json();
+            ->withHeaders([
+                'Content-Type' => 'application/json'
+            ])
+            ->get('https://api.mercadopago.com//v1/customers/search?', $email);
+
+        $resultaado = $response->json();
     }
-    public function exibirCliente(){
+    public function exibirCliente()
+    {
         //retorna todos dados completo do cliente
         $id = '';
         $response = Http::withToken(env('MERCADO_PAGO_ACCESS'))
-        ->withHeaders(['Content-Type' => 'application/json'])
-        ->get('https://api.mercadopago.com/v1/customers/',$id);
+            ->withHeaders(['Content-Type' => 'application/json'])
+            ->get('https://api.mercadopago.com/v1/customers/', $id);
         $resultado = $response->json();
     }
 }
