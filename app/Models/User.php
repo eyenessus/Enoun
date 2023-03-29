@@ -82,19 +82,19 @@ class User extends Authenticatable
     }
    
 
-    public function pedidosAsWith(): BelongsToMany
+    public function pedidosAs(): BelongsToMany
     {
         return $this->belongsToMany(Pedidos::class);
     }
 
 
-    public function produtosAsWith(): BelongsToMany
+    public function produtosAs(): BelongsToMany
     {
         return $this->belongsToMany(Produto::class);
     }
 
 
-    public function servicosAsWith(): BelongsToMany
+    public function servicosAs(): BelongsToMany
     {
         return $this->belongsToMany(Servico::class);
     }
