@@ -1,18 +1,24 @@
 <?php
 
+use App\Http\Controllers\EnounController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+Route::get('/',[EnounController::class,'index']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/login',[EnounController::class,'login']);
+
+Route::get('/cadastro',[EnounController::class,'cadastro']);
+
+Route::get('/produtos',[EnounController::class,'produtos']);
+
+Route::get('/servicos',[EnounController::class,'servicos']);
+
+Route::get('/sobre',[EnounController::class,'sobre']);  
+
+Route::post('/cadastro',[EnounController::class,'store'])->name('cadastro'); 
+
+Route::get('/recuperar',[EnounController::class,'recuperar'] );
+
+Route::get('/dashboard',[EnounController::class,'dashboard']);
+
+Route::get('/carrinho',[EnounController::class,'carrinho' ]);

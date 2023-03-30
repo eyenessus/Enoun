@@ -54,19 +54,19 @@ class User extends Authenticatable
 
     public function noticias(): HasMany
     {
-        return $this->hasMany(Noticias::class);
+        return $this->hasMany(Noticia::class);
     }
 
 
     public function slides(): HasMany
     {
-        return $this->hasMany(Slides::class);
+        return $this->hasMany(Slide::class);
     }
 
 
     public function pedidos(): HasMany
     {
-        return $this->hasMany(Pedidos::class);
+        return $this->hasMany(Pedido::class);
     }
 
 
@@ -84,7 +84,7 @@ class User extends Authenticatable
 
     public function pedidosAs(): BelongsToMany
     {
-        return $this->belongsToMany(Pedidos::class);
+        return $this->belongsToMany(Pedido::class);
     }
 
 
