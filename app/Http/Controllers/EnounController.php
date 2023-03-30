@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\EnounServices\EnounServices;
 use App\Http\Controllers\Controller;
 
 use App\Models\User;
@@ -9,7 +10,13 @@ use Illuminate\Http\Request;
 
 class EnounController extends Controller
 {
-    
+  
+    public function __construct(protected EnounServices $service)
+    {
+       
+
+    }
+
     public function index()
     {
         return view('welcome');

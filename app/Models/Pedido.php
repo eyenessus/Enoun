@@ -20,5 +20,6 @@ class Pedido extends Model
     {
         return $this->belongsToMany(User::class);
     }
+    
     use HasFactory;
 }

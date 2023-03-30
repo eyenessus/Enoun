@@ -1,4 +1,4 @@
 @extends('Layout.main')
-@section('titulo','Pedidos')
+@section('titulo', 'Pedidos')
 @section('conteudo')
 @endsection

@@ -8,9 +8,11 @@
                 <h1
                     class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
                     Seja surpreendido pela inovação tecnológica!</h1>
-                <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">Explore o melhor do mundo da tecnologia e encontre os produtos eletrônicos mais incríveis aqui, onde cada click é uma descoberta surpreendente!</p>
-     
-              
+                <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">Explore o
+                    melhor do mundo da tecnologia e encontre os produtos eletrônicos mais incríveis aqui, onde cada click é
+                    uma descoberta surpreendente!</p>
+
+
             </div>
             <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
                 <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png" alt="mockup">
@@ -18,134 +20,138 @@
         </div>
     </section>
 
-  <div>
-    <div class="container mx-auto px-5 p-5 dark:bg-slate-900">
-        <h1 class="text-3xl text-bold dark:text-white">Roteadores</h1>
-        <div class="grid grid-cols-1 md:grid-cols-5 sm:grid-cols-2 gap-5 pt-5">
+    <div>
+        <div class="container mx-auto px-5 p-5 dark:bg-slate-900">
+            <h1 class="text-3xl text-bold dark:text-white">Roteadores</h1>
+            <div class="grid grid-cols-1 md:grid-cols-5 sm:grid-cols-2 gap-5 pt-5">
 
-            <div>
-                <div class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700">
-                    <a href="#">
-                        <img class="p-3 rounded-t-lg" src="http://www.multicursos.com.br/blog/upload/posts/imgPost_16.png"
-                            alt="product image" />
-                    </a>
-                    <div class="px-5 pb-5 mb-5">
+                <div>
+                    <div
+                        class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700">
                         <a href="#">
-                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Apple Watch
-                                Series 7 GPS, Aluminium Case, Starlight Sport</h5>
+                            <img class="p-3 rounded-t-lg"
+                                src="http://www.multicursos.com.br/blog/upload/posts/imgPost_16.png" alt="product image" />
                         </a>
+                        <div class="px-5 pb-5 mb-5">
+                            <a href="#">
+                                <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Apple Watch
+                                    Series 7 GPS, Aluminium Case, Starlight Sport</h5>
+                            </a>
 
-                        <div class="flex items-center justify-between pt-5">
-                            <span class="text-3xl font-bold text-gray-900 dark:text-white">R$599</span>
-                            <a href="#"
-                                class="text-white bg-green-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-blue-800">Comprar</a>
+                            <div class="flex items-center justify-between pt-5">
+                                <span class="text-3xl font-bold text-gray-900 dark:text-white">R$599</span>
+                                <a href="#"
+                                    class="text-white bg-green-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-blue-800">Comprar</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div>
-                <div class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700">
-                    <a href="#">
-                        <img class="p-3 rounded-t-lg" src="http://www.multicursos.com.br/blog/upload/posts/imgPost_16.png"
-                            alt="product image" />
-                    </a>
-                    <div class="px-5 pb-5 mb-5">
+                <div>
+                    <div
+                        class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700">
                         <a href="#">
-                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Apple Watch
-                                Series 7 GPS, Aluminium Case, Starlight Sport</h5>
+                            <img class="p-3 rounded-t-lg"
+                                src="http://www.multicursos.com.br/blog/upload/posts/imgPost_16.png" alt="product image" />
                         </a>
+                        <div class="px-5 pb-5 mb-5">
+                            <a href="#">
+                                <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Apple Watch
+                                    Series 7 GPS, Aluminium Case, Starlight Sport</h5>
+                            </a>
 
-                        <div class="flex items-center justify-between pt-5">
-                            <span class="text-3xl font-bold text-gray-900 dark:text-white">R$599</span>
-                            <a href="#"
-                                class="text-white bg-green-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-blue-800">Comprar</a>
+                            <div class="flex items-center justify-between pt-5">
+                                <span class="text-3xl font-bold text-gray-900 dark:text-white">R$599</span>
+                                <a href="#"
+                                    class="text-white bg-green-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-blue-800">Comprar</a>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <div>09</div>
+
+                <div>01</div>
+
+                <div>09</div>
+
+                <div>01</div>
+
+                <div>09</div>
+                <div>09</div>
+
+                <div>01</div>
+
+                <div>09</div>
+
+                <div>01</div>
+
+                <div>09</div>
+
             </div>
 
-            <div>09</div>
 
-            <div>01</div>
+            <h1 class="text-3xl text-bold dark:text-white">Computadores</h1>
+            <div class="grid grid-cols-1 md:grid-cols-5 sm:grid-cols-2 gap-5 pt-5">
 
-            <div>09</div>
+                <div>
+                    <div
+                        class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700">
+                        <a href="#">
+                            <img class="p-3 rounded-t-lg"
+                                src="http://www.multicursos.com.br/blog/upload/posts/imgPost_16.png" alt="product image" />
+                        </a>
+                        <div class="px-5 pb-5 mb-5">
+                            <a href="#">
+                                <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Apple Watch
+                                    Series 7 GPS, Aluminium Case, Starlight Sport</h5>
+                            </a>
 
-            <div>01</div>
+                            <div class="flex items-center justify-between pt-5">
+                                <span class="text-3xl font-bold text-gray-900 dark:text-white">R$599</span>
+                                <a href="#"
+                                    class="text-white bg-green-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-blue-800">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            <div>09</div>
-            <div>09</div>
+                <div>
+                    <div
+                        class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700">
+                        <a href="#">
+                            <img class="p-3 rounded-t-lg round"
+                                src="http://www.multicursos.com.br/blog/upload/posts/imgPost_16.png" alt="product image" />
+                        </a>
+                        <div class="px-5 pb-5 mb-5">
+                            <a href="#">
+                                <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Apple Watch
+                                    Series 7 GPS, Aluminium Case, Starlight Sport</h5>
+                            </a>
 
-            <div>01</div>
+                            <div class="flex items-center justify-between pt-5">
+                                <span class="text-3xl font-bold text-gray-900 dark:text-white">R$599</span>
+                                <a href="#"
+                                    class="text-white bg-green-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-blue-800">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            <div>09</div>
+                <div>09</div>
 
-            <div>01</div>
+                <div>01</div>
 
-            <div>09</div>
+                <div>09</div>
+
+                <div>01</div>
+
+                <div>09</div>
+
+            </div>
 
         </div>
-
-
-        <h1 class="text-3xl text-bold dark:text-white">Computadores</h1>
-        <div class="grid grid-cols-1 md:grid-cols-5 sm:grid-cols-2 gap-5 pt-5">
-
-            <div>
-                <div class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700">
-                    <a href="#">
-                        <img class="p-3 rounded-t-lg" src="http://www.multicursos.com.br/blog/upload/posts/imgPost_16.png"
-                            alt="product image" />
-                    </a>
-                    <div class="px-5 pb-5 mb-5">
-                        <a href="#">
-                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Apple Watch
-                                Series 7 GPS, Aluminium Case, Starlight Sport</h5>
-                        </a>
-
-                        <div class="flex items-center justify-between pt-5">
-                            <span class="text-3xl font-bold text-gray-900 dark:text-white">R$599</span>
-                            <a href="#"
-                                class="text-white bg-green-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-blue-800">Comprar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <div class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700">
-                    <a href="#">
-                        <img class="p-3 rounded-t-lg round"
-                            src="http://www.multicursos.com.br/blog/upload/posts/imgPost_16.png" alt="product image" />
-                    </a>
-                    <div class="px-5 pb-5 mb-5">
-                        <a href="#">
-                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Apple Watch
-                                Series 7 GPS, Aluminium Case, Starlight Sport</h5>
-                        </a>
-
-                        <div class="flex items-center justify-between pt-5">
-                            <span class="text-3xl font-bold text-gray-900 dark:text-white">R$599</span>
-                            <a href="#"
-                                class="text-white bg-green-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-blue-800">Comprar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div>09</div>
-
-            <div>01</div>
-
-            <div>09</div>
-
-            <div>01</div>
-
-            <div>09</div>
-
-        </div>
-
     </div>
-  </div>
 
 
 
