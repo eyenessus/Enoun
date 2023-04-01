@@ -19,7 +19,7 @@
         <div class="grid grid-cols-1 md:grid-cols-5 sm:grid-cols-2 gap-5 pt-5">
 
             <div>
-                <div class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700">
+                <div class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700 rounded">
                     <a href="#">
                         <img class="p-3 rounded-t-lg" src="http://www.multicursos.com.br/blog/upload/posts/imgPost_16.png"
                             alt="product image" />
@@ -31,7 +31,7 @@
                         </a>
 
                         <div class="flex items-center justify-between pt-5">
-                            <span class="text-3xl font-bold text-gray-900 dark:text-white">R$599</span>
+                            <span class="text-3xl font-bold text-gray-900 dark:text-white">R$546</span>
                             <a href="#"
                                 class="text-white bg-green-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-blue-800">Comprar</a>
                         </div>
@@ -40,7 +40,7 @@
             </div>
 
             <div>
-                <div class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700">
+                <div class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700 rounded">
                     <a href="#">
                         <img class="p-3 rounded-t-lg" src="http://www.multicursos.com.br/blog/upload/posts/imgPost_16.png"
                             alt="product image" />
@@ -86,7 +86,7 @@
         <div class="grid grid-cols-1 md:grid-cols-5 sm:grid-cols-2 gap-5 pt-5">
 
             <div>
-                <div class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700">
+                <div class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700 rounded">
                     <a href="#">
                         <img class="p-3 rounded-t-lg" src="http://www.multicursos.com.br/blog/upload/posts/imgPost_16.png"
                             alt="product image" />
@@ -107,7 +107,7 @@
             </div>
 
             <div>
-                <div class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700">
+                <div class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700 rounded">
                     <a href="#">
                         <img class="p-3 rounded-t-lg round"
                             src="http://www.multicursos.com.br/blog/upload/posts/imgPost_16.png" alt="product image" />

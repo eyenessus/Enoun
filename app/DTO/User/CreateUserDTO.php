@@ -13,7 +13,7 @@ class CreateUserDTO {
         return new self(
             $request->nome,
             $request->email,
-            $request->password,
+            bcrypt($request->password),
         );
     }
 }

@@ -15,22 +15,23 @@
 
             </div>
             <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
-                <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png" alt="mockup">
+                <img src="https://www.atacadogames.com/imagem/apple/celular-apple-iphone-14-pro-max-a2651-512gb-5g-esim-tela-6-7%27%27-cameras-de-48mp-12mp-12mp-e-12mp-gold/2/149668.jpg?pfdrid_c=true" alt="mockup">
             </div>
         </div>
     </section>
 
     <div>
-        <div class="container mx-auto px-5 p-5 dark:bg-slate-900">
+        <div class="container  px-5 p-5 dark:bg-slate-900 ">
+        <div class="container px-5 p-5 dark:bg-slate-900 rounded ">
             <h1 class="text-3xl text-bold dark:text-white">Roteadores</h1>
-            <div class="grid grid-cols-1 md:grid-cols-5 sm:grid-cols-2 gap-5 pt-5">
+            <div class="grid grid-cols-1 md:grid-cols-5 sm:grid-cols-2 gap-5 pt-5 rounded">
 
                 <div>
                     <div
-                        class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700">
+                        class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700 rounded">
                         <a href="#">
                             <img class="p-3 rounded-t-lg"
-                                src="http://www.multicursos.com.br/blog/upload/posts/imgPost_16.png" alt="product image" />
+                                src="https://a-static.mlcdn.com.br/800x560/apple-iphone-13-pro-max-256gb-dourado-tela-67-12mp-ios/magazineluiza/233007400/a7227ff292e9a0309c824677aeaa2551.jpg" alt="product image" />
                         </a>
                         <div class="px-5 pb-5 mb-5">
                             <a href="#">
@@ -49,10 +50,10 @@
 
                 <div>
                     <div
-                        class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700">
+                        class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700 rounded">
                         <a href="#">
                             <img class="p-3 rounded-t-lg"
-                                src="http://www.multicursos.com.br/blog/upload/posts/imgPost_16.png" alt="product image" />
+                                src="https://a-static.mlcdn.com.br/800x560/apple-iphone-13-pro-max-256gb-dourado-tela-67-12mp-ios/magazineluiza/233007400/a7227ff292e9a0309c824677aeaa2551.jpg" alt="product image" />
                         </a>
                         <div class="px-5 pb-5 mb-5">
                             <a href="#">
@@ -96,10 +97,10 @@
 
                 <div>
                     <div
-                        class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700">
+                        class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700 rounded">
                         <a href="#">
                             <img class="p-3 rounded-t-lg"
-                                src="http://www.multicursos.com.br/blog/upload/posts/imgPost_16.png" alt="product image" />
+                                src="https://a-static.mlcdn.com.br/800x560/apple-iphone-13-pro-max-256gb-dourado-tela-67-12mp-ios/magazineluiza/233007400/a7227ff292e9a0309c824677aeaa2551.jpg" alt="product image" />
                         </a>
                         <div class="px-5 pb-5 mb-5">
                             <a href="#">
@@ -118,10 +119,10 @@
 
                 <div>
                     <div
-                        class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700">
+                        class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700 rounded">
                         <a href="#">
                             <img class="p-3 rounded-t-lg round"
-                                src="http://www.multicursos.com.br/blog/upload/posts/imgPost_16.png" alt="product image" />
+                                src="https://a-static.mlcdn.com.br/800x560/apple-iphone-13-pro-max-256gb-dourado-tela-67-12mp-ios/magazineluiza/233007400/a7227ff292e9a0309c824677aeaa2551.jpg" alt="product image" />
                         </a>
                         <div class="px-5 pb-5 mb-5">
                             <a href="#">

@@ -30,6 +30,7 @@ class CreateUserEnounRequest extends FormRequest
             'email' => [
                 'email',
                 'required',
+                'unique:users'
             ],
 
             'password' => [

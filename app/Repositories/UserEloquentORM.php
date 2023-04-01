@@ -38,7 +38,7 @@ class UserEloquentORM implements UserEnounInterface
                 (array)$dto
 
             );
-            dd($usuario);
+            
 
         return (object) $usuario->toArray();
     }
