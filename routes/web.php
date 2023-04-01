@@ -15,7 +15,7 @@ Route::get('/servicos',[EnounController::class,'servicos'])->name('servicos');
 
 Route::get('/sobre',[EnounController::class,'sobre'])->name('sobre');
 
-Route::post('/cadastro',[EnounController::class,'create'])->name('cadastro'); 
+Route::post('/cadastro',[EnounController::class,'store'])->name('cadastro'); 
 
 Route::get('/recuperar',[EnounController::class,'recuperar'] )->name('recuperar');
 

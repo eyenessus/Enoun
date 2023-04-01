@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CadastroEnounRequest extends FormRequest
+class CreateUserEnounRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,18 @@ class CadastroEnounRequest extends FormRequest
         return [
             'nome'=> [
                 'required',
-                'min' =>4
+                'min:4'
             ],
 
             'email' => [
                 'email',
-                'required'
-        ],
+                'required',
+            ],
+
+            'password' => [
+                'min:4',
+                'required',
+            ]
     ];
    
 
