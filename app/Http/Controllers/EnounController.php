@@ -23,7 +23,7 @@ class EnounController extends Controller
  
     public function create()
     {
-       
+        return view('Cadastro.cadastro');
     }
 
     public function store(CreateUserEnounRequest $request)
@@ -63,9 +63,6 @@ class EnounController extends Controller
 
     }
 
-    public function cadastro(){
-        return view('Cadastro.cadastro');
-    }
 
 
     public function servicos(){
