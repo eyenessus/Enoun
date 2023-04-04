@@ -1,28 +1,30 @@
 <?php
 
-use App\Http\Controllers\EnounController;
+use App\Http\Controllers\{EnounController,UserEnounController,ProdutoEnounController};
 use Illuminate\Support\Facades\Route;
 
 Route::get('/',[EnounController::class,'index'])->name('inicio');
 
-Route::get('/login',[EnounController::class,'login'])->name('login');
+Route::get('/login',[UserEnounController::class,'index'])->name('login');
 
-Route::get('/cadastro',[EnounController::class,'create'])->name('cadastro');
+Route::get('/cadastro',[UserEnounController::class,'create'])->name('cadastro');
 
-Route::get('/produtos',[EnounController::class,'produtos'])->name('produtos');
+Route::get('/produtos',[ProdutoEnounController::class,'index'])->name('produtos');
 
-Route::get('/servicos',[EnounController::class,'servicos'])->name('servicos');
+Route::get('/servicos',[EnounController::class,'index'])->name('servicos');
 
 Route::get('/sobre',[EnounController::class,'sobre'])->name('sobre');
 
-Route::get('/recuperar',[EnounController::class,'recuperar'] )->name('recuperar');
+Route::get('/recuperarUser',[UserEnounController::class,'recuperar'] )->name('recuperar');
 
-Route::get('/dashboard',[EnounController::class,'dashboard'])->name('dashboard');
+Route::get('/dashboard',[UserEnounController::class,'dashboard'])->name('dashboard');
 
-Route::get('/carrinho',[EnounController::class,'carrinho' ])->name('carrinho');
+Route::get('/carrinho',[UserEnounController::class,'carrinho' ])->name('carrinho');
 
-Route::get('/formProduto', [EnounController::class,'formProduto'])->name('formulario.produto');
+Route::get('/formProduto', [ProdutoEnounController::class,'create'])->name('formulario.produto');
 
-Route::post('/formProduto', [EnounController::class,'cadastrarProduto'])->name('cadastro.produto');
+Route::get('/categoriaForm',[UserEnounController::class,'formCategoria'])->name('formulario.categoria');
 
-Route::post('/cadastro',[EnounController::class,'store'])->name('cadastro'); 
+Route::post('/formProduto', [ProdutoEnounController::class,'store'])->name('cadastro.produto');
+
+Route::post('/cadastroUser',[UserEnounController::class,'store'])->name('cadastro'); 
