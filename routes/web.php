@@ -21,4 +21,8 @@ Route::get('/dashboard',[EnounController::class,'dashboard'])->name('dashboard')
 
 Route::get('/carrinho',[EnounController::class,'carrinho' ])->name('carrinho');
 
+Route::get('/formProduto', [EnounController::class,'formProduto'])->name('formulario.produto');
+
+Route::post('/formProduto', [EnounController::class,'cadastrarProduto'])->name('cadastro.produto');
+
 Route::post('/cadastro',[EnounController::class,'store'])->name('cadastro'); 

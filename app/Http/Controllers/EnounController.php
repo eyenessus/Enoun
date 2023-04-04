@@ -58,6 +58,16 @@ class EnounController extends Controller
      
     }
 
+    public function formProduto()
+    {
+        return view('Cadastro.produto');
+    }
+
+    public function cadastrarProduto(Request $request){
+        dd($request);
+    }
+
+
     public function login(){
      return view('Login.login');
 
