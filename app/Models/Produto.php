@@ -19,5 +19,8 @@ class Produto extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
     use HasFactory;
+
+    protected $fillable = ['nome', 'codigo','valor','imagem','categoria_id'];
 }

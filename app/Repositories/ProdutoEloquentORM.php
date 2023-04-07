@@ -1,0 +1,65 @@
+<?php
+
+namespace App\Repositories;
+
+use App\DTO\User\createProdutoDto;
+use App\Models\Categoria;
+use Illuminate\Support\Collection;
+use App\Models\Produto;
+use Illuminate\Support\Facades\Storage;
+use stdClass;
+
+class ProdutoEloquentORM implements ProdutoEnounInterface
+{
+    public function __construct(protected Produto $model)
+    {
+    }
+
+    public function getAll(): Collection
+    {
+        $resultado =$this->model->all();
+        
+        return collect($resultado);
+    
+    }
+
+
+    public function findOne(string $id): stdClass | null
+    {
+        if (!$produto = $this->model->findOrFail($id)) {
+            return null;
+        }
+        return (object) $produto;
+    }
+
+    public function delete(string $id): void
+    {
+        $this->model->findOrFail($id)->delete();
+    }
+
+
+    public function criarProduto(createProdutoDto $dto): array | stdClass
+    {
+        $path = Storage::putFile('avatars', $dto->imagem);
+        $dto->imagem = $path;
+     
+        $produto = $this->model->create((array) $dto);
+
+        return (object) $produto->toArray;
+    }
+
+    public function atualizarProduto(string $id): null | stdClass
+    {
+        if (!$produto = $this->model->findOrFail($id)) {
+            return null;
+        }
+
+        return (object) $this->model->update($produto);
+    }
+
+    public function buscarCategorias() : Collection
+    {
+        $categorias = Categoria::all();
+        return collect($categorias);
+    }
+}

@@ -9,9 +9,7 @@ use stdClass;
 class UserEnounService {
     
 
-    public function __construct(protected UserEnounInterface $repository) {
-
-    }
+    public function __construct(protected UserEnounInterface $repository) {}
 
     public function getAllUser(): array 
     {   

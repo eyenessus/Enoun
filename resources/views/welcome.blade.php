@@ -1,7 +1,6 @@
 @extends('Layout.main')
 @section('titulo', 'Início')
 @section('conteudo')
-
     <div id="animation-carousel" class="relative w-full" data-carousel="slide">
         <!-- Carousel wrapper -->
         <div class="relative h-56 overflow-hidden rounded-lg md:h-96">

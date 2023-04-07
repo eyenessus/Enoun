@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{EnounController,UserEnounController,ProdutoEnounController};
+use App\Http\Controllers\{EnounController,UserEnounController,ProdutoEnounController, ServicoEnounController};
 use Illuminate\Support\Facades\Route;
 
 Route::get('/',[EnounController::class,'index'])->name('inicio');
@@ -11,7 +11,7 @@ Route::get('/cadastro',[UserEnounController::class,'create'])->name('cadastro');
 
 Route::get('/produtos',[ProdutoEnounController::class,'index'])->name('produtos');
 
-Route::get('/servicos',[EnounController::class,'index'])->name('servicos');
+Route::get('/servicos',[ServicoEnounController::class,'index'])->name('servicos');
 
 Route::get('/sobre',[EnounController::class,'sobre'])->name('sobre');
 
@@ -27,4 +27,4 @@ Route::get('/categoriaForm',[UserEnounController::class,'formCategoria'])->name(
 
 Route::post('/formProduto', [ProdutoEnounController::class,'store'])->name('cadastro.produto');
 
-Route::post('/cadastroUser',[UserEnounController::class,'store'])->name('cadastro'); 
+Route::post('/cadastroUser',[UserEnounController::class,'store'])->name('cadastro.userForm');
