@@ -6,6 +6,7 @@ use App\DTO\User\createProdutoDto;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateProdutoEnounService;
 
+use App\Models\Produto;
 use App\Services\Produto\ProdutoEnounService;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,7 @@ class ProdutoEnounController extends Controller
     public function index()
     {
         $produto = $this->service->getAll();
+    
         return view('Produtos.produtos', ['produto' => $produto]);
     }
 

@@ -8,7 +8,6 @@ use Illuminate\Support\Collection;
 use App\Models\Produto;
 use Illuminate\Support\Facades\Storage;
 use stdClass;
-
 class ProdutoEloquentORM implements ProdutoEnounInterface
 {
     public function __construct(protected Produto $model)
@@ -18,7 +17,6 @@ class ProdutoEloquentORM implements ProdutoEnounInterface
     public function getAll(): Collection
     {
         $resultado =$this->model->all();
-        
         return collect($resultado);
     
     }
@@ -40,9 +38,9 @@ class ProdutoEloquentORM implements ProdutoEnounInterface
 
     public function criarProduto(createProdutoDto $dto): array | stdClass
     {
-        $path = Storage::putFile('avatars', $dto->imagem);
-        $dto->imagem = $path;
-     
+       
+        $dto->imagem = Storage::putFile('produtos',$dto->imagem);
+
         $produto = $this->model->create((array) $dto);
 
         return (object) $produto->toArray;
