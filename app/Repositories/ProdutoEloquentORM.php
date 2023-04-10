@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\DTO\User\createProdutoDto;
+use App\DTO\Produto\createProdutoDto;
 use App\Models\Categoria;
 use Illuminate\Support\Collection;
 use App\Models\Produto;
@@ -11,8 +11,7 @@ use stdClass;
 class ProdutoEloquentORM implements ProdutoEnounInterface
 {
     public function __construct(protected Produto $model)
-    {
-    }
+    { }
 
     public function getAll(): Collection
     {
@@ -30,11 +29,13 @@ class ProdutoEloquentORM implements ProdutoEnounInterface
         return (object) $produto;
     }
 
+
     public function delete(string $id): void
     {
         $this->model->findOrFail($id)->delete();
     }
 
+    
 
     public function criarProduto(createProdutoDto $dto): array | stdClass
     {
@@ -46,6 +47,8 @@ class ProdutoEloquentORM implements ProdutoEnounInterface
         return (object) $produto->toArray;
     }
 
+
+
     public function atualizarProduto(string $id): null | stdClass
     {
         if (!$produto = $this->model->findOrFail($id)) {
@@ -54,6 +57,8 @@ class ProdutoEloquentORM implements ProdutoEnounInterface
 
         return (object) $this->model->update($produto);
     }
+
+
 
     public function buscarCategorias() : Collection
     {

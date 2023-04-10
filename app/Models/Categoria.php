@@ -19,6 +19,11 @@ class Categoria extends Model
     {
         return $this->belongsToMany(Produtos::class);
     }
+
+    public function servicos() : BelongsToMany
+    {
+        return $this->belongsToMany(Servico::class);
+    }
     
     use HasFactory;
 }

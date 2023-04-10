@@ -1,11 +1,9 @@
 <?php 
 namespace App\Services\Produto;
 
-use App\DTO\User\createProdutoDto;
-use App\Models\Categoria;
+use App\DTO\Produto\createProdutoDto;
 use App\Repositories\ProdutoEnounInterface;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Storage;
 use stdClass;
 
 class ProdutoEnounService

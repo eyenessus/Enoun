@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\DTO\User\createProdutoDto;
+use App\DTO\Produto\createProdutoDto;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateProdutoEnounService;
 
@@ -32,7 +32,7 @@ class ProdutoEnounController extends Controller
     public function store(CreateProdutoEnounService $request)
     {
         $this->service->criarProduto(createProdutoDto::makeFromRequest($request));
-        return view('welcome');
+        return redirect()->route('inicio');
     }
 
 

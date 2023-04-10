@@ -25,10 +25,13 @@ class Servico extends Model
         return $this->belongsToMany(Pedido::class);
     }
 
-    public function categoria() : belongsToMany
+    public function categoria() : BelongsTo
     {
-        return $this->belongsToMany(Categoria::class);
+        return $this->BelongsTo(Categoria::class);
     }
 
+
+ 
+    protected $fillable = ['nome', 'codigo','valor','imagem','categoria_id','descricao'];
     use HasFactory;
 }

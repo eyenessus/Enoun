@@ -28,3 +28,7 @@ Route::get('/categoriaForm',[UserEnounController::class,'formCategoria'])->name(
 Route::post('/formProduto', [ProdutoEnounController::class,'store'])->name('cadastro.produto');
 
 Route::post('/cadastroUser',[UserEnounController::class,'store'])->name('cadastro.userForm');
+
+Route::get('/formServico', [ServicoEnounController::class,'create'])->name('formulario');
+
+Route::post('/cadastroServico', [ServicoEnounController::class,'store'])->name('cadastro.servicoForm');

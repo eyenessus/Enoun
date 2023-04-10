@@ -1,5 +1,5 @@
 <?php 
-namespace App\DTO\User;
+namespace App\DTO\Produto;
 
 use App\Http\Requests\CreateProdutoEnounService;
 
