@@ -67,28 +67,67 @@ class ProdutoEloquentORM implements ProdutoEnounInterface
     }
 
 
-    public function adicionarAoCarrinho(string $id) : null | Collection
+    public function adicionarAoCarrinho(string $id) : bool | null 
     {
-    
+        $usuario = auth()->user();
+
         if(!$produto = $this->model->findOrFail($id)){
             return null;
         }
 
-        $carrinhoDeProdutos = Auth::user()->produtosComCarrinho();
-        $carrinhoDeProdutos->syncWithoutDetaching($produto->id);
-        $carrinhoDeProdutos->where('id', $id)->increment('quantidade');
+        if($usuario){
+            $carrinhoDeProdutos = $usuario->produtosComCarrinho();
+            $carrinhoDeProdutos->syncWithoutDetaching($produto->id);
+            $carrinhoDeProdutos->where('id', $id)->increment('quantidade');
+            
+        }
 
-        return collect($carrinhoDeProdutos) ;
+        return true ;
+        
 
     }
-    public function buscarMeuProdutos() : Collection
+    public function buscarMeuProdutos() : array | null
     {
-      
-        $produtos = Auth::user()->produtosComCarrinho;
-       
-     
-        return collect($produtos);
+    
+        $usuario = Auth::user();
+        if(!$usuario){
+            return null; 
+        }
 
+        $produto = $usuario->produtosComCarrinho;
+
+       $total = $produto->sum(function ($produtos){
+        return $produtos->valor * $produtos->pivot->quantidade;
+       });
+
+        return ['produto' =>collect($produto),'totalProdutos' => $total];
+
+    }
+
+
+    public function removerDoCarrinho (string $id) : void
+    {
+        $usuario = auth()->user();
+        $usuario->produtosComCarrinho()->detach($id);
+        
     }
    
+    public function decrementarProduto(string $id) : null | bool
+    {
+        $usuario = auth()->user();
+
+        if(!$produto = $this->model->findOrFail($id)){
+            return null;
+        }
+
+        if($usuario){
+            $carrinhoDeProdutos = $usuario->produtosComCarrinho();
+            $carrinhoDeProdutos->syncWithoutDetaching($produto->id);
+            $carrinhoDeProdutos->where('id', $id)->decrement('quantidade');
+            
+        }
+
+        return true ;
+    }
+
 }

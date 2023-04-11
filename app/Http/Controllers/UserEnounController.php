@@ -20,6 +20,7 @@ class UserEnounController extends Controller
 
     public function index()
     {
+    
         return view('Login.login');
     }
 
@@ -101,6 +102,10 @@ class UserEnounController extends Controller
     {
         $produto =  $this->serviceProduto->buscarMeuProdutos();
         
-        return view('Carrinho.carrinho',compact('produto'));
+        return view('Carrinho.carrinho',[
+
+        'produto' => $produto['produto'],
+        'totalProdutos' => $produto['totalProdutos']
+    ]);
     }
 }

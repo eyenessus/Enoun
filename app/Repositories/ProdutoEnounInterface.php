@@ -18,8 +18,11 @@ interface ProdutoEnounInterface {
 
     public function buscarCategorias() : Collection;
 
-    public function adicionarAoCarrinho(string $id) : null | Collection;
+    public function adicionarAoCarrinho(string $id) : bool | null ;
 
-    public function buscarMeuProdutos() : Collection;
+    public function buscarMeuProdutos() :array | null;
 
+    public function removerDoCarrinho(string $id) : void;
+
+    public function decrementarProduto(string $id) : null | bool;
 }

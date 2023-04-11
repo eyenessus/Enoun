@@ -14,17 +14,16 @@ use PhpParser\Node\Stmt\Return_;
 class ProdutoEnounController extends Controller
 {
   public function __construct(protected ProdutoEnounService $service){}
+  
     public function index()
     {
         $produto = $this->service->getAll();
-    
         return view('Produtos.produtos', ['produto' => $produto]);
     }
 
 
     public function create()
     {
-      
         $categorias = $this->service->buscarCategorias();
         return view('Cadastro.produto',['categorias' => $categorias]);
     }
@@ -62,10 +61,18 @@ class ProdutoEnounController extends Controller
 
     public function adicionarPtCarrinho(string $id)
     {
-     
         $this->service->adicionarAoCarrinho($id);
-
-
         return redirect()->route('carrinho');
+    }
+
+
+    public function removerDoCarrinho(string $id){
+        $this->service->removerDoCarrinho($id);
+        return redirect()->back();
+    }
+
+    public function decrementarDoCarrinho(string $id){
+        $this->service->decrementarDoCarrinho($id);
+        return redirect()->back();
     }
 }
