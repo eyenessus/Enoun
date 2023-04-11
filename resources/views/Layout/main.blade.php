@@ -29,11 +29,7 @@
 
 
             <div class="flex items-center md:order-2">
-                <a href="{{ route('login') }}">
-               
-        
                   @auth
-                    
                         <button type="button"
                     class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                     id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
@@ -69,7 +65,7 @@
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Plano</a>
                         </li>
                         <li>
-                            <a href="#"
+                            <a href="{{ route('sair') }}"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sair</a>
                         </li>
 

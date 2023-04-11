@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories;
 use App\DTO\User\CreateUserDTO;
+use Illuminate\Support\Collection;
 use stdClass;
 interface UserEnounInterface{
     public function getAllUser(): array;
@@ -13,4 +14,5 @@ interface UserEnounInterface{
 
     public function updateUser(string $id): stdClass | null;
 
+  
 }

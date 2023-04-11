@@ -3,6 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Endereco;
+use App\Models\Noticia;
+use App\Models\Pedido;
+use App\Models\Produto;
+use App\Models\Servico;
+use App\Models\Slide;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -88,14 +94,15 @@ class User extends Authenticatable
     }
 
 
-    public function produtosAs(): BelongsToMany
+    public function produtosComCarrinho(): BelongsToMany
     {
-        return $this->belongsToMany(Produto::class);
+        return $this->belongsToMany(Produto::class)->withPivot('quantidade');
     }
 
 
-    public function servicosAs(): BelongsToMany
+    public function servicosComCarrinho(): BelongsToMany
     {
         return $this->belongsToMany(Servico::class);
     }
+
 }

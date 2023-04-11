@@ -30,7 +30,7 @@
                                     class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700 rounded">
                                     <a href="#">
                                         <img class="p-3 rounded-t-lg" src="/storage/{{ $servicos->imagem }}"
-                                            alt="{{ $servicos->imagem }}" />
+                                            alt="{{ $servicos->nome }}" />
                                     </a>
                                   
                                     <div class="px-5 pb-5 mb-5">

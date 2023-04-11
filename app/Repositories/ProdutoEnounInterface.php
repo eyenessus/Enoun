@@ -17,4 +17,9 @@ interface ProdutoEnounInterface {
     public function atualizarProduto( string $id) : null | stdClass;
 
     public function buscarCategorias() : Collection;
+
+    public function adicionarAoCarrinho(string $id) : null | Collection;
+
+    public function buscarMeuProdutos() : Collection;
+
 }

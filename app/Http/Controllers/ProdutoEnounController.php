@@ -9,6 +9,7 @@ use App\Http\Requests\CreateProdutoEnounService;
 use App\Models\Produto;
 use App\Services\Produto\ProdutoEnounService;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\Return_;
 
 class ProdutoEnounController extends Controller
 {
@@ -55,9 +56,16 @@ class ProdutoEnounController extends Controller
 
     public function destroy(string $id)
     {
-        //
+        $this->service->delete($id);
+        return view('welcome');
     }
 
-    
+    public function adicionarPtCarrinho(string $id)
+    {
+     
+        $this->service->adicionarAoCarrinho($id);
 
+
+        return redirect()->route('carrinho');
+    }
 }

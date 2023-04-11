@@ -6,6 +6,7 @@ use App\DTO\Produto\createProdutoDto;
 use App\Models\Categoria;
 use Illuminate\Support\Collection;
 use App\Models\Produto;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use stdClass;
 class ProdutoEloquentORM implements ProdutoEnounInterface
@@ -59,10 +60,35 @@ class ProdutoEloquentORM implements ProdutoEnounInterface
     }
 
 
-
     public function buscarCategorias() : Collection
     {
         $categorias = Categoria::all();
         return collect($categorias);
     }
+
+
+    public function adicionarAoCarrinho(string $id) : null | Collection
+    {
+    
+        if(!$produto = $this->model->findOrFail($id)){
+            return null;
+        }
+
+        $carrinhoDeProdutos = Auth::user()->produtosComCarrinho();
+        $carrinhoDeProdutos->syncWithoutDetaching($produto->id);
+        $carrinhoDeProdutos->where('id', $id)->increment('quantidade');
+
+        return collect($carrinhoDeProdutos) ;
+
+    }
+    public function buscarMeuProdutos() : Collection
+    {
+      
+        $produtos = Auth::user()->produtosComCarrinho;
+       
+     
+        return collect($produtos);
+
+    }
+   
 }

@@ -29,6 +29,12 @@ Route::post('/formProduto', [ProdutoEnounController::class,'store'])->name('cada
 
 Route::post('/cadastroUser',[UserEnounController::class,'store'])->name('cadastro.userForm');
 
-Route::get('/formServico', [ServicoEnounController::class,'create'])->name('formulario');
+Route::get('/formServico', [ServicoEnounController::class,'create'])->name('formulario.servico');
 
 Route::post('/cadastroServico', [ServicoEnounController::class,'store'])->name('cadastro.servicoForm');
+
+Route::post('/produto/adicionar/{id}',[ProdutoEnounController::class,'adicionarPtCarrinho'])->name('adicionar.produto');
+
+Route::post('/login/auth', [UserEnounController::class,'autenticar'])->name('login.auth');
+
+Route::get('/login/logout', [UserEnounController::class,'sair'])->name('sair');

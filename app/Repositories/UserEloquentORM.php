@@ -3,6 +3,7 @@ namespace App\Repositories;
 
 use App\DTO\User\CreateUserDTO;
 use App\Models\User;
+use Illuminate\Support\Collection;
 use stdClass;
 
 class UserEloquentORM implements UserEnounInterface
@@ -51,4 +52,6 @@ class UserEloquentORM implements UserEnounInterface
 
         return (object)$usuario->toArray();
     }
+
+   
 }

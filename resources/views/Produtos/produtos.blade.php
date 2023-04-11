@@ -30,7 +30,7 @@
 
 
                     @foreach ($produto as $produtos)
-                        @if ($produtos->categoria->nome == 'Eletronico')
+                        @if ($produtos->categoria->nome == 'eletronico')
                             <div>
                                 <div
                                     class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700 rounded">
@@ -71,7 +71,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-5 sm:grid-cols-2 gap-5 pt-5 xl:grid-cols-4">
 
                     @foreach ($produto as $produtos)
-                        @if ($produtos->categoria->nome == 'Informática')
+                        @if ($produtos->categoria->nome == 'informática')
                             <div>
                                 <div
                                     class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700 rounded">
@@ -92,9 +92,13 @@
                                         </div>
                                         <div class="flex items-center justify-between pt-5">
                                             <div class="ml-auto">
-                                                <a href="{{ $produtos->id }}" class="text-white bg-green-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-blue-800">Comprar</a>
+                                           
+                                                <form action="{{ route('adicionar.produto',$produtos->id) }}" method="POST">
+                                                    @csrf
+                                                    <button class="text-white bg-green-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-blue-800">Comprar</button>
+                                                </form>
                                             </div>
-                                            
+                                        
                                         </div>
 
                                     </div>
