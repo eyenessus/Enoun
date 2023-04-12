@@ -21,7 +21,6 @@ class UserEloquentORM implements UserEnounInterface
         if(!$usuario = $this->model->findOne($id)){
             return null;
         }
-
         return (object) $usuario->toArray();;
     }
 
@@ -31,16 +30,11 @@ class UserEloquentORM implements UserEnounInterface
         $this->model->findOrFail($id)->delete();
     }
 
-    public function createUser(CreateUserDTO $dto) : stdClass | null
-    
+    public function createUser(CreateUserDTO $dto) : stdClass | null   
     {
-   
             $usuario = $this->model->create(
                 (array)$dto
-
             );
-            
-
         return (object) $usuario->toArray();
     }
 
@@ -49,7 +43,6 @@ class UserEloquentORM implements UserEnounInterface
         if(!$usuario = $this->model->findOrFail($id)){
             return null;
         }
-
         return (object)$usuario->toArray();
     }
 

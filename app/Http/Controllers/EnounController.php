@@ -9,8 +9,6 @@ class EnounController extends Controller
  
     public function index()
     {
-        
-       
         return view('welcome');
     }
 

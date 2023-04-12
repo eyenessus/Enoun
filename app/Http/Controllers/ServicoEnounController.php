@@ -6,6 +6,7 @@ use App\DTO\Servico\CreateServicoDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateServicoEnounRequest;
 use App\Models\Categoria;
+use App\Models\Servico;
 use App\Services\Servico\ServicoEnounService;
 use Illuminate\Http\Request;
 
@@ -17,10 +18,7 @@ class ServicoEnounController extends Controller
     public function index()
     {
         $servico = $this->service->getAll();
-
-        
-        $categoria = Categoria::all();
-        
+        $categoria = $this->service->buscarCategorias();
         return view('Servicos.servicos',compact('servico','categoria'));
     }
 

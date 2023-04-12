@@ -3,10 +3,8 @@
 namespace App\Repositories;
 
 use App\DTO\Produto\createProdutoDto;
-use App\DTO\Servico\CreateServicoDTO;
 use App\Models\Categoria;
 use App\Models\Produto;
-use App\Models\Servico;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -44,11 +42,8 @@ class ProdutoEloquentORM implements ProdutoEnounInterface
 
     public function criarProduto(createProdutoDto $dto): array | stdClass
     {
-
         $dto->imagem = Storage::putFile('produtos', $dto->imagem);
-
         $produto = $this->model->create((array) $dto);
-
         return (object) $produto->toArray;
     }
 
@@ -59,7 +54,6 @@ class ProdutoEloquentORM implements ProdutoEnounInterface
         if (!$produto = $this->model->findOrFail($id)) {
             return null;
         }
-
         return (object) $this->model->update($produto);
     }
 
@@ -74,11 +68,9 @@ class ProdutoEloquentORM implements ProdutoEnounInterface
     public function adicionarAoCarrinho(string $id): bool | null
     {
         $usuario = auth()->user();
-
         if (!$produto = $this->model->findOrFail($id)) {
             return null;
         }
-
         if ($usuario) {
             $carrinhoDeProdutos = $usuario->produtosComCarrinho();
             $carrinhoDeProdutos->syncWithoutDetaching($produto->id);
@@ -93,7 +85,6 @@ class ProdutoEloquentORM implements ProdutoEnounInterface
         if (!$usuario) {
             return null;
         }
-
 
         $produto = $usuario->produtosComCarrinho;
         $total = $produto->sum(function ($produtos) {
@@ -114,11 +105,9 @@ class ProdutoEloquentORM implements ProdutoEnounInterface
     public function decrementarProduto(string $id): null | bool
     {
         $usuario = auth()->user();
-
         if (!$produto = $this->model->findOrFail($id)) {
             return null;
         }
-
         if ($usuario) {
             $carrinhoDeProdutos = $usuario->produtosComCarrinho();
             $carrinhoDeProdutos->syncWithoutDetaching($produto->id);
@@ -126,11 +115,10 @@ class ProdutoEloquentORM implements ProdutoEnounInterface
         }
 
         $produtosSemQuantidade = auth()->user()->produtosComCarrinho()->where('quantidade', '<', 1)->get()->toArray();
-      
+
         foreach($produtosSemQuantidade as $servicoNull) {
          $usuario->produtosComCarrinho()->detach($servicoNull['id']);
          }
-
         return true;
     }
 }

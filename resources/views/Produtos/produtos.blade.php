@@ -3,7 +3,7 @@
 @section('conteudo')
 
     
-   @foreach ($produto as $produtos) @endforeach
+   
 
 
 <section class="bg-white dark:bg-gray-900">
@@ -28,11 +28,15 @@
 
 <div>
     <div class="container px-5 p-5 dark:bg-slate-900 mx-auto">
+        @if(count($produto))
         @foreach ($categoria as $categorias)
             <div class="container px-5 p-5 dark:bg-slate-900 rounded">
-                @if($produtos->categoria->nome == $categorias->nome)
+              @foreach ($produto as $produtos)
+                  
+              @if($produtos->categoria->nome == $categorias->nome)
                 <h1 class="text-3xl text-bold dark:text-white">{{ $categorias->nome }}</h1>
                 @endif
+                @endforeach
                 <div class="grid grid-cols-1 md:grid-cols-5 xl:grid-cols-4 sm:grid-cols-2 gap-5 pt-5 rounded">
                     @foreach ($produto as $produtos)
                         @if($produtos->categoria->nome == $categorias->nome)
@@ -66,6 +70,7 @@
                 </div>
             </div>
         @endforeach
+        @endif
     </div>
     
 </div>

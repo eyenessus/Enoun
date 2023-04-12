@@ -11,8 +11,6 @@ class ServicoEnounService {
     public function __construct(protected ServicoEnounInterface $repository)
     { }
 
-    
-
     public function getAll() : Collection
     {
         return $this->repository->getAll();

@@ -3,7 +3,7 @@
 @section('conteudo')
 
 
-@foreach ($servico as $servicos)@endforeach
+
 
 
 <section class="bg-white dark:bg-gray-900">
@@ -19,13 +19,24 @@
     </div>
 </section>
 
+
+
 <div>
     <div class="container px-5 p-5 dark:bg-slate-900 mx-auto">
+        @if(count($servico))
         @foreach ($categoria as $categorias)
+
         <div class="container px-5 p-5 dark:bg-slate-900 rounded">
+
+            @foreach ($servico as $servicos)
+
             @if($servicos->categoria->nome == $categorias->nome)
+
             <h1 class="text-3xl text-bold dark:text-white">{{ $categorias->nome }}</h1>
             @endif
+
+            @endforeach
+
             <div class="grid grid-cols-1 md:grid-cols-5 xl:grid-cols-4 sm:grid-cols-2 gap-5 pt-5 rounded">
                 @foreach ($servico as $servicos)
                 @if($servicos->categoria->nome == $categorias->nome)
@@ -46,13 +57,14 @@
                                     }},00</span>
                             </div>
                             <div class="flex items-center justify-between pt-5">
+
                                 <div class="ml-auto">
                                     <form action="{{ route('adicionar.servico',$servicos->id) }}" method="POST">
                                         @csrf
-                                        <button 
-                                        class="text-white bg-green-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-blue-800">Comprar</button>
+                                        <button
+                                            class="text-white bg-green-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-blue-800">Comprar</button>
                                     </form>
-                                  
+
                                 </div>
                             </div>
                         </div>
@@ -63,10 +75,11 @@
             </div>
         </div>
         @endforeach
+        @endif
     </div>
 
-
 </div>
+
 
 
 @endsection

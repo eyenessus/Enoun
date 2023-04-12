@@ -53,7 +53,6 @@ class ServicoEloquentORM implements ServicoEnounInterface
         if (!$servico = $this->model->findOrFail($id)) {
             return null;
         }
-
         return (object) $servico->toArray();
     }
 
@@ -61,7 +60,6 @@ class ServicoEloquentORM implements ServicoEnounInterface
     public function buscarCategorias(): Collection
     {
         $categoria = Categoria::all();
-
         return collect($categoria);
     }
 
@@ -73,13 +71,11 @@ class ServicoEloquentORM implements ServicoEnounInterface
         if (!$servico = $this->model->findOrFail($id)) {
             return null;
         }
-
         if ($usuario) {
             $carrinhoDeservicos = $usuario->servicosComCarrinho();
             $carrinhoDeservicos->syncWithoutDetaching($servico->id);
             $carrinhoDeservicos->where('id', $id)->increment('quantidade');
         }
-
         return true;
     }
 

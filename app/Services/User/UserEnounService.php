@@ -2,14 +2,13 @@
 namespace App\Services\User;
 
 use App\DTO\User\CreateUserDTO;
-use App\Http\Requests\CreateUserEnounRequest;
 use App\Http\Requests\LoginUserRequest;
 use App\Repositories\ProdutoEnounInterface;
 use App\Repositories\UserEnounInterface;
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use stdClass;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class UserEnounService {
     
@@ -42,20 +41,27 @@ class UserEnounService {
         return $this->repositoryUser->updateUser($id);
     }
 
-    public function autenticarUser(LoginUserRequest $request) : bool
+    public function autenticarUser(LoginUserRequest $request) : RedirectResponse
     {
         
         $credenciais = $request->only('email','password');
-
         if (Auth::attempt($credenciais)) 
         {
             $request->session()->regenerate();
- 
-            return true;
+            return redirect()->route('dashboard');
         }
-        
-            return false;
+        return redirect()->route('login')->withErrors([
+            'email' => 'As credenciais fornecidas não correspondem aos nossos registros.',
+        ])->onlyInput('email');
+           
+    }
 
+    public function sair(Request $request): RedirectResponse
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
     }
 
    

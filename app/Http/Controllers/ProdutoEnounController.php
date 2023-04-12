@@ -18,7 +18,7 @@ class ProdutoEnounController extends Controller
   
     public function index()
     {
-        $categoria = Categoria::all();
+        $categoria = $this->service->buscarCategorias();
         $produto = $this->service->getAll();
         return view('Produtos.produtos', ['produto' => $produto,'categoria' => $categoria]);
     }

@@ -25,6 +25,7 @@
                 </tr>
             </thead>
             <tbody>
+                
                 @foreach ($produto as $produtos)
                 <tr
                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 mx-auto max-w-screen-xl">
@@ -183,7 +184,7 @@
     <div class="relative w-full max-w-2xl max-h-full">
 
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-            
+
             <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                     Resumo da compra
@@ -208,20 +209,26 @@
                         <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
 
                             <tr>
-                                <th scope="col" class="px-6 py-3 rounded-l-lg">
-                                    Produtos
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Quantidade
-                                </th>
-                                <th scope="col" class="px-6 py-3 rounded-r-lg">
-                                    Preço
-                                </th>
+                                @if(count($produto) <=0) <th scope="col" class="px-6 py-3 rounded-l-lg">
+                                    SERVIÇOS
+                                    </th>
+                                    @endif
+                                    <th scope="col" class="px-6 py-3 rounded-l-lg">
+                                        Produtos
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Quantidade
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 rounded-r-lg">
+                                        Preço
+                                    </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @if(count($servico) >=0)
+                            @if(count($servico) >0)
+
                             @foreach ($produto as $produtos)
+
                             <tr class="bg-white dark:bg-gray-800">
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -234,6 +241,7 @@
                                     R$ {{number_format($produtos->valor, 2, ',', '.')}}
                                 </td>
                             </tr>
+
                             @endforeach
                             @endif
 

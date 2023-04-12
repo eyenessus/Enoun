@@ -6,13 +6,13 @@ use App\DTO\User\CreateUserDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserEnounRequest;
 use App\Http\Requests\LoginUserRequest;
-use App\Models\Categoria;
 use App\Services\Produto\ProdutoEnounService;
 use App\Services\Servico\ServicoEnounService;
 use App\Services\User\UserEnounService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
+
 
 class UserEnounController extends Controller
 {
@@ -20,91 +20,65 @@ class UserEnounController extends Controller
         protected UserEnounService $service,
         protected ProdutoEnounService $serviceProduto,
         protected ServicoEnounService $serviceServicos
+    ) {}
 
-    ) {
-    }
-
-    public function index()
+    public function index() : View
     {
-
         return view('Login.login');
     }
 
-
-    public function create()
+    public function create() : View
     {
         return view('Cadastro.cadastro');
     }
 
-
-    public function store(CreateUserEnounRequest $request)
+    public function store(CreateUserEnounRequest $request) : RedirectResponse
     {
-
         $this->service->createUser(CreateUserDTO::makeFromRequest($request));
-
         return redirect()->route('inicio');
     }
 
-
     public function show(string $id)
-    {
-    }
+    {  }
 
     public function edit(string $id)
-    {
-    }
+    {  }
 
 
     public function update(Request $request, string $id)
-    {
-    }
+    { }
 
 
     public function destroy(string $id)
-    {
-    }
+    {  }
 
 
-    public function recuperar()
+    public function recuperar() : View
     {
         return view('Login.recuperar');
     }
 
     public function autenticar(LoginUserRequest $request): RedirectResponse
     {
-        $auth = $this->service->autenticarUser($request);
-
-        if ($auth) {
-            return redirect()->route('dashboard');
-        }
-
-        return redirect()->route('login')->withErrors([
-            'email' => 'As credenciais fornecidas não correspondem aos nossos registros.',
-        ])->onlyInput('email');
+         return $this->service->autenticarUser($request);
     }
 
 
-    public function sair(Request $request): RedirectResponse
+    public function sair(Request $request) : RedirectResponse
     {
-        Auth::logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return redirect('/');
+        return $this->service->sair($request);
     }
 
 
 
-    public function dashboard()
+    public function dashboard() : View
     {
         return view('Dashboard.dashboard');
     }
 
 
 
-    public function carrinho()
+    public function carrinho() : View
     {
         $produto =  $this->serviceProduto->buscarMeuProdutos();
         $servico = $this->serviceServicos->buscarMeusServicos();

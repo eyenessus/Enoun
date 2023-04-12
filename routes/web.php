@@ -58,3 +58,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     Route::post('/formProduto', [ProdutoEnounController::class, 'store'])->name('cadastro.produto');
 });
+
+
+Route::fallback(function () {
+    return view('fallback'); 
+});
