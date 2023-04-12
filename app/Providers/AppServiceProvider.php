@@ -3,12 +3,13 @@
 namespace App\Providers;
 
 
-use App\Repositories\ProdutoEloquentORM;
-use App\Repositories\ProdutoEnounInterface;
+
+use App\Repositories\Produto\ProdutoEloquentORM;
+use App\Repositories\Produto\ProdutoEnounInterface;
 use App\Repositories\Servico\ServicoEloquentORM;
 use App\Repositories\Servico\ServicoEnounInterface;
-use App\Repositories\UserEloquentORM;
-use App\Repositories\UserEnounInterface;
+use App\Repositories\User\UserEloquentORM;
+use App\Repositories\User\UserEnounInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

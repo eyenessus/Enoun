@@ -1,7 +1,6 @@
 <?php
-namespace App\Repositories;
+namespace App\Repositories\User;
 use App\DTO\User\CreateUserDTO;
-use Illuminate\Support\Collection;
 use stdClass;
 interface UserEnounInterface{
     public function getAllUser(): array;

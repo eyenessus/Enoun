@@ -6,11 +6,9 @@ use App\DTO\Produto\createProdutoDto;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateProdutoEnounService;
 
-use App\Models\Categoria;
-use App\Models\Produto;
 use App\Services\Produto\ProdutoEnounService;
 use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\Return_;
+
 
 class ProdutoEnounController extends Controller
 {

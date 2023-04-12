@@ -3,7 +3,7 @@ namespace App\Repositories;
 
 use App\DTO\User\CreateUserDTO;
 use App\Models\User;
-use Illuminate\Support\Collection;
+use App\Repositories\User\UserEnounInterface;
 use stdClass;
 
 class UserEloquentORM implements UserEnounInterface

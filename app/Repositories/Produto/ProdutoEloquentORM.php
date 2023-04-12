@@ -1,15 +1,16 @@
 <?php
+namespace App\Repositories\Produto;
 
-namespace App\Repositories;
+
 
 use App\DTO\Produto\createProdutoDto;
 use App\Models\Categoria;
 use App\Models\Produto;
+use App\Repositories\Produto\ProdutoEnounInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use stdClass;
-
 
 
 class ProdutoEloquentORM implements ProdutoEnounInterface
@@ -115,7 +116,6 @@ class ProdutoEloquentORM implements ProdutoEnounInterface
         }
 
         $produtosSemQuantidade = auth()->user()->produtosComCarrinho()->where('quantidade', '<', 1)->get()->toArray();
-
         foreach($produtosSemQuantidade as $servicoNull) {
          $usuario->produtosComCarrinho()->detach($servicoNull['id']);
          }

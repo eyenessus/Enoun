@@ -3,7 +3,7 @@
 namespace App\Services\Produto;
 
 use App\DTO\Produto\createProdutoDto;
-use App\Repositories\ProdutoEnounInterface;
+use App\Repositories\Produto\ProdutoEnounInterface;
 use Illuminate\Support\Collection;
 use stdClass;
 

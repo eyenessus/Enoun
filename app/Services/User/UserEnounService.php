@@ -3,8 +3,8 @@ namespace App\Services\User;
 
 use App\DTO\User\CreateUserDTO;
 use App\Http\Requests\LoginUserRequest;
-use App\Repositories\ProdutoEnounInterface;
-use App\Repositories\UserEnounInterface;
+use App\Repositories\Produto\ProdutoEnounInterface;
+use App\Repositories\User\UserEnounInterface;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +13,9 @@ use stdClass;
 class UserEnounService {
     
 
-    public function __construct(protected UserEnounInterface $repositoryUser, protected ProdutoEnounInterface $repositoryProdutos) {}
+    public function __construct(
+    protected UserEnounInterface $repositoryUser, 
+    protected ProdutoEnounInterface $repositoryProdutos) {}
 
     public function getAllUser(): array 
     {   

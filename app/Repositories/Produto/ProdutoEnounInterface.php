@@ -1,5 +1,5 @@
 <?php
-namespace App\Repositories;
+namespace App\Repositories\Produto;
 
 use App\DTO\Produto\createProdutoDto;
 use Illuminate\Support\Collection;
