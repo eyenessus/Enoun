@@ -5,7 +5,6 @@ namespace App\Services\Produto;
 use App\DTO\Produto\createProdutoDto;
 use App\Repositories\ProdutoEnounInterface;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Auth;
 use stdClass;
 
 class ProdutoEnounService
@@ -47,24 +46,24 @@ class ProdutoEnounService
         return $this->repository->buscarCategorias();
     }
 
-    public function adicionarAoCarrinho(string $id): bool | null 
+    public function adicionarAoCarrinho(string $id): bool | null
     {
-        
+
         return $this->repository->adicionarAoCarrinho($id);
     }
 
-    public function buscarMeuProdutos() : array | null
+    public function buscarMeuProdutos(): array | null
     {
         return $this->repository->buscarMeuProdutos();
-     }
+    }
 
-     public function removerDoCarrinho(string $id) : void
-     {
-         $this->repository->removerDoCarrinho($id);
-     }
+    public function removerDoCarrinho(string $id): void
+    {
+        $this->repository->removerDoCarrinho($id);
+    }
 
-     public function decrementarDoCarrinho(string $id) : void
-     {
+    public function decrementarDoCarrinho(string $id): void
+    {
         $this->repository->decrementarProduto($id);
-     }
+    }
 }

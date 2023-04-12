@@ -102,7 +102,7 @@ class User extends Authenticatable
 
     public function servicosComCarrinho(): BelongsToMany
     {
-        return $this->belongsToMany(Servico::class);
+        return $this->belongsToMany(Servico::class)->withPivot('quantidade');
     }
 
 }

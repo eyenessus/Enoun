@@ -40,7 +40,7 @@ class ServicoEnounService {
 
     public function atualizarProduto( string $id) : null | stdClass
     {
-        return $this->repository->atualizarProduto($id);
+        return $this->repository->atualizarServico($id);
     }
 
 
@@ -49,5 +49,25 @@ class ServicoEnounService {
         return $this->repository->buscarCategorias();
     }
 
+    public function adicionarAoCarrinho(string $id): bool | null 
+    {
+        
+        return $this->repository->adicionarAoCarrinho($id);
+    }
+
+    public function buscarMeusServicos() : array | null
+    {
+        return $this->repository->buscarMeusServicos();
+     }
+
+     public function removerDoCarrinho(string $id) : void
+     {
+         $this->repository->removerDoCarrinho($id);
+     }
+
+     public function decrementarDoCarrinho(string $id) : void
+     {
+        $this->repository->decrementarServico($id);
+     }
 
 }

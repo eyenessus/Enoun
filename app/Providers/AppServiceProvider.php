@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+
 use App\Repositories\ProdutoEloquentORM;
 use App\Repositories\ProdutoEnounInterface;
 use App\Repositories\Servico\ServicoEloquentORM;

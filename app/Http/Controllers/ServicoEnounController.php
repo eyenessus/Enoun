@@ -6,7 +6,6 @@ use App\DTO\Servico\CreateServicoDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateServicoEnounRequest;
 use App\Models\Categoria;
-use App\Models\Servico;
 use App\Services\Servico\ServicoEnounService;
 use Illuminate\Http\Request;
 
@@ -19,7 +18,10 @@ class ServicoEnounController extends Controller
     {
         $servico = $this->service->getAll();
 
-        return view('Servicos.servicos',compact('servico'));
+        
+        $categoria = Categoria::all();
+        
+        return view('Servicos.servicos',compact('servico','categoria'));
     }
 
 
@@ -56,5 +58,22 @@ class ServicoEnounController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function adicionarSvCarrinho(string $id)
+    {
+        $this->service->adicionarAoCarrinho($id);
+        return redirect()->route('carrinho');
+    }
+
+
+    public function removerDoCarrinho(string $id){
+        $this->service->removerDoCarrinho($id);
+        return redirect()->back();
+    }
+
+    public function decrementarDoCarrinho(string $id){
+        $this->service->decrementarDoCarrinho($id);
+        return redirect()->back();
     }
 }

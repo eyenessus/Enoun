@@ -6,7 +6,9 @@ use App\DTO\User\CreateUserDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserEnounRequest;
 use App\Http\Requests\LoginUserRequest;
+use App\Models\Categoria;
 use App\Services\Produto\ProdutoEnounService;
+use App\Services\Servico\ServicoEnounService;
 use App\Services\User\UserEnounService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,13 +16,17 @@ use Illuminate\Support\Facades\Auth;
 
 class UserEnounController extends Controller
 {
-    public function __construct(protected UserEnounService $service, protected ProdutoEnounService $serviceProduto)
-    {
+    public function __construct(
+        protected UserEnounService $service,
+        protected ProdutoEnounService $serviceProduto,
+        protected ServicoEnounService $serviceServicos
+
+    ) {
     }
 
     public function index()
     {
-    
+
         return view('Login.login');
     }
 
@@ -101,11 +107,15 @@ class UserEnounController extends Controller
     public function carrinho()
     {
         $produto =  $this->serviceProduto->buscarMeuProdutos();
-        
-        return view('Carrinho.carrinho',[
+        $servico = $this->serviceServicos->buscarMeusServicos();
 
-        'produto' => $produto['produto'],
-        'totalProdutos' => $produto['totalProdutos']
-    ]);
+        return view('Carrinho.carrinho', [
+
+            'servico' => $servico['servico'],
+            'totalServicos' => $servico['totalservicos'],
+            
+            'produto' => $produto['produto'],
+            'totalProdutos' => $produto['totalProdutos']
+        ]);
     }
 }

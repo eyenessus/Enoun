@@ -23,18 +23,31 @@ Route::post('/login/auth', [UserEnounController::class, 'autenticar'])->name('lo
 
 
 Route::middleware('auth')->group(function () {
+ 
     Route::get('/carrinho', [UserEnounController::class, 'carrinho'])->name('carrinho');
+ 
     Route::post('/produto/adicionar/{id}', [ProdutoEnounController::class, 'adicionarPtCarrinho'])->name('adicionar.produto');
+ 
     Route::get('/login/logout', [UserEnounController::class, 'sair'])->name('sair');
+ 
+    Route::delete('/removerProduto/{id}', [ProdutoEnounController::class, 'removerDoCarrinho'])->name('removerProduto');
+  
+    Route::post('/decrementarProduto/{id}', [ProdutoEnounController::class, 'decrementarDoCarrinho'])->name('decrementarProduto');
+
+
+    Route::post('/servico/adicionar/{id}', [ServicoEnounController::class, 'adicionarSvCarrinho'])->name('adicionar.servico');
+ 
+ 
+    Route::delete('/removerServico/{id}', [ServicoEnounController::class, 'removerDoCarrinho'])->name('removerServico');
+  
+    Route::post('/decrementarServico/{id}', [ServicoEnounController::class, 'decrementarDoCarrinho'])->name('decrementarServico');
 });
 
-Route::delete('/removerProduto/{id}',[ProdutoEnounController::class, 'removerDoCarrinho'])->name('removerProduto');
-Route::post('/decrementarProduto/{id}',[ProdutoEnounController::class, 'decrementarDoCarrinho'])->name('decrementarProduto');
 
-
-
-    Route::get('/dashboard', [UserEnounController::class, 'dashboard'])->name('dashboard');
+Route::prefix('admin')->middleware('auth')->group(function () {
     
+    Route::get('/dashboard', [UserEnounController::class, 'dashboard'])->name('dashboard');
+   
     Route::get('/formServico', [ServicoEnounController::class, 'create'])->name('formulario.servico');
 
     Route::post('/cadastroServico', [ServicoEnounController::class, 'store'])->name('cadastro.servicoForm');
@@ -44,3 +57,4 @@ Route::post('/decrementarProduto/{id}',[ProdutoEnounController::class, 'decremen
     Route::get('/categoriaForm', [UserEnounController::class, 'formCategoria'])->name('formulario.categoria');
 
     Route::post('/formProduto', [ProdutoEnounController::class, 'store'])->name('cadastro.produto');
+});
