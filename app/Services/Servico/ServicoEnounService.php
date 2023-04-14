@@ -17,7 +17,7 @@ class ServicoEnounService {
     }
 
     
-    public function findOne(string $id) : stdClass | null
+    public function findOne(string $id) : Collection | null
     {
        return $this->repository->findOne($id);
     }

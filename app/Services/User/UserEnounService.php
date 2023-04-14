@@ -66,5 +66,9 @@ class UserEnounService {
         return redirect('/');
     }
 
+    public function meusRegistros() : array
+    {
+       return $this->repositoryUser->meusRegistros();
+    }
    
 }

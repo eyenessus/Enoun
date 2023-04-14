@@ -11,18 +11,20 @@ class CreateServicoDTO {
         public string $imagem,
         public string $descricao,
         public string $categoria_id,
+        public int $user_id,
     ){}
 
     public static function makeRequest(CreateServicoEnounRequest $request): self
     {
         return new self(
-
+           
             $request->nome,
             $request->codigo,
             $request->valor,
             $request->imagem,
             $request->descricao,
-            $request->categoria_id
+            $request->categoria_id,
+            $request->user_id  ?? 0
         );
     }
 

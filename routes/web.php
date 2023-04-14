@@ -34,9 +34,7 @@ Route::middleware('auth')->group(function () {
   
     Route::post('/decrementarProduto/{id}', [ProdutoEnounController::class, 'decrementarDoCarrinho'])->name('decrementarProduto');
 
-
     Route::post('/servico/adicionar/{id}', [ServicoEnounController::class, 'adicionarSvCarrinho'])->name('adicionar.servico');
- 
  
     Route::delete('/removerServico/{id}', [ServicoEnounController::class, 'removerDoCarrinho'])->name('removerServico');
   
@@ -58,6 +56,23 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     Route::post('/formProduto', [ProdutoEnounController::class, 'store'])->name('cadastro.produto');
 });
+
+
+
+
+
+Route::get('/formEdicaoProduto/{id}', [ProdutoEnounController::class,'edit'])->name('formularioEdicaoProduto');
+Route::put('/edicao/produto/{id}', [ProdutoEnounController::class,'update'])->name('atualizarProduto');
+Route::get('/exibir/produto/{id}', [ProdutoEnounController::class,'show'])->name('exibirProduto');
+
+Route::get('/formEdicaoServico/{id}', [ServicoEnounController::class,'edit'])->name('formularioEdicaoServico');
+Route::put('/edicao/servico/{id}', [ServicoEnounController::class,'update'])->name('atualizarServico');
+Route::get('/exibir/servico/{id}', [ServicoEnounController::class,'show'])->name('exibirServico');
+
+
+Route::delete('/apagarServico/{id}',[ServicoEnounController::class,'destroy'])->name('destruirServico');
+
+Route::delete('/apagarProduto/{id}',[ProdutoEnounController::class,'destroy'])->name('destruirProduto');
 
 
 Route::fallback(function () {

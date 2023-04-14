@@ -4,6 +4,7 @@ namespace App\Repositories\Servico;
 
 use App\DTO\Servico\CreateServicoDTO;
 use App\Models\Categoria;
+use App\Models\Produto;
 use App\Models\Servico;
 use App\Repositories\Servico\ServicoEnounInterface;
 use Illuminate\Support\Collection;
@@ -26,12 +27,12 @@ class ServicoEloquentORM implements ServicoEnounInterface
     }
 
 
-    public function findOne(string $id): stdClass | null
+    public function findOne(string $id): Collection | null
     {
         if (!$servicoEncontrado = $this->model->findOrFail($id)) {
             return null;
         }
-        return (object) $servicoEncontrado;
+        return collect($servicoEncontrado);
     }
 
 
@@ -43,8 +44,11 @@ class ServicoEloquentORM implements ServicoEnounInterface
 
     public function createServico(CreateServicoDTO $dto): stdClass | array
     {
+        
+        $dto->user_id = Auth::user()->id;
         $dto->imagem = Storage::putFile('servicos', $dto->imagem);
         $servico = $this->model->create((array) $dto);
+        
         return (object) $servico->toArray();
     }
 
@@ -125,4 +129,6 @@ class ServicoEloquentORM implements ServicoEnounInterface
            
         return true;
     }
+
+ 
 }

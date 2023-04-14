@@ -3,6 +3,8 @@
 namespace App\Services\Produto;
 
 use App\DTO\Produto\createProdutoDto;
+use App\DTO\Produto\UpdateProdutoDTO;
+use App\Http\Requests\Produto\UpdateProdutoRequest;
 use App\Repositories\Produto\ProdutoEnounInterface;
 use Illuminate\Support\Collection;
 use stdClass;
@@ -18,7 +20,7 @@ class ProdutoEnounService
         return $this->repository->getAll();
     }
 
-    public function findOne(string $id): stdClass | null
+    public function findOne(string $id): Collection | null
     {
         return $this->repository->findOne($id);
     }
@@ -30,15 +32,17 @@ class ProdutoEnounService
     }
 
 
+  
     public function criarProduto(createProdutoDto $dto): array | stdClass
     {
         return (object) $this->repository->criarProduto($dto);
     }
 
 
-    public function atualizarProduto(string $id): array | stdClass
+    public function update(UpdateProdutoDTO $dto): array | stdClass
     {
-        return $this->repository->atualizarProduto($id);
+        
+        return $this->repository->atualizarProduto($dto);
     }
 
     public function buscarCategorias(): Collection

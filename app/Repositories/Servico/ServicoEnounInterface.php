@@ -10,7 +10,7 @@ interface ServicoEnounInterface {
 
     public function getAll() : Collection;
 
-    public function findOne(string $id) : stdClass | null;
+    public function findOne(string $id) : Collection | null;
     
     public function delete(string $id) : void;
 

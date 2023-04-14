@@ -73,7 +73,8 @@ class UserEnounController extends Controller
 
     public function dashboard() : View
     {
-        return view('Dashboard.dashboard');
+        $prodServices=$this->service->meusRegistros();
+        return view('Dashboard.dashboard',['registros'=>$prodServices]);
     }
 
 
@@ -82,12 +83,9 @@ class UserEnounController extends Controller
     {
         $produto =  $this->serviceProduto->buscarMeuProdutos();
         $servico = $this->serviceServicos->buscarMeusServicos();
-
         return view('Carrinho.carrinho', [
-
             'servico' => $servico['servico'],
             'totalServicos' => $servico['totalservicos'],
-            
             'produto' => $produto['produto'],
             'totalProdutos' => $produto['totalProdutos']
         ]);

@@ -38,24 +38,25 @@ class ServicoEnounController extends Controller
 
     public function show(string $id)
     {
-        //
+        $servico = $this->service->findOne($id);
+        return view('Servicos.exibicaoServico',compact('servico'));
     }
 
     public function edit(string $id)
     {
-        //
+        return view('Servicos.edicaoServico');
     }
 
 
     public function update(Request $request, string $id)
     {
-        //
+        return redirect()->route('dashboard');
     }
 
 
     public function destroy(string $id)
     {
-        //
+        return redirect()->route('dashboard');
     }
 
     public function adicionarSvCarrinho(string $id)

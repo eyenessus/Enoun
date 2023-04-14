@@ -2,10 +2,6 @@
 @section('titulo', 'Serviços')
 @section('conteudo')
 
-
-
-
-
 <section class="bg-white dark:bg-gray-900">
     <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
         <div class="max-w-screen-md">
@@ -19,23 +15,23 @@
     </div>
 </section>
 
+@foreach ($servico as $servicos)
 
+@endforeach
 
 <div>
     <div class="container px-5 p-5 dark:bg-slate-900 mx-auto">
         @if(count($servico))
         @foreach ($categoria as $categorias)
-
         <div class="container px-5 p-5 dark:bg-slate-900 rounded">
 
-            @foreach ($servico as $servicos)
 
             @if($servicos->categoria->nome == $categorias->nome)
 
             <h1 class="text-3xl text-bold dark:text-white">{{ $categorias->nome }}</h1>
             @endif
 
-            @endforeach
+            
 
             <div class="grid grid-cols-1 md:grid-cols-5 xl:grid-cols-4 sm:grid-cols-2 gap-5 pt-5 rounded">
                 @foreach ($servico as $servicos)
@@ -43,12 +39,12 @@
                 <div>
                     <div
                         class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700 rounded">
-                        <a href="#">
+                        <a href="{{ route('exibirServico',$servicos->id) }}">
                             <img class="p-3 rounded-t-lg" src="/storage/{{ $servicos->imagem }}"
                                 alt="{{ $servicos->nome }}" />
                         </a>
                         <div class="px-5 pb-5 mb-5">
-                            <a href="#">
+                            <a href="{{ route('exibirServico',$servicos->id) }}">
                                 <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{{
                                     $servicos->nome }}</h5>
                             </a>

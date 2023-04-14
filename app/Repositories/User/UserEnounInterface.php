@@ -12,6 +12,7 @@ interface UserEnounInterface{
     public function createUser(CreateUserDTO $dto): stdClass | null;
 
     public function updateUser(string $id): stdClass | null;
-
+    public function meusRegistros() : array;
   
+
 }
