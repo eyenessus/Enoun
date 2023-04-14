@@ -9,7 +9,7 @@
         <img src="/storage/{{ $produto['imagem'] }}" alt="">
     </div>
     <div class="my-8 mx-8">
-        <h1 class="text-5xl font-extrabold dark:text-white">{{ $produto['nome'] }}</h1>
+        <h1 class="text-5xl font-extrabold dark:text-white my-8">{{ $produto['nome'] }}</h1>
         <h1>Descrição do produto</h1>
         <p class="max-w-lg text-3xl font-semibold leading-relaxed text-gray-900 dark:text-white">{{ $produto['descricao'] }}
         </p>

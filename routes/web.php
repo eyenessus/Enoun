@@ -26,19 +26,19 @@ Route::middleware('auth')->group(function () {
  
     Route::get('/carrinho', [UserEnounController::class, 'carrinho'])->name('carrinho');
  
-    Route::post('/produto/adicionar/{id}', [ProdutoEnounController::class, 'adicionarPtCarrinho'])->name('adicionar.produto');
+    Route::post('/produto/adicionar/{produto}', [ProdutoEnounController::class, 'adicionarPtCarrinho'])->name('adicionar.produto');
  
     Route::get('/login/logout', [UserEnounController::class, 'sair'])->name('sair');
  
-    Route::delete('/removerProduto/{id}', [ProdutoEnounController::class, 'removerDoCarrinho'])->name('removerProduto');
+    Route::delete('/removerProduto/{produto}', [ProdutoEnounController::class, 'removerDoCarrinho'])->name('removerProduto');
   
-    Route::post('/decrementarProduto/{id}', [ProdutoEnounController::class, 'decrementarDoCarrinho'])->name('decrementarProduto');
+    Route::post('/decrementarProduto/{produto}', [ProdutoEnounController::class, 'decrementarDoCarrinho'])->name('decrementarProduto');
 
-    Route::post('/servico/adicionar/{id}', [ServicoEnounController::class, 'adicionarSvCarrinho'])->name('adicionar.servico');
+    Route::post('/servico/adicionar/{servico}', [ServicoEnounController::class, 'adicionarSvCarrinho'])->name('adicionar.servico');
  
-    Route::delete('/removerServico/{id}', [ServicoEnounController::class, 'removerDoCarrinho'])->name('removerServico');
+    Route::delete('/removerServico/{servico}', [ServicoEnounController::class, 'removerDoCarrinho'])->name('removerServico');
   
-    Route::post('/decrementarServico/{id}', [ServicoEnounController::class, 'decrementarDoCarrinho'])->name('decrementarServico');
+    Route::post('/decrementarServico/{servico}', [ServicoEnounController::class, 'decrementarDoCarrinho'])->name('decrementarServico');
 });
 
 
@@ -61,18 +61,18 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
 
 
-Route::get('/formEdicaoProduto/{id}', [ProdutoEnounController::class,'edit'])->name('formularioEdicaoProduto');
-Route::put('/edicao/produto/{id}', [ProdutoEnounController::class,'update'])->name('atualizarProduto');
-Route::get('/exibir/produto/{id}', [ProdutoEnounController::class,'show'])->name('exibirProduto');
+Route::get('/formEdicaoProduto/{produto}', [ProdutoEnounController::class,'edit'])->name('formularioEdicaoProduto');
+Route::put('/edicao/produto/{produto}', [ProdutoEnounController::class,'update'])->name('atualizarProduto');
+Route::get('/exibir/produto/{produto}', [ProdutoEnounController::class,'show'])->name('exibirProduto');
 
-Route::get('/formEdicaoServico/{id}', [ServicoEnounController::class,'edit'])->name('formularioEdicaoServico');
-Route::put('/edicao/servico/{id}', [ServicoEnounController::class,'update'])->name('atualizarServico');
-Route::get('/exibir/servico/{id}', [ServicoEnounController::class,'show'])->name('exibirServico');
+Route::get('/formEdicaoServico/{servico}', [ServicoEnounController::class,'edit'])->name('formularioEdicaoServico');
+Route::put('/edicao/servico/{servico}', [ServicoEnounController::class,'update'])->name('atualizarServico');
+Route::get('/exibir/servico/{servico}', [ServicoEnounController::class,'show'])->name('exibirServico');
 
 
-Route::delete('/apagarServico/{id}',[ServicoEnounController::class,'destroy'])->name('destruirServico');
+Route::delete('/apagarServico/{servico}',[ServicoEnounController::class,'destroy'])->name('destruirServico');
 
-Route::delete('/apagarProduto/{id}',[ProdutoEnounController::class,'destroy'])->name('destruirProduto');
+Route::delete('/apagarProduto/{produto}',[ProdutoEnounController::class,'destroy'])->name('destruirProduto');
 
 
 Route::fallback(function () {

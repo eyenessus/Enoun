@@ -23,7 +23,7 @@
     </div>
 </section>
 @foreach ($produto as $produtos)
-{{ $produtos->nome }}
+
 @endforeach
 <div>
     <div class="container px-5 p-5 dark:bg-slate-900 mx-auto">

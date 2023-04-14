@@ -2,8 +2,6 @@
 namespace App\Repositories\User;
 
 use App\DTO\User\CreateUserDTO;
-use App\Models\Produto;
-use App\Models\Servico;
 use App\Models\User;
 use App\Repositories\User\UserEnounInterface;
 use Illuminate\Support\Facades\Auth;
@@ -52,10 +50,8 @@ class UserEloquentORM implements UserEnounInterface
     public function meusRegistros() : array
     {
         $user= Auth::user();
-        $produtos = $user->produtos()->paginate(1);
-        
-        $servicos = $user->servicos()->paginate(1);
-        
+        $produtos = $user->produtos()->paginate();
+        $servicos = $user->servicos()->paginate();
         return [
             'produtos' => $produtos,
             'servicos' => $servicos];

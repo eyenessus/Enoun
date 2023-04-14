@@ -114,7 +114,6 @@ class ProdutoEloquentORM implements ProdutoEnounInterface
             $carrinhoDeProdutos->syncWithoutDetaching($produto->id);
             $carrinhoDeProdutos->where('id', $id)->decrement('quantidade');
         }
-
         $produtosSemQuantidade = auth()->user()->produtosComCarrinho()->where('quantidade', '<', 1)->get()->toArray();
         foreach ($produtosSemQuantidade as $servicoNull) {
             $usuario->produtosComCarrinho()->detach($servicoNull['id']);
