@@ -52,7 +52,7 @@
                                     <label for="remember" class="text-gray-500 dark:text-gray-300">Lembrar</label>
                                 </div>
                             </div>
-                            <a href="{{ route('recuperar') }}"
+                            <a href="{{ route('user.recovery') }}"
                                 class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Esqueceu
                                 senha?</a>
                         </div>
@@ -62,7 +62,7 @@
                         </div>
 
                         <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                            Não tem conta? <a href="{{ route('cadastro') }}"
+                            Não tem conta? <a href="{{ route('user.create') }}"
                                 class="font-medium text-primary-600 hover:underline dark:text-primary-500">Crie uma aqui</a>
                         </p>
                     </form>

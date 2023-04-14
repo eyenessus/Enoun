@@ -41,7 +41,7 @@
                         <div class="flex items-center space-x-3">
 
 
-                            <form action="{{ route('decrementarProduto', $produtos->id) }}" method="POST">
+                            <form action="{{ route('produto.remove.store', $produtos->id) }}" method="POST">
                                 @csrf
                                 <button
                                     class="inline-flex items-center p-1 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
@@ -59,7 +59,7 @@
                                     value="{{ $produtos->pivot['quantidade'] }}" disabled>
                             </div>
 
-                            <form action="{{ route('adicionar.produto', $produtos->id) }}" method="POST">
+                            <form action="{{ route('produto.add.store', $produtos->id) }}" method="POST">
                                 @csrf
                                 <button
                                     class="inline-flex items-center p-1 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
@@ -83,7 +83,7 @@
 
                     <td class="px-6 py-4">
 
-                        <form action="{{ route('removerProduto', $produtos->id) }}" method="POST">
+                        <form action="{{ route('produto.delete.destroy', $produtos->id) }}" method="POST">
 
                             @csrf
                             @method('DELETE')
@@ -108,7 +108,7 @@
                         <div class="flex items-center space-x-3">
 
 
-                            <form action="{{ route('decrementarServico', $servicos->id) }}" method="POST">
+                            <form action="{{ route('servico.remove.store', $servicos->id) }}" method="POST">
                                 @csrf
                                 <button
                                     class="inline-flex items-center p-1 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
@@ -126,7 +126,7 @@
                                     value="{{ $servicos->pivot['quantidade'] }}" disabled>
                             </div>
 
-                            <form action="{{ route('adicionar.servico', $servicos->id) }}" method="POST">
+                            <form action="{{ route('servico.add.store', $servicos->id) }}" method="POST">
                                 @csrf
                                 <button
                                     class="inline-flex items-center p-1 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
@@ -150,7 +150,7 @@
 
                     <td class="px-6 py-4">
 
-                        <form action="{{ route('removerServico', $servicos->id) }}" method="POST">
+                        <form action="{{ route('servico.delete.destroy', $servicos->id) }}" method="POST">
 
                             @csrf
                             @method('DELETE')

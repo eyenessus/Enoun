@@ -28,7 +28,7 @@
                 </div>
                 <div
                     class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-                    <a href="{{ route('cadastro.produto') }}">
+                    <a href="{{ route('produto.create') }}">
                         <button type="button"
                             class="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                             <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20"
@@ -165,16 +165,16 @@
                                     <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                                         aria-labelledby="playstation-5-dropdown-button">
                                         <li>
-                                            <a href="{{ route('exibirProduto',$produtos['id']) }}"
+                                            <a href="{{ route('produto.show',$produtos['id']) }}"
                                                 class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mostrar</a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('formularioEdicaoProduto',$produtos['id']) }}"
+                                            <a href="{{ route('produto.edit',$produtos['id']) }}"
                                                 class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Editar</a>
                                         </li>
                                     </ul>
                                     <div class="py-1">
-                                        <form action="{{ route('destruirProduto',$produtos['id']) }}" method="POST">
+                                        <form action="{{ route('produto.destroy',$produtos['id']) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button
@@ -361,16 +361,16 @@
                                     <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                                         aria-labelledby="playstation-5-dropdown-button">
                                         <li>
-                                            <a href="{{ route('exibirProduto',$servicos['id']) }}"
+                                            <a href="{{ route('servico.show',$servicos['id']) }}"
                                                 class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mostrar</a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('formularioEdicaoProduto',$servicos['id']) }}"
+                                            <a href="{{ route('servico.edit',$servicos['id']) }}"
                                                 class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Editar</a>
                                         </li>
                                     </ul>
                                     <div class="py-1">
-                                        <a href="{{ route('destruirProduto',$servicos['id']) }}"
+                                        <a href="{{ route('servico.destroy',$servicos['id']) }}"
                                             class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Apagar</a>
                                     </div>
                                 </div>

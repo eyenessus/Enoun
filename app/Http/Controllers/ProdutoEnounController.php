@@ -70,7 +70,7 @@ class ProdutoEnounController extends Controller
     public function adicionarPtCarrinho(string $id): RedirectResponse
     {
         $this->service->adicionarAoCarrinho($id);
-        return redirect()->route('carrinho');
+        return redirect()->route('carrinho.index');
     }
 
 

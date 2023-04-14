@@ -5,7 +5,7 @@
     <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16 border-solid border-2 border-indigo-600 rounded">
         <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Adicionando um novo produto</h2>
   
-        <form action="{{ route('cadastro.produto') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('produto.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             
             @if ($errors->any())

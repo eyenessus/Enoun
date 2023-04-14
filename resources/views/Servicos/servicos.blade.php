@@ -39,12 +39,12 @@
                 <div>
                     <div
                         class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700 rounded">
-                        <a href="{{ route('exibirServico',$servicos->id) }}">
+                        <a href="{{ route('servico.show',$servicos->id) }}">
                             <img class="p-3 rounded-t-lg" src="/storage/{{ $servicos->imagem }}"
                                 alt="{{ $servicos->nome }}" />
                         </a>
                         <div class="px-5 pb-5 mb-5">
-                            <a href="{{ route('exibirServico',$servicos->id) }}">
+                            <a href="{{ route('servico.show',$servicos->id) }}">
                                 <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{{
                                     $servicos->nome }}</h5>
                             </a>
@@ -55,7 +55,7 @@
                             <div class="flex items-center justify-between pt-5">
 
                                 <div class="ml-auto">
-                                    <form action="{{ route('adicionar.servico',$servicos->id) }}" method="POST">
+                                    <form action="{{ route('servico.add.store',$servicos->id) }}" method="POST">
                                         @csrf
                                         <button
                                             class="text-white bg-green-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-blue-800">Comprar</button>

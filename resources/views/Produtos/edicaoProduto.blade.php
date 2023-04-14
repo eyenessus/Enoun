@@ -10,7 +10,7 @@
 @endif
     <div class="max-w-2xl px-4 py-8 mx-auto lg:py-16">
         <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Atualização de produto {{ $produto['nome'] }}</h2>
-        <form action="{{ route('atualizarProduto',$produto['id'])}}" method="POST" name="oioi" enctype="multipart/form-data">
+        <form action="{{ route('produto.update',$produto['id'])}}" method="POST" name="oioi" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             

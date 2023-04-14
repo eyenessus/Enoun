@@ -14,7 +14,7 @@
         <p class="max-w-lg text-3xl font-semibold leading-relaxed text-gray-900 dark:text-white">{{ $servico['descricao'] }}
         </p>
         <div class="my-8 ">
-            <form action="{{ route('adicionar.servico',$servico['id']) }}" method="POST">
+            <form action="{{ route('servico.add.store',$servico['id']) }}" method="POST">
                 @csrf
                 <button type="submit"
                 class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Comprar</button>

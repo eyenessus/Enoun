@@ -64,7 +64,7 @@ class ServicoEnounController extends Controller
     public function adicionarSvCarrinho(string $id): RedirectResponse
     {
         $this->service->adicionarAoCarrinho($id);
-        return redirect()->route('carrinho');
+        return redirect()->route('carrinho.index');
     }
 
 
