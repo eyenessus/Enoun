@@ -64,4 +64,4 @@ Route::fallback(function () {
 });
 
 
-Route::post('/mercadoPagoPay', [MercadoPagoController::class, 'index'])->name('mercadoPago');
+Route::get('/mercadoPagoPay', [MercadoPagoController::class, 'index'])->name('mercadoPago');

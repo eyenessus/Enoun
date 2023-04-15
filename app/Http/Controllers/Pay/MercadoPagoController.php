@@ -14,6 +14,7 @@ class MercadoPagoController extends Controller
     }
     public function index()
     {
+       
         return view('Pay.MercadoPago.mercadoPago');
     }
 
