@@ -9,17 +9,32 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Pedido extends Model
 {
-    
-    public function user() : BelongsTo
+
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    } 
+    }
 
-    
-    public function users() : BelongsToMany
+
+    public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class);
     }
+
+    protected $fillable = [
+        'descricao',
+        'status',
+        'quantidadeUnitaria',
+        'valorUnitario',
+        'user_id',
+        'valorTotal'
+    ];
+
+    protected $casts = [
+        'descricao' => 'array',
+        'quantidadeUnitaria' => 'array',
+        'valorUnitario' => 'array'
+    ];
     
     use HasFactory;
 }

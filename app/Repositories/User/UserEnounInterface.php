@@ -18,4 +18,6 @@ interface UserEnounInterface
     public function updateUser(string $id): stdClass | null;
     
     public function meusRegistros(): array;
+
+    public function  finalizarPedido() : bool;
 }

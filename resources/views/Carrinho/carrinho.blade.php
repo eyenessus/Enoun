@@ -3,6 +3,7 @@
 @section('conteudo')
 @if(count($servico) || count($produto))
 <div class="mx-8">
+ 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg mx-auto">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 mx-auto">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -332,7 +333,7 @@
                     de sua preferência com Mercado Pago!</p>
                 <ul class="my-4 space-y-3">
                     <li>
-                        <a href="#"
+                        <a href="{{ route('mercadoPago') }}"
                             class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                             <img src="https://logospng.org/download/mercado-pago/logo-mercado-pago-icone-1024.png"
                                 width="20px">

@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\{EnounController, UserEnounController, ProdutoEnounController, ServicoEnounController};
+use App\Http\Controllers\Pay\MercadoPagoController;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/', [EnounController::class, 'index'])->name('inicio');
 
 
 Route::prefix('home')->group(function () {
-    Route::get('/', [EnounController::class, 'index'])->name('inicio');
     Route::get('/sobre', [EnounController::class, 'sobre'])->name('sobre');
 });
 
@@ -43,24 +45,23 @@ Route::prefix('user')->middleware('guest')->group(function () {
     Route::post('/login/auth', [UserEnounController::class, 'autenticar'])->name('login.auth');
 });
 
-Route::prefix('servico')->group(function () {
-    Route::get('/', [ServicoEnounController::class, 'index'])->name('servicos.index');
-    Route::get('/{servico}', [ServicoEnounController::class, 'show'])->name('servico.show');
-}
+Route::prefix('servicos')->group(
+    function () {
+        Route::get('/', [ServicoEnounController::class, 'index'])->name('servicos.index');
+        Route::get('/{servico}', [ServicoEnounController::class, 'show'])->name('servico.show');
+    }
 );
 
-
-Route::prefix('produto')->group(function () {
-    Route::get('/{produto}', [ProdutoEnounController::class, 'show'])->name('produto.show');
-    Route::get('/', [ProdutoEnounController::class, 'index'])->name('produtos.index');
-}
+Route::prefix('produtos')->group(
+    function () {
+        Route::get('/{produto}', [ProdutoEnounController::class, 'show'])->name('produto.show');
+        Route::get('/', [ProdutoEnounController::class, 'index'])->name('produtos.index');
+    }
 );
-
-
-
-
-
 
 Route::fallback(function () {
     return view('fallback');
 });
+
+
+Route::post('/mercadoPagoPay', [MercadoPagoController::class, 'index'])->name('mercadoPago');

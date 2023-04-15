@@ -70,13 +70,11 @@ class UserEnounController extends Controller
     }
 
 
-
     public function dashboard() : View
     {
         $prodServices=$this->service->meusRegistros();
         return view('Dashboard.dashboard',['registros'=>$prodServices]);
     }
-
 
 
     public function carrinho() : View

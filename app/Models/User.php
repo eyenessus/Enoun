@@ -89,12 +89,6 @@ class User extends Authenticatable
     }
    
 
-    public function pedidosAs(): BelongsToMany
-    {
-        return $this->belongsToMany(Pedido::class);
-    }
-
-
     public function produtosComCarrinho(): BelongsToMany
     {
         return $this->belongsToMany(Produto::class)->withPivot('quantidade');

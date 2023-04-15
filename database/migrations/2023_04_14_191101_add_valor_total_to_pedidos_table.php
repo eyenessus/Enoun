@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pedidos', function (Blueprint $table) {
-            $table->id();
-            $table->json('descricao');
-            $table->string('status',100);
-            $table->json('quantidadeUnitaria');
-            $table->json('valorUnitario');
-            $table->timestamps();
+        Schema::table('pedidos', function (Blueprint $table) {
+            $table->double('valorTotal');
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pedidos');
+        Schema::table('pedidos', function (Blueprint $table) {
+            $table->dropColumn('valorTotal');
+        });
     }
 };

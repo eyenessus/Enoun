@@ -71,4 +71,9 @@ class UserEnounService {
        return $this->repositoryUser->meusRegistros();
     }
    
+    public function finalizarPedido() : bool
+    {
+        $this->repositoryUser->finalizarPedido();
+        return true;
+    }
 }
