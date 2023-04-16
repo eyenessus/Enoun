@@ -27,11 +27,13 @@ class Pedido extends Model
         'quantidadeUnitaria',
         'valorUnitario',
         'user_id',
-        'valorTotal'
+        'valorTotal',
+        'nome',
     ];
 
     protected $casts = [
         'descricao' => 'array',
+        'nome'=>'array',
         'quantidadeUnitaria' => 'array',
         'valorUnitario' => 'array'
     ];

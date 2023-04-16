@@ -7,6 +7,7 @@ use App\Repositories\Produto\ProdutoEnounInterface;
 use App\Repositories\User\UserEnounInterface;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use stdClass;
 
@@ -44,14 +45,14 @@ class UserEnounService {
     }
 
     public function autenticarUser(LoginUserRequest $request) : RedirectResponse
-    {
-        
+    { 
         $credenciais = $request->only('email','password');
         if (Auth::attempt($credenciais)) 
         {
             $request->session()->regenerate();
             return redirect()->route('dashboard');
         }
+        
         return redirect()->route('login')->withErrors([
             'email' => 'As credenciais fornecidas não correspondem aos nossos registros.',
         ])->onlyInput('email');
@@ -71,9 +72,8 @@ class UserEnounService {
        return $this->repositoryUser->meusRegistros();
     }
    
-    public function finalizarPedido() : bool
+    public function finalizarPedido() : Collection
     {
-        $this->repositoryUser->finalizarPedido();
-        return true;
+        return  $this->repositoryUser->finalizarPedido();
     }
 }

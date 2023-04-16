@@ -6,6 +6,7 @@ use App\DTO\User\CreateUserDTO;
 use App\Models\Pedido;
 use App\Models\User;
 use App\Repositories\User\UserEnounInterface;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use stdClass;
 
@@ -61,43 +62,33 @@ class UserEloquentORM implements UserEnounInterface
         ];
     }
 
-    public function  finalizarPedido(): bool
+    public function  finalizarPedido(): Collection
     {
-
         $user = Auth::user();
+        $nome = [];
+        $quantidadeUnitaria = [];
+        $valorUnitario = [];
+        $descricao = [];
         $produtos = $user->produtosComCarrinho;
         $servicos = $user->servicosComCarrinho;
 
         $valorServicos = $servicos->sum(function ($servico) {
             return $servico->valor * $servico['pivot']['quantidade'];
         });
-
         $valorProdutos = $produtos->sum(function ($produto) {
             return $produto->valor * $produto['pivot']['quantidade'];
         });
 
-        $nome = [];
-        $quantidadeUnitaria= [];
-        $valorUnitario =[];
-
-        foreach($produtos as $produto)
-        {
-            array_push($nome,$produto['nome']);
-            array_push($quantidadeUnitaria,$produto['pivot']['quantidade']);
-            array_push($valorUnitario, $produto['valor']);
+        foreach (array_merge($produtos->toArray(), $servicos->toArray()) as $item) {
+            $nome[] = $item['nome'];
+            $quantidadeUnitaria[] = $item['pivot']['quantidade'];
+            $valorUnitario[] = $item['valor'];
+            $descricao[] = $item['descricao'];
         }
-    
-        
-        foreach ($servicos as $servico)
-        {
-            array_push($nome,$servico['nome']);
-            array_push($quantidadeUnitaria,$servico['pivot']['quantidade']);
-            array_push($valorUnitario, $servico['valor']);
-        }
-       
-        Pedido::create(
+        $pedido = Pedido::create(
             [
-                'descricao' => $nome,
+                'nome' => $nome,
+                'descricao' => $descricao,
                 'status' => 'Processando...',
                 'quantidadeUnitaria' => $quantidadeUnitaria,
                 'valorUnitario' => $valorUnitario,
@@ -105,7 +96,8 @@ class UserEloquentORM implements UserEnounInterface
                 'valorTotal' => $valorServicos + $valorProdutos
             ]
         );
-
-        return true;
+        $user->produtosComCarrinho()->detach();
+        $user->servicosComCarrinho()->detach();
+        return collect($pedido);
     }
 }

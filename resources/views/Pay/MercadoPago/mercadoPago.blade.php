@@ -11,7 +11,6 @@
       flex-direction: column;
       max-width: 600px;
     }
-
     .container {
       height: 18px;
       display: inline-block;
@@ -20,11 +19,12 @@
       padding: 1px 2px;
     }
   </style>
-  <form id="form-checkout" action="/process_payment" method="POST">
+  <form id="form-checkout" action="{{ route('mercadoPago.credito.store') }}" method="POST">
+    @csrf
     <div id="form-checkout__cardNumber" class="container"></div>
     <div id="form-checkout__expirationDate" class="container"></div>
     <div id="form-checkout__securityCode" class="container"></div>
-    <input type="text" id="form-checkout__cardholderName" placeholder="Titular do cartão" />
+    <input type="text" id="form-checkout__cardholderName" placeholder="Titular do cartão" value="{{ $dados[0]['nome'] }}" />
     <select id="form-checkout__issuer" name="issuer">
       <option value="" disabled selected>Banco emissor</option>
     </select>
@@ -35,11 +35,11 @@
       <option value="" disabled selected>Tipo de documento</option>
     </select>
     <input type="text" id="form-checkout__identificationNumber" name="identificationNumber" placeholder="Número do documento" />
-    <input type="email" id="form-checkout__email" name="email" placeholder="E-mail" />
+    <input type="email" id="form-checkout__email" name="email" placeholder="E-mail" value="{{ $dados[0]['email'] }}" />
 
     <input id="token" name="token" type="hidden">
     <input id="paymentMethodId" name="paymentMethodId" type="hidden">
-    <input id="transactionAmount" name="transactionAmount" type="hidden" value="100">
+    <input id="transactionAmount" name="transactionAmount" type="hidden" value="{!! $total !!}">
     <input id="description" name="description" type="hidden" value="Nome do Produto">
 
     <button type="submit" id="form-checkout__submit">Pagar</button>

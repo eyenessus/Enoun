@@ -3,6 +3,7 @@
 namespace App\Repositories\User;
 
 use App\DTO\User\CreateUserDTO;
+use Illuminate\Support\Collection;
 use stdClass;
 
 interface UserEnounInterface
@@ -19,5 +20,5 @@ interface UserEnounInterface
     
     public function meusRegistros(): array;
 
-    public function  finalizarPedido() : bool;
+    public function  finalizarPedido() : Collection;
 }

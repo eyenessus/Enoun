@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
+            $table->json('nome');
             $table->json('descricao');
             $table->string('status',100);
             $table->json('quantidadeUnitaria');
