@@ -72,3 +72,8 @@ Route::prefix('mercadoPagoPay')->middleware('auth')->group(function(){
 });
 
 
+Route::get('/salvarCartao',function(){
+    return view('Pay.MercadoPago.mercadoPagoSaveCartao');
+});
+
+Route::post('/salvarCartao', [MercadoPagoController::class,'salvarCartao'])->name('salvarCartao');

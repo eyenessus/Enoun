@@ -8,7 +8,7 @@
     <title>Enoun - @yield('titulo')</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/browse/popper.js@1.12.8/dist/popper.min.js"></script>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js','resources/js/mercadoPago'])
 </head>
 <header>
 

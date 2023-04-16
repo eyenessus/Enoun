@@ -14,16 +14,8 @@ use MercadoPago\SDK;
 
 class MercadoPagoController extends Controller
 {
-    private $clienteMercadoPago;
-    private $userAuth;
     public function __construct(protected MercadoPagoService $service)
     {
-    }
-    public function identificacaoUser()
-    {
-        $usuarioAuthEncontrado = $this->userAuth = User::findOrFail(Auth::id());
-        $this->clienteMercadoPago = Customer::search(['email'=>$usuarioAuthEncontrado->email]);
-        SDK::setClientId($this->clienteMercadoPago[0]->id);
     }
 
     public function index()
@@ -36,6 +28,10 @@ class MercadoPagoController extends Controller
     {
         $dados = $this->service->buscarDadosCliente();
         $total = (int) $this->service->fecharCompra();
+        if(!$total)
+        {
+            return redirect()->route('inicio');
+        }
         return view('Pay.MercadoPago.mercadoPago', compact('dados', 'total'));
     }
 
@@ -95,8 +91,14 @@ class MercadoPagoController extends Controller
         //
     }
 
-    public function salvarCartao()
-    {}
+    public function salvarCartao(Request $request)
+    {
+      $retorno = $this->service->salvarCartao($request);
+      if (!$retorno) {
+        dd('confira os dados do cartão');
+      }
+      return redirect()->route('inicio');
+    }
 
 
     public function obterTodosCartoes()
@@ -119,33 +121,5 @@ class MercadoPagoController extends Controller
     {
         
     }
-    public function teste()
-    {
-        
-         $this->identificacaoUser();
-        
     
-       //SDK::setClientId($cliente[0]->id);
-       
-        $clienteId= SDK::getClientId();
-        dd($clienteId);
-        $cardToken = new CardToken();
-        $cardToken->cardholderName = 'Emerson Sousa';
-        $cardToken->cardNumber = '5585989836653671';
-        $cardToken->securityCode = '013';
-        $cardToken->expirationMonth = '03';
-        $cardToken->expirationYear = '2028';
-        $cardToken->identificationType = 'CPF';
-        $cardToken->identificationNumber = '45585098047';
-        $cardToken->save();
-
-        $card = new Card();
-        $card->token = $cardToken->id;;
-        $card->customer_id = SDK::getClientId();
-        $card->issuer = array("id" => "25");
-        $card->payment_method = array("id" => "credit_card");
-        $card->save();
-       dd($card);
-       
-        }
 }

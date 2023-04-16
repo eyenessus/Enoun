@@ -2,10 +2,13 @@
 
 namespace App\Services\Pay\MercadoPago;
 
+use App\Models\User;
 use App\Repositories\Pay\MercadoPago\MercadoPagoInterface;
 use App\Services\User\UserEnounService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use MercadoPago\Card;
+use MercadoPago\CardToken;
 use MercadoPago\Customer;
 use MercadoPago\Item;
 use MercadoPago\Payer;
@@ -16,6 +19,8 @@ use MercadoPago\SDK;
 
 class MercadoPagoService
 {
+    private $usuarioAuth;
+    private $clienteMercadoPago;
     public function __construct(
         protected MercadoPagoInterface $repository,
         protected UserEnounService $serviceUser
@@ -24,10 +29,17 @@ class MercadoPagoService
         SDK::setAccessToken(env('MERCADO_PAGO_ACCESS_TOKEN'));
         SDK::setIntegratorId('INTEGRATOR_ID');
     }
+    public function identificacaoUsuario()
+    {
+        $usuarioAuthEncontrado = $this->usuarioAuth = User::findOrFail(Auth::id());
+        $this->clienteMercadoPago = Customer::search(['email' => $usuarioAuthEncontrado->email]);
+        SDK::setClientId($this->clienteMercadoPago[0]->id);
+    }
     public function paymentPreference()
     {
+        $this->identificacaoUsuario();
         $preference = new Preference();
-        $pagadorInfor = Auth::user();
+        $pagadorInfor = $this->usuarioAuth;
         $bagItems = [];
         $pedido = $this->repository->buscarItensCarrinho();
 
@@ -185,13 +197,34 @@ class MercadoPagoService
             )
         );
         $payment->save();
-        
+
         $boleto_url = $payment->transaction_details->external_resource_url;
         return $boleto_url;
     }
 
-    public function salvarCartao()
+    public function salvarCartao(Request $request)
     {
+        $this->identificacaoUsuario();
+        $cardToken = new CardToken();
+        $cardToken->cardholderName = $request['cartaoHolder'];
+        $cardToken->cardNumber = $request['cardNumber'];
+        $cardToken->securityCode = $request['codigo'];
+        $cardToken->expirationMonth = $request['mesValidade'];
+        $cardToken->expirationYear = $request['anoValidade'];
+        $cardToken->identificationType = $request['tipoDocumento'];
+        $cardToken->identificationNumber = $request['documento'];
+        $cardToken->save();
+
+        $card = new Card();
+        $card->token = $cardToken->id;
+        $card->customer_id = SDK::getClientId();
+        $card->payment_method = ["id" => "credit_card"];
+        $card->save();
+        
+        if (!$card->_last) {
+            return null;
+        }
+        return true;
     }
 
 
