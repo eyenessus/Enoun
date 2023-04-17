@@ -7,15 +7,16 @@ use App\Repositories\Pay\MercadoPago\MercadoPagoInterface;
 use App\Services\User\UserEnounService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use MercadoPago\Card;
 use MercadoPago\CardToken;
 use MercadoPago\Customer;
 use MercadoPago\Item;
 use MercadoPago\Payer;
 use MercadoPago\Payment;
+use MercadoPago\Preapproval;
 use MercadoPago\Preference;
 use MercadoPago\SDK;
-
 
 class MercadoPagoService
 {
@@ -27,6 +28,7 @@ class MercadoPagoService
     ) {
         SDK::initialize();
         SDK::setAccessToken(env('MERCADO_PAGO_ACCESS_TOKEN'));
+        SDK::setPublicKey(env('MERCADO_PAGO_PUBLIC_KEY'));
         SDK::setIntegratorId('INTEGRATOR_ID');
     }
     public function identificacaoUsuario()
@@ -53,13 +55,11 @@ class MercadoPagoService
             $pedidoItem->category_id = $item['categoria_id'];
             $bagItems[] = $pedidoItem;
         }
-
         $preference->back_urls = [
             "success" => route('inicio'),
             "failure" => route('inicio'),
             "pending" => route('inicio')
         ];
-
         $preference->items = $bagItems;
         $preference->description = 'Servicos de informática';
         $preference->notification_url = '';
@@ -131,7 +131,6 @@ class MercadoPagoService
             return null;
         }
         $payment->save();
-
         $qrCodePixBase64 = $payment->point_of_interaction->transaction_data->qr_code_base64;
         $copiaEcola = $payment->point_of_interaction->transaction_data->qr_code;
         $total = $payment->transaction_amount;
@@ -164,7 +163,6 @@ class MercadoPagoService
         ];
         $payment->payer = $payer;
         $payment->save();
-
         $response = [
             'status' => $payment->status,
             'status_detail' => $payment->status_detail,
@@ -183,21 +181,17 @@ class MercadoPagoService
         $cliente = $this->repository->buscarDadosCliente();
         $payment->transaction_amount = (float) $finalizar['valorTotal'];
         $payment->description = "Compra de teste";
-        $payment->payer = array(
-            "email" => $cliente[0]['email']
-        );
         $payment->payment_method_id = "bolbradesco";
-        $payment->payer = array(
-            "email" => $cliente[0]['email'],
+        $payment->payer = [
+            "email" => 'test_user_308366450@testuser.com',
             "first_name" => $cliente[0]['nome'],
             "last_name" => $cliente[0]['nome'],
-            "identification" => array(
+            "identification" => [
                 "type" => "CPF",
-                "number" => "92905970030"
-            )
-        );
+                "number" => "86236798060"
+            ]
+        ];
         $payment->save();
-
         $boleto_url = $payment->transaction_details->external_resource_url;
         return $boleto_url;
     }
@@ -206,13 +200,18 @@ class MercadoPagoService
     {
         $this->identificacaoUsuario();
         $cardToken = new CardToken();
-        $cardToken->cardholderName = $request['cartaoHolder'];
         $cardToken->cardNumber = $request['cardNumber'];
         $cardToken->securityCode = $request['codigo'];
         $cardToken->expirationMonth = $request['mesValidade'];
         $cardToken->expirationYear = $request['anoValidade'];
-        $cardToken->identificationType = $request['tipoDocumento'];
-        $cardToken->identificationNumber = $request['documento'];
+        $cardToken->cardholder = (object) [
+            'name' => 'John Doe',
+            'identification' => [
+                'type' => 'CPF',
+                'number' => 123456789,
+            ],
+        ];
+        $cardToken->public_key = SDK::getPublicKey();
         $cardToken->save();
 
         $card = new Card();
@@ -220,43 +219,165 @@ class MercadoPagoService
         $card->customer_id = SDK::getClientId();
         $card->payment_method = ["id" => "credit_card"];
         $card->save();
-        
-        if (!$card->_last) {
+        if (!$card->id) {
             return null;
         }
         return true;
     }
 
-
     public function obterTodosCartoes()
     {
+        //$this->identificacaoUsuario();
+        SDK::setClientId('1354273289-TT5Mzp0PvaI9Y3');
+        $cliente = SDK::getClientId();
+        $identificacaoCliente = Customer::find_by_id($cliente);
+        return $identificacaoCliente->cards;
+    }
+    public function gerarCardToken(Request $request)
+    {
+        // $this->identificacaoUsuario();
+        $cardToken = new CardToken();
+        $cardToken->cardNumber = $request['cardNumber'];
+        $cardToken->securityCode = $request['codigo'];
+        $cardToken->expirationMonth = $request['mesValidade'];
+        $cardToken->expirationYear = $request['anoValidade'];
+        $cardToken->cardholder = (object) [
+            'name' => 'John Doe',
+            'identification' => [
+                'type' => 'CPF',
+                'number' => '69995775018',
+            ],
+        ];
+        $cardToken->public_key = SDK::getPublicKey();
+        $cardToken->save();
+        return $cardToken->id;
     }
 
-    public function obterCartao()
+    public function encontrarCartao(string $id)
     {
+        SDK::setClientId('1354273289-TT5Mzp0PvaI9Y3');
+        $cliente = SDK::getClientId();
+        $idClient = Customer::find_by_id($cliente);
+        $cartao = $idClient->cards;
+        foreach ($cartao as $cartoes) {
+            if ($cartoes->id == $id) {
+                return $cartoes;
+            }
+        }
     }
 
-    public function atualizarCartao()
+    public function atualizarCartao(Request $request)
     {
+        SDK::setClientId('1354273289-TT5Mzp0PvaI9Y3');
+        $cliente = SDK::getClientId();
+        $informacoesCartao = $this->encontrarCartao($request->card);
+        if ($informacoesCartao->customer_id == $cliente) {
+            $cardToken = $this->gerarCardToken($request);
+            $cartaoAtualizado = new Card();
+            $cartaoAtualizado->id = $request->card;
+            $cartaoAtualizado->expiration_month = 03;
+            $cartaoAtualizado->expiration_year = 2025;
+            $cartaoAtualizado->customer_id = $cliente;
+            $cartaoAtualizado->token = $cardToken;
+            $cartaoAtualizado->cardholder = array(
+                "identification" => array(
+                    'type' => 'CPF',
+                    'number' => '12345678900',
+                    'name' => 'Fulano'
+                )
+            );
+            $cartaoAtualizado->save();
+        }
+        return true;
     }
 
 
-    public function excluirCartao()
+    public function excluirCartao(string $id)
     {
+        SDK::setClientId('1354273289-TT5Mzp0PvaI9Y3');
+        $cliente = SDK::getClientId();
+        $idClient = Customer::find_by_id($cliente);
+        $cartao = $idClient->cards;
+        foreach ($cartao as $cartoes) {
+            if ($cartoes->id == $id) {
+                $card = new Card();
+                $card->id = $id;
+                $card->customer_id = $cliente;
+                $card->delete();
+                return true;
+            }
+        }
+        return false;
     }
 
-    public function criarAssinatura()
+    public function criarAssinatura(Request $request)
     {
+        $cartao = new Card();
+        $cartao->customer_id = '1330581867-sELyj5ZR8D91No';
+        $cartao->token = $request['token'];
+        $cartao->save();
+
+        $preapproval = new Preapproval();
+        $preapproval->payer_email = $request['email'];
+        $preapproval->preapproval_plan_id = '2c93808486feba790186ff29bc600037';
+        $preapproval->back_url = 'https://www.yourwebsite.com/return';
+        $preapproval->auto_recurring = array(
+            "frequency" => 1,
+            "frequency_type" => "months",
+            "transaction_amount" => 500,
+            "currency_id" => "BRL",
+            "repetitions" => 12
+        );
+        $preapproval->status = "authorized";
+        $preapproval->external_reference = "ok ok";
+        $preapproval->card_token_id = $request['token'];
+        $preapproval->reason = "Some reason";
+        $preapproval->save();
     }
 
     public function criarPlanoAssinatura()
     {
+        $dados = [
+            "reason" => "Enoun",
+            "auto_recurring" => [
+                "frequency" => 1,
+                "frequency_type" => "months",
+                "repetitions" => 1,
+                "billing_day" => 5,
+                "billing_day_proportional" => true,
+                "free_trial" => [
+                    "frequency" => 3,
+                    "frequency_type" => "months"
+                ],
+                "transaction_amount" => 500,
+                "currency_id" => "BRL"
+            ],
+            "payment_methods_allowed" => [
+                "excluded_payment_types" => [
+                    [
+                        "id" => "ticket"
+                    ]
+                ],
+                "excluded_payment_methods" => [
+                    [
+                        "id" => "amex"
+                    ]
+                ]
+            ],
+            "back_url" => "https://www.yoursite.com"
+        ];
+        $resposta = Http::withToken(env('MERCADO_PAGO_ACCESS_TOKEN'))
+            ->withHeaders([
+                'Content-Type' => 'application/json'
+            ])
+            ->post('https://api.mercadopago.com/preapproval_plan', $dados);
+        return $resposta->json();
     }
 
     public function criarCliente(Request  $request)
     {
         $customer = new Customer();
-        $customer->email = 'testeone98675645@gmail.com';
+        $customer->email = 'test_user_1183031487@testuser.com';
         $customer->first_name = 'Emerson';
         $customer->last_name = 'Sousa';
         $customer->phone = array(
@@ -265,7 +386,7 @@ class MercadoPagoService
         );
         $customer->identification = array(
             'type' => 'CPF',
-            'number' => '52781012882'
+            'number' => '1234567890'
         );
         $customer->address = array(
             'zip_code' => '05878180',
@@ -279,7 +400,11 @@ class MercadoPagoService
             'federal_unit' => 'SP',
             'country' => 'BR'
         );
-
         $customer->save();
+    }
+
+    public function notificacoesMercadoPago(Request $request)
+    {
+        $this->repository->notificacoesMercadoPago($request);
     }
 }

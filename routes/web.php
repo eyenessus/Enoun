@@ -65,15 +65,18 @@ Route::fallback(function () {
 
 Route::prefix('mercadoPagoPay')->middleware('auth')->group(function(){
     Route::get('/', [MercadoPagoController::class, 'index'])->name('mercadoPago');
-    Route::get('/credito', [MercadoPagoController::class, 'cartao'])->name('mercadoPagoCredito');
+    Route::get('/credito', [MercadoPagoController::class, 'cartaoPagamento'])->name('mercadoPagoCredito');
     Route::get('/pix', [MercadoPagoController::class, 'teste'])->name('mercadoPagoPix');
     Route::get('/boleto', [MercadoPagoController::class, 'boleto'])->name('mercadoPagoBoleto');
     Route::post('/creditoPost',[MercadoPagoController::class,'store'])->name('mercadoPago.credito.store');
+    Route::post('/card', [MercadoPagoController::class,'salvarCartao'])->name('salvarCartao');
+    Route::get('/card/create',[MercadoPagoController::class,'formSalvarCartao']);
+    Route::delete('/card/{card}',[MercadoPagoController::class,'destroy'])->name('apagarCartao');
+    Route::get('/card/myall',[MercadoPagoController::class,'obterTodosCartoes'])->name('todosCartoes');
 });
 
+Route::post('/editarCartao/{cartao}',[MercadoPagoController::class,'atualizarCartao'])->name('editarCartao');
 
-Route::get('/salvarCartao',function(){
-    return view('Pay.MercadoPago.mercadoPagoSaveCartao');
-});
 
-Route::post('/salvarCartao', [MercadoPagoController::class,'salvarCartao'])->name('salvarCartao');
+
+Route::put('/atualizarCartao/{card}',[MercadoPagoController::class,'update'])->name('atualizarCard');

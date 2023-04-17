@@ -3,14 +3,10 @@
 namespace App\Http\Controllers\Pay;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use App\Services\Pay\MercadoPago\MercadoPagoService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use MercadoPago\Card;
-use MercadoPago\CardToken;
-use MercadoPago\Customer;
-use MercadoPago\SDK;
+
+
 
 class MercadoPagoController extends Controller
 {
@@ -24,12 +20,11 @@ class MercadoPagoController extends Controller
         return redirect($processandoPay);
     }
 
-    public function cartao()
+    public function cartaoPagamento()
     {
         $dados = $this->service->buscarDadosCliente();
-        $total = (int) $this->service->fecharCompra();
-        if(!$total)
-        {
+        $total =  $this->service->fecharCompra();
+        if (!$total) {
             return redirect()->route('inicio');
         }
         return view('Pay.MercadoPago.mercadoPago', compact('dados', 'total'));
@@ -39,7 +34,7 @@ class MercadoPagoController extends Controller
     public function boleto()
     {
         $boleto = $this->service->boletoBradesco();
-        if(!$boleto){
+        if (!$boleto) {
             return redirect()->route('inicio');
         }
         return redirect($boleto);
@@ -56,70 +51,65 @@ class MercadoPagoController extends Controller
     }
 
 
-    public function create()
-    {
-        //
-    }
-
 
     public function store(Request $request)
     {
-        $teste = $this->service->paymentCartaoCredito($request);
-        dd($teste);
+        $status = $this->service->paymentCartaoCredito($request);
+        if($status['status'] == "approved")
+        {
+            return redirect()->route('carrinho.index');
+        }
+        return redirect()->route('inicio');
     }
 
 
-    public function show(string $id)
-    {
-        //
-    }
 
-    public function edit(string $id)
+    public function update(Request $request)
     {
-        //
-    }
-
-
-    public function update(Request $request, string $id)
-    {
-        //
+        $resposta = $this->service->atualizarCartao($request);
+        return redirect()->route('inicio');
     }
 
 
     public function destroy(string $id)
     {
-        //
+        $resposta =  $this->service->excluirCartao($id);
+        if ($resposta) {
+            return redirect()->route('todosCartoes');
+        }
+    }
+
+    public function formSalvarCartao()
+    {
+        return view('Pay.MercadoPago.mercadoPagoSaveCartao');
     }
 
     public function salvarCartao(Request $request)
     {
-      $retorno = $this->service->salvarCartao($request);
-      if (!$retorno) {
-        dd('confira os dados do cartão');
-      }
-      return redirect()->route('inicio');
+        $retorno = $this->service->salvarCartao($request);
+        if ($retorno) {
+            return redirect()->route('carrinho.index');
+        }
+        return redirect()->route('inicio');
     }
 
 
     public function obterTodosCartoes()
     {
-
+        $cartoes = $this->service->obterTodosCartoes();
+        return view('Pay.MercadoPago.MercadoPagoCartoes', compact('cartoes'));
     }
 
-    public function obterCartao()
+
+    public function atualizarCartao(string $id)
     {
-
+        $dados = $this->service->encontrarCartao($id);
+        return view('Pay.MercadoPago.MpEditarCartao',compact('dados'));
     }
 
-    public function atualizarCartao()
+
+    public function receberNotificacoes(Request $request)
     {
-
+        $this->service->notificacoesMercadoPago($request);
     }
-
-
-    public function excluirCartao()
-    {
-        
-    }
-    
 }
