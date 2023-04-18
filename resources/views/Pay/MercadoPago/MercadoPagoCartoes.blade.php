@@ -1,11 +1,11 @@
 @extends('Layout.main')
 @section('titulo', 'Meus cartões')
 @section('conteudo')
-<h2 class="text-4xl font-extrabold dark:text-white mx-8">Meus cartões</h2>
-<div class="grid grid-cols-1 sm:grid-cols-4 gap-4 container mx-auto my-8">
+<h2 class="text-4xl font-extrabold dark:text-white mx-8 max-w-screen-xl">Meus cartões</h2>
+<div class="grid grid-cols-1 sm:grid-cols-4 gap-4 container mx-auto my-8 max-w-screen-xl">
     
 @foreach($cartoes as $cartao )
-    <div class=" max-w-sm p-6 bg-sky-300 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 ">
+    <div class=" max-w-sm p-6 bg-sky-300 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 max-w-screen-xl">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Cartão {{ $cartao->payment_method->name }}</h5>
         <img class="float-right" src="{{ $cartao->payment_method->secure_thumbnail }}">
         <div class="my-2">

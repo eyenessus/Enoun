@@ -100,4 +100,11 @@ class UserEloquentORM implements UserEnounInterface
         $user->servicosComCarrinho()->detach();
         return collect($pedido);
     }
+
+    public function verPedidos()
+    {
+        $usuarioLogado = auth()->user();
+        $listaDePedidos = $usuarioLogado->pedidos()->orderBy('id', 'desc')->simplePaginate(4);
+        return  $listaDePedidos;
+    }
 }

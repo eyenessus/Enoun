@@ -55,11 +55,20 @@
                             
                         
                         <li>
+                            <a href="{{ route('meusCartoes') }}" 
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Meus Cartões</a>
+                                
+                        </li>
+                        <li>
+                            <a href="{{ route('meusPedidos') }}" 
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Meus Pedidos</a>
+                                
+                        </li>
+                        <li>
                             <a href="#" data-modal-target="small-modal" data-modal-toggle="small-modal"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Ferramentas</a>
                                 
                         </li>
-                        
                         <li>
                             <a href="#"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Configurações</a>

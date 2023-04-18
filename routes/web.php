@@ -10,6 +10,7 @@ Route::get('/', [EnounController::class, 'index'])->name('inicio');
 
 Route::prefix('home')->group(function () {
     Route::get('/sobre', [EnounController::class, 'sobre'])->name('sobre');
+    Route::get('/pedidos',[UserEnounController::class,'meusPedidos'])->name('meusPedidos');
 });
 
 Route::middleware('auth')->group(function () {
@@ -73,7 +74,7 @@ Route::prefix('mercadoPagoPay')->middleware('auth')->group(function () {
     Route::post('/card', [MercadoPagoController::class, 'salvarCartao'])->name('salvarCartao');
     Route::get('/card/create', [MercadoPagoController::class, 'formSalvarCartao']);
     Route::delete('/card/{card}', [MercadoPagoController::class, 'destroy'])->name('apagarCartao');
-    Route::get('/card/myall', [MercadoPagoController::class, 'obterTodosCartoes'])->name('todosCartoes');
+    Route::get('/card/myall', [MercadoPagoController::class, 'obterTodosCartoes'])->name('meusCartoes');
     Route::post('/editarCartao/{cartao}', [MercadoPagoController::class, 'atualizarCartao'])->name('editarCartao');
     Route::put('/atualizarCartao/{card}', [MercadoPagoController::class, 'update'])->name('atualizarCard');
     Route::post('/notifications/mp', [MercadoPagoController::class, 'receberNotificacoes']);

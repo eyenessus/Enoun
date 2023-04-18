@@ -21,4 +21,6 @@ interface UserEnounInterface
     public function meusRegistros(): array;
 
     public function  finalizarPedido() : Collection;
+
+    public function verPedidos();
 }

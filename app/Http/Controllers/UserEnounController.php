@@ -88,4 +88,10 @@ class UserEnounController extends Controller
             'totalProdutos' => $produto['totalProdutos']
         ]);
     }
+
+    public function meusPedidos()
+    {
+        $pedidos = $this->service->verPedidos();
+        return view('Pedidos.pedidos',compact('pedidos'));
+    }
 }

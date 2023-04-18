@@ -76,4 +76,9 @@ class UserEnounService {
     {
         return  $this->repositoryUser->finalizarPedido();
     }
+
+    public function verPedidos() 
+    {
+        return $this->repositoryUser->verPedidos();
+    }
 }
