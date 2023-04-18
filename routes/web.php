@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\{EnounController, UserEnounController, ProdutoEnounController, ServicoEnounController};
 use App\Http\Controllers\Pay\MercadoPagoController;
+use App\Http\Controllers\Pay\PagseguroController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [EnounController::class, 'index'])->name('inicio');
@@ -76,7 +77,7 @@ Route::prefix('mercadoPagoPay')->middleware('auth')->group(function(){
 });
 
 Route::post('/editarCartao/{cartao}',[MercadoPagoController::class,'atualizarCartao'])->name('editarCartao');
-
-
-
 Route::put('/atualizarCartao/{card}',[MercadoPagoController::class,'update'])->name('atualizarCard');
+
+Route::get('/pagseguri',[PagseguroController::class,'index']);
+Route::post('/pagamentoPagSe',[PagseguroController::class,'cartaoCredito'])->name('pagamentoCartaoPag');

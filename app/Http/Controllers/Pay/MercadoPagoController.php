@@ -97,14 +97,14 @@ class MercadoPagoController extends Controller
     public function obterTodosCartoes()
     {
         $cartoes = $this->service->obterTodosCartoes();
-        return view('Pay.MercadoPago.MercadoPagoCartoes', compact('cartoes'));
+        return view('Pay.MercadoPago.mercadoPagoCartoes', compact('cartoes'));
     }
 
 
     public function atualizarCartao(string $id)
     {
         $dados = $this->service->encontrarCartao($id);
-        return view('Pay.MercadoPago.MpEditarCartao',compact('dados'));
+        return view('Pay.MercadoPago.mpEditarCartao',compact('dados'));
     }
 
 
