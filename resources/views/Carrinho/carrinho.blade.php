@@ -385,43 +385,30 @@
                     de sua preferência com o Pagseguro</p>
                 <ul class="my-4 space-y-3">
                     <li>
-                        <a href="#"
+                        <a href="{{ route('pagSeguro') }} "
                             class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                             <img src="https://companieslogo.com/img/orig/PAGS-db88593c.png?t=1593008230" width="20px">
-                            <span class="flex-1 ml-3 whitespace-nowrap">PagSeguro</span>
+                            <span class="flex-1 ml-3 whitespace-nowrap">PagSeguro - Cartão de Crédito</span>
                             <span
                                 class="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">Popular</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="#"
+                        <a href="{{ route('pagSeguroBoleto') }}"
                             class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                             <img src="https://companieslogo.com/img/orig/PAGS-db88593c.png?t=1593008230" width="20px">
                             <span class="flex-1 ml-3 whitespace-nowrap">Boleto</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="{{ route('pagSeguroPix') }}"
                             class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                             <img src="https://companieslogo.com/img/orig/PAGS-db88593c.png?t=1593008230" width="20px">
                             <span class="flex-1 ml-3 whitespace-nowrap">Pix</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#"
-                            class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                            <img src="https://companieslogo.com/img/orig/PAGS-db88593c.png?t=1593008230" width="20px">
-                            <span class="flex-1 ml-3 whitespace-nowrap">Cartão de Crédito </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                            <img src="https://companieslogo.com/img/orig/PAGS-db88593c.png?t=1593008230" width="20px">
-                            <span class="flex-1 ml-3 whitespace-nowrap">Cartão de Débito </span>
-                        </a>
-                    </li>
+                
                 </ul>
 
             </div>

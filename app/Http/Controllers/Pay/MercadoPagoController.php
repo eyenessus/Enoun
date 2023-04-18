@@ -112,4 +112,18 @@ class MercadoPagoController extends Controller
     {
         $this->service->notificacoesMercadoPago($request);
     }
+
+    public function criarAssinatura()
+    {
+        
+    }
+
+    public function criarPlanoAssinatura()
+    {
+        
+    }
+    public function criarClienteMP()
+    {
+        
+    }
 }

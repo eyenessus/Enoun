@@ -77,16 +77,17 @@ Route::prefix('mercadoPagoPay')->middleware('auth')->group(function () {
     Route::post('/editarCartao/{cartao}', [MercadoPagoController::class, 'atualizarCartao'])->name('editarCartao');
     Route::put('/atualizarCartao/{card}', [MercadoPagoController::class, 'update'])->name('atualizarCard');
     Route::post('/notifications/mp', [MercadoPagoController::class, 'receberNotificacoes']);
+    Route::post('/assinatura/mp', [MercadoPagoController::class, 'criarAssinatura'])->name('assinaturaMP');
+    Route::post('/planoDeAssinatura/mp', [MercadoPagoController::class, 'criarPlanoAssinatura'])->name('planoDeAssinaturaMP');
+    Route::post('/cliente/mp', [MercadoPagoController::class, 'criarCliente'])->name('criarClienteMP');
 });
 
 Route::prefix('pagSeguro')->middleware('auth')->group(function () {
-    Route::get('/pagSeguroCartao', [PagseguroController::class, 'index']);
+    Route::get('/pagSeguroCartao', [PagseguroController::class, 'index'])->name('pagSeguro');
     Route::post('/pagamentoPagSe', [PagseguroController::class, 'cartaoCredito'])->name('pagamentoCartaoPag');
-    Route::get('/boletoPagSeguro', [PagseguroController::class, 'boleto']);
-    Route::get('/pixPagSeguro', [PagseguroController::class, 'pix']);
-    Route::get('/assinaturaRecorrente', [PagseguroController::class, 'assinaturaDeRecorrenciaInital']);
-    Route::get('/assinaturaRecorrenteSub', [PagseguroController::class, 'assinaturaDeRecorrenciaSubsequente']);
+    Route::get('/boletoPagSeguro', [PagseguroController::class, 'boleto'])->name('pagSeguroBoleto');
+    Route::get('/pixPagSeguro', [PagseguroController::class, 'pix'])->name('pagSeguroPix');
+    Route::get('/assinaturaRecorrente', [PagseguroController::class, 'assinaturaDeRecorrenciaInital'])->name('assinaturaPG');
+    Route::get('/assinaturaRecorrenteSub', [PagseguroController::class, 'assinaturaDeRecorrenciaSubsequente'])->name('planoDeAssinaturaPG');
     Route::post('/notifications/pag', [PagseguroController::class, 'receberNotificacoes']);
 });
-
-
