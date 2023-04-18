@@ -64,25 +64,26 @@ Route::fallback(function () {
     return view('fallback');
 });
 
-Route::prefix('mercadoPagoPay')->middleware('auth')->group(function(){
+Route::prefix('mercadoPagoPay')->middleware('auth')->group(function () {
     Route::get('/', [MercadoPagoController::class, 'index'])->name('mercadoPago');
     Route::get('/credito', [MercadoPagoController::class, 'cartaoPagamento'])->name('mercadoPagoCredito');
     Route::get('/pix', [MercadoPagoController::class, 'teste'])->name('mercadoPagoPix');
     Route::get('/boleto', [MercadoPagoController::class, 'boleto'])->name('mercadoPagoBoleto');
-    Route::post('/creditoPost',[MercadoPagoController::class,'store'])->name('mercadoPago.credito.store');
-    Route::post('/card', [MercadoPagoController::class,'salvarCartao'])->name('salvarCartao');
-    Route::get('/card/create',[MercadoPagoController::class,'formSalvarCartao']);
-    Route::delete('/card/{card}',[MercadoPagoController::class,'destroy'])->name('apagarCartao');
-    Route::get('/card/myall',[MercadoPagoController::class,'obterTodosCartoes'])->name('todosCartoes');
+    Route::post('/creditoPost', [MercadoPagoController::class, 'store'])->name('mercadoPago.credito.store');
+    Route::post('/card', [MercadoPagoController::class, 'salvarCartao'])->name('salvarCartao');
+    Route::get('/card/create', [MercadoPagoController::class, 'formSalvarCartao']);
+    Route::delete('/card/{card}', [MercadoPagoController::class, 'destroy'])->name('apagarCartao');
+    Route::get('/card/myall', [MercadoPagoController::class, 'obterTodosCartoes'])->name('todosCartoes');
+    Route::post('/editarCartao/{cartao}', [MercadoPagoController::class, 'atualizarCartao'])->name('editarCartao');
+    Route::put('/atualizarCartao/{card}', [MercadoPagoController::class, 'update'])->name('atualizarCard');
 });
 
-Route::post('/editarCartao/{cartao}',[MercadoPagoController::class,'atualizarCartao'])->name('editarCartao');
-Route::put('/atualizarCartao/{card}',[MercadoPagoController::class,'update'])->name('atualizarCard');
-
-Route::get('/pagseguri',[PagseguroController::class,'index']);
-Route::post('/pagamentoPagSe',[PagseguroController::class,'cartaoCredito'])->name('pagamentoCartaoPag');
-
-Route::get('/boletoPagSeguro',[PagseguroController::class,'boleto']);
-Route::get('/pixPagSeguro',[PagseguroController::class,'pix']);
-Route::get('/assinaturaRecorrente',[PagseguroController::class,'assinaturaDeRecorrenciaInital']);
-Route::get('/assinaturaRecorrentesub',[PagseguroController::class,'assinaturaDeRecorrenciaSubsequente']);
+Route::prefix('pagSeguro')->middleware('auth')->group(function () {
+    Route::get('/pagSeguroCartao', [PagseguroController::class, 'index']);
+    Route::post('/pagamentoPagSe', [PagseguroController::class, 'cartaoCredito'])->name('pagamentoCartaoPag');
+    Route::get('/boletoPagSeguro', [PagseguroController::class, 'boleto']);
+    Route::get('/pixPagSeguro', [PagseguroController::class, 'pix']);
+    Route::get('/assinaturaRecorrente', [PagseguroController::class, 'assinaturaDeRecorrenciaInital']);
+    Route::get('/assinaturaRecorrentesub', [PagseguroController::class, 'assinaturaDeRecorrenciaSubsequente']);
+});
+Route::get('/oi', [PagseguroController::class, 'teste']);
