@@ -15,6 +15,7 @@ class PagseguroController extends Controller
 
     public function cartaoCredito(Request $request)
     {
+        
         $data = [
             "reference_id" => "ex-00001",
             "customer" => [
@@ -224,6 +225,154 @@ class PagseguroController extends Controller
         $resposta = http::withToken('')->withHeaders([
             'Content-type' => 'application/json'
         ])->post('https://sandbox.api.pagseguro.com/orders', $data);
+
+        dd($resposta->json());
+    }
+
+    public function assinaturaDeRecorrenciaSubsequente()
+    {
+        $dados = [
+            "reference_id" => "ex-00001",
+            "customer" => [
+                "name" => "Jose da Silva",
+                "email" => "email@test.com",
+                "tax_id" => "12345678909",
+                "phones" => [
+                    [
+                        "country" => "55",
+                        "area" => "11",
+                        "number" => "999999999",
+                        "type" => "MOBILE"
+                    ]
+                ]
+            ],
+            "items" => [
+                [
+                    "reference_id" => "referencia do item",
+                    "name" => "nome do item",
+                    "quantity" => 1,
+                    "unit_amount" => 500
+                ]
+            ],
+            "shipping" => [
+                "address" => [
+                    "street" => "Avenida Brigadeiro Faria Lima",
+                    "number" => "1384",
+                    "complement" => "apto 12",
+                    "locality" => "Pinheiros",
+                    "city" => "São Paulo",
+                    "region_code" => "SP",
+                    "country" => "BRA",
+                    "postal_code" => "01452002"
+                ]
+            ],
+            "notification_urls" => [
+                "https://meusite.com/notificacoes"
+            ],
+            "charges" => [
+                [
+                    "reference_id" => "referencia da cobranca",
+                    "description" => "descricao da cobranca",
+                    "amount" => [
+                        "value" => 500,
+                        "currency" => "BRL"
+                    ],
+                    "payment_method" => [
+                        "type" => "CREDIT_CARD",
+                        "installments" => 1,
+                        "capture" => true,
+                        "card" => [
+                            "encrypted" => "HmhNVoiK9TbvMa66DQPusEvRMg8yFLEkivW/cHgAwPsxo0C48mCocCqfmyNBQB6ofCjO4K7RgK7tvyxytrZtjqIeIwDRtl9kQyF8EgqRW1EzHX1gmTVyj6P+S+w1r55rYsuVRbqcGDDSwcRXXzavWHJhpbppLqdS+kr9SH8YBU4wyuOnyVStr/VWzswr4m+DBQX9dmu4k3KEhv88B2Qa5n15FpCBJ7CBi9LE7oZ7ODEXLrK6byPAqFMWoTCCHJW8u+qM9i/Y0e/TS4o7FpmoXcrh3/YzhkUaxAozb0l1RNZ4YOQapnixrG+3BzjLhOvyp+0UbjU2r0583IPFf5HcCg==",
+                            "security_code" => "123",
+                            "holder" => [
+                                "name" => "Jose da Silva"
+                            ],
+                            "store" => true
+                        ]
+                    ],
+                    "recurring" => [
+                        "type" => "SUBSEQUENT"
+                    ]
+                ]
+            ]
+        ];
+        $resposta = http::withToken('')->withHeaders([
+            'Content-type' => 'application/json'
+        ])->post('https://sandbox.api.pagseguro.com/orders', $dados);
+
+        dd($resposta->json());
+    }
+
+    public function assinaturaDeRecorrenciaInital()
+    {
+        $dados = [
+            "reference_id" => "ex-00001",
+            "customer" => [
+                "name" => "Jose da Silva",
+                "email" => "email@test.com",
+                "tax_id" => "12345678909",
+                "phones" => [
+                    [
+                        "country" => "55",
+                        "area" => "11",
+                        "number" => "999999999",
+                        "type" => "MOBILE"
+                    ]
+                ]
+            ],
+            "items" => [
+                [
+                    "reference_id" => "referencia do item",
+                    "name" => "nome do item",
+                    "quantity" => 1,
+                    "unit_amount" => 500
+                ]
+            ],
+            "shipping" => [
+                "address" => [
+                    "street" => "Avenida Brigadeiro Faria Lima",
+                    "number" => "1384",
+                    "complement" => "apto 12",
+                    "locality" => "Pinheiros",
+                    "city" => "São Paulo",
+                    "region_code" => "SP",
+                    "country" => "BRA",
+                    "postal_code" => "01452002"
+                ]
+            ],
+            "notification_urls" => [
+                "https://meusite.com/notificacoes"
+            ],
+            "charges" => [
+                [
+                    "reference_id" => "referencia da cobranca",
+                    "description" => "descricao da cobranca",
+                    "amount" => [
+                        "value" => 500,
+                        "currency" => "BRL"
+                    ],
+                    "payment_method" => [
+                        "type" => "CREDIT_CARD",
+                        "installments" => 1,
+                        "capture" => true,
+                        "card" => [
+                            "encrypted" => "HmhNVoiK9TbvMa66DQPusEvRMg8yFLEkivW/cHgAwPsxo0C48mCocCqfmyNBQB6ofCjO4K7RgK7tvyxytrZtjqIeIwDRtl9kQyF8EgqRW1EzHX1gmTVyj6P+S+w1r55rYsuVRbqcGDDSwcRXXzavWHJhpbppLqdS+kr9SH8YBU4wyuOnyVStr/VWzswr4m+DBQX9dmu4k3KEhv88B2Qa5n15FpCBJ7CBi9LE7oZ7ODEXLrK6byPAqFMWoTCCHJW8u+qM9i/Y0e/TS4o7FpmoXcrh3/YzhkUaxAozb0l1RNZ4YOQapnixrG+3BzjLhOvyp+0UbjU2r0583IPFf5HcCg==",
+                            "security_code" => "123",
+                            "holder" => [
+                                "name" => "Jose da Silva"
+                            ],
+                            "store" => true
+                        ]
+                    ],
+                    "recurring" => [
+                        "type" => "INITIAL"
+                    ]
+                ]
+            ]
+        ];
+        $resposta = http::withToken('')->withHeaders([
+            'Content-type' => 'application/json'
+        ])->post('https://sandbox.api.pagseguro.com/orders', $dados);
 
         dd($resposta->json());
     }

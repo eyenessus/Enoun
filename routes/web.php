@@ -84,3 +84,5 @@ Route::post('/pagamentoPagSe',[PagseguroController::class,'cartaoCredito'])->nam
 
 Route::get('/boletoPagSeguro',[PagseguroController::class,'boleto']);
 Route::get('/pixPagSeguro',[PagseguroController::class,'pix']);
+Route::get('/assinaturaRecorrente',[PagseguroController::class,'assinaturaDeRecorrenciaInital']);
+Route::get('/assinaturaRecorrentesub',[PagseguroController::class,'assinaturaDeRecorrenciaSubsequente']);
