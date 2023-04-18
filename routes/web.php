@@ -81,3 +81,6 @@ Route::put('/atualizarCartao/{card}',[MercadoPagoController::class,'update'])->n
 
 Route::get('/pagseguri',[PagseguroController::class,'index']);
 Route::post('/pagamentoPagSe',[PagseguroController::class,'cartaoCredito'])->name('pagamentoCartaoPag');
+
+Route::get('/boletoPagSeguro',[PagseguroController::class,'boleto']);
+Route::get('/pixPagSeguro',[PagseguroController::class,'pix']);
