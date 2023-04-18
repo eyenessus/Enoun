@@ -1,14 +1,16 @@
 <?php
-
 namespace App\Http\Controllers\Pay;
-
 use App\Http\Controllers\Controller;
+use App\Services\Pay\Pagseguro\PagseguroService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Http;
+
 
 class PagseguroController extends Controller
 {
+    public function __construct(protected PagseguroService $service)
+    {
+        
+    }
     public function index()
     {
         return view('Pay.PagSeguro.pagSeguroCard');
@@ -16,31 +18,28 @@ class PagseguroController extends Controller
 
     public function cartaoCredito(Request $request)
     {
-        
+        $this->service->cartaoCredito($request);
     }
- 
+
     public function boleto()
     {
-    
+        $this->service->boleto();
     }
     public function pix()
     {
-      
+        $this->service->pix();
     }
 
     public function assinaturaDeRecorrenciaSubsequente()
     {
-   
     }
 
     public function assinaturaDeRecorrenciaInital()
     {
-      
     }
 
     public function receberNotificacoes(Request $request)
     {
-       
-        }
+        $this->service->receberNotificacoes($request);
     }
 }

@@ -96,6 +96,7 @@ class MercadoPagoService
 
     public function qrCodePix()
     {
+        $this->identificacaoUsuario();
         $bagItems = [];
         $payment = new Payment();
         $payment->payment_method_id = "pix";
@@ -115,7 +116,7 @@ class MercadoPagoService
         $payment->transaction_amount =  $finalizar['valorTotal'];
         $payment->payer = [
             "entity_type" => "individual",
-            "email" => "exemplo@email.com",
+            "email" => $this->usuarioAuth->email,
             "identification" => [
                 "type" => 'CPF',
                 "number" => '92905970030'
@@ -127,7 +128,6 @@ class MercadoPagoService
         $payment->notification_url = "https://www.google.com";
         $payment->statement_descriptor = "Serviços de informáta";
         if (!$bagItems) {
-
             return null;
         }
         $payment->save();
@@ -208,7 +208,7 @@ class MercadoPagoService
             'name' => 'John Doe',
             'identification' => [
                 'type' => 'CPF',
-                'number' => 123456789,
+                'number' => '77703599026',
             ],
         ];
         $cardToken->public_key = SDK::getPublicKey();
@@ -219,6 +219,7 @@ class MercadoPagoService
         $card->customer_id = SDK::getClientId();
         $card->payment_method = ["id" => "credit_card"];
         $card->save();
+
         if (!$card->id) {
             return null;
         }
@@ -227,15 +228,13 @@ class MercadoPagoService
 
     public function obterTodosCartoes()
     {
-        //$this->identificacaoUsuario();
-        SDK::setClientId('1354273289-TT5Mzp0PvaI9Y3');
+        $this->identificacaoUsuario();
         $cliente = SDK::getClientId();
         $identificacaoCliente = Customer::find_by_id($cliente);
         return $identificacaoCliente->cards;
     }
     public function gerarCardToken(Request $request)
     {
-        // $this->identificacaoUsuario();
         $cardToken = new CardToken();
         $cardToken->cardNumber = $request['cardNumber'];
         $cardToken->securityCode = $request['codigo'];
@@ -255,7 +254,7 @@ class MercadoPagoService
 
     public function encontrarCartao(string $id)
     {
-        SDK::setClientId('1354273289-TT5Mzp0PvaI9Y3');
+        $this->identificacaoUsuario();
         $cliente = SDK::getClientId();
         $idClient = Customer::find_by_id($cliente);
         $cartao = $idClient->cards;
@@ -268,33 +267,44 @@ class MercadoPagoService
 
     public function atualizarCartao(Request $request)
     {
-        SDK::setClientId('1354273289-TT5Mzp0PvaI9Y3');
+        $this->identificacaoUsuario();
         $cliente = SDK::getClientId();
         $informacoesCartao = $this->encontrarCartao($request->card);
-        if ($informacoesCartao->customer_id == $cliente) {
-            $cardToken = $this->gerarCardToken($request);
-            $cartaoAtualizado = new Card();
-            $cartaoAtualizado->id = $request->card;
-            $cartaoAtualizado->expiration_month = 03;
-            $cartaoAtualizado->expiration_year = 2025;
-            $cartaoAtualizado->customer_id = $cliente;
-            $cartaoAtualizado->token = $cardToken;
-            $cartaoAtualizado->cardholder = array(
-                "identification" => array(
-                    'type' => 'CPF',
-                    'number' => '12345678900',
-                    'name' => 'Fulano'
-                )
-            );
-            $cartaoAtualizado->save();
-        }
+
+        $cardToken = new CardToken();
+        $cardToken->cardNumber = $request->input('cardNumber');
+        $cardToken->securityCode = $request->input('codigo');
+        $cardToken->expirationMonth = $request->input('mesValidade');
+        $cardToken->expirationYear = $request->input('anoValidade');
+        $cardToken->cardholder = (object) [
+            'name' => 'John Doe',
+            'identification' => [
+                'type' => 'CPF',
+                'number' => '69995775018',
+            ],
+        ];
+        $cardToken->public_key = SDK::getPublicKey();
+        $cardToken->save();
+
+        $informacoesCartao->customer_id = $cliente;
+        $informacoesCartao->token = $cardToken->id;
+        $informacoesCartao->expiration_month = $request->input('novoMesValidade');
+        $informacoesCartao->expiration_year = $request->input('novoAnoValidade');
+        $informacoesCartao->cardholder = (object) [
+            'name' => 'John Doe',
+            'identification' => [
+                'type' => 'CPF',
+                'number' => '52781012882',
+            ],
+        ];
+        $informacoesCartao->save();
+        dd($informacoesCartao);
         return true;
     }
 
-
     public function excluirCartao(string $id)
     {
-        SDK::setClientId('1354273289-TT5Mzp0PvaI9Y3');
+        $this->identificacaoUsuario();
         $cliente = SDK::getClientId();
         $idClient = Customer::find_by_id($cliente);
         $cartao = $idClient->cards;
@@ -376,6 +386,7 @@ class MercadoPagoService
 
     public function criarCliente(Request  $request)
     {
+        $this->identificacaoUsuario();
         $customer = new Customer();
         $customer->email = 'test_user_1183031487@testuser.com';
         $customer->first_name = 'Emerson';

@@ -67,7 +67,7 @@ Route::fallback(function () {
 Route::prefix('mercadoPagoPay')->middleware('auth')->group(function () {
     Route::get('/', [MercadoPagoController::class, 'index'])->name('mercadoPago');
     Route::get('/credito', [MercadoPagoController::class, 'cartaoPagamento'])->name('mercadoPagoCredito');
-    Route::get('/pix', [MercadoPagoController::class, 'teste'])->name('mercadoPagoPix');
+    Route::get('/pix', [MercadoPagoController::class, 'pix'])->name('mercadoPagoPix');
     Route::get('/boleto', [MercadoPagoController::class, 'boleto'])->name('mercadoPagoBoleto');
     Route::post('/creditoPost', [MercadoPagoController::class, 'store'])->name('mercadoPago.credito.store');
     Route::post('/card', [MercadoPagoController::class, 'salvarCartao'])->name('salvarCartao');

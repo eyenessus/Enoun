@@ -34,7 +34,7 @@ class PagseguroService
                     "reference_id" => "referencia do item",
                     "name" => "nome do item",
                     "quantity" => 1,
-                    "unit_amount" => 500
+                    "unit_amount" => 5000
                 ]
             ],
             "shipping" => [

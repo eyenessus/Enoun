@@ -33,6 +33,7 @@ class MercadoPagoEloquentORM implements MercadoPagoInterface
         $dados = auth()->user();
         return [$dados];
     }
+    
     public function notificacoesMercadoPago(Request $request)
     {
         if (!$request->has('id') || !$request->has('topic')) {
