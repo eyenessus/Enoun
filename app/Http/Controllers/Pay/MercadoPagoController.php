@@ -4,13 +4,16 @@ namespace App\Http\Controllers\Pay;
 
 use App\Http\Controllers\Controller;
 use App\Services\Pay\MercadoPago\MercadoPagoService;
+use App\Services\User\UserEnounService;
 use Illuminate\Http\Request;
 
 
 
 class MercadoPagoController extends Controller
 {
-    public function __construct(protected MercadoPagoService $service)
+    public function __construct(protected MercadoPagoService $service,
+    protected UserEnounService $serviceUser
+    )
     {
     }
 
@@ -23,8 +26,9 @@ class MercadoPagoController extends Controller
     public function cartaoPagamento()
     {
         $dados = $this->service->buscarDadosCliente();
-        $total =  $this->service->fecharCompra();
-        if (!$total) {
+        $total = $this->serviceUser->valorFinal();
+        if(!$total)
+        {
             return redirect()->route('inicio');
         }
         return view('Pay.MercadoPago.mercadoPago', compact('dados', 'total'));
@@ -57,7 +61,7 @@ class MercadoPagoController extends Controller
         $status = $this->service->paymentCartaoCredito($request);
         if($status['status'] == "approved")
         {
-            return redirect()->route('carrinho.index');
+            return redirect()->route('meusPedidos');
         }
         return redirect()->route('inicio');
     }
@@ -110,20 +114,24 @@ class MercadoPagoController extends Controller
 
     public function receberNotificacoes(Request $request)
     {
+    
         $this->service->notificacoesMercadoPago($request);
     }
 
-    public function criarAssinatura()
+    public function criarAssinatura(Request $request)
     {
-        
+        $this->service->criarAssinatura($request);
     }
-
+    public function formAssinatura()
+    {
+        return view('Pay.MercadoPago.mercadoPagoAssinatura');
+    }
     public function criarPlanoAssinatura()
     {
-        
+        $this->service->criarPlanoAssinatura();
     }
-    public function criarClienteMP()
+    public function criarCliente(Request $request)
     {
-        
+        $this->service->criarCliente($request);
     }
 }

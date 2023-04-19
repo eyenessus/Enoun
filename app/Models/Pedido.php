@@ -29,6 +29,7 @@ class Pedido extends Model
         'user_id',
         'valorTotal',
         'nome',
+        'id'
     ];
 
     protected $casts = [

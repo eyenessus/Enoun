@@ -20,7 +20,9 @@ interface UserEnounInterface
     
     public function meusRegistros(): array;
 
-    public function  finalizarPedido() : Collection;
+    public function  finalizarPedido(string $data=null,int $id=null) : Collection;
 
     public function verPedidos();
+
+    public function valorFinal(): array;
 }

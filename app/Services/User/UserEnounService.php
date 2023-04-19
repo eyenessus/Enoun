@@ -72,13 +72,17 @@ class UserEnounService {
        return $this->repositoryUser->meusRegistros();
     }
    
-    public function finalizarPedido() : Collection
+    public function finalizarPedido(string $status = null, int $id=null) : Collection
     {
-        return  $this->repositoryUser->finalizarPedido();
+        return  $this->repositoryUser->finalizarPedido($status,$id);
     }
 
     public function verPedidos() 
     {
         return $this->repositoryUser->verPedidos();
+    }
+    public function valorFinal()
+    {
+        return $this->repositoryUser->valorFinal();
     }
 }

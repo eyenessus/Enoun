@@ -5,7 +5,7 @@
 <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 container mx-auto my-8 max-w-screen-xl">
     
 @foreach($cartoes as $cartao )
-    <div class=" max-w-sm p-6 bg-sky-300 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 max-w-screen-xl">
+    <div class="p-6 bg-sky-300 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 max-w-screen-xl">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Cartão {{ $cartao->payment_method->name }}</h5>
         <img class="float-right" src="{{ $cartao->payment_method->secure_thumbnail }}">
         <div class="my-2">

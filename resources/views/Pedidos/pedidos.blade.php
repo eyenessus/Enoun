@@ -4,9 +4,11 @@
 
 <div class="container mx-auto max-w-screen-xl">
 
+    <h1 class="text-5xl font-extrabold dark:text-white mx-5 ">Meus Pedidos</h1>
+
     @foreach ($pedidos as $pedido)
 
-    <div class="relative overflow-x-auto">
+    <div class="relative overflow-x-auto my-8">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>

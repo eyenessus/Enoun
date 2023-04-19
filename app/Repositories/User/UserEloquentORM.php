@@ -62,8 +62,9 @@ class UserEloquentORM implements UserEnounInterface
         ];
     }
 
-    public function  finalizarPedido(): Collection
+    public function  finalizarPedido(string $status = null, int $id = null): Collection
     {
+        
         $user = Auth::user();
         $nome = [];
         $quantidadeUnitaria = [];
@@ -85,11 +86,29 @@ class UserEloquentORM implements UserEnounInterface
             $valorUnitario[] = $item['valor'];
             $descricao[] = $item['descricao'];
         }
+        switch ($status) {
+            case 'approved':
+                $status = 'Aprovado';
+                break;
+            case 'canceled':
+                $status = 'Cancelado';
+                break;
+            case 'rejected':
+                $status = 'Rejeitado';
+                break;
+            case 'pending':
+                $status = 'Pendente';
+                break;
+            default:
+                $status = 'Processando...';
+        }
+
         $pedido = Pedido::create(
             [
+                'id' => $id ? $id : null,
                 'nome' => $nome,
                 'descricao' => $descricao,
-                'status' => 'Processando...',
+                'status' => $status ? $status : 'Processando...',
                 'quantidadeUnitaria' => $quantidadeUnitaria,
                 'valorUnitario' => $valorUnitario,
                 'user_id' => $user->id,
@@ -104,7 +123,23 @@ class UserEloquentORM implements UserEnounInterface
     public function verPedidos()
     {
         $usuarioLogado = auth()->user();
-        $listaDePedidos = $usuarioLogado->pedidos()->orderBy('id', 'desc')->simplePaginate(4);
+        $listaDePedidos = $usuarioLogado->pedidos()->orderBy('id', 'desc')->paginate(5);
         return  $listaDePedidos;
+    }
+
+    public function valorFinal(): array
+    {
+        $user = Auth::user();
+        $produtos = $user->produtosComCarrinho;
+        $servicos = $user->servicosComCarrinho;
+
+        $valorServicos = $servicos->sum(function ($servico) {
+            return $servico->valor * $servico['pivot']['quantidade'];
+        });
+        $valorProdutos = $produtos->sum(function ($produto) {
+            return $produto->valor * $produto['pivot']['quantidade'];
+        });
+
+        return ["total" => $valorProdutos + $valorServicos];
     }
 }

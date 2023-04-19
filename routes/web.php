@@ -10,7 +10,7 @@ Route::get('/', [EnounController::class, 'index'])->name('inicio');
 
 Route::prefix('home')->group(function () {
     Route::get('/sobre', [EnounController::class, 'sobre'])->name('sobre');
-    Route::get('/pedidos',[UserEnounController::class,'meusPedidos'])->name('meusPedidos');
+    Route::get('/pedidos', [UserEnounController::class, 'meusPedidos'])->name('meusPedidos');
 });
 
 Route::middleware('auth')->group(function () {
@@ -77,11 +77,16 @@ Route::prefix('mercadoPagoPay')->middleware('auth')->group(function () {
     Route::get('/card/myall', [MercadoPagoController::class, 'obterTodosCartoes'])->name('meusCartoes');
     Route::post('/editarCartao/{cartao}', [MercadoPagoController::class, 'atualizarCartao'])->name('editarCartao');
     Route::put('/atualizarCartao/{card}', [MercadoPagoController::class, 'update'])->name('atualizarCard');
-    Route::post('/notifications/mp', [MercadoPagoController::class, 'receberNotificacoes']);
-    Route::post('/assinatura/mp', [MercadoPagoController::class, 'criarAssinatura'])->name('assinaturaMP');
-    Route::post('/planoDeAssinatura/mp', [MercadoPagoController::class, 'criarPlanoAssinatura'])->name('planoDeAssinaturaMP');
-    Route::post('/cliente/mp', [MercadoPagoController::class, 'criarCliente'])->name('criarClienteMP');
+    
+
+
+    
 });
+Route::post('/cliente/mp', [MercadoPagoController::class, 'criarCliente'])->name('criarClienteMP');
+Route::post('/notifications/mp', [MercadoPagoController::class, 'receberNotificacoes']);
+Route::post('/planoDeAssinatura/mp', [MercadoPagoController::class, 'criarPlanoAssinatura'])->name('planoDeAssinaturaMP');
+Route::post('/assinatura/mp', [MercadoPagoController::class, 'criarAssinatura'])->name('assinaturaMP');
+Route::get('/formAssin', [MercadoPagoController::class, 'formAssinatura']);
 
 Route::prefix('pagSeguro')->middleware('auth')->group(function () {
     Route::get('/pagSeguroCartao', [PagseguroController::class, 'index'])->name('pagSeguro');
