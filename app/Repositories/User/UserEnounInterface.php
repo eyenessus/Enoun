@@ -28,4 +28,9 @@ interface UserEnounInterface
     public function salvarCategoria(Request $request);
 
     public function valorFinal(): array;
+
+    public function  criarIdentidade(Request $request);
+   
+
+    public function criarEndereco(Request $request);
 }

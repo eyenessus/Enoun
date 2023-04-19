@@ -11,10 +11,10 @@ use Illuminate\Http\Request;
 
 class MercadoPagoController extends Controller
 {
-    public function __construct(protected MercadoPagoService $service,
-    protected UserEnounService $serviceUser
-    )
-    {
+    public function __construct(
+        protected MercadoPagoService $service,
+        protected UserEnounService $serviceUser
+    ) {
     }
 
     public function index()
@@ -27,8 +27,7 @@ class MercadoPagoController extends Controller
     {
         $dados = $this->service->buscarDadosCliente();
         $total = $this->serviceUser->valorFinal();
-        if(!$total)
-        {
+        if (!$total) {
             return redirect()->route('inicio');
         }
         return view('Pay.MercadoPago.mercadoPago', compact('dados', 'total'));
@@ -59,8 +58,7 @@ class MercadoPagoController extends Controller
     public function store(Request $request)
     {
         $status = $this->service->paymentCartaoCredito($request);
-        if($status['status'] == "approved")
-        {
+        if ($status['status'] == "approved") {
             return redirect()->route('meusPedidos');
         }
         return redirect()->route('inicio');
@@ -82,11 +80,13 @@ class MercadoPagoController extends Controller
             return redirect()->route('meusCartoes');
         }
     }
+    
 
     public function formSalvarCartao()
     {
         return view('Pay.MercadoPago.mercadoPagoSaveCartao');
     }
+
 
     public function salvarCartao(Request $request)
     {
@@ -108,13 +108,13 @@ class MercadoPagoController extends Controller
     public function atualizarCartao(string $id)
     {
         $dados = $this->service->encontrarCartao($id);
-        return view('Pay.MercadoPago.mpEditarCartao',compact('dados'));
+        return view('Pay.MercadoPago.mpEditarCartao', compact('dados'));
     }
 
 
     public function receberNotificacoes(Request $request)
     {
-    
+
         $this->service->notificacoesMercadoPago($request);
     }
 
@@ -128,20 +128,32 @@ class MercadoPagoController extends Controller
     }
     public function criarPlanoAssinatura(Request $request)
     {
-       $resposta = $this->service->criarPlanoAssinatura($request);
+        $resposta = $this->service->criarPlanoAssinatura($request);
         if ($resposta) {
             return redirect()->route('verPlanosAssinatura');
         }
     }
-    public function criarCliente(Request $request)
+    public function criarCliente()
     {
-        $this->service->criarCliente($request);
+        $this->service->criarCliente();
     }
 
-    public function verPlanosAssinatura()
+    public function verTodosPlanosDeAssinatura()
     {
-        dd('todos planos');
+        $planos = $this->service->buscarTodosPlanosDeAssinatura();
+        $planos = collect($planos['results']);
+        return view('Gerenciamento.Plano.planos', compact('planos'));
     }
+
+
+    public function verTodasAssinaturas()
+    {
+        $assinatura = $this->service->buscarTodosPlanosDeAssinatura();
+        $assinatura = collect($assinatura['results']);
+
+        return view('Gerenciamento.Assinatura.assinaturas', compact('assinatura'));
+    }
+
     public function formularioPlanoAssinatura()
     {
         return view('Pay.MercadoPago.mercadoPagoPlanoDeAssinatura');

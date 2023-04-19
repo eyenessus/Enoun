@@ -5,6 +5,7 @@ use App\DTO\User\CreateUserDTO;
 use App\Http\Requests\LoginUserRequest;
 use App\Repositories\Produto\ProdutoEnounInterface;
 use App\Repositories\User\UserEnounInterface;
+use App\Services\Pay\MercadoPago\MercadoPagoService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -16,7 +17,9 @@ class UserEnounService {
 
     public function __construct(
     protected UserEnounInterface $repositoryUser, 
-    protected ProdutoEnounInterface $repositoryProdutos) {}
+    protected ProdutoEnounInterface $repositoryProdutos,
+    ) {   
+    }
 
     public function getAllUser(): array 
     {   
@@ -35,8 +38,8 @@ class UserEnounService {
 
     public function createUser(CreateUserDTO $dto): stdClass | null
     {
-        
-        return  $this->repositoryUser->createUser($dto);
+       
+        return $this->repositoryUser->createUser($dto);
     }
 
     public function updateUser(string $id): stdClass | null
@@ -89,5 +92,14 @@ class UserEnounService {
     public function salvarCategoria(Request $request)
     {
         return $this->repositoryUser->salvarCategoria($request);
+    }
+    public function  criarIdentidade(Request $request)
+    {
+       return $this->repositoryUser->criarIdentidade($request);
+    }
+
+    public function criarEndereco(Request $request)
+    {
+        return $this->repositoryUser->criarEndereco($request);
     }
 }

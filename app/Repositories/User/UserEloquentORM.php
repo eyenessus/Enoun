@@ -4,6 +4,8 @@ namespace App\Repositories\User;
 
 use App\DTO\User\CreateUserDTO;
 use App\Models\Categoria;
+use App\Models\Endereco;
+use App\Models\Identidade;
 use App\Models\Pedido;
 use App\Models\User;
 use App\Repositories\User\UserEnounInterface;
@@ -43,6 +45,7 @@ class UserEloquentORM implements UserEnounInterface
         $usuario = $this->model->create(
             (array)$dto
         );
+        Auth::login($usuario);
         return (object) $usuario->toArray();
     }
 
@@ -149,5 +152,21 @@ class UserEloquentORM implements UserEnounInterface
     public function salvarCategoria(Request $request)
     {
         Categoria::create(['nome'=>$request->categoria]);
+    }
+
+    public function  criarIdentidade(Request $request)
+    {
+        $request['user_id'] = auth()->user()->id;
+        Identidade::create($request->all());
+        return true;
+    }
+   
+
+    public function criarEndereco(Request $request)
+    {
+   
+        $request['user_id'] = auth()->user()->id;
+        Endereco::create($request->all());
+        return true;
     }
 }

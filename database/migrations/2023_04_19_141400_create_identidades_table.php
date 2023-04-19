@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('identidades', function (Blueprint $table) {
             $table->id();
             $table->string('tipoDocumento');
-            $table->integer('documento');
+            $table->bigInteger('documento')->unique();
             $table->string('codigo_area');
-            $table->integer('telefone');
-            $table->foreignId('user_id');
+            $table->bigInteger('telefone');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

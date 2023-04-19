@@ -75,16 +75,7 @@
                     transações estão sendo processadas com segurança. Com a nossa experiência em integrações, aplicamos
                     essas ferramentas de pagamento de forma eficiente, garantindo a proteção dos dados dos seus clientes e a
                     confiabilidade de seu negócio.</p>
-                <a href="#"
-                    class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
-                    Solicitar
-                    <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </a>
+            
                 <a href="#"
                     class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
                     Ir para valores
@@ -107,7 +98,7 @@
                     tecnologia, inovação e capital podem gerar valor de longo prazo e impulsionar o crescimento econômic</p>
             </div>
             <div class="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
-                <!-- Pricing Card -->
+           
                 <div
                     class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
                     <h3 class="mb-4 text-2xl font-semibold">Básico</h3>
@@ -117,10 +108,10 @@
                         <span class="mr-2 text-5xl font-extrabold">R$890,00</span>
                         <span class="text-gray-500 dark:text-gray-400">/mês</span>
                     </div>
-                    <!-- List -->
+              
                     <ul role="list" class="mb-8 space-y-4 text-left">
                         <li class="flex items-center space-x-3">
-                            <!-- Icon -->
+                      
                             <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
@@ -130,7 +121,7 @@
                             <span>Configuração manual</span>
                         </li>
                         <li class="flex items-center space-x-3">
-                            <!-- Icon -->
+                   
                             <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
@@ -140,7 +131,7 @@
                             <span>Prioridade Alta</span>
                         </li>
                         <li class="flex items-center space-x-3">
-                            <!-- Icon -->
+                           
                             <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
@@ -150,7 +141,7 @@
                             <span>Tamanho do time: <span class="font-semibold">1 developer</span></span>
                         </li>
                         <li class="flex items-center space-x-3">
-                            <!-- Icon -->
+                       
                             <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
@@ -160,7 +151,7 @@
                             <span>Premium support: <span class="font-semibold">6 mês</span></span>
                         </li>
                         <li class="flex items-center space-x-3">
-                            <!-- Icon -->
+                     
                             <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
@@ -176,7 +167,7 @@
                             class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Obter
                             plano</button></a>
                 </div>
-                <!-- Pricing Card -->
+               
                 <div
                     class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
                     <h3 class="mb-4 text-2xl font-semibold">Premium</h3>
@@ -186,10 +177,10 @@
                         <span class="mr-2 text-5xl font-extrabold">R$1.700,00</span>
                         <span class="text-gray-500 dark:text-gray-400" dark:text-gray-400>/mês</span>
                     </div>
-                    <!-- List -->
+                   
                     <ul role="list" class="mb-8 space-y-4 text-left">
                         <li class="flex items-center space-x-3">
-                            <!-- Icon -->
+                         
                             <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
@@ -199,7 +190,7 @@
                             <span>Configuração remota</span>
                         </li>
                         <li class="flex items-center space-x-3">
-                            <!-- Icon -->
+                   
                             <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
@@ -209,7 +200,7 @@
                             <span>Prioridade Média</span>
                         </li>
                         <li class="flex items-center space-x-3">
-                            <!-- Icon -->
+                            
                             <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
@@ -219,7 +210,7 @@
                             <span>Tamanho do time: <span class="font-semibold">2 desenvolvedores</span></span>
                         </li>
                         <li class="flex items-center space-x-3">
-                            <!-- Icon -->
+                    
                             <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
@@ -229,7 +220,7 @@
                             <span>Suporte premium: <span class="font-semibold">24 mês</span></span>
                         </li>
                         <li class="flex items-center space-x-3">
-                            <!-- Icon -->
+                      
                             <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
@@ -245,7 +236,7 @@
                             class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Obter
                             plano</button></a>
                 </div>
-                <!-- Pricing Card -->
+         
                 <div
                     class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
                     <h3 class="mb-4 text-2xl font-semibold">VIP Premium</h3>
@@ -255,10 +246,10 @@
                         <span class="mr-2 text-5xl font-extrabold">R$2.599,00</span>
                         <span class="text-gray-500 dark:text-gray-400">/mês</span>
                     </div>
-                    <!-- List -->
+                 
                     <ul role="list" class="mb-8 space-y-4 text-left">
                         <li class="flex items-center space-x-3">
-                            <!-- Icon -->
+                
                             <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
@@ -268,7 +259,7 @@
                             <span>Configuração remota</span>
                         </li>
                         <li class="flex items-center space-x-3">
-                            <!-- Icon -->
+                          
                             <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
@@ -278,7 +269,7 @@
                             <span>Prioridade Alta</span>
                         </li>
                         <li class="flex items-center space-x-3">
-                            <!-- Icon -->
+                          
                             <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
@@ -288,7 +279,7 @@
                             <span>Tamanho do time: <span class="font-semibold">100+ desenvolvedores</span></span>
                         </li>
                         <li class="flex items-center space-x-3">
-                            <!-- Icon -->
+                     
                             <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
@@ -298,7 +289,7 @@
                             <span>Suporte premium: <span class="font-semibold">36 mês</span></span>
                         </li>
                         <li class="flex items-center space-x-3">
-                            <!-- Icon -->
+                        
                             <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"

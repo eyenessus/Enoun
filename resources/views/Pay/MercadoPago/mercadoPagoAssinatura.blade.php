@@ -36,7 +36,7 @@
 
     <input id="token" name="token" type="hidden">
     <input id="paymentMethodId" name="paymentMethodId" type="hidden">
-    <input id="transactionAmount" name="transactionAmount" type="hidden" value="5000">
+    <input id="transactionAmount" name="transactionAmount" type="hidden" value="50000">
     <input id="description" name="description" type="hidden" value="Nome do Produto">
 
     <button type="submit" id="form-checkout__submit">Pagar</button>

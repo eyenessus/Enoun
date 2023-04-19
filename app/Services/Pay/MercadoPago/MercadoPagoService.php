@@ -34,8 +34,13 @@ class MercadoPagoService
     public function identificacaoUsuario()
     {
         $usuarioAuthEncontrado = $this->usuarioAuth = User::findOrFail(Auth::id());
-        $this->clienteMercadoPago = Customer::search(['email' => $usuarioAuthEncontrado->email]);
-        SDK::setClientId($this->clienteMercadoPago[0]->id);
+      $status =  $this->clienteMercadoPago = Customer::search(['email' => $usuarioAuthEncontrado->email]);
+        
+      if($status->total > 1)
+        {
+            SDK::setClientId($this->clienteMercadoPago[0]->id);
+        }
+     
     }
     public function paymentPreference()
     {
@@ -327,23 +332,16 @@ class MercadoPagoService
 
     public function criarAssinatura(Request $request)
     {
+       
         $this->identificacaoUsuario();
         $cartao = new Card();
         $cartao->customer_id = SDK::getClientId();
         $cartao->token = $request['token'];
         $cartao->save();
-
         $preapproval = new Preapproval();
         $preapproval->payer_email = $this->usuarioAuth->email;
-        $preapproval->preapproval_plan_id = null;
+        $preapproval->preapproval_plan_id = '2c93808486e4d6830186e828e4f002b8';
         $preapproval->back_url = 'https://google.com';
-        $preapproval->auto_recurring = [
-            "frequency" => 1,
-            "frequency_type" => "months",
-            "transaction_amount" => 500,
-            "currency_id" => "BRL",
-            "repetitions" => 12
-        ];
         $preapproval->status = "authorized";
         $preapproval->external_reference = "ok ok";
         $preapproval->card_id = $cartao->id;
@@ -393,7 +391,7 @@ class MercadoPagoService
     }
 
 
-    public function criarCliente(Request  $request)
+    public function criarCliente()
     {
         $this->identificacaoUsuario();
         $pagadorInfor = $this->usuarioAuth;
@@ -411,17 +409,18 @@ class MercadoPagoService
         ];
         $customer->address = array(
             'zip_code' => $pagadorInfor->endereco->cep,
-            'street_name' => $pagadorInfor->endereco->cep,
-            'street_number' => $pagadorInfor->endereco->cep,
-            'neighborhood' => $pagadorInfor->endereco->cep,
+            'street_name' => $pagadorInfor->endereco->rua,
+            'street_number' => $pagadorInfor->endereco->numero,
+            'neighborhood' => $pagadorInfor->endereco->bairro,
             'city' => [
-                'name' => $pagadorInfor->endereco->cep,
+                'name' => $pagadorInfor->endereco->cidade,
                 'id' => 'BR-SP-44'
             ],
             'federal_unit' => 'SP',
             'country' => 'BR'
         );
         $customer->save();
+       return redirect()->route('inicio');
     }
 
     public function notificacoesMercadoPago(Request $request)
@@ -431,11 +430,19 @@ class MercadoPagoService
 
     public function buscarTodosPlanosDeAssinatura()
     {
-
+        $resposta = Http::withToken(env('MERCADO_PAGO_ACCESS_TOKEN'))
+        ->withHeaders([
+            'Content-Type' => 'application/json'
+        ])->get('https://api.mercadopago.com/preapproval_plan/search');
+        return $resposta->json();
     }
 
     public function buscarTodasAssinaturas()
     {
-
+        $resposta = Http::withToken(env('MERCADO_PAGO_ACCESS_TOKEN'))
+        ->withHeaders([
+            'Content-Type' => 'application/json'
+        ])->get('https://api.mercadopago.com/preapproval/search');
+        dd($resposta->json());
     }
 }

@@ -2,8 +2,8 @@
 @section('titulo', 'Cadastro de identidade')
 @section('conteudo')
 
-<div class="container mx-auto">
-    <form method="POST" action="">
+<div class="containe mx-auto max-w-screen-xl">
+    <form method="POST" action="{{ route('identidade.store') }}">
         @csrf
         <div class="mb-6">
             <label for="tipoDocumento" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo de
