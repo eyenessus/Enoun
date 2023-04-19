@@ -10,6 +10,7 @@ use App\Models\Produto;
 use App\Models\Servico;
 use App\Models\Slide;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -30,6 +31,7 @@ class User extends Authenticatable
     protected $fillable = [
         'nome',
         'email',
+        'sobrenome',
         'password',
     ];
 
@@ -100,4 +102,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Servico::class)->withPivot('quantidade');
     }
 
+    public function identidade() : HasMany
+    {
+        return $this->HasMany(Identidade::class);
+    }
 }

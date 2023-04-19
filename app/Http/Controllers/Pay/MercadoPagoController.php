@@ -79,7 +79,7 @@ class MercadoPagoController extends Controller
     {
         $resposta =  $this->service->excluirCartao($id);
         if ($resposta) {
-            return redirect()->route('todosCartoes');
+            return redirect()->route('meusCartoes');
         }
     }
 
@@ -126,12 +126,24 @@ class MercadoPagoController extends Controller
     {
         return view('Pay.MercadoPago.mercadoPagoAssinatura');
     }
-    public function criarPlanoAssinatura()
+    public function criarPlanoAssinatura(Request $request)
     {
-        $this->service->criarPlanoAssinatura();
+       $resposta = $this->service->criarPlanoAssinatura($request);
+        if ($resposta) {
+            return redirect()->route('verPlanosAssinatura');
+        }
     }
     public function criarCliente(Request $request)
     {
         $this->service->criarCliente($request);
+    }
+
+    public function verPlanosAssinatura()
+    {
+        dd('todos planos');
+    }
+    public function formularioPlanoAssinatura()
+    {
+        return view('Pay.MercadoPago.mercadoPagoPlanoDeAssinatura');
     }
 }

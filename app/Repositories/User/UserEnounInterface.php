@@ -3,6 +3,7 @@
 namespace App\Repositories\User;
 
 use App\DTO\User\CreateUserDTO;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use stdClass;
 
@@ -23,6 +24,8 @@ interface UserEnounInterface
     public function  finalizarPedido(string $data=null,int $id=null) : Collection;
 
     public function verPedidos();
+
+    public function salvarCategoria(Request $request);
 
     public function valorFinal(): array;
 }

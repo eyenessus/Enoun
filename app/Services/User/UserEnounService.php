@@ -85,4 +85,9 @@ class UserEnounService {
     {
         return $this->repositoryUser->valorFinal();
     }
+
+    public function salvarCategoria(Request $request)
+    {
+        return $this->repositoryUser->salvarCategoria($request);
+    }
 }

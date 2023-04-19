@@ -7,6 +7,7 @@ use App\Models\Pedido;
 use App\Services\Produto\ProdutoEnounService;
 use App\Services\Servico\ServicoEnounService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use MercadoPago\Payment;
 use MercadoPago\SDK;
@@ -30,10 +31,10 @@ class MercadoPagoEloquentORM implements MercadoPagoInterface
         ];
     }
 
-    public function buscarDadosCliente(): array
+    public function buscarDadosCliente(): Collection
     {
         $dados = auth()->user();
-        return [$dados];
+        return collect($dados);
     }
 
 

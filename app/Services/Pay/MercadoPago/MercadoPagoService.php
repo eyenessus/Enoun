@@ -44,7 +44,7 @@ class MercadoPagoService
         $pagadorInfor = $this->usuarioAuth;
         $bagItems = [];
         $pedido = $this->repository->buscarItensCarrinho();
-        $finalizarPedido =$this->serviceUser->finalizarPedido();
+        $finalizarPedido = $this->serviceUser->finalizarPedido();
         foreach (array_merge($pedido['produto']->toArray(), $pedido['servicos']->toArray()) as $item) {
             $pedidoItem = new Item();
             $pedidoItem->id = $item['id'];
@@ -80,13 +80,11 @@ class MercadoPagoService
             'number' => '12345678900',
         ];
         $pagador->address = [
-            'zip_code' => '',
-            'street_name' => '',
-            'street_number' => '123',
-            'floor' => '8',
-            'apartment' => '85',
-            'city' => 'cidade',
-            'state' => '',
+            'zip_code' => $pagadorInfor->endereco->cep,
+            'street_name' => $pagadorInfor->endereco->rua,
+            'street_number' => $pagadorInfor->endereco->numero,
+            'city' => $pagadorInfor->endereco->cidade,
+            'state' => $pagadorInfor->endereco->estado,
             'country' => 'BR'
         ];
         $preference->payer = $pagador;
@@ -113,7 +111,7 @@ class MercadoPagoService
         $payment->metadata = $bagItems;
         $finalizar = $this->serviceUser->valorFinal();
         $payment->transaction_amount =  $finalizar['total'];
-        
+
         $payment->payer = [
             "entity_type" => "individual",
             "email" => $this->usuarioAuth->email,
@@ -121,8 +119,8 @@ class MercadoPagoService
                 "type" => 'CPF',
                 "number" => '92905970030'
             ],
-            "first_name" => "Emerson",
-            "last_name" => "Sousa"
+            "first_name" => $this->usuarioAuth->nome,
+            "last_name" => $this->usuarioAuth->sobrenome
         ];
         $payment->external_reference = 'Pagamento Pix';
         $payment->notification_url = "https://webhook.site/f5140fda-b70c-4caf-9ae8-bf61210412c1";
@@ -131,7 +129,7 @@ class MercadoPagoService
             return null;
         }
         $payment->save();
-        $finalizar= $this->serviceUser->finalizarPedido($payment->status,$payment->id);
+        $finalizar = $this->serviceUser->finalizarPedido($payment->status, $payment->id);
         $qrCodePixBase64 = $payment->point_of_interaction->transaction_data->qr_code_base64;
         $copiaEcola = $payment->point_of_interaction->transaction_data->qr_code;
         $total = $payment->transaction_amount;
@@ -148,7 +146,7 @@ class MercadoPagoService
     }
     public function paymentCartaoCredito(Request $request)
     {
-        
+
         $payment = new Payment();
         $payment->transaction_amount = (float)$request->input('transactionAmount');
         $payment->token = $request->input('token');
@@ -165,31 +163,30 @@ class MercadoPagoService
         ];
         $payment->payer = $payer;
         $payment->save();
+        $finalizarPedido = $this->serviceUser->finalizarPedido($payment->status, $payment->id);
         $response = [
             'status' => $payment->status,
             'status_detail' => $payment->status_detail,
             'id' => $payment->id
         ];
-        $id = (int)$response['id'];
-        $finalizarPedido = $this->serviceUser->finalizarPedido($payment->status,$id);
         return $response;
     }
     public function boletoBradesco()
     {
+
         $finalizar = $this->serviceUser->valorFinal();
         if (!$finalizar['total']) {
             return null;
         }
-
+        $this->identificacaoUsuario();
         $payment = new Payment();
-        $cliente = $this->repository->buscarDadosCliente();
         $payment->transaction_amount = (float) $finalizar['total'];
         $payment->description = "Compra de teste";
         $payment->payment_method_id = "bolbradesco";
         $payment->payer = [
-            "email" => 'teste@gmail.com',
-            "first_name" => 'emerson',
-            "last_name" => 'sousa',
+            "email" => $this->usuarioAuth->email,
+            "first_name" => $this->usuarioAuth->email,
+            "last_name" => $this->usuarioAuth->sobrenome,
             "identification" => [
                 "type" => "CPF",
                 "number" => "86236798060"
@@ -197,9 +194,8 @@ class MercadoPagoService
         ];
         $payment->notification_url = "https://webhook.site/f5140fda-b70c-4caf-9ae8-bf61210412c1";
         $payment->save();
-        
         $boleto_url = $payment->transaction_details->external_resource_url;
-        $finalizar = $this->serviceUser->finalizarPedido($payment->status,$payment->id);
+        $finalizar = $this->serviceUser->finalizarPedido($payment->status, $payment->id);
         return $boleto_url;
     }
 
@@ -212,10 +208,10 @@ class MercadoPagoService
         $cardToken->expirationMonth = $request['mesValidade'];
         $cardToken->expirationYear = $request['anoValidade'];
         $cardToken->cardholder = (object) [
-            'name' => 'John Doe',
+            'name' => $request['cartaoHolder'],
             'identification' => [
-                'type' => 'CPF',
-                'number' => '77703599026',
+                'type' => $request['tipoDocumento'],
+                'number' => $request['documento'],
             ],
         ];
         $cardToken->public_key = SDK::getPublicKey();
@@ -248,10 +244,10 @@ class MercadoPagoService
         $cardToken->expirationMonth = $request['mesValidade'];
         $cardToken->expirationYear = $request['anoValidade'];
         $cardToken->cardholder = (object) [
-            'name' => 'John Doe',
+            'name' => $request['cartaoHolder'],
             'identification' => [
-                'type' => 'CPF',
-                'number' => '69995775018',
+                'type' => $request['tipoDocumento'],
+                'number' => $request['documento'],
             ],
         ];
         $cardToken->public_key = SDK::getPublicKey();
@@ -274,6 +270,8 @@ class MercadoPagoService
 
     public function atualizarCartao(Request $request)
     {
+        return redirect()->route('inicio');
+        /*
         $this->identificacaoUsuario();
         $cliente = SDK::getClientId();
         $informacoesCartao = $this->encontrarCartao($request->card);
@@ -284,7 +282,7 @@ class MercadoPagoService
         $cardToken->expirationMonth = $request->input('mesValidade');
         $cardToken->expirationYear = $request->input('anoValidade');
         $cardToken->cardholder = (object) [
-            'name' => 'John Doe',
+            'name' => 'Jon Jon',
             'identification' => [
                 'type' => 'CPF',
                 'number' => '69995775018',
@@ -301,12 +299,12 @@ class MercadoPagoService
             'name' => 'John Doe',
             'identification' => [
                 'type' => 'CPF',
-                'number' => '52781012882',
+                'number' => '81265168016',
             ],
         ];
         $informacoesCartao->save();
-        dd($informacoesCartao);
         return true;
+        */
     }
 
     public function excluirCartao(string $id)
@@ -334,10 +332,10 @@ class MercadoPagoService
         $cartao->customer_id = SDK::getClientId();
         $cartao->token = $request['token'];
         $cartao->save();
-      
+
         $preapproval = new Preapproval();
         $preapproval->payer_email = $this->usuarioAuth->email;
-        $preapproval->preapproval_plan_id = null; 
+        $preapproval->preapproval_plan_id = null;
         $preapproval->back_url = 'https://google.com';
         $preapproval->auto_recurring = [
             "frequency" => 1,
@@ -355,25 +353,25 @@ class MercadoPagoService
         dd($preapproval);
     }
 
-    public function criarPlanoAssinatura()
+    public function criarPlanoAssinatura(Request $request)
     {
         $dados = [
-            "reason" => "Enoun teste",
+            "reason" => $request["reason"],
             "auto_recurring" => [
-                "frequency" => 1,
-                "frequency_type" => "months",
-                "billing_day" => 10,
-                "billing_day_proportional" => true,
+                "frequency" => $request["frequency"],
+                "frequency_type" => $request["frequency_type"],
+                "billing_day" => $request["billing_day"],
+                "billing_day_proportional" => $request["billing_day_proportional"],
                 "free_trial" => [
-                    "frequency" => 1,
-                    "frequency_type" => "months"
+                    "frequency" => $request["free_trial_frequency"],
+                    "frequency_type" => $request["free_trial_frequency_type"]
                 ],
-                "transaction_amount" => 700,
-                "currency_id" => "BRL"
+                "transaction_amount" => $request["transaction_amount"],
+                "currency_id" => 'BRL'
             ],
             "payment_methods_allowed" => [
                 "payment_types" => [
-                    ['id'=> 'credit_card']
+                    ["id" => "credit_card"]
                 ],
                 "payment_methods" => [
                     ["id" => "pix"],
@@ -387,44 +385,57 @@ class MercadoPagoService
                 'Content-Type' => 'application/json'
             ])
             ->post('https://api.mercadopago.com/preapproval_plan', $dados);
-
-        return $resposta->json();
-     
+                $resposta = $resposta->json();
+                if($resposta['id'])
+                {
+                    return true;
+                }
     }
+
 
     public function criarCliente(Request  $request)
     {
-       // $this->identificacaoUsuario();
+        $this->identificacaoUsuario();
+        $pagadorInfor = $this->usuarioAuth;
         $customer = new Customer();
-        $customer->email = 'test_user_1183031487@testuser.com';
-        $customer->first_name = 'Emerson';
-        $customer->last_name = 'Sousa';
-        $customer->phone = array(
+        $customer->email = $pagadorInfor->email;
+        $customer->first_name = $pagadorInfor->nome;
+        $customer->last_name = $pagadorInfor->sobrenome;
+        $customer->phone = [
             'area_code' => '11',
             'number' => '11992515755'
-        );
-        $customer->identification = array(
+        ];
+        $customer->identification = [
             'type' => 'CPF',
             'number' => '1234567890'
-        );
+        ];
         $customer->address = array(
-            'zip_code' => '05878180',
-            'street_name' => 'Rua Vanio Mondini',
-            'street_number' => 38,
-            'neighborhood' => 'Parque independencia',
-            'city' => array(
-                'name' => 'São Paulo',
+            'zip_code' => $pagadorInfor->endereco->cep,
+            'street_name' => $pagadorInfor->endereco->cep,
+            'street_number' => $pagadorInfor->endereco->cep,
+            'neighborhood' => $pagadorInfor->endereco->cep,
+            'city' => [
+                'name' => $pagadorInfor->endereco->cep,
                 'id' => 'BR-SP-44'
-            ),
+            ],
             'federal_unit' => 'SP',
             'country' => 'BR'
         );
         $customer->save();
-    
     }
 
     public function notificacoesMercadoPago(Request $request)
     {
         $this->repository->notificacoesMercadoPago($request);
+    }
+
+    public function buscarTodosPlanosDeAssinatura()
+    {
+
+    }
+
+    public function buscarTodasAssinaturas()
+    {
+
     }
 }

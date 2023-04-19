@@ -94,4 +94,20 @@ class UserEnounController extends Controller
         $pedidos = $this->service->verPedidos();
         return view('Pedidos.pedidos',compact('pedidos'));
     }
+
+    public function formCategoria()
+    {
+        return view('Cadastro.categoria');
+    }
+
+    public function salvarCategoria(Request $request)
+    {
+        $this->service->salvarCategoria($request);
+        return redirect()->route('categoria.index');
+    }
+
+    public function todasCategoria()
+    {
+        dd('todas categorias');
+    }
 }

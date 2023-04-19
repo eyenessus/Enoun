@@ -3,9 +3,12 @@
 namespace App\Repositories\User;
 
 use App\DTO\User\CreateUserDTO;
+use App\Models\Categoria;
 use App\Models\Pedido;
 use App\Models\User;
 use App\Repositories\User\UserEnounInterface;
+use Illuminate\Http\Client\Request as ClientRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use stdClass;
@@ -141,5 +144,10 @@ class UserEloquentORM implements UserEnounInterface
         });
 
         return ["total" => $valorProdutos + $valorServicos];
+    }
+
+    public function salvarCategoria(Request $request)
+    {
+        Categoria::create(['nome'=>$request->categoria]);
     }
 }

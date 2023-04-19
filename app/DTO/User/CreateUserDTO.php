@@ -4,6 +4,7 @@ use App\Http\Requests\CreateUserEnounRequest;
 class CreateUserDTO {
     public function __construct(
         public string $nome,
+        public string $sobrenome,
         public string $email,
         public string $password,
     )
@@ -12,6 +13,7 @@ class CreateUserDTO {
     {
         return new self(
             $request->nome,
+            $request->sobrenome,
             $request->email,
             bcrypt($request->password),
         );

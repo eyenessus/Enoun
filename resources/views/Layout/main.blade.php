@@ -8,7 +8,9 @@
     <title>Enoun - @yield('titulo')</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/browse/popper.js@1.12.8/dist/popper.min.js"></script>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js','/resources/js/main.js'])
+    
 </head>
 <header>
 
@@ -332,20 +334,32 @@
             <h1>Serviços</h1>
             <div>
                 <button type="button" class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Gerênciar todos Serviços</button>
-           
-               
             </div>
             <h1>Administradores</h1>
             <div>
                 <button type="button" class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Gerênciar administradores</button>
-           
-            
             </div>
-            <h1>Categorias</h1>
-            <div>
-                <button type="button" class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Gerênciar Categorias</button>
-           
-            
+            <h1>Funções extras</h1>
+        
+
+            <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+                <div class="w-full">
+                    <div>
+                        <button type="button" class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Gerencia categorias</button>
+                    </div>
+                </div>
+                <div class="w-full">
+                    <div>
+                        <a href="{{ route('verPlanosAssinatura') }}" >
+                            <button type="button" class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Ver todos planos de assinatura</button></a>
+                    </div>
+                </div>
+                <div class="w-full">
+                    <div>
+                        <a href="{{ route('formularioPlanoAssinatura') }}" > <button type="button" class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Criar plano de assinatura</button></a>
+                     
+                    </div>
+                </div>
             </div>
             </div>
      

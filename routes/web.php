@@ -31,6 +31,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/produto/create', [ProdutoEnounController::class, 'create'])->name('produto.create');
     Route::post('/produto', [ProdutoEnounController::class, 'store'])->name('produto.store');
     Route::get('/categoria/create', [UserEnounController::class, 'formCategoria'])->name('categoria.create');
+    Route::post('/categoria', [UserEnounController::class, 'salvarCategoria'])->name('categoria.store');
+    Route::get('/categoria/all', [UserEnounController::class, 'todasCategoria'])->name('categoria.index');
     Route::get('/produto/{produto}/edit', [ProdutoEnounController::class, 'edit'])->name('produto.edit');
     Route::put('/produto/{produto}', [ProdutoEnounController::class, 'update'])->name('produto.update');
     Route::delete('/produto/{produto}', [ProdutoEnounController::class, 'destroy'])->name('produto.destroy');
@@ -77,16 +79,22 @@ Route::prefix('mercadoPagoPay')->middleware('auth')->group(function () {
     Route::get('/card/myall', [MercadoPagoController::class, 'obterTodosCartoes'])->name('meusCartoes');
     Route::post('/editarCartao/{cartao}', [MercadoPagoController::class, 'atualizarCartao'])->name('editarCartao');
     Route::put('/atualizarCartao/{card}', [MercadoPagoController::class, 'update'])->name('atualizarCard');
-    
-
-
-    
+    Route::post('/cliente/mp', [MercadoPagoController::class, 'criarCliente'])->name('criarClienteMP');
+    Route::post('/notifications/mp', [MercadoPagoController::class, 'receberNotificacoes']);
+    Route::post('/planoDeAssinatura/mp', [MercadoPagoController::class, 'criarPlanoAssinatura'])->name('planoDeAssinaturaMP');
 });
-Route::post('/cliente/mp', [MercadoPagoController::class, 'criarCliente'])->name('criarClienteMP');
-Route::post('/notifications/mp', [MercadoPagoController::class, 'receberNotificacoes']);
-Route::post('/planoDeAssinatura/mp', [MercadoPagoController::class, 'criarPlanoAssinatura'])->name('planoDeAssinaturaMP');
+
+Route::get('/plano/assinatura', [MercadoPagoController::class, 'formularioPlanoAssinatura'])->name('formularioPlanoAssinatura');
+Route::get('/planos/mp', [MercadoPagoController::class, 'verPlanosAssinatura'])->name('verPlanosAssinatura');
+
+
+
+
 Route::post('/assinatura/mp', [MercadoPagoController::class, 'criarAssinatura'])->name('assinaturaMP');
-Route::get('/formAssin', [MercadoPagoController::class, 'formAssinatura']);
+Route::get('/formAssin', [MercadoPagoController::class, 'formAssinatura'])->name('formularioDeAssinatura');
+
+
+
 
 Route::prefix('pagSeguro')->middleware('auth')->group(function () {
     Route::get('/pagSeguroCartao', [PagseguroController::class, 'index'])->name('pagSeguro');
@@ -97,3 +105,6 @@ Route::prefix('pagSeguro')->middleware('auth')->group(function () {
     Route::get('/assinaturaRecorrenteSub', [PagseguroController::class, 'assinaturaDeRecorrenciaSubsequente'])->name('planoDeAssinaturaPG');
     Route::post('/notifications/pag', [PagseguroController::class, 'receberNotificacoes']);
 });
+
+
+
