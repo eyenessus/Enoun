@@ -11,6 +11,7 @@ class PagseguroController extends Controller
     {
         
     }
+
     public function index()
     {
         return view('Pay.PagSeguro.pagSeguroCard');
@@ -23,7 +24,9 @@ class PagseguroController extends Controller
 
     public function boleto()
     {
+        
         $this->service->boleto();
+        return true;
     }
     public function pix()
     {

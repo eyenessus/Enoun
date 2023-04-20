@@ -33,4 +33,5 @@ interface UserEnounInterface
    
 
     public function criarEndereco(Request $request);
+    public function buscarItensCarrinho(): array;
 }

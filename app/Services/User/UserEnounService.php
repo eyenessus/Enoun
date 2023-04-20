@@ -102,4 +102,9 @@ class UserEnounService {
     {
         return $this->repositoryUser->criarEndereco($request);
     }
+
+    public function buscarItensCarrinho(): array
+    {
+       return $this->repositoryUser->buscarItensCarrinho();
+    }
 }

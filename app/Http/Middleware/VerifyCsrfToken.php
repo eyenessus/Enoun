@@ -17,6 +17,8 @@ class VerifyCsrfToken extends Middleware
         '/notifications/mp',
         '/cliente/mp',
         '/planos/mp',
-        '/gerenciar/todos/assinaturas'
+        '/gerenciar/todos/assinaturas',
+        'boletoPagSeguro',
+        '/notifications/pag'
     ];
 }

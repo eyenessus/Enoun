@@ -34,13 +34,11 @@ class MercadoPagoService
     public function identificacaoUsuario()
     {
         $usuarioAuthEncontrado = $this->usuarioAuth = User::findOrFail(Auth::id());
-      $status =  $this->clienteMercadoPago = Customer::search(['email' => $usuarioAuthEncontrado->email]);
-        
-      if($status->total > 1)
-        {
+        $status =  $this->clienteMercadoPago = Customer::search(['email' => $usuarioAuthEncontrado->email]);
+
+        if ($status->total > 1) {
             SDK::setClientId($this->clienteMercadoPago[0]->id);
         }
-     
     }
     public function paymentPreference()
     {
@@ -239,6 +237,9 @@ class MercadoPagoService
         $this->identificacaoUsuario();
         $cliente = SDK::getClientId();
         $identificacaoCliente = Customer::find_by_id($cliente);
+        if ($identificacaoCliente->cards == null) {
+            return redirect()->route('inicio');
+        }
         return $identificacaoCliente->cards;
     }
     public function gerarCardToken(Request $request)
@@ -332,7 +333,7 @@ class MercadoPagoService
 
     public function criarAssinatura(Request $request)
     {
-       
+
         $this->identificacaoUsuario();
         $cartao = new Card();
         $cartao->customer_id = SDK::getClientId();
@@ -383,11 +384,10 @@ class MercadoPagoService
                 'Content-Type' => 'application/json'
             ])
             ->post('https://api.mercadopago.com/preapproval_plan', $dados);
-                $resposta = $resposta->json();
-                if($resposta['id'])
-                {
-                    return true;
-                }
+        $resposta = $resposta->json();
+        if ($resposta['id']) {
+            return true;
+        }
     }
 
 
@@ -420,7 +420,7 @@ class MercadoPagoService
             'country' => 'BR'
         );
         $customer->save();
-       return redirect()->route('inicio');
+        return redirect()->route('inicio');
     }
 
     public function notificacoesMercadoPago(Request $request)
@@ -431,18 +431,18 @@ class MercadoPagoService
     public function buscarTodosPlanosDeAssinatura()
     {
         $resposta = Http::withToken(env('MERCADO_PAGO_ACCESS_TOKEN'))
-        ->withHeaders([
-            'Content-Type' => 'application/json'
-        ])->get('https://api.mercadopago.com/preapproval_plan/search');
+            ->withHeaders([
+                'Content-Type' => 'application/json'
+            ])->get('https://api.mercadopago.com/preapproval_plan/search');
         return $resposta->json();
     }
 
     public function buscarTodasAssinaturas()
     {
         $resposta = Http::withToken(env('MERCADO_PAGO_ACCESS_TOKEN'))
-        ->withHeaders([
-            'Content-Type' => 'application/json'
-        ])->get('https://api.mercadopago.com/preapproval/search');
+            ->withHeaders([
+                'Content-Type' => 'application/json'
+            ])->get('https://api.mercadopago.com/preapproval/search');
         dd($resposta->json());
     }
 }

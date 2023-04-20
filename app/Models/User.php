@@ -102,8 +102,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Servico::class)->withPivot('quantidade');
     }
 
-    public function identidade() : HasMany
+    public function identidade() : hasOne
     {
-        return $this->HasMany(Identidade::class);
+        return $this->hasOne(Identidade::class);
     }
 }

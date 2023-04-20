@@ -169,4 +169,15 @@ class UserEloquentORM implements UserEnounInterface
         Endereco::create($request->all());
         return true;
     }
+
+    public function buscarItensCarrinho(): array
+    {
+        $produtos = auth()->user()->produtosComCarrinho;
+        $servicos = auth()->user()->servicosComCarrinho;
+        return [
+            'produto' => collect($produtos),
+            'servicos' => collect($servicos)
+        ];
+    }
+   
 }

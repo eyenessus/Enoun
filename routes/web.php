@@ -90,9 +90,9 @@ Route::prefix('pagSeguro')->middleware('auth')->group(function () {
     Route::get('/pixPagSeguro', [PagseguroController::class, 'pix'])->name('pagSeguroPix');
     Route::get('/assinaturaRecorrente', [PagseguroController::class, 'assinaturaDeRecorrenciaInital'])->name('assinaturaPG');
     Route::get('/assinaturaRecorrenteSub', [PagseguroController::class, 'assinaturaDeRecorrenciaSubsequente'])->name('planoDeAssinaturaPG');
-    Route::post('/notifications/pag', [PagseguroController::class, 'receberNotificacoes']);
+   
 });
-
+Route::post('/notifications/pag', [PagseguroController::class, 'receberNotificacoes']);
 Route::prefix('servicos')->group(
     function () {
         Route::get('/', [ServicoEnounController::class, 'index'])->name('servicos.index');
