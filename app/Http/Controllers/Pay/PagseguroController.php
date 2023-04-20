@@ -24,13 +24,13 @@ class PagseguroController extends Controller
 
     public function boleto()
     {
-        
-        $this->service->boleto();
-        return true;
+      $boleto =  $this->service->boleto();
+        return redirect($boleto);
     }
     public function pix()
     {
-        $this->service->pix();
+        $pix = $this->service->pix();
+        return view('Pedidos.pixPagSeguro',compact('pix'));
     }
 
     public function assinaturaDeRecorrenciaSubsequente()

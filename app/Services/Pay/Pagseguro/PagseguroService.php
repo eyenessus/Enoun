@@ -204,7 +204,7 @@ class PagseguroService
         ])->post('https://sandbox.api.pagseguro.com/orders', $data);
         $resposta = $resposta->json();
         $pdfLink = $resposta['charges'][0]['links'][0]['href'];
-        return redirect($pdfLink);
+        return $pdfLink;
     }
     public function pix()
     {
@@ -268,10 +268,14 @@ class PagseguroService
         $resposta = http::withToken(env('PAGSEGURO_TOKEN'))->withHeaders([
             'Content-type' => 'application/json'
         ])->post('https://sandbox.api.pagseguro.com/orders', $data);
-
         $resposta = $resposta->json();
-        $qrCodeLink = $resposta['qr_codes'][0]['links'][0]['href'];
-        return redirect($qrCodeLink);
+        $response = [
+            'textoCopiaEcola' => $resposta['qr_codes'][0]['text'],
+            'qrCode' => $resposta['qr_codes'][0]['links'][0]['href'],
+            'total' => $resposta['qr_codes'][0]['amount']['value']
+        ];
+
+        return $response;
     }
 
     public function assinaturaDeRecorrenciaSubsequente()
