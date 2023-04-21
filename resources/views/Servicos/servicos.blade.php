@@ -31,19 +31,19 @@
                 @if($servicos->categoria->nome == $categorias->nome)
                 <div>
                     <div
-                        class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700 rounded">
-                        <a href="{{ route('servico.show',$servicos->id) }}">
-                            <img class="p-3 rounded-t-lg" src="/storage/{{ $servicos->imagem }}"
-                                alt="{{ $servicos->nome }}" />
-                        </a>
+                    class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700 rounded">
+                    <a href="{{ route('servico.show',$servicos->id) }}">
+                        <img class="mx-auto h-64 w-64 my-auto p-3 rounded-t-lg" src="/storage/{{ $servicos->imagem }}" alt="{{ $servicos->nome }}" />
+                    </a>
                         <div class="px-5 pb-5 mb-5">
                             <a href="{{ route('servico.show',$servicos->id) }}">
                                 <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{{
                                     $servicos->nome }}</h5>
                             </a>
                             <div class="flex items-center justify-between pt-5">
-                                <span class="text-3xl font-bold text-gray-900 dark:text-white">R${{ $servicos->valor
-                                    }},00</span>
+                                <span class="text-3xl font-bold text-gray-900 dark:text-white"> R$
+                                    {{number_format($servicos->valor, 2, ',', '.')}}
+                                </span>
                             </div>
                             <div class="flex items-center justify-between pt-5">
 

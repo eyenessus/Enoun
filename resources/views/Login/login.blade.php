@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                             <a href="{{ route('user.recovery') }}"
-                                class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Esqueceu
+                                class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500 dark:text-white">Esqueceu
                                 senha?</a>
                         </div>
                         <div class="flex justify-center">

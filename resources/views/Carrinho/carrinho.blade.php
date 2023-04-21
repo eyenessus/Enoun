@@ -3,7 +3,7 @@
 @section('conteudo')
 @if(count($servico) || count($produto))
 
-<div class="container mx-auto">
+<div class="container mx-auto max-w-screen-xl">
 
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg mx-auto">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 mx-auto">
@@ -33,7 +33,7 @@
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 mx-auto max-w-screen-xl">
     
                         <td class="w-32 p-4">
-                            <img src="/storage/{{ $produtos->imagem }}" alt="{{ $produtos->nome }}">
+                            <img src="/storage/{{ $produtos->imagem }}" alt="{{ $produtos->nome }}" class=" w-40 h-26">
                         </td>
                         <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
                             {{ $produtos->nome }}
@@ -80,7 +80,7 @@
                             </div>
                         </td>
                         <td class="px- py- font-semibold text-gray-900 dark:text-white">
-                            R$ {{ $produtos->valor }},00
+                          R$  {{number_format($produtos->valor, 2, ',', '.')}}
                         </td>
     
                         <td class="px-6 py-4">

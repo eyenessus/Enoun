@@ -35,10 +35,7 @@ class MercadoPagoService
     {
         $usuarioAuthEncontrado = $this->usuarioAuth = User::findOrFail(Auth::id());
         $status =  $this->clienteMercadoPago = Customer::search(['email' => $usuarioAuthEncontrado->email]);
-
-        if ($status->total > 1) {
-            SDK::setClientId($this->clienteMercadoPago[0]->id);
-        }
+        SDK::setClientId($this->clienteMercadoPago[0]->id);
     }
     public function paymentPreference()
     {
@@ -131,6 +128,7 @@ class MercadoPagoService
         if (!$bagItems) {
             return null;
         }
+        $finalizarPedido = $this->serviceUser->finalizarPedido();
         $payment->save();
         $finalizar = $this->serviceUser->finalizarPedido($payment->status, $payment->id);
         $qrCodePixBase64 = $payment->point_of_interaction->transaction_data->qr_code_base64;
@@ -181,9 +179,10 @@ class MercadoPagoService
         if (!$finalizar['total']) {
             return null;
         }
+        
         $this->identificacaoUsuario();
         $payment = new Payment();
-        $payment->transaction_amount = (float) $finalizar['total'];
+        $payment->transaction_amount = (int) $finalizar['total'];
         $payment->description = "Compra de teste";
         $payment->payment_method_id = "bolbradesco";
         $payment->payer = [
@@ -197,6 +196,7 @@ class MercadoPagoService
         ];
         $payment->notification_url = "https://webhook.site/f5140fda-b70c-4caf-9ae8-bf61210412c1";
         $payment->save();
+        
         $boleto_url = $payment->transaction_details->external_resource_url;
         $finalizar = $this->serviceUser->finalizarPedido($payment->status, $payment->id);
         return $boleto_url;
@@ -238,7 +238,7 @@ class MercadoPagoService
         $cliente = SDK::getClientId();
         $identificacaoCliente = Customer::find_by_id($cliente);
         if ($identificacaoCliente->cards == null) {
-            return redirect()->route('inicio');
+           return false;
         }
         return $identificacaoCliente->cards;
     }

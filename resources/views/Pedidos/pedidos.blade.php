@@ -44,28 +44,46 @@
 
                     </th>
                     <td class="px-6 py-4">
-                        @foreach ($pedido->nome as $nome)
-                        {{ $nome }}
-                        @endforeach
+                        <ul>
+                            @foreach ($pedido->nome as $nome)
+                            <li class="my-auto mx-auto">
+                                {{ $nome }}
+                                <hr>
+                            </li>
+                            @endforeach
+                        </ul>
                     </td>
                     <td class="px-6 py-4">
-                        @foreach ($pedido->descricao as $descricao)
-                        {{ $descricao }}
-                        @endforeach
+                      
+                            @foreach ($pedido->descricao as $descricao)
+                            <p class="w-64 truncate"> {{ $descricao }}</p>
+                            
+                            @endforeach
+                        
                     </td>
+                  
                     <td class="px-6 py-4">
                         @foreach ($pedido->quantidadeUnitaria as $quantidade)
-                        {{ $quantidade }}
+                        <ul>
+                            <li class="my-auto mx-auto">
+                                {{ $quantidade }}
+                            
+                            </li>
+                        </ul>
                         @endforeach
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-4 mx-auto">
                         @foreach ($pedido->valorUnitario as $valorUnidade)
-                        R$ {{number_format($valorUnidade, 2, ',', '.')}}
+                        <ul>
+                            <li class="my-auto"> R$ {{number_format($valorUnidade, 2, ',', '.')}}</li>
+                            <hr>
+                        </ul>
+
+
                         @endforeach
                     </td>
                     <td class="px-6 py-4">
                         R$ {{number_format($pedido->valorTotal, 2, ',', '.')}}
-                      
                     </td>
                     <td class="px-6 py-4">
                         {{ $pedido->status }}

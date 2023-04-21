@@ -1,9 +1,13 @@
 @extends('Layout.main')
 @section('titulo', 'Meus cartões')
 @section('conteudo')
-<h2 class="text-4xl font-extrabold dark:text-white mx-8 max-w-screen-xl">Meus cartões</h2>
+
+
+
+
+    @if($cartoes)
+    <h2 class="text-4xl font-extrabold dark:text-white mx-8 max-w-screen-xl">Meus cartões</h2>
 <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 container mx-auto my-8 max-w-screen-xl">
-    
 @foreach($cartoes as $cartao )
     <div class="p-6 bg-sky-300 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 max-w-screen-xl">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Cartão {{ $cartao->payment_method->name }}</h5>
@@ -38,5 +42,10 @@
 
 
 @endforeach
+@else
+<div class="container mx-auto max-w-screen-xl">
+    <h1 class="text-5xl font-extrabold dark:text-white">Sem cartões<small class="ml-2 font-semibold text-gray-500 dark:text-gray-400">no momento</small></h1>
+</div>
+@endif
 </div>
 @endsection
