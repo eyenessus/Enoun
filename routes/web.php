@@ -28,10 +28,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/endereco', [UserEnounController::class, 'endereco'])->name('endereco.store');
 });
 
-Route::prefix('admin')->middleware('auth')->group(function () {
+Route::prefix('admin')->middleware(['auth','identificacao','admin'])->group(function () {
     Route::get('/gerenciar/todos/users', [UserEnounController::class, 'verTodosUsuarios'])->name('verTodosUsuarios');
-    Route::get('/gerenciar/todos/produtos', [UserEnounController::class, 'verTodosProdutos'])->name('verTodosProdutos');
-    Route::get('/gerenciar/todos/servicos', [UserEnounController::class, 'verTodosServicos'])->name('verTodosServicos');
+    Route::get('/gerenciar/todos/produtos', [ProdutoEnounController::class, 'verTodosProdutos'])->name('verTodosProdutos');
+    Route::get('/gerenciar/todos/servicos', [ServicoEnounController::class, 'verTodosServicos'])->name('verTodosServicos');
     Route::get('/gerenciar/todos/admin', [UserEnounController::class, 'verTodosAdmins'])->name('verTodosAdmins');
     Route::get('/dashboard', [UserEnounController::class, 'dashboard'])->name('dashboard');
     Route::get('/servico/create', [ServicoEnounController::class, 'create'])->name('servico.create');
@@ -41,12 +41,12 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/categoria/create', [UserEnounController::class, 'formCategoria'])->name('categoria.create');
     Route::post('/categoria', [UserEnounController::class, 'salvarCategoria'])->name('categoria.store');
     Route::get('/categoria/all', [UserEnounController::class, 'todasCategoria'])->name('categoria.index');
-    Route::get('/produto/{produto}/edit', [ProdutoEnounController::class, 'edit'])->name('produto.edit');
-    Route::put('/produto/{produto}', [ProdutoEnounController::class, 'update'])->name('produto.update');
-    Route::delete('/produto/{produto}', [ProdutoEnounController::class, 'destroy'])->name('produto.destroy');
-    Route::get('/servico/{servico}/edit', [ServicoEnounController::class, 'edit'])->name('servico.edit');
-    Route::put('/servico/{servico}', [ServicoEnounController::class, 'update'])->name('servico.update');
-    Route::delete('/servico/{servico}', [ServicoEnounController::class, 'destroy'])->name('servico.destroy');
+    Route::get('/produto/{id}/edit', [ProdutoEnounController::class, 'edit'])->name('produto.edit');
+    Route::put('/produto/{id}', [ProdutoEnounController::class, 'update'])->name('produto.update');
+    Route::delete('/produto/{id}', [ProdutoEnounController::class, 'destroy'])->name('produto.destroy');
+    Route::get('/servico/{id}/edit', [ServicoEnounController::class, 'edit'])->name('servico.edit');
+    Route::put('/servico/{id}', [ServicoEnounController::class, 'update'])->name('servico.update');
+    Route::delete('/servico/{id}', [ServicoEnounController::class, 'destroy'])->name('servico.destroy');
 });
 
 Route::prefix('user')->middleware('guest')->group(function () {
@@ -55,11 +55,10 @@ Route::prefix('user')->middleware('guest')->group(function () {
     Route::get('/create', [UserEnounController::class, 'create'])->name('user.create');
     Route::get('/login', [UserEnounController::class, 'index'])->name('login');
     Route::post('/login/auth', [UserEnounController::class, 'autenticar'])->name('login.auth');
-   
 });
 
 
-Route::prefix('mercadoPagoPay')->middleware('auth')->group(function () {
+Route::prefix('mercadoPagoPay')->middleware(['auth','identificacao'])->group(function () {
     Route::get('/', [MercadoPagoController::class, 'index'])->name('mercadoPago');
     Route::get('/credito', [MercadoPagoController::class, 'cartaoPagamento'])->name('mercadoPagoCredito');
     Route::get('/pix', [MercadoPagoController::class, 'pix'])->name('mercadoPagoPix');
@@ -83,14 +82,13 @@ Route::prefix('mercadoPagoPay')->middleware('auth')->group(function () {
 Route::post('/assinatura/mp', [MercadoPagoController::class, 'criarAssinatura'])->name('assinaturaMP');
 Route::get('/formAssin', [MercadoPagoController::class, 'formAssinatura'])->name('formularioDeAssinatura');
 
-Route::prefix('pagSeguro')->middleware('auth')->group(function () {
+Route::prefix('pagSeguro')->middleware(['auth','identificacao'])->group(function () {
     Route::get('/pagSeguroCartao', [PagseguroController::class, 'index'])->name('pagSeguro');
     Route::post('/pagamentoPagSe', [PagseguroController::class, 'cartaoCredito'])->name('pagamentoCartaoPag');
     Route::get('/boletoPagSeguro', [PagseguroController::class, 'boleto'])->name('pagSeguroBoleto');
     Route::get('/pixPagSeguro', [PagseguroController::class, 'pix'])->name('pagSeguroPix');
     Route::get('/assinaturaRecorrente', [PagseguroController::class, 'assinaturaDeRecorrenciaInital'])->name('assinaturaPG');
     Route::get('/assinaturaRecorrenteSub', [PagseguroController::class, 'assinaturaDeRecorrenciaSubsequente'])->name('planoDeAssinaturaPG');
-   
 });
 Route::post('/notifications/pag', [PagseguroController::class, 'receberNotificacoes']);
 Route::prefix('servicos')->group(
@@ -110,3 +108,9 @@ Route::prefix('produtos')->group(
 Route::fallback(function () {
     return view('fallback');
 });
+
+
+Route::get('/user/perfil', [UserEnounController::class, 'meuPerfil'])->name('meuPerfil')->middleware('identificacao');
+Route::get('/user/planos', [UserEnounController::class, 'meusPlanos'])->name('meusPlanos')->middleware('identificacao');
+Route::post('/apagarUser/{id}', [UserEnounController::class, 'destroy'])->name('apagarPerfil');
+Route::get('/editarPerfil/{id}', [UserEnounController::class, 'edit'])->name('editarPerfil');

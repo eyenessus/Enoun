@@ -3,10 +3,12 @@
 namespace App\Repositories\Servico;
 
 use App\DTO\Servico\CreateServicoDTO;
+use App\DTO\Servico\UpdateServicoDTO;
 use App\Models\Categoria;
 use App\Models\Produto;
 use App\Models\Servico;
 use App\Repositories\Servico\ServicoEnounInterface;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -18,7 +20,6 @@ class ServicoEloquentORM implements ServicoEnounInterface
     public function __construct(protected Servico $model)
     {
     }
-
 
     public function getAll(): Collection
     {
@@ -44,19 +45,21 @@ class ServicoEloquentORM implements ServicoEnounInterface
 
     public function createServico(CreateServicoDTO $dto): stdClass | array
     {
-        
         $dto->user_id = Auth::user()->id;
         $dto->imagem = Storage::putFile('servicos', $dto->imagem);
         $servico = $this->model->create((array) $dto);
-        
+
         return (object) $servico->toArray();
     }
 
-    public function atualizarservico(string $id): null | stdClass
+    public function atualizarservico(UpdateServicoDTO $dto): null | stdClass
     {
-        if (!$servico = $this->model->findOrFail($id)) {
+        if (!$servico = $this->model->findOrFail($dto->id)) {
             return null;
         }
+        Storage::delete($servico->imagem);
+        $dto->imagem = Storage::putFile('servicos', $dto->imagem);
+        $servico->update(['imagem' => $dto->imagem]);
         return (object) $servico->toArray();
     }
 
@@ -71,7 +74,6 @@ class ServicoEloquentORM implements ServicoEnounInterface
     public function adicionarAoCarrinho(string $id): bool | null
     {
         $usuario = auth()->user();
-
         if (!$servico = $this->model->findOrFail($id)) {
             return null;
         }
@@ -90,9 +92,7 @@ class ServicoEloquentORM implements ServicoEnounInterface
         if (!$usuario) {
             return null;
         }
-
         $servico = $usuario->servicosComCarrinho;
-
         $total = $servico->sum(function ($servicos) {
             return $servicos->valor * $servicos->pivot->quantidade;
         });
@@ -100,35 +100,26 @@ class ServicoEloquentORM implements ServicoEnounInterface
         return ['servico' => collect($servico), 'totalservicos' => $total];
     }
 
-
-
     public function removerDoCarrinho(string $id): void
     {
         $usuario = auth()->user();
         $usuario->servicosComCarrinho()->detach($id);
     }
 
-
-
     public function decrementarServico(string $id): null | bool
     {
         $usuario = auth()->user();
-
         if (!$servico = $this->model->findOrFail($id)) {
             return null;
         }
+        $carrinhoDeservicos = $usuario->servicosComCarrinho();
+        $carrinhoDeservicos->syncWithoutDetaching($servico->id);
+        $carrinhoDeservicos->where('id', $id)->decrement('quantidade');
+        $servicosSemQuantidade = auth()->user()->servicosComCarrinho()->where('quantidade', '<', 1)->get()->toArray();
+        foreach ($servicosSemQuantidade as $servicoNull) {
+            $usuario->servicosComCarrinho()->detach($servicoNull['id']);
+        }
 
-            $carrinhoDeservicos = $usuario->servicosComCarrinho();
-            $carrinhoDeservicos->syncWithoutDetaching($servico->id);
-            $carrinhoDeservicos->where('id', $id)->decrement('quantidade');
-            $servicosSemQuantidade = auth()->user()->servicosComCarrinho()->where('quantidade', '<', 1)->get()->toArray();
-
-            foreach($servicosSemQuantidade as $servicoNull) {
-             $usuario->servicosComCarrinho()->detach($servicoNull['id']);
-             }
-           
         return true;
     }
-
- 
 }

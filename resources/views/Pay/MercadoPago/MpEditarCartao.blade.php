@@ -1,6 +1,8 @@
-@extends('Layout.main')
+@extends('Layout.Pay.MercadoPago.cartaoFormPagamento')
 @section('titulo', 'Salvar novo cartão')
 @section('conteudo')
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+
 <section class="bg-white dark:bg-gray-900">
     <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
         <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Editar cartão - Mercado Pago</h2>

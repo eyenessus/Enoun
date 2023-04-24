@@ -28,6 +28,7 @@ class UserEnounService {
 
     public function findOneUser(string $id) : stdClass | null
     {
+      
         return $this->repositoryUser->findOneUser($id);
     }
 
@@ -49,6 +50,7 @@ class UserEnounService {
 
     public function autenticarUser(LoginUserRequest $request) : RedirectResponse
     { 
+       
         $credenciais = $request->only('email','password');
         if (Auth::attempt($credenciais)) 
         {
@@ -65,6 +67,7 @@ class UserEnounService {
     public function sair(Request $request): RedirectResponse
     {
         Auth::logout();
+        
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');
@@ -106,5 +109,11 @@ class UserEnounService {
     public function buscarItensCarrinho(): array
     {
        return $this->repositoryUser->buscarItensCarrinho();
+    }
+
+    public function meuPerfil()
+    {
+     
+        return Auth::user();
     }
 }

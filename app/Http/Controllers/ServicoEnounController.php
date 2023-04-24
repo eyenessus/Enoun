@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\DTO\Servico\CreateServicoDTO;
+use App\DTO\Servico\UpdateServicoDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateServicoEnounRequest;
+use App\Http\Requests\Servico\UpdateServicoRequest;
 use App\Models\Categoria;
 use App\Models\Servico;
 use App\Services\Servico\ServicoEnounService;
@@ -46,12 +48,15 @@ class ServicoEnounController extends Controller
 
     public function edit(string $id): View
     {
-        return view('Servicos.edicaoServico');
+        $servico =   $this->service->findOne($id);
+        $categoria = $this->service->buscarCategorias();
+        return view('Servicos.edicaoServico',compact('servico','categoria'));
     }
 
 
-    public function update(Request $request, string $id): RedirectResponse
+    public function update(UpdateServicoRequest $request): RedirectResponse
     {
+        $servico =  $this->service->atualizarServico(UpdateServicoDTO::makeRequest($request));
         return redirect()->route('dashboard');
     }
 
@@ -78,5 +83,10 @@ class ServicoEnounController extends Controller
     {
         $this->service->decrementarDoCarrinho($id);
         return redirect()->back();
+    }
+    public function verTodosServicos()
+    {
+       $servicos = $this->service->getAll();
+        return view('Gerenciamento.Servico.servicos', compact('servicos'));
     }
 }

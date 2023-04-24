@@ -4,7 +4,7 @@
 
 
 <section class="bg-white dark:bg-gray-900">
-    <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+    <div class="grid max-w-screen-xl px-4 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
         <div class="mr-auto place-self-center lg:col-span-7">
             <h1
                 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
@@ -13,8 +13,6 @@
                 o
                 melhor do mundo da tecnologia e encontre os produtos eletrônicos mais incríveis aqui, onde cada click é
                 uma descoberta surpreendente!</p>
-
-
         </div>
         <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
             <img src="https://www.atacadogames.com/imagem/apple/celular-apple-iphone-14-pro-max-a2651-512gb-5g-esim-tela-6-7%27%27-cameras-de-48mp-12mp-12mp-e-12mp-gold/2/149668.jpg?pfdrid_c=true"
@@ -29,20 +27,19 @@
     <div class="container px-5 p-5 dark:bg-slate-900 mx-auto">
         @if(count($produto))
         @foreach ($categoria as $categorias)
-        <div class="container px-5 p-5 dark:bg-slate-900 rounded">
-
+        <div class="container px-5 p-2 dark:bg-slate-900 rounded">
             @if($produtos->categoria->nome == $categorias->nome)
             <h1 class="text-3xl text-bold dark:text-white">{{ $categorias->nome }}</h1>
             @endif
 
-            <div class="grid grid-cols-1 md:grid-cols-5 xl:grid-cols-4 sm:grid-cols-2 gap-5 pt-5 rounded">
+            <div class="grid grid-cols-1 md:grid-cols-5 xl:grid-cols-4 sm:grid-cols-2 gap-5  rounded">
                 @foreach ($produto as $produtos)
                 @if($produtos->categoria->nome == $categorias->nome)
                 <div>
                     <div
                         class="w-full max-w-sm bg-white border border-gray-200  shadow dark:bg-slate-600 dark:border-gray-700 rounded">
                         <a href="{{ route('produto.show',$produtos->id) }}">
-                            <img class="h-64 w-64  p-3 rounded-t-lg" src="/storage/{{ $produtos->imagem }}" alt="{{ $produtos->nome }}" />
+                            <img class="h-64 w-64  p-3 rounded-t-lg mx-auto" src="/storage/{{ $produtos->imagem }}" alt="{{ $produtos->nome }}" />
                         </a>
                         <div class="px-5 pb-5 mb-5">
                             <a href="{{ route('produto.show',$produtos->id) }}">

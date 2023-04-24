@@ -7,27 +7,27 @@
             <!-- Item 1 -->
             <div class="hidden duration-100 ease-linear" data-carousel-item>
                 <img src="https://i0.wp.com/9to5toys.com/wp-content/uploads/sites/5/2022/07/M2-macbook-pro-slower-ssd-speed.jpg?resize=1200%2C628&ssl=1"
-                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-fill" alt="...">
             </div>
             <!-- Item 2 -->
             <div class="hidden duration-100 ease-linear" data-carousel-item>
                 <img src="https://cdn.thewirecutter.com/wp-content/media/2020/12/macbook-2048px-9.jpg?auto=webp&quality=60&crop=1.91:1&width=1200"
-                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-fill" alt="...">
             </div>
             <!-- Item 3 -->
             <div class="hidden duration-100 ease-linear" data-carousel-item="active">
                 <img src="https://blogdoiphone.com/wp-content/uploads/2022/09/iPhone-14-linha.jpeg"
-                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-fill" alt="...">
             </div>
             <!-- Item 4 -->
             <div class="hidden duration-100 ease-linear" data-carousel-item>
                 <img src="https://d2r9epyceweg5n.cloudfront.net/stores/002/093/762/rte/Design%20sem%20nome%20(23).png"
-                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-fill" alt="...">
             </div>
             <!-- Item 5 -->
             <div class="hidden duration-100 ease-linear" data-carousel-item>
                 <img src="https://blogdoiphone.com/wp-content/uploads/2018/09/iPhone-XR.jpg"
-                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-fill" alt="...">
             </div>
         </div>
         <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">

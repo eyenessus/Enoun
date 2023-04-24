@@ -85,4 +85,9 @@ class ProdutoEnounController extends Controller
         $this->service->decrementarDoCarrinho($id);
         return redirect()->back();
     }
+    public function verTodosProdutos()
+    {
+        $produtos = $this->service->getAll();
+        return view('Gerenciamento.Produto.produtos',compact('produtos'));
+    }
 }

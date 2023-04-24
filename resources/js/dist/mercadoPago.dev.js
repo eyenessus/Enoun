@@ -8,7 +8,7 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
-var mp = new MercadoPago("");
+var mp = new MercadoPago("APP_USR-882d0289-ea17-43fc-886c-99307f2ac1b1");
 var cardNumberElement = mp.fields.create('cardNumber', {
   placeholder: "Número do cartão"
 }).mount('form-checkout__cardNumber');

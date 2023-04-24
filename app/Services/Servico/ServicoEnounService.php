@@ -2,7 +2,10 @@
 namespace App\Services\Servico;
 
 use App\DTO\Servico\CreateServicoDTO;
+use App\DTO\Servico\UpdateServicoDTO;
+use App\Http\Requests\Servico\UpdateServicoRequest;
 use App\Repositories\Servico\ServicoEnounInterface;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use stdClass;
 
@@ -36,9 +39,9 @@ class ServicoEnounService {
     }
 
 
-    public function atualizarProduto( string $id) : null | stdClass
+    public function atualizarServico(UpdateServicoDTO $dto) : null | stdClass
     {
-        return $this->repository->atualizarServico($id);
+        return $this->repository->atualizarServico($dto);
     }
 
 

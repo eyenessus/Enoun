@@ -9,24 +9,23 @@
     </a>
 </div>
 
-<div class="grid sm:grid-cols-2 gap-4 max-w-screen-xl mx-auto container my-2">
-    
-    <div class="my-8 mx-8 rounded-lg max-w-full ">
+<div class="grid sm:grid-cols-2 gap-2 max-w-screen-xl mx-auto container my-2">
+    <div class="my-12">
         <img src="/storage/{{ $servico['imagem'] }}" alt="">
     </div>
-    <div class="my-8 mx-8">
+    <div class="md:my-8 mx-8">
         <h1 class="text-5xl font-extrabold dark:text-white my-8">{{ $servico['nome'] }}</h1>
         <p class="max-w-lg text-3xl font-semibold leading-relaxed text-gray-900 dark:text-white">Descrição do servico
         </p>
         <h1 class="dark:text-white">{{ $servico['descricao'] }}
         </h1>
 
-
         <div class="my-8 ">
             <div class="inline-flex items-center font-bold  text-gray-900 dark:text-white my-2">
-                <h6> R$  {{number_format($servico['valor'], 2, ',', '.')}}</h6>
+               
+                <p class="text-5xl text-gray-900 dark:text-white">R$  {{number_format($servico['valor'], 2, ',', '.')}}</p>
                </div>
-            <form action="{{ route('servico.add.store',$servico['id']) }}" method="POST">
+            <form action="{{ route('servico.add.store',$servico['id']) }}" method="POST" class="my-8">
                 @csrf
                 <button type="submit"
                     class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Comprar</button>

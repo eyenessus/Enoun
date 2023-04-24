@@ -18,8 +18,12 @@
         </p>
         <h1 class="dark:text-white">{{ $produto['descricao'] }}</h1>
        
-        <div class="my-8 ">
-            <form action="{{ route('produto.add.store',$produto['id']) }}" method="POST">
+        <div class="my-8 mb-8 ">
+            <div class="inline-flex items-center font-bold  text-gray-900 dark:text-white my-2">
+              
+                <p class="text-5xl text-gray-900 dark:text-white">R$ {{number_format($produto['valor'], 2, ',', '.')}}</p>
+               </div>
+            <form action="{{ route('produto.add.store',$produto['id']) }}" method="POST" class="my-8">
                 @csrf
                 <button type="submit"
                 class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Comprar</button>

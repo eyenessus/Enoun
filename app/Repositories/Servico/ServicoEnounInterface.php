@@ -2,6 +2,8 @@
 namespace App\Repositories\Servico;
 
 use App\DTO\Servico\CreateServicoDTO;
+use App\DTO\Servico\UpdateServicoDTO;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use stdClass;
 
@@ -16,7 +18,7 @@ interface ServicoEnounInterface {
 
     public function createServico(CreateServicoDTO $dto) : stdClass | array;
 
-    public function atualizarServico( string $id) : null | stdClass;
+    public function atualizarServico(UpdateServicoDTO $dto) : null | stdClass;
 
     public function adicionarAoCarrinho(string $id) : bool | null ;
 

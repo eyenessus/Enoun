@@ -18,7 +18,7 @@
                     <th scope="col" class="px-6 py-3">
                         Nome do produto
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 mx-auto text-center">
                         Descricao
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -65,7 +65,7 @@
                     <td class="px-6 py-4">
                         @foreach ($pedido->quantidadeUnitaria as $quantidade)
                         <ul>
-                            <li class="my-auto mx-auto">
+                            <li class="mx-auto text-center">
                                 {{ $quantidade }}
                             
                             </li>

@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('slides', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('imagemPerfil')->default('/avatar/perfil.jpg');
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('slides', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('imagemPerfil')->defautl('/avatar/perfil.jpg');
         });
     }
 };

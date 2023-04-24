@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigInteger('documento')->unique();
             $table->string('codigo_area');
             $table->bigInteger('telefone');
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

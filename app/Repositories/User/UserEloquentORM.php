@@ -28,7 +28,7 @@ class UserEloquentORM implements UserEnounInterface
 
     public function findOneUser(string $id): stdClass | null
     {
-        if (!$usuario = $this->model->findOne($id)) {
+        if (!$usuario = $this->model->findOrFail($id)) {
             return null;
         }
         return (object) $usuario->toArray();;

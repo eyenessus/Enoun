@@ -33,12 +33,20 @@
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 mx-auto max-w-screen-xl">
     
                         <td class="w-32 p-4">
-                            <img src="/storage/{{ $produtos->imagem }}" alt="{{ $produtos->nome }}" class=" w-40 h-26">
+                            <a href="{{ route('produto.show',$produtos->id) }}">
+                                <img src="/storage/{{ $produtos->imagem }}" alt="{{ $produtos->nome }}" class=" w-40 h-26">
+                            </a>
+                           
                         </td>
-                        <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                            {{ $produtos->nome }}
-                        </td>
-    
+                      
+                            <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                                <a href="{{ route('produto.show',$produtos->id) }}">
+                                {{ $produtos->nome }}
+                            </a>
+                            </td>
+        
+                       
+                       
                         <td class="px-6 py-4">
                             <div class="flex items-center space-x-3">
     
@@ -100,11 +108,19 @@
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
     
                         <td class="w-32 p-4">
-                            <img src="/storage/{{ $servicos->imagem }}" alt="{{ $servicos->nome }}">
+                            <a href="{{ route('servico.show',$servicos->id) }}">
+                                <img src="/storage/{{ $servicos->imagem }}" alt="{{ $servicos->nome }}">
+                            </a>
+                           
                         </td>
-                        <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                            {{ $servicos->nome }}
-                        </td>
+                       
+                            <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                             
+                                <a href="{{ route('servico.show',$servicos->id) }}">
+                                {{ $servicos->nome }}
+                            </a>
+                            </td>
+                      
     
                         <td class="px-6 py-4">
                             <div class="flex items-center space-x-3">

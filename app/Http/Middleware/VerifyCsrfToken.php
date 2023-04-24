@@ -12,13 +12,5 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        '/assinatura/mp',
-        '/planoDeAssinatura/mp',
-        '/notifications/mp',
-        '/cliente/mp',
-        '/planos/mp',
-        '/gerenciar/todos/assinaturas',
-        'boletoPagSeguro',
-        '/notifications/pag'
     ];
 }

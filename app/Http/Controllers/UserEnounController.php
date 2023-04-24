@@ -12,6 +12,7 @@ use App\Services\Servico\ServicoEnounService;
 use App\Services\User\UserEnounService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 
@@ -40,7 +41,7 @@ class UserEnounController extends Controller
     public function store(CreateUserEnounRequest $request)
     {
         $this->service->createUser(CreateUserDTO::makeFromRequest($request));
-        return redirect()->route('identidade');
+        return redirect()->route('inicio');
     }
 
     public function show(string $id)
@@ -59,6 +60,7 @@ class UserEnounController extends Controller
 
     public function destroy(string $id)
     {
+        $this->service->deleteUser($id);
     }
 
 
@@ -117,28 +119,23 @@ class UserEnounController extends Controller
 
     public function todasCategoria()
     {
-        return view('Gerenciamento.Categoria.categorias');
+       $categorias = $this->serviceProduto->buscarCategorias();
+        return view('Gerenciamento.Categoria.categorias',compact('categorias'));
     }
 
     public function verTodosUsuarios()
     {
-        return view('Gerenciamento.User.users');
+        $users = $this->service->getAllUser();
+        return view('Gerenciamento.User.users',compact('users'));
     }
-    public function verTodosProdutos()
-    {
-        return view('Gerenciamento.Produto.produtos');
-    }
-    public function verTodosServicos()
-    {
-        return view('Gerenciamento.Servico.servicos');
-    }
+   
+   
     public function verTodosAdmins()
     {
         return view('Gerenciamento.Admin.admins');
     }
 
-
-
+  
     public function formcadastrarIdentidade()
     {
         return view('Cadastro.identidade');
@@ -162,5 +159,16 @@ class UserEnounController extends Controller
         $this->service->criarEndereco($request);
         $this->mercadoPago->criarCliente();
         return redirect()->route('inicio');
+    }
+
+    public function meuPerfil()
+    {
+       $meuPerfil =  $this->service->meuPerfil();
+        return view('User.configuracoes', compact('meuPerfil'));
+    }
+
+    public function meusPlanos()
+    {
+        return view('User.plano');
     }
 }

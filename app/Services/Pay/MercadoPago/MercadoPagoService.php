@@ -276,8 +276,8 @@ class MercadoPagoService
 
     public function atualizarCartao(Request $request)
     {
-        return redirect()->route('inicio');
-        /*
+            return redirect()->route('inicio');
+       /*
         $this->identificacaoUsuario();
         $cliente = SDK::getClientId();
         $informacoesCartao = $this->encontrarCartao($request->card);
