@@ -16,7 +16,7 @@
       padding: 1px 2px;
     }
   </style>
- 
+ @dd($total['total'] )
   <form id="form-checkout" action="{{ route('mercadoPago.credito.store') }}" method="POST">
     @csrf
     <div id="form-checkout__cardNumber" class="container"></div>

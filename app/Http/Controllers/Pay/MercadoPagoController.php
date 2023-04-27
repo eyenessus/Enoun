@@ -23,7 +23,7 @@ class MercadoPagoController extends Controller
         return redirect($processandoPay);
     }
 
-    public function cartaoPagamento()
+    public function cartaoPagamentoForm()
     {
         $dados = $this->service->buscarDadosCliente();
         $total = $this->serviceUser->valorFinal();
@@ -32,7 +32,6 @@ class MercadoPagoController extends Controller
         }
         return view('Pay.MercadoPago.mercadoPago', compact('dados', 'total'));
     }
-
 
     public function boleto()
     {
@@ -43,7 +42,6 @@ class MercadoPagoController extends Controller
         return redirect($boleto);
     }
 
-
     public function pix()
     {
         $pix = $this->service->qrCodePix();
@@ -53,9 +51,7 @@ class MercadoPagoController extends Controller
         return view('Pay.MercadoPago.mercadoPagoQrCode', compact('pix'));
     }
 
-
-
-    public function store(Request $request)
+    public function pagamentoCartao(Request $request)
     {
         $status = $this->service->paymentCartaoCredito($request);
         if ($status['status'] == "approved") {
@@ -64,14 +60,11 @@ class MercadoPagoController extends Controller
         return redirect()->route('inicio');
     }
 
-
-
     public function update(Request $request)
     {
         $resposta = $this->service->atualizarCartao($request);
         return redirect()->route('inicio');
     }
-
 
     public function destroy(string $id)
     {
@@ -80,13 +73,11 @@ class MercadoPagoController extends Controller
             return redirect()->route('meusCartoes');
         }
     }
-    
 
     public function formSalvarCartao()
     {
         return view('Pay.MercadoPago.mercadoPagoSaveCartao');
     }
-
 
     public function salvarCartao(Request $request)
     {
@@ -97,21 +88,18 @@ class MercadoPagoController extends Controller
         return redirect()->route('inicio');
     }
 
-
     public function obterTodosCartoes()
     {
         $cartoes = $this->service->obterTodosCartoes();
-        
+
         return view('Pay.MercadoPago.mercadoPagoCartoes', compact('cartoes'));
     }
-
 
     public function atualizarCartao(string $id)
     {
         $dados = $this->service->encontrarCartao($id);
         return view('Pay.MercadoPago.mpEditarCartao', compact('dados'));
     }
-
 
     public function receberNotificacoes(Request $request)
     {
@@ -145,8 +133,7 @@ class MercadoPagoController extends Controller
         $planos = collect($planos['results']);
         return view('Gerenciamento.Plano.planos', compact('planos'));
     }
-
-
+    
     public function verTodasAssinaturas()
     {
         $assinatura = $this->service->buscarTodosPlanosDeAssinatura();

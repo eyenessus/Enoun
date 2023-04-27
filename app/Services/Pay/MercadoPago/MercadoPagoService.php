@@ -128,7 +128,6 @@ class MercadoPagoService
         if (!$bagItems) {
             return null;
         }
-        $finalizarPedido = $this->serviceUser->finalizarPedido();
         $payment->save();
         $finalizar = $this->serviceUser->finalizarPedido($payment->status, $payment->id);
         $qrCodePixBase64 = $payment->point_of_interaction->transaction_data->qr_code_base64;

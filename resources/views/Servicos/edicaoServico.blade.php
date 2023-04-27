@@ -40,7 +40,7 @@
                             name="categoria_id">
     
     
-                            <option selected="" value="{{$servico['categoria_id']}}">{{$categoria[$servico['categoria_id']]['nome']}}</option>
+                            <option selected="" value="{{$servico['categoria_id']}}">Sem alterações</option>
     
                          
                                @foreach ($categoria as $categorias)

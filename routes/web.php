@@ -7,10 +7,35 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [EnounController::class, 'index'])->name('inicio');
 
+Route::prefix('servicos')->group(
+    function () {
+        Route::get('/', [ServicoEnounController::class, 'index'])->name('servicos.index');
+        Route::get('/{servico}', [ServicoEnounController::class, 'show'])->name('servico.show');
+    }
+);
+
+Route::prefix('produtos')->group(
+    function () {
+        Route::get('/{produto}', [ProdutoEnounController::class, 'show'])->name('produto.show');
+        Route::get('/', [ProdutoEnounController::class, 'index'])->name('produtos.index');
+    }
+);
+
+Route::fallback(function () {
+    return view('fallback');
+});
 
 Route::prefix('/home')->group(function () {
     Route::get('/sobre', [EnounController::class, 'sobre'])->name('sobre');
     Route::get('/pedidos', [UserEnounController::class, 'meusPedidos'])->name('meusPedidos');
+});
+
+Route::prefix('user')->middleware('guest')->group(function () {
+    Route::get('/recovery', [UserEnounController::class, 'recuperar'])->name('user.recovery');
+    Route::post('/user', [UserEnounController::class, 'store'])->name('user.store');
+    Route::get('/create', [UserEnounController::class, 'create'])->name('user.create');
+    Route::get('/login', [UserEnounController::class, 'index'])->name('login');
+    Route::post('/login/auth', [UserEnounController::class, 'autenticar'])->name('login.auth');
 });
 
 Route::middleware('auth')->group(function () {
@@ -28,7 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/endereco', [UserEnounController::class, 'endereco'])->name('endereco.store');
 });
 
-Route::prefix('admin')->middleware(['auth','identificacao','admin'])->group(function () {
+Route::prefix('admin')->middleware(['auth', 'identificacao', 'admin'])->group(function () {
     Route::get('/gerenciar/todos/users', [UserEnounController::class, 'verTodosUsuarios'])->name('verTodosUsuarios');
     Route::get('/gerenciar/todos/produtos', [ProdutoEnounController::class, 'verTodosProdutos'])->name('verTodosProdutos');
     Route::get('/gerenciar/todos/servicos', [ServicoEnounController::class, 'verTodosServicos'])->name('verTodosServicos');
@@ -47,23 +72,16 @@ Route::prefix('admin')->middleware(['auth','identificacao','admin'])->group(func
     Route::get('/servico/{id}/edit', [ServicoEnounController::class, 'edit'])->name('servico.edit');
     Route::put('/servico/{id}', [ServicoEnounController::class, 'update'])->name('servico.update');
     Route::delete('/servico/{id}', [ServicoEnounController::class, 'destroy'])->name('servico.destroy');
+    Route::post('/assinatura/mp', [MercadoPagoController::class, 'criarAssinatura'])->name('assinaturaMP');
+    Route::get('/formAssin', [MercadoPagoController::class, 'formAssinatura'])->name('formularioDeAssinatura');
 });
 
-Route::prefix('user')->middleware('guest')->group(function () {
-    Route::get('/recovery', [UserEnounController::class, 'recuperar'])->name('user.recovery');
-    Route::post('/user', [UserEnounController::class, 'store'])->name('user.store');
-    Route::get('/create', [UserEnounController::class, 'create'])->name('user.create');
-    Route::get('/login', [UserEnounController::class, 'index'])->name('login');
-    Route::post('/login/auth', [UserEnounController::class, 'autenticar'])->name('login.auth');
-});
-
-
-Route::prefix('mercadoPagoPay')->middleware(['auth','identificacao'])->group(function () {
+Route::prefix('mercadoPagoPay')->middleware(['auth', 'identificacao'])->group(function () {
     Route::get('/', [MercadoPagoController::class, 'index'])->name('mercadoPago');
-    Route::get('/credito', [MercadoPagoController::class, 'cartaoPagamento'])->name('mercadoPagoCredito');
+    Route::get('/credito', [MercadoPagoController::class, 'cartaoPagamentoForm'])->name('mercadoPagoCredito');
     Route::get('/pix', [MercadoPagoController::class, 'pix'])->name('mercadoPagoPix');
     Route::get('/boleto', [MercadoPagoController::class, 'boleto'])->name('mercadoPagoBoleto');
-    Route::post('/creditoPost', [MercadoPagoController::class, 'store'])->name('mercadoPago.credito.store');
+    Route::post('/creditoPost', [MercadoPagoController::class, 'pagamentoCartao'])->name('mercadoPago.credito.store');
     Route::post('/card', [MercadoPagoController::class, 'salvarCartao'])->name('salvarCartao');
     Route::get('/card/create', [MercadoPagoController::class, 'formSalvarCartao']);
     Route::delete('/card/{card}', [MercadoPagoController::class, 'destroy'])->name('apagarCartao');
@@ -79,34 +97,14 @@ Route::prefix('mercadoPagoPay')->middleware(['auth','identificacao'])->group(fun
 });
 
 
-Route::post('/assinatura/mp', [MercadoPagoController::class, 'criarAssinatura'])->name('assinaturaMP');
-Route::get('/formAssin', [MercadoPagoController::class, 'formAssinatura'])->name('formularioDeAssinatura');
-
-Route::prefix('pagSeguro')->middleware(['auth','identificacao'])->group(function () {
+Route::prefix('pagSeguro')->middleware(['auth', 'identificacao'])->group(function () {
     Route::get('/pagSeguroCartao', [PagseguroController::class, 'index'])->name('pagSeguro');
     Route::post('/pagamentoPagSe', [PagseguroController::class, 'cartaoCredito'])->name('pagamentoCartaoPag');
     Route::get('/boletoPagSeguro', [PagseguroController::class, 'boleto'])->name('pagSeguroBoleto');
     Route::get('/pixPagSeguro', [PagseguroController::class, 'pix'])->name('pagSeguroPix');
+    Route::post('/notifications/pag', [PagseguroController::class, 'receberNotificacoes']);
     Route::get('/assinaturaRecorrente', [PagseguroController::class, 'assinaturaDeRecorrenciaInital'])->name('assinaturaPG');
     Route::get('/assinaturaRecorrenteSub', [PagseguroController::class, 'assinaturaDeRecorrenciaSubsequente'])->name('planoDeAssinaturaPG');
-});
-Route::post('/notifications/pag', [PagseguroController::class, 'receberNotificacoes']);
-Route::prefix('servicos')->group(
-    function () {
-        Route::get('/', [ServicoEnounController::class, 'index'])->name('servicos.index');
-        Route::get('/{servico}', [ServicoEnounController::class, 'show'])->name('servico.show');
-    }
-);
-
-Route::prefix('produtos')->group(
-    function () {
-        Route::get('/{produto}', [ProdutoEnounController::class, 'show'])->name('produto.show');
-        Route::get('/', [ProdutoEnounController::class, 'index'])->name('produtos.index');
-    }
-);
-
-Route::fallback(function () {
-    return view('fallback');
 });
 
 

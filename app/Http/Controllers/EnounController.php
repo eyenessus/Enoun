@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Produto;
+use App\Models\Slide;
 use App\Services\Produto\ProdutoEnounService;
 use App\Services\User\UserEnounService;
 use Illuminate\View\View;
@@ -12,7 +13,8 @@ class EnounController extends Controller
  public function __construct(protected UserEnounService $service){}
     public function index() : View
     {
-        return view('welcome');
+        $slide = Slide::all();
+        return view('welcome', compact('slide'));
     }
 
     public function sobre() : View

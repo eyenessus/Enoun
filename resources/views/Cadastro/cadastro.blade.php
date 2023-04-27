@@ -4,7 +4,7 @@
     <section class="bg-gray-50 dark:bg-gray-900">
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
             <a href="{{ route('inicio') }}" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
-                <img class="w-14 h-14 mr-2" src="./logo/logounico.png" alt="logo">
+                <img class="w-14 h-14 mr-2" src="/logo/logounico.png" alt="logo">
                 Enoun
             </a>
             <div
@@ -70,7 +70,7 @@
                         @endif
                   
                         <div class="flex justify-center">
-                            <button type="submit" class="block mx-auto text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Criar conta</button>
+                            <button type="submit"  id="botaoCadastro" class="block mx-auto text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Criar conta</button>
                           </div>
                           
                         <p class="text-sm font-light text-gray-500 dark:text-gray-400">

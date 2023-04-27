@@ -46,6 +46,7 @@ class ProdutoEnounController extends Controller
 
     public function edit(string $id): View
     {
+       
         $produto = $this->service->findOne($id);
         $categoria = $this->service->buscarCategorias();
         return view('Produtos.edicaoProduto', compact('produto', 'categoria'));
