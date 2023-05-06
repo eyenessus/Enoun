@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DTO\User\CreateUserDTO;
+use App\DTO\User\UpdateUserDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Pay\MercadoPagoController;
 use App\Http\Requests\CreateUserEnounRequest;
@@ -50,11 +51,20 @@ class UserEnounController extends Controller
 
     public function edit(string $id)
     {
+        $usuario = $this->service->findOneUser($id);
+        if($usuario->id == (int)Auth::id())
+        {
+        
+            return view('User.formPerfil',compact('usuario'));
+        }
+        return redirect()->route('inicio');
     }
 
 
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
+        $usuario =$this->service->updateUser(UpdateUserDTO::makeRequest($request));
+        
     }
 
 

@@ -14,6 +14,7 @@ use MercadoPago\Customer;
 use MercadoPago\Item;
 use MercadoPago\Payer;
 use MercadoPago\Payment;
+use MercadoPago\Plan;
 use MercadoPago\Preapproval;
 use MercadoPago\Preference;
 use MercadoPago\SDK;

@@ -28,7 +28,7 @@
                         data-dropdown-placement="bottom">
 
                         <span class="sr-only">Open user menu</span>
-                        <img class="w-8 h-8 rounded-full" src="{{ Auth::user()->imagemPerfil }}"
+                        <img class="w-8 h-8 rounded-full object-cover" src="/storage/{{ Auth::user()->imagemPerfil }}"
                             alt="user photo">
                     </button>
                     <a href="{{ route('carrinho.index') }}">

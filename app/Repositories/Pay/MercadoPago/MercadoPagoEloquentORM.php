@@ -44,39 +44,28 @@ class MercadoPagoEloquentORM implements MercadoPagoInterface
         {
             if ($request['data']['id'] || $request['type'] == 'payment') {
                 $payment = Payment::find_by_id($request['data']['id']);
-                switch ($payment->status) {
-                    case 'approved':
+                $status = [
+                    'approved' => 'PAGAMENTO APROVADO',
+                    'pending' => 'AGUARDANDO PAGAMENTO',
+                    'in_process' => 'PROCESSANDO',
+                    'rejected' => 'PAGAMENTO RECUSADO',
+                    'cancelled' => 'PAGAMENTO CANCELADO',
+                    'failed' => 'PAGAMENTO ERRADO',
+                    'refunded'=> 'PAGAMENTO REEMBOLSADO',
+                    'charged_back'=> 'PAGAMENTO ESTORNADO'
+                ];
+                switch($payment->status)
+                {
+                    case $payment->status:
                         Pedido::where('id', $request['data']['id'])->orWhere('id',$payment->external_reference)
-                            ->update(['status' => "PAGAMENTO APROVADO"]);
-                        break;
-                    case 'pending':
-                        Pedido::where('id', $request['data']['id'])->orWhere('id',$payment->external_reference)
-                            ->update(['status' => "AGUARDANDO PAGAMENTO"]);
-                        break;
-                    case 'in_process':
-                        Pedido::where('id', $request['data']['id'])->orWhere('id',$payment->external_reference)
-                            ->update(['status' => "PROCESSANDO"]);
-                        break;
-                    case 'rejected':
-                        Pedido::where('id', $request['data']['id'])->orWhere('id',$payment->external_reference)
-                            ->update(['status' => "PAGAMENTO RECUSADO"]);
-                        break;
-                    case 'cancelled':
-                        Pedido::where('id', $request['data']['id'])->orWhere('id',$payment->external_reference)
-                            ->update(['status' => "PAGAMENTO CANCELADO"]);
-                        break;
-                    case 'refunded':
-                        Pedido::where('id', $request['data']['id'])->orWhere('id',$payment->external_reference)
-                            ->update(['status' => "PAGAMENTO REEMBOLSADO"]);
-                        break;
-                    case 'charged_back':
-                        Pedido::where('id', $request['data']['id'])->orWhere('id',$payment->external_reference)
-                            ->update(['status' => "PAGAMENTO ESTORNADO"]);
-                        break;
+                        ->update(['status' => $status[$payment->status]]);
+                    break;
+
                     default:
-                        Pedido::where('id', $request['data']['id'])->orWhere('id',$payment->external_reference)
-                            ->update(['status' => "Não reconhecido"]);
-                }
+                    Pedido::where('id', $request['data']['id'])->orWhere('id',$payment->external_reference)
+                        ->update(['status' => 'Erro desconhecido']);
+                    break;
+                }; 
             }
             return response('OK',200);
         }

@@ -3,6 +3,7 @@
 namespace App\Repositories\User;
 
 use App\DTO\User\CreateUserDTO;
+use App\DTO\User\UpdateUserDTO;
 use App\Models\Categoria;
 use App\Models\Endereco;
 use App\Models\Identidade;
@@ -13,6 +14,7 @@ use Illuminate\Http\Client\Request as ClientRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use stdClass;
 
 class UserEloquentORM implements UserEnounInterface
@@ -49,11 +51,15 @@ class UserEloquentORM implements UserEnounInterface
         return (object) $usuario->toArray();
     }
 
-    public function updateUser(string $id): stdClass | null
+    public function updateUser(UpdateUserDTO $dto): stdClass | null
     {
-        if (!$usuario = $this->model->findOrFail($id)) {
+        if (!$usuario = $this->model->findOrFail($dto->id)) {
             return null;
         }
+        $imagem = Storage::putFile('user', $dto->imagemPerfil, 'public');
+        dd($imagem);
+        $usuario['imagemPerfil'] = $imagem;
+        $usuario->update((array)$dto);
         return (object)$usuario->toArray();
     }
 
@@ -70,7 +76,7 @@ class UserEloquentORM implements UserEnounInterface
 
     public function  finalizarPedido(string $status = null, int $id = null): Collection
     {
-        
+
         $user = Auth::user();
         $nome = [];
         $quantidadeUnitaria = [];
@@ -151,7 +157,7 @@ class UserEloquentORM implements UserEnounInterface
 
     public function salvarCategoria(Request $request)
     {
-        Categoria::create(['nome'=>$request->categoria]);
+        Categoria::create(['nome' => $request->categoria]);
     }
 
     public function  criarIdentidade(Request $request)
@@ -160,11 +166,11 @@ class UserEloquentORM implements UserEnounInterface
         Identidade::create($request->all());
         return true;
     }
-   
+
 
     public function criarEndereco(Request $request)
     {
-   
+
         $request['user_id'] = auth()->user()->id;
         Endereco::create($request->all());
         return true;
@@ -179,5 +185,4 @@ class UserEloquentORM implements UserEnounInterface
             'servicos' => collect($servicos)
         ];
     }
-   
 }

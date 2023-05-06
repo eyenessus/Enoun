@@ -56,9 +56,11 @@ class ProdutoEloquentORM implements ProdutoEnounInterface
         if (!$produto = $this->model->findOrFail($dto->id)) {
             return null;
         }
+        
         Storage::delete($produto->imagem);
         $caminhoImagem = $dto->imagem = Storage::putFile('produtos', $dto->imagem);
-        $produto->update(['imagem'=> $caminhoImagem]);
+        $produto['imagem'] = $caminhoImagem;
+        $produto->update((array) $dto);
         return (object) $produto->toArray();
     }
 

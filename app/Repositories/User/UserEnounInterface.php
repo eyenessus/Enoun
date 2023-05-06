@@ -3,6 +3,7 @@
 namespace App\Repositories\User;
 
 use App\DTO\User\CreateUserDTO;
+use App\DTO\User\UpdateUserDTO;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use stdClass;
@@ -17,7 +18,7 @@ interface UserEnounInterface
 
     public function createUser(CreateUserDTO $dto): stdClass | null;
 
-    public function updateUser(string $id): stdClass | null;
+    public function updateUser(UpdateUserDTO $dto): stdClass | null;
     
     public function meusRegistros(): array;
 

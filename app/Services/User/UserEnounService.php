@@ -2,6 +2,7 @@
 namespace App\Services\User;
 
 use App\DTO\User\CreateUserDTO;
+use App\DTO\User\UpdateUserDTO;
 use App\Http\Requests\LoginUserRequest;
 use App\Repositories\Produto\ProdutoEnounInterface;
 use App\Repositories\User\UserEnounInterface;
@@ -43,9 +44,9 @@ class UserEnounService {
         return $this->repositoryUser->createUser($dto);
     }
 
-    public function updateUser(string $id): stdClass | null
+    public function updateUser(UpdateUserDTO $dto): stdClass | null
     {
-        return $this->repositoryUser->updateUser($id);
+        return $this->repositoryUser->updateUser($dto);
     }
 
     public function autenticarUser(LoginUserRequest $request) : RedirectResponse

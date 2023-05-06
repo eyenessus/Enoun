@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\Enoun\EnounEloquentORM;
+use App\Repositories\Enoun\EnounInterface;
 use App\Repositories\Pay\MercadoPago\MercadoPagoEloquentORM;
 use App\Repositories\Pay\MercadoPago\MercadoPagoInterface;
 use App\Repositories\Pay\Pagseguro\PagseguroEloquentORM;
@@ -26,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
      $this->app->bind(ServicoEnounInterface::class,ServicoEloquentORM::class);
      $this->app->bind(MercadoPagoInterface::class,MercadoPagoEloquentORM::class);
      $this->app->bind(PagseguroInterface::class,PagseguroEloquentORM::class);
+     $this->app->bind(EnounInterface::class,EnounEloquentORM::class);
     }
 
     /**

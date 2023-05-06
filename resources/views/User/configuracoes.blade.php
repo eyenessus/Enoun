@@ -6,9 +6,13 @@
     <div
         class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
 
-        <img class="mx-auto w-64 h-64 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
-            src="{{  $meuPerfil->imagemPerfil }}" alt="Bordered avatar">
-
+        <img class="mx-auto w-64 h-64 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 object-cover"
+            src="/storage/{{  $meuPerfil->imagemPerfil }}" alt="Bordered avatar">
+            <div class="text-5xl font-extrabold ...">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
+                  Hello world
+                </span>
+              </div>
 
         <h2 class="text-4xl font-bold dark:text-white mx-auto my-8">{{ $meuPerfil->nome. ' ' .$meuPerfil->sobrenome}}
         </h2>
@@ -27,22 +31,20 @@
             </div>
         </div>
         <div class="mt-4 md:mt-0">
-            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Let's create more
-                tools and ideas that brings us together.</h2>
-            <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">Flowbite helps you connect with
-                friends and communities of people who share your interests. Connecting with your friends and family as
-                well as discovering new ones is easy with features like Groups.</p>
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">A única maneira de fazer algo excelente é amar o que você faz.</h2>
+            <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">Criatividade é só conectar coisas..</p>
 
         </div>
         <div>
-         <div class="mx-auto">
+         <div class="mx-auto grid grid-cols-2">
+
              <div>
-                <form action="{{ route('apagarPerfil',$meuPerfil->id) }}" method="POST">
-                    @csrf
-                    <button type="submit"
-                    class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">EDITAR</button>
-                </form>
+               <a href="{{ route('editarPerfil',$meuPerfil->id) }}">
+                
+                <button class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-red-700 dark:focus:ring-green-900">Editar perfil</button>
+                </a>
              </div>
+           
            <div>
             <form action="{{ route('apagarPerfil',$meuPerfil->id) }}" method="POST">
                 @csrf

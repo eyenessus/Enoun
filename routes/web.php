@@ -6,7 +6,7 @@ use App\Http\Controllers\Pay\PagseguroController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [EnounController::class, 'index'])->name('inicio');
-
+Route::get('/search/{search?}',[EnounController::class,'buscar'])->name('buscar');
 Route::prefix('servicos')->group(
     function () {
         Route::get('/', [ServicoEnounController::class, 'index'])->name('servicos.index');
@@ -89,13 +89,13 @@ Route::prefix('mercadoPagoPay')->middleware(['auth', 'identificacao'])->group(fu
     Route::post('/editarCartao/{cartao}', [MercadoPagoController::class, 'atualizarCartao'])->name('editarCartao');
     Route::put('/atualizarCartao/{card}', [MercadoPagoController::class, 'update'])->name('atualizarCard');
     Route::post('/cliente/mp', [MercadoPagoController::class, 'criarCliente'])->name('criarClienteMP');
-    Route::post('/notifications/mp', [MercadoPagoController::class, 'receberNotificacoes']);
+    
     Route::post('/planoDeAssinatura/mp', [MercadoPagoController::class, 'criarPlanoAssinatura'])->name('planoDeAssinaturaMP');
     Route::get('/plano/assinatura', [MercadoPagoController::class, 'formularioPlanoAssinatura'])->name('formularioPlanoAssinatura');
     Route::get('/gerenciar/todos/assinaturas', [MercadoPagoController::class, 'verTodasAssinaturas'])->name('verTodasAssinaturas');
     Route::get('/planos/mp', [MercadoPagoController::class, 'verTodosPlanosDeAssinatura'])->name('verPlanosAssinatura');
 });
-
+Route::post('/notifications/mp', [MercadoPagoController::class, 'receberNotificacoes']);
 
 Route::prefix('pagSeguro')->middleware(['auth', 'identificacao'])->group(function () {
     Route::get('/pagSeguroCartao', [PagseguroController::class, 'index'])->name('pagSeguro');
@@ -112,3 +112,5 @@ Route::get('/user/perfil', [UserEnounController::class, 'meuPerfil'])->name('meu
 Route::get('/user/planos', [UserEnounController::class, 'meusPlanos'])->name('meusPlanos')->middleware('identificacao');
 Route::post('/apagarUser/{id}', [UserEnounController::class, 'destroy'])->name('apagarPerfil');
 Route::get('/editarPerfil/{id}', [UserEnounController::class, 'edit'])->name('editarPerfil');
+Route::put('/formUpdate/{id}',[UserEnounController::class, 'update'])->name('atualizarPerfil');
+

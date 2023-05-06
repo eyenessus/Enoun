@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('imagemPerfil')->default('/avatar/perfil.jpg');
+            $table->string('imagemPerfil')->default('/storage/user/perfil.jpg');
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('imagemPerfil')->defautl('/avatar/perfil.jpg');
+            $table->dropColumn('imagemPerfil')->defautl('/storage/user/perfil.jpg');
         });
     }
 };

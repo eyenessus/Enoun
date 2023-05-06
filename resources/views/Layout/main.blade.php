@@ -30,7 +30,7 @@
                         data-dropdown-placement="bottom">
 
                         <span class="sr-only">Open user menu</span>
-                        <img class="w-8 h-8 rounded-full" src="{{ Auth::user()->imagemPerfil }}"
+                        <img class="w-8 h-8 rounded-full object-cover" src="/storage/{{ Auth::user()->imagemPerfil }}"
                             alt="Perfil do {{ Auth::user()->nome }}">
                     </button>
                     <a href="{{ route('carrinho.index') }}">
@@ -77,10 +77,12 @@
                             <a href="{{ route('meuPerfil') }}"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Configurações</a>
                         </li>
+                        <!--
                         <li>
                             <a href="{{ route('meusPlanos') }}"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Plano</a>
                         </li>
+                    -->
                         <li>
                             <a href="{{ route('sair') }}"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sair</a>
@@ -105,9 +107,11 @@
                         </svg>
                         <span class="sr-only">Search icon</span>
                     </div>
+                   <form action="{{ route('buscar') }}" method="GET">
                     <input type="text" id="search-navbar"
-                        class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Buscar">
+                    class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Buscar" name="search">
+                   </form>
                 </div>
 
                 <button data-collapse-toggle="navbar-search" type="button"
