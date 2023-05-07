@@ -109,7 +109,11 @@ class MercadoPagoController extends Controller
 
     public function criarAssinatura(Request $request)
     {
-        $this->service->criarAssinatura($request);
+        $assinatura = $this->service->criarAssinatura($request);
+        if($assinatura)
+        {
+            return redirect()->route('inicio');
+        }
     }
     public function formAssinatura()
     {
@@ -145,5 +149,9 @@ class MercadoPagoController extends Controller
     public function formularioPlanoAssinatura()
     {
         return view('Pay.MercadoPago.mercadoPagoPlanoDeAssinatura');
+    }
+    public function assinarPlano(string $id)
+    {
+        return view('Pay.MercadoPago.mercadoPagoAssinatura',['id'=>$id]);
     }
 }

@@ -99,9 +99,12 @@ $(document).ready(function () {
 
     //formulario de cadastro
     botaoCadastro.on('click', event => {
+        
         event.preventDefault();
         let camposVazio = false;
+        
         $('#formularioCadastro input').each(function () {
+          
             if ($(this).val() == "") {
                 $(this).css({
                     'border-width': '2px',
@@ -121,6 +124,7 @@ $(document).ready(function () {
                 })
             }
         })
+       
         if (camposVazio) {
             return false;
         }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Produto;
 use App\Models\Slide;
 use App\Services\Enoun\EnounServices;
+use App\Services\Pay\MercadoPago\MercadoPagoService;
 use App\Services\Produto\ProdutoEnounService;
 use App\Services\User\UserEnounService;
 use Illuminate\Http\Request;
@@ -15,13 +16,16 @@ class EnounController extends Controller
 {
     public function __construct(
         protected UserEnounService $service,
-        protected EnounServices $enounServices
+        protected EnounServices $enounServices,
+        protected MercadoPagoService $mercadoService
     ) {
     }
     public function index(): View
     {
         $slide = $this->enounServices->slides();
-        return view('welcome', compact('slide'));
+        $plano = $this->mercadoService->buscarTodosPlanosDeAssinatura();
+        $plano = collect($plano['results']);
+        return view('welcome', compact('slide','plano'));
     }
 
     public function sobre(): View

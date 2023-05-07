@@ -57,7 +57,6 @@ class UserEloquentORM implements UserEnounInterface
             return null;
         }
         $imagem = Storage::putFile('user', $dto->imagemPerfil, 'public');
-        dd($imagem);
         $usuario['imagemPerfil'] = $imagem;
         $usuario->update((array)$dto);
         return (object)$usuario->toArray();

@@ -72,7 +72,7 @@ Route::prefix('admin')->middleware(['auth', 'identificacao', 'admin'])->group(fu
     Route::get('/servico/{id}/edit', [ServicoEnounController::class, 'edit'])->name('servico.edit');
     Route::put('/servico/{id}', [ServicoEnounController::class, 'update'])->name('servico.update');
     Route::delete('/servico/{id}', [ServicoEnounController::class, 'destroy'])->name('servico.destroy');
-    Route::post('/assinatura/mp', [MercadoPagoController::class, 'criarAssinatura'])->name('assinaturaMP');
+   
     Route::get('/formAssin', [MercadoPagoController::class, 'formAssinatura'])->name('formularioDeAssinatura');
 });
 
@@ -114,3 +114,6 @@ Route::post('/apagarUser/{id}', [UserEnounController::class, 'destroy'])->name('
 Route::get('/editarPerfil/{id}', [UserEnounController::class, 'edit'])->name('editarPerfil');
 Route::put('/formUpdate/{id}',[UserEnounController::class, 'update'])->name('atualizarPerfil');
 
+Route::post('/assinarPlano/{id}',[MercadoPagoController::class,'assinarPlano'])->name('assinarPlano');
+
+Route::post('/assinatura/mp/', [MercadoPagoController::class, 'criarAssinatura'])->name('assinaturaMP');

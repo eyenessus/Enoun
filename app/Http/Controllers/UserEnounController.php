@@ -54,7 +54,6 @@ class UserEnounController extends Controller
         $usuario = $this->service->findOneUser($id);
         if($usuario->id == (int)Auth::id())
         {
-        
             return view('User.formPerfil',compact('usuario'));
         }
         return redirect()->route('inicio');
@@ -64,13 +63,14 @@ class UserEnounController extends Controller
     public function update(Request $request)
     {
         $usuario =$this->service->updateUser(UpdateUserDTO::makeRequest($request));
-        
+        return redirect()->route('meuPerfil');
     }
 
 
     public function destroy(string $id)
     {
         $this->service->deleteUser($id);
+        return redirect()->route('inicio');
     }
 
 

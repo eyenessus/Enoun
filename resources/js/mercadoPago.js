@@ -1,4 +1,4 @@
-const mp = new MercadoPago("APP_USR-882d0289-ea17-43fc-886c-99307f2ac1b1");
+const mp = new MercadoPago("APP_USR-4070c3e7-5cb0-4a7d-9b2f-0d1420b5fb71");
 const cardNumberElement = mp.fields.create('cardNumber', {
   placeholder: "Número do cartão"
 }).mount('form-checkout__cardNumber');

@@ -16,17 +16,16 @@
       padding: 1px 2px;
     }
   </style>
-  <form id="form-checkout" action="{{ route('assinaturaMP') }}" method="POST">
+ 
+  <form id="form-checkout" action="{{ route('assinaturaMP')}}" method="POST">
     @csrf
+    <input type="text" name="id" value="{{ $id }}" hidden>
     <div id="form-checkout__cardNumber" class="container"></div>
     <div id="form-checkout__expirationDate" class="container"></div>
     <div id="form-checkout__securityCode" class="container"></div>
     <input type="text" id="form-checkout__cardholderName" placeholder="Titular do cartão" value="" />
     <select id="form-checkout__issuer" name="issuer">
       <option value="" disabled selected>Banco emissor</option>
-    </select>
-    <select id="form-checkout__installments" name="installments">
-      <option value="" disabled selected>Parcelas</option>
     </select>
     <select id="form-checkout__identificationType" name="identificationType">
       <option value="" disabled selected>Tipo de documento</option>

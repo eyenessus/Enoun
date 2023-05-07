@@ -277,40 +277,6 @@ class MercadoPagoService
     public function atualizarCartao(Request $request)
     {
             return redirect()->route('inicio');
-       /*
-        $this->identificacaoUsuario();
-        $cliente = SDK::getClientId();
-        $informacoesCartao = $this->encontrarCartao($request->card);
-
-        $cardToken = new CardToken();
-        $cardToken->cardNumber = $request->input('cardNumber');
-        $cardToken->securityCode = $request->input('codigo');
-        $cardToken->expirationMonth = $request->input('mesValidade');
-        $cardToken->expirationYear = $request->input('anoValidade');
-        $cardToken->cardholder = (object) [
-            'name' => 'Jon Jon',
-            'identification' => [
-                'type' => 'CPF',
-                'number' => '69995775018',
-            ],
-        ];
-        $cardToken->public_key = SDK::getPublicKey();
-        $cardToken->save();
-
-        $informacoesCartao->customer_id = $cliente;
-        $informacoesCartao->token = $cardToken->id;
-        $informacoesCartao->expiration_month = $request->input('novoMesValidade');
-        $informacoesCartao->expiration_year = $request->input('novoAnoValidade');
-        $informacoesCartao->cardholder = (object) [
-            'name' => 'John Doe',
-            'identification' => [
-                'type' => 'CPF',
-                'number' => '81265168016',
-            ],
-        ];
-        $informacoesCartao->save();
-        return true;
-        */
     }
 
     public function excluirCartao(string $id)
@@ -333,23 +299,23 @@ class MercadoPagoService
 
     public function criarAssinatura(Request $request)
     {
-
+       
         $this->identificacaoUsuario();
         $cartao = new Card();
         $cartao->customer_id = SDK::getClientId();
         $cartao->token = $request['token'];
         $cartao->save();
-        $preapproval = new Preapproval();
-        $preapproval->payer_email = $this->usuarioAuth->email;
-        $preapproval->preapproval_plan_id = '2c93808486e4d6830186e828e4f002b8';
-        $preapproval->back_url = 'https://google.com';
+        $preapproval = new Preapproval();    
+        $preapproval->payer_email = 'test_user_82106228@testuser.com';
+        $preapproval->preapproval_plan_id = $request->id;
+        $preapproval->back_url = route('inicio');
         $preapproval->status = "authorized";
-        $preapproval->external_reference = "ok ok";
+        $preapproval->external_reference = "Plano Enoun Inc.";
         $preapproval->card_id = $cartao->id;
         $preapproval->card_token_id = $request['token'];
-        $preapproval->reason = "Some reason";
+        $preapproval->reason = "Plano de assinatura";
         $preapproval->save();
-        dd($preapproval);
+        return true;
     }
 
     public function criarPlanoAssinatura(Request $request)
@@ -445,4 +411,6 @@ class MercadoPagoService
             ])->get('https://api.mercadopago.com/preapproval/search');
         dd($resposta->json());
     }
+
+    
 }
