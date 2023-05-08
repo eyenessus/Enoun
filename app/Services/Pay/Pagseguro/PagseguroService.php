@@ -30,9 +30,7 @@ class PagseguroService
     {
         $this->identificacaoUsuario();
         $finalizarPedido = $this->userService->finalizarPedido();
-
         $pedido = $this->userService->buscarItensCarrinho();
-
         $bloco = [];
 
         foreach (array_merge($pedido['produto']->toArray(), $pedido['servicos']->toArray()) as $item) {
@@ -208,20 +206,19 @@ class PagseguroService
     }
     public function pix()
     {
+        
         $this->identificacaoUsuario();
-        $finalizarPedido = $this->userService->finalizarPedido();
 
+       
         $pedido = $this->userService->buscarItensCarrinho();
-
+        $finalizarPedido = $this->userService->finalizarPedido();
         $bloco = [];
-
         foreach (array_merge($pedido['produto']->toArray(), $pedido['servicos']->toArray()) as $item) {
-
             $pedidoItem['reference_id'] = $item['id'];
             $pedidoItem['name'] = $item['nome'];
             $pedidoItem['quantity'] = $item['descricao'];
             $pedidoItem['quantity'] = $item['pivot']['quantidade'];
-            $pedidoItem['unit_amount'] = $item['valor'];
+            $pedidoItem['unit_amount'] = str_replace(['.'],"",round($item['valor']));
             $bloco[] = $pedidoItem;
         }
         $data = [
@@ -243,7 +240,7 @@ class PagseguroService
             "qr_codes" => [
                 [
                     "amount" => [
-                        "value" => $finalizarPedido['valorTotal'] . "00"
+                        "value" => str_replace(['.'],"",round($finalizarPedido['valorTotal']))
                     ],
                     "expiration_date" => Carbon::now()->addHours(2)
                 ]

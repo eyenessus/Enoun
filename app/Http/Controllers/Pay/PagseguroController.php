@@ -30,7 +30,7 @@ class PagseguroController extends Controller
     public function pix()
     {
         $pix = $this->service->pix();
-        return view('Pedidos.pixPagSeguro',compact('pix'));
+        return view('Pay.PagSeguro.pixPagSeguro',compact('pix'));
     }
 
     public function assinaturaDeRecorrenciaSubsequente()

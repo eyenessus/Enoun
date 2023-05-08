@@ -49,8 +49,8 @@ class ServicoEnounController extends Controller
     public function edit(string $id): View
     {
         $servico =   $this->service->findOne($id);
-        $categoria = $this->service->buscarCategorias();
-        return view('Servicos.edicaoServico',compact('servico','categoria'));
+        $categorias = $this->service->buscarCategorias();
+        return view('Servicos.edicaoServico',compact('servico','categorias'));
     }
 
 
