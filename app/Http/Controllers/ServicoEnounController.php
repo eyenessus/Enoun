@@ -31,7 +31,7 @@ class ServicoEnounController extends Controller
     public function create(): View
     {
         $categorias = Categoria::all();
-        return view('Cadastro.servico', compact('categorias'));
+        return view('Servicos.cadastrarServico', compact('categorias'));
     }
 
     public function store(CreateServicoEnounRequest $request): RedirectResponse

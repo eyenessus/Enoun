@@ -28,7 +28,7 @@ class ProdutoEnounController extends Controller
     public function create(): View
     {
         $categorias = $this->service->buscarCategorias();
-        return view('Cadastro.produto', ['categorias' => $categorias]);
+        return view('Produtos.cadastrarProduto', ['categorias' => $categorias]);
     }
 
     public function store(CreateProdutoEnounService $request): RedirectResponse
@@ -48,8 +48,8 @@ class ProdutoEnounController extends Controller
     {
        
         $produto = $this->service->findOne($id);
-        $categoria = $this->service->buscarCategorias();
-        return view('Produtos.edicaoProduto', compact('produto', 'categoria'));
+        $categorias = $this->service->buscarCategorias();
+        return view('Produtos.edicaoProduto', compact('produto', 'categorias'));
     }
 
 
