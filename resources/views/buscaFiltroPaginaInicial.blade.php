@@ -4,10 +4,9 @@
 
 <div class="container mx-auto max-w-screen-xl p-5">
 
-
     <h1 class="text-5xl font-extrabold dark:text-white">Todos<small
             class="ml-2 font-semibold text-gray-500 dark:text-gray-400">resultados encontrado: </small></h1>
-
+    @if(count($busca['produtos']) >= 1)
     <h3 class="text-3xl font-bold dark:text-white mt-12">Produtos encontrados:</h3>
     <div class="grid grid-cols-1 md:grid-cols-5 xl:grid-cols-4 sm:grid-cols-2 gap-5  rounded">
         @foreach ($busca['produtos'] as $buscas)
@@ -40,9 +39,10 @@
         </div>
         @endforeach
     </div>
+    @endif
 
 
-
+    @if(count($busca['servicos']) >= 1)
 
     <h3 class="text-3xl font-bold dark:text-white">Serviços encontrados:</h3>
 
@@ -76,8 +76,9 @@
             </div>
         </div>
         @endforeach
+
     </div>
-   
+    @endif
 </div>
 
 @endsection
