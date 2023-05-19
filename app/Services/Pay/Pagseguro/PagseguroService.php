@@ -11,7 +11,6 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
-use Symfony\Component\VarDumper\VarDumper;
 
 class PagseguroService
 {
@@ -123,7 +122,7 @@ class PagseguroService
             $pedidoItem['name'] = $item['nome'];
             $pedidoItem['quantity'] = $item['descricao'];
             $pedidoItem['quantity'] = $item['pivot']['quantidade'];
-            $pedidoItem['unit_amount'] = $item['valor'];
+            $pedidoItem['unit_amount'] = str_replace(['.'],"",round($item['valor']));
             $bloco[] = $pedidoItem;
         }
 
@@ -164,7 +163,7 @@ class PagseguroService
                     "reference_id" => "referencia da cobranca",
                     "description" => "descricao da cobranca",
                     "amount" => [
-                        "value" =>  $finalizarPedido['valorTotal'] . "00",
+                        "value" =>  str_replace(['.'],"",round($finalizarPedido['valorTotal'])) . "00",
                         "currency" => "BRL"
                     ],
                     "payment_method" => [

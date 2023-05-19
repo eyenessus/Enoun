@@ -1,8 +1,10 @@
 <?php
 namespace App\Repositories\Pay\MercadoPago;
 
+use App\Repositories\Pay\MercadoPago\PaginateInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use stdClass;
 
 interface MercadoPagoInterface
 {
@@ -11,4 +13,5 @@ interface MercadoPagoInterface
     public function buscarDadosCliente():  Collection;
 
     public function notificacoesMercadoPago(Request $request);
+
 }

@@ -65,8 +65,12 @@ class UserEloquentORM implements UserEnounInterface
     public function meusRegistros(): array
     {
         $user = Auth::user();
-        $produtos = $user->produtos()->paginate();
-        $servicos = $user->servicos()->paginate();
+        $produtos = $user->produtos()->paginate(
+            $perPage = 5, $columns = ['*'], $pageName = 'produtos'
+        );
+        $servicos = $user->servicos()->paginate(
+            $perPage = 5, $columns = ['*'], $pageName = 'servicos'
+        );
         return [
             'produtos' => $produtos,
             'servicos' => $servicos

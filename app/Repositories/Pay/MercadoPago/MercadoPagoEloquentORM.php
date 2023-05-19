@@ -4,6 +4,7 @@ namespace App\Repositories\Pay\MercadoPago;
 
 
 use App\Models\Pedido;
+use App\Repositories\Pay\MercadoPago\PaginateInterface;
 use App\Services\Produto\ProdutoEnounService;
 use App\Services\Servico\ServicoEnounService;
 use Illuminate\Http\Request;

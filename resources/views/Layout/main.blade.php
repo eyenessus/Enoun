@@ -188,7 +188,6 @@
 
 
 <body class="dark:bg-slate-900">
-
     @yield('conteudo')
 </body>
 

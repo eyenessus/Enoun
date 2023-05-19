@@ -183,7 +183,7 @@
                 </table>
             </div>
             <nav class=" p-10" aria-label="Table navigation">
-                {{ $registros['servicos']->links() }}
+                {{ $registros['produtos']->links() }}
             </nav>
         </div>
     </div>
@@ -216,18 +216,20 @@
                 </div>
                 <div
                     class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
+                   <a href="{{ route('servico.create') }}">
                     <button type="button"
-                        class="flex items-center justify-cente bg-primary-700 hover:bg-primary-800 focus:ring-primary-300  dark:bg-primary-600 dark:hover:bg-primary-700  dark:focus:ring-primary-800
-            
-                        text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800
-                        ">
-                        <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path clip-rule="evenodd" fill-rule="evenodd"
-                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
-                        </svg>
-                        Adicionar Serviço
-                    </button>
+                    class="flex items-center justify-cente bg-primary-700 hover:bg-primary-800 focus:ring-primary-300  dark:bg-primary-600 dark:hover:bg-primary-700  dark:focus:ring-primary-800
+        
+                    text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800
+                    ">
+                    <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path clip-rule="evenodd" fill-rule="evenodd"
+                            d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
+                    </svg>
+                    Adicionar Serviço
+                </button>
+                   </a>
                     <div class="flex items-center space-x-3 w-full md:w-auto">
                        
                         <div id="actionsDropdown"
