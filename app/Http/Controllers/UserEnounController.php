@@ -110,13 +110,13 @@ class UserEnounController extends Controller
         ]);
     }
 
-    public function meusPedidos()
+    public function meusPedidos(): View
     {
         $pedidos = $this->service->verPedidos();
         return view('Pedidos.pedidos', compact('pedidos'));
     }
 
-    public function formCategoria()
+    public function formCategoria() : View
     {
         return view('Cadastro.categoria');
     }
@@ -127,31 +127,31 @@ class UserEnounController extends Controller
         return redirect()->route('categoria.index');
     }
 
-    public function todasCategoria()
+    public function todasCategoria(): View
     {
        $categorias = $this->serviceProduto->buscarCategorias();
         return view('Gerenciamento.Categoria.categorias',compact('categorias'));
     }
 
-    public function verTodosUsuarios()
+    public function verTodosUsuarios(): View
     {
         $users = $this->service->getAllUser();
         return view('Gerenciamento.User.users',compact('users'));
     }
    
    
-    public function verTodosAdmins()
+    public function verTodosAdmins(): View
     {
         return view('Gerenciamento.Admin.admins');
     }
 
   
-    public function formcadastrarIdentidade()
+    public function formcadastrarIdentidade(): View
     {
         return view('Cadastro.identidade');
     }
 
-    public function formEndereco()
+    public function formEndereco(): View
     {
         return view('Cadastro.endereco');
     }
@@ -164,20 +164,20 @@ class UserEnounController extends Controller
         }
     }
 
-    public function endereco(Request $request)
+    public function endereco(Request $request): RedirectResponse
     {
         $this->service->criarEndereco($request);
         $this->mercadoPago->criarCliente();
         return redirect()->route('inicio');
     }
 
-    public function meuPerfil()
+    public function meuPerfil() : View
     {
        $meuPerfil =  $this->service->meuPerfil();
         return view('User.configuracoes', compact('meuPerfil'));
     }
 
-    public function meusPlanos()
+    public function meusPlanos(): View
     {
         return view('User.plano');
     }

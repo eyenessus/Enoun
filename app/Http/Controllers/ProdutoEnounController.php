@@ -9,7 +9,6 @@ use App\Http\Requests\CreateProdutoEnounService;
 use App\Http\Requests\UpdateProdutoRequest;
 use App\Services\Produto\ProdutoEnounService;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Request;
 use Illuminate\View\View;
 
 class ProdutoEnounController extends Controller

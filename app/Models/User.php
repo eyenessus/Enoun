@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -106,4 +107,14 @@ class User extends Authenticatable
     {
         return $this->hasOne(Identidade::class);
     }
+
+    public function produtosCarrinho(): MorphToMany
+    {
+        return $this->morphedByMany(Produto::class, 'carrinho')->withPivot('quantidade');
+    }
+    public function servicosCarrinho(): MorphToMany
+    {
+        return $this->morphedByMany(Servico::class, 'carrinho')->withPivot('quantidade');
+    }
+    
 }

@@ -8,10 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateServicoEnounRequest;
 use App\Http\Requests\Servico\UpdateServicoRequest;
 use App\Models\Categoria;
-use App\Models\Servico;
 use App\Services\Servico\ServicoEnounService;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ServicoEnounController extends Controller

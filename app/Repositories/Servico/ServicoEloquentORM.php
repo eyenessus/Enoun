@@ -88,11 +88,12 @@ class ServicoEloquentORM implements ServicoEnounInterface
 
     public function buscarMeusServicos(): array | null
     {
-        $usuario = Auth::user();
+        $usuario = auth()->user();
         if (!$usuario) {
             return null;
         }
         $servico = $usuario->servicosComCarrinho;
+
         $total = $servico->sum(function ($servicos) {
             return $servicos->valor * $servicos->pivot->quantidade;
         });

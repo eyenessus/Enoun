@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+
+
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use User;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Servico extends Model
 {
@@ -30,8 +33,7 @@ class Servico extends Model
         return $this->BelongsTo(Categoria::class);
     }
 
-
- 
     protected $fillable = ['nome', 'codigo','valor','imagem','categoria_id','descricao','user_id','duracao'];
+
     use HasFactory;
 }
