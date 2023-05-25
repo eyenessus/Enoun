@@ -78,9 +78,9 @@ class ServicoEloquentORM implements ServicoEnounInterface
             return null;
         }
         if ($usuario) {
-            $carrinhoDeservicos = $usuario->servicosComCarrinho();
+            $carrinhoDeservicos = $usuario->servicosCarrinho();
             $carrinhoDeservicos->syncWithoutDetaching($servico->id);
-            $carrinhoDeservicos->where('id', $id)->increment('quantidade');
+            $carrinhoDeservicos->where('carrinho_id',$servico->id)->increment('quantidade');
         }
         return true;
     }
@@ -92,7 +92,7 @@ class ServicoEloquentORM implements ServicoEnounInterface
         if (!$usuario) {
             return null;
         }
-        $servico = $usuario->servicosComCarrinho;
+        $servico = $usuario->servicosCarrinho;
 
         $total = $servico->sum(function ($servicos) {
             return $servicos->valor * $servicos->pivot->quantidade;
@@ -104,7 +104,7 @@ class ServicoEloquentORM implements ServicoEnounInterface
     public function removerDoCarrinho(string $id): void
     {
         $usuario = auth()->user();
-        $usuario->servicosComCarrinho()->detach($id);
+        $usuario->servicosCarrinho()->detach($id);
     }
 
     public function decrementarServico(string $id): null | bool
@@ -113,14 +113,15 @@ class ServicoEloquentORM implements ServicoEnounInterface
         if (!$servico = $this->model->findOrFail($id)) {
             return null;
         }
-        $carrinhoDeservicos = $usuario->servicosComCarrinho();
+        $carrinhoDeservicos = $usuario->servicosCarrinho();
         $carrinhoDeservicos->syncWithoutDetaching($servico->id);
-        $carrinhoDeservicos->where('id', $id)->decrement('quantidade');
-        $servicosSemQuantidade = auth()->user()->servicosComCarrinho()->where('quantidade', '<', 1)->get()->toArray();
-        foreach ($servicosSemQuantidade as $servicoNull) {
-            $usuario->servicosComCarrinho()->detach($servicoNull['id']);
-        }
-
+        $carrinhoDeservicos->where('carrinho_id',$servico->id)->decrement('quantidade');
+       $itemVazio =  $carrinhoDeservicos->where('quantidade', '<', 1)->first();
+       if($itemVazio)
+       {
+        $carrinhoDeservicos->detach($itemVazio->id);  
+       }
+         
         return true;
     }
 }

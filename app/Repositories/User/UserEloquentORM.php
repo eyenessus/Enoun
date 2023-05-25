@@ -80,13 +80,13 @@ class UserEloquentORM implements UserEnounInterface
     public function  finalizarPedido(string $status = null, int $id = null): Collection
     {
 
-        $user = Auth::user();
+        $user = auth()->user();
         $nome = [];
         $quantidadeUnitaria = [];
         $valorUnitario = [];
         $descricao = [];
-        $produtos = $user->produtosComCarrinho;
-        $servicos = $user->servicosComCarrinho;
+        $produtos = $user->produtosCarrinho;
+        $servicos = $user->servicosCarrinho;
 
         $valorServicos = $servicos->sum(function ($servico) {
             return $servico->valor * $servico['pivot']['quantidade'];
@@ -130,8 +130,8 @@ class UserEloquentORM implements UserEnounInterface
                 'valorTotal' => $valorServicos + $valorProdutos
             ]
         );
-        $user->produtosComCarrinho()->detach();
-        $user->servicosComCarrinho()->detach();
+        $user->produtosCarrinho()->detach();
+        $user->servicosCarrinho()->detach();
         return collect($pedido);
     }
 
@@ -144,9 +144,9 @@ class UserEloquentORM implements UserEnounInterface
 
     public function valorFinal(): array
     {
-        $user = Auth::user();
-        $produtos = $user->produtosComCarrinho;
-        $servicos = $user->servicosComCarrinho;
+        $user = auth()->user();
+        $produtos = $user->produtosCarrinho;
+        $servicos = $user->servicosCarrinho;
 
         $valorServicos = $servicos->sum(function ($servico) {
             return $servico->valor * $servico['pivot']['quantidade'];
@@ -181,11 +181,17 @@ class UserEloquentORM implements UserEnounInterface
 
     public function buscarItensCarrinho(): array
     {
-        $produtos = auth()->user()->produtosComCarrinho;
-        $servicos = auth()->user()->servicosComCarrinho;
+        $produtos = auth()->user()->produtosCarrinho;
+        $servicos = auth()->user()->servicosCarrinho;
         return [
             'produto' => collect($produtos),
             'servicos' => collect($servicos)
         ];
+    }
+
+    public function buscarCupons()
+    {
+        $user = auth()->user()->cupons()->first();
+        return $user;
     }
 }

@@ -110,9 +110,9 @@ class MercadoPagoService
             $bagItems[] = $pedidoItem;
         }
         $payment->metadata = $bagItems;
+        
         $finalizar = $this->serviceUser->valorFinal();
         $payment->transaction_amount =  $finalizar['total'];
-
         $payment->payer = [
             "entity_type" => "individual",
             "email" => $this->usuarioAuth->email,
@@ -134,6 +134,7 @@ class MercadoPagoService
         $qrCodePixBase64 = $payment->point_of_interaction->transaction_data->qr_code_base64;
         $copiaEcola = $payment->point_of_interaction->transaction_data->qr_code;
         $total = $payment->transaction_amount;
+        
         return compact('qrCodePixBase64', 'copiaEcola', 'total');
     }
     public function buscarDadosCliente()

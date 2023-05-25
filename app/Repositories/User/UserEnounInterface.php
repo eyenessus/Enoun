@@ -31,8 +31,8 @@ interface UserEnounInterface
     public function valorFinal(): array;
 
     public function  criarIdentidade(Request $request);
-   
-
     public function criarEndereco(Request $request);
     public function buscarItensCarrinho(): array;
+
+    public function buscarCupons();
 }

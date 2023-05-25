@@ -41,7 +41,6 @@ class ProdutoEloquentORM implements ProdutoEnounInterface
         $this->model->findOrFail($id)->delete();
     }
 
-
     public function criarProduto(createProdutoDto $dto): array | stdClass
     {
         $dto->user_id = Auth::user()->id;
@@ -56,7 +55,7 @@ class ProdutoEloquentORM implements ProdutoEnounInterface
         if (!$produto = $this->model->findOrFail($dto->id)) {
             return null;
         }
-        
+
         Storage::delete($produto->imagem);
         $caminhoImagem = $dto->imagem = Storage::putFile('produtos', $dto->imagem);
         $produto['imagem'] = $caminhoImagem;
@@ -78,9 +77,9 @@ class ProdutoEloquentORM implements ProdutoEnounInterface
             return null;
         }
         if ($usuario) {
-            $carrinhoDeProdutos = $usuario->produtosComCarrinho();
+            $carrinhoDeProdutos = $usuario->produtosCarrinho();
             $carrinhoDeProdutos->syncWithoutDetaching($produto->id);
-            $carrinhoDeProdutos->where('id', $id)->increment('quantidade');
+            $carrinhoDeProdutos->where('carrinho_id', $produto->id)->increment('quantidade');
         }
 
         return true;
@@ -92,7 +91,7 @@ class ProdutoEloquentORM implements ProdutoEnounInterface
             return null;
         }
 
-        $produto = $usuario->produtosComCarrinho;
+        $produto = $usuario->produtosCarrinho;
         $total = $produto->sum(function ($produtos) {
             return $produtos->valor * $produtos->pivot->quantidade;
         });
@@ -103,7 +102,7 @@ class ProdutoEloquentORM implements ProdutoEnounInterface
     public function removerDoCarrinho(string $id): void
     {
         $usuario = auth()->user();
-        $usuario->produtosComCarrinho()->detach($id);
+        $usuario->produtosCarrinho()->detach($id);
     }
 
     public function decrementarProduto(string $id): null | bool
@@ -113,14 +112,15 @@ class ProdutoEloquentORM implements ProdutoEnounInterface
             return null;
         }
         if ($usuario) {
-            $carrinhoDeProdutos = $usuario->produtosComCarrinho();
+            $carrinhoDeProdutos = $usuario->produtosCarrinho();
             $carrinhoDeProdutos->syncWithoutDetaching($produto->id);
-            $carrinhoDeProdutos->where('id', $id)->decrement('quantidade');
+            $carrinhoDeProdutos->where('carrinho_id', $produto->id)->decrement('quantidade');
+            $itemVazio =  $usuario->produtosCarrinho()->where('quantidade', '<', 1)->first();
+            if ($itemVazio) {
+                $carrinhoDeProdutos->detach($itemVazio->id);
+            }
         }
-        $produtosSemQuantidade = auth()->user()->produtosComCarrinho()->where('quantidade', '<', 1)->get()->toArray();
-        foreach ($produtosSemQuantidade as $servicoNull) {
-            $usuario->produtosComCarrinho()->detach($servicoNull['id']);
-        }
+
         return true;
     }
 }

@@ -117,3 +117,5 @@ Route::put('/formUpdate/{id}',[UserEnounController::class, 'update'])->name('atu
 Route::post('/assinarPlano/{id}',[MercadoPagoController::class,'assinarPlano'])->name('assinarPlano');
 
 Route::post('/assinatura/mp/', [MercadoPagoController::class, 'criarAssinatura'])->name('assinaturaMP');
+
+Route::get('/cupom',[UserEnounController::class,'cupom']);

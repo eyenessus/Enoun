@@ -20,19 +20,13 @@ class Produto extends Model
       return $this->belongsTo(User::class);
     }
 
-    public function users() : BelongsToMany
-    {
-       return $this->belongsToMany(User::class);
-    }
-
+   
 
     public function categoria() : BelongsTo
     {
         return $this->BelongsTo(Categoria::class);
         
     }
-
-    
 
     use HasFactory;
 

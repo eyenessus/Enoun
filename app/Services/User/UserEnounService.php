@@ -117,4 +117,8 @@ class UserEnounService {
      
         return Auth::user();
     }
+    public function buscarCupons()
+    {
+        return $this->repositoryUser->buscarCupons();
+    }
 }

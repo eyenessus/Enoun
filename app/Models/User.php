@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Cupom;
 use App\Models\Endereco;
 use App\Models\Noticia;
 use App\Models\Pedido;
@@ -10,7 +11,6 @@ use App\Models\Produto;
 use App\Models\Servico;
 use App\Models\Slide;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -117,4 +117,8 @@ class User extends Authenticatable
         return $this->morphedByMany(Servico::class, 'carrinho')->withPivot('quantidade');
     }
     
+    public function cupons(): BelongsToMany
+    {
+        return $this->belongsToMany(Cupom::class);
+    }
 }

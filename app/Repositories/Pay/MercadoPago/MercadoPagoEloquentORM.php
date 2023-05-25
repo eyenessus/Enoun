@@ -24,8 +24,9 @@ class MercadoPagoEloquentORM implements MercadoPagoInterface
 
     public function buscarItensCarrinho(): array
     {
-        $produtos = auth()->user()->produtosComCarrinho;
-        $servicos = auth()->user()->servicosComCarrinho;
+        $user = auth()->user();
+        $produtos = $user->produtosCarrinho;
+        $servicos = $user->servicosCarrinho;
         return [
             'produto' => collect($produtos),
             'servicos' => collect($servicos)

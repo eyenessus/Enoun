@@ -99,12 +99,12 @@ $(document).ready(function () {
 
     //formulario de cadastro
     botaoCadastro.on('click', event => {
-        
+
         event.preventDefault();
         let camposVazio = false;
-        
+
         $('#formularioCadastro input').each(function () {
-          
+
             if ($(this).val() == "") {
                 $(this).css({
                     'border-width': '2px',
@@ -124,7 +124,7 @@ $(document).ready(function () {
                 })
             }
         })
-       
+
         if (camposVazio) {
             return false;
         }
@@ -184,15 +184,38 @@ $(document).ready(function () {
                 })
 
             }
-           
+
         })
-        
-        if(camposVazio)
-        {
+
+        if (camposVazio) {
             return false;
         }
         $('#formIdentidade').trigger("submit")
     })
 
 
+    //verificador de cupom
+    $('#botaoVerificarCupom').on('click', () => {
+        let cupom = $('#cupom').val();
+        let situacaoCupom = $('#situacaoCupom');
+        situacaoCupom.empty();
+        situacaoCupom.removeClass();
+
+        if (!cupom) {
+            situacaoCupom.append('<span class="font-medium">Digite o numero de cupom!</span> Por favor digite um cupom válido.').addClass("my-3 p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400");
+        } else {
+
+            $.getJSON("http://127.0.0.1:8000/cupom", {
+                    cupom: cupom
+                })
+                .done(function (response) { 
+                    situacaoCupom.append('<span class="font-medium">Cupom aplicado com sucesso!</span>').addClass("p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400");
+                    setTimeout(function(){
+                        document.location.reload(true)
+                    },2000); 
+                }).fail(function (error) {
+                    situacaoCupom.append('<span class="font-medium">Cupom inválido!</span> Por favor digite um cupom válido.').addClass("my-3 p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400");
+                })
+        }
+    })
 });

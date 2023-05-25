@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Pay\MercadoPagoController;
 use App\Http\Requests\CreateUserEnounRequest;
 use App\Http\Requests\LoginUserRequest;
+use App\Models\Carrinho;
+use App\Models\Cupom;
 use App\Services\Produto\ProdutoEnounService;
 use App\Services\Servico\ServicoEnounService;
 use App\Services\User\UserEnounService;
@@ -100,13 +102,19 @@ class UserEnounController extends Controller
 
     public function carrinho(): View
     {
+        $cupom = $this->service->buscarCupons();
+        if($cupom !== null)
+        {
+           $cupom =  $cupom->valorDesconto;
+        }
         $produto =  $this->serviceProduto->buscarMeuProdutos();
         $servico = $this->serviceServicos->buscarMeusServicos();
         return view('Carrinho.carrinho', [
             'servico' => $servico['servico'],
             'totalServicos' => $servico['totalservicos'],
             'produto' => $produto['produto'],
-            'totalProdutos' => $produto['totalProdutos']
+            'totalProdutos' => $produto['totalProdutos'],
+            'cupom' => $cupom !== null ? $cupom : 0
         ]);
     }
 
@@ -180,5 +188,14 @@ class UserEnounController extends Controller
     public function meusPlanos(): View
     {
         return view('User.plano');
+    }
+
+    public function cupom(Request $request)
+    {
+        
+        $user = auth()->user();
+        $cupom = Cupom::where('codigoResgate',$request->cupom)->first();
+        $user->cupons()->sync($cupom->id);
+        return response(true);
     }
 }

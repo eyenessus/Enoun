@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cupoms', function (Blueprint $table) {
-            $table->id();
-            $table->string('codigo_resgate');
-            $table->integer('valorDesconto');
+        Schema::create('cupom_user', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('cupom_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cupoms');
+        Schema::dropIfExists('cupom_user');
     }
 };

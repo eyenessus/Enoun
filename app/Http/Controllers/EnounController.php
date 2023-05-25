@@ -23,30 +23,6 @@ class EnounController extends Controller
     }
     public function index(): View
     {
-   
-        //adiciondo serviço dentro do carrinho polimorfico
-
-        //usuario autenticado; 
-        $user = auth()->user();
-
-        //acessar a tabelaPIVOT
-        $item = $user->servicosCarrinho();
-
-        $item->syncWithoutDetaching([1]); //adicionando serviço especifico na tabela PIVOT
-        $item->where('carrinho_id',1)->increment('quantidade'); //incrementação de quantidade DEFAULT (0)
-
-        $item->where('carrinho_id',1)->decrement('quantidade'); //decrementação de quantidade 
-
-       //busca todos itens de serviço do carrinho
-        $itensCarrinho = $user->servicosCarrinho;
-         echo($itensCarrinho);
-    
-         //deletar serviço especfico do carrinho
-        $user->servicosCarrinho()->detach(1);
-     
-
-        $servico = Servico::find(1);
-         echo($servico->usuarios);
 
         $slide = $this->enounServices->slides();
         $plano = $this->mercadoService->buscarTodosPlanosDeAssinatura();
@@ -56,8 +32,6 @@ class EnounController extends Controller
 
     public function sobre(): View
     {
-
-
         return view('Sobre.sobre');
     }
 

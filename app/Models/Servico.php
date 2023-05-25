@@ -18,11 +18,6 @@ class Servico extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function users() : BelongsToMany
-    {
-        return $this->belongsToMany(User::class);
-    }
-
     public function pedido() : belongsToMany 
     {
         return $this->belongsToMany(Pedido::class);
