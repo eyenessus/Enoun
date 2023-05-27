@@ -102,11 +102,15 @@ class UserEnounController extends Controller
 
     public function carrinho(): View
     {
-        $cupom = $this->service->buscarCupons();
-        if($cupom !== null)
+        if(auth()->user())
         {
-           $cupom =  $cupom->valorDesconto;
+            $cupom = $this->service->buscarCupons();
+            if($cupom !== null)
+            {
+               $cupom =  $cupom->valorDesconto;
+            }
         }
+       
         $produto =  $this->serviceProduto->buscarMeuProdutos();
         $servico = $this->serviceServicos->buscarMeusServicos();
         return view('Carrinho.carrinho', [
@@ -192,7 +196,6 @@ class UserEnounController extends Controller
 
     public function cupom(Request $request)
     {
-        
         $user = auth()->user();
         $cupom = Cupom::where('codigoResgate',$request->cupom)->first();
         $user->cupons()->sync($cupom->id);

@@ -12,19 +12,22 @@ use App\Models\Produto;
 use App\Repositories\Produto\ProdutoEnounInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use stdClass;
 
 
 class ProdutoEloquentORM implements ProdutoEnounInterface
 {
-    public function __construct(protected Produto $model)
+    public function __construct(protected Produto $model, protected Cache $cache)
     {
     }
 
     public function getAll(): Collection
     {
-        $resultado = $this->model->all();
+        $resultado = Cache::get('produtos', function () {
+            return $this->model->all();
+        });
         return collect($resultado);
     }
 
@@ -72,6 +75,7 @@ class ProdutoEloquentORM implements ProdutoEnounInterface
 
     public function adicionarAoCarrinho(string $id): bool | null
     {
+
         $usuario = auth()->user();
         if (!$produto = $this->model->findOrFail($id)) {
             return null;
@@ -86,7 +90,7 @@ class ProdutoEloquentORM implements ProdutoEnounInterface
     }
     public function buscarMeuProdutos(): array | null
     {
-        $usuario = Auth::user();
+        $usuario = auth()->user();
         if (!$usuario) {
             return null;
         }

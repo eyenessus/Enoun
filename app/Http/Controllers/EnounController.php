@@ -10,6 +10,8 @@ use App\Services\Pay\MercadoPago\MercadoPagoService;
 use App\Services\User\UserEnounService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Symfony\Component\VarDumper\VarDumper;
 
@@ -23,7 +25,6 @@ class EnounController extends Controller
     }
     public function index(): View
     {
-
         $slide = $this->enounServices->slides();
         $plano = $this->mercadoService->buscarTodosPlanosDeAssinatura();
         $plano = collect($plano['results']);

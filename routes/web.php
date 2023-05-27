@@ -38,9 +38,10 @@ Route::prefix('user')->middleware('guest')->group(function () {
     Route::post('/login/auth', [UserEnounController::class, 'autenticar'])->name('login.auth');
 });
 
+Route::get('/carrinho', [UserEnounController::class, 'carrinho'])->name('carrinho.index');
+Route::post('/produto/{produto}/add', [ProdutoEnounController::class, 'adicionarPtCarrinho'])->name('produto.add.store');
+
 Route::middleware('auth')->group(function () {
-    Route::get('/carrinho', [UserEnounController::class, 'carrinho'])->name('carrinho.index');
-    Route::post('/produto/{produto}/add', [ProdutoEnounController::class, 'adicionarPtCarrinho'])->name('produto.add.store');
     Route::delete('/produto/{produto}/delete', [ProdutoEnounController::class, 'removerDoCarrinho'])->name('produto.delete.destroy');
     Route::post('/produto/{produto}/remove', [ProdutoEnounController::class, 'decrementarDoCarrinho'])->name('produto.remove.store');
     Route::post('/servico/{servico}/add', [ServicoEnounController::class, 'adicionarSvCarrinho'])->name('servico.add.store');

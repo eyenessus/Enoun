@@ -191,7 +191,7 @@ class UserEloquentORM implements UserEnounInterface
 
     public function buscarCupons()
     {
-        $user = auth()->user()->cupons()->first();
-        return $user;
+        //$user = auth()->user()->cupons()->first();
+        return 1;
     }
 }
