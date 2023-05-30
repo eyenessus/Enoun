@@ -5,19 +5,21 @@ namespace App\Repositories\Servico;
 use App\DTO\Servico\CreateServicoDTO;
 use App\DTO\Servico\UpdateServicoDTO;
 use App\Models\Categoria;
-use App\Models\Produto;
 use App\Models\Servico;
 use App\Repositories\Servico\ServicoEnounInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Predis\Client;
 use stdClass;
 
 class ServicoEloquentORM implements ServicoEnounInterface
 {
 
-    public function __construct(protected Servico $model)
+    public function __construct(protected Servico $model,
+    protected Client $redis,
+    )
     {
     }
 
@@ -88,15 +90,44 @@ class ServicoEloquentORM implements ServicoEnounInterface
 
     public function buscarMeusServicos(): array | null
     {
-        $usuario = auth()->user();
-        if (!$usuario) {
-            return null;
-        }
-        $servico = $usuario->servicosCarrinho;
+     
 
-        $total = $servico->sum(function ($servicos) {
-            return $servicos->valor * $servicos->pivot->quantidade;
-        });
+        $total = 0;
+        $usuario = auth()->user();
+
+        if ($usuario) {
+            $servico = $usuario->servicosCarrinho;
+            $total = $servico->sum(function ($servico) {
+                return $servico->valor * $servico->pivot->quantidade;
+            });
+        } else {
+            $respostaCache = $this->redis->pipeline(function ($pipe) {
+                $count = $this->redis->keys('servico:*');
+                foreach ($count as $key) {
+                    $pipe->lindex($key, 0); // pegando primeiro item
+                    $pipe->llen($key); // quantidade de itens
+                }
+            });
+
+            $servico = [];
+            $valorCont = [];
+            $quantidade = [];
+
+            foreach ($respostaCache as $index => $valor) {
+                if ($index % 2 == 0) {
+                    $servico[$index] = json_decode($valor);
+                    $valorUnit = json_decode($respostaCache[$index], true);
+                    $valorCont[] = (float) $valorUnit['valor'];
+                } else {
+                    $quantidade[$index] = $respostaCache[$index];
+                }
+            }
+           
+            $total = array_sum(array_map(function ($quant, $valor) {
+                return $quant * $valor;
+            }, $quantidade, $valorCont));
+        
+        } 
 
         return ['servico' => collect($servico), 'totalservicos' => $total];
     }

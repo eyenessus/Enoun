@@ -17,18 +17,19 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Predis\Client;
 
 
 class UserEnounController extends Controller
 {
-    
+
     public function __construct(
         protected UserEnounService $service,
         protected ProdutoEnounService $serviceProduto,
         protected ServicoEnounService $serviceServicos,
-        protected MercadoPagoController $mercadoPago
+        protected MercadoPagoController $mercadoPago,
+        protected Client $redis,
     ) {
-        $this->mercadoPago = $mercadoPago;
     }
 
     public function index(): View
@@ -54,9 +55,8 @@ class UserEnounController extends Controller
     public function edit(string $id)
     {
         $usuario = $this->service->findOneUser($id);
-        if($usuario->id == (int)Auth::id())
-        {
-            return view('User.formPerfil',compact('usuario'));
+        if ($usuario->id == (int)Auth::id()) {
+            return view('User.formPerfil', compact('usuario'));
         }
         return redirect()->route('inicio');
     }
@@ -64,7 +64,7 @@ class UserEnounController extends Controller
 
     public function update(Request $request)
     {
-        $usuario =$this->service->updateUser(UpdateUserDTO::makeRequest($request));
+        $usuario = $this->service->updateUser(UpdateUserDTO::makeRequest($request));
         return redirect()->route('meuPerfil');
     }
 
@@ -102,23 +102,16 @@ class UserEnounController extends Controller
 
     public function carrinho(): View
     {
-        if(auth()->user())
-        {
-            $cupom = $this->service->buscarCupons();
-            if($cupom !== null)
-            {
-               $cupom =  $cupom->valorDesconto;
-            }
-        }
-       
+        $cupom = $this->service->buscarCupons();
         $produto =  $this->serviceProduto->buscarMeuProdutos();
         $servico = $this->serviceServicos->buscarMeusServicos();
+        
         return view('Carrinho.carrinho', [
             'servico' => $servico['servico'],
             'totalServicos' => $servico['totalservicos'],
             'produto' => $produto['produto'],
             'totalProdutos' => $produto['totalProdutos'],
-            'cupom' => $cupom !== null ? $cupom : 0
+            'quantidadeP'=> $produto['quantidade']
         ]);
     }
 
@@ -128,7 +121,7 @@ class UserEnounController extends Controller
         return view('Pedidos.pedidos', compact('pedidos'));
     }
 
-    public function formCategoria() : View
+    public function formCategoria(): View
     {
         return view('Cadastro.categoria');
     }
@@ -141,23 +134,23 @@ class UserEnounController extends Controller
 
     public function todasCategoria(): View
     {
-       $categorias = $this->serviceProduto->buscarCategorias();
-        return view('Gerenciamento.Categoria.categorias',compact('categorias'));
+        $categorias = $this->serviceProduto->buscarCategorias();
+        return view('Gerenciamento.Categoria.categorias', compact('categorias'));
     }
 
     public function verTodosUsuarios(): View
     {
         $users = $this->service->getAllUser();
-        return view('Gerenciamento.User.users',compact('users'));
+        return view('Gerenciamento.User.users', compact('users'));
     }
-   
-   
+
+
     public function verTodosAdmins(): View
     {
         return view('Gerenciamento.Admin.admins');
     }
 
-  
+
     public function formcadastrarIdentidade(): View
     {
         return view('Cadastro.identidade');
@@ -183,9 +176,9 @@ class UserEnounController extends Controller
         return redirect()->route('inicio');
     }
 
-    public function meuPerfil() : View
+    public function meuPerfil(): View
     {
-       $meuPerfil =  $this->service->meuPerfil();
+        $meuPerfil =  $this->service->meuPerfil();
         return view('User.configuracoes', compact('meuPerfil'));
     }
 
@@ -196,8 +189,9 @@ class UserEnounController extends Controller
 
     public function cupom(Request $request)
     {
+
         $user = auth()->user();
-        $cupom = Cupom::where('codigoResgate',$request->cupom)->first();
+        $cupom = Cupom::where('codigoResgate', $request->cupom)->first();
         $user->cupons()->sync($cupom->id);
         return response(true);
     }
