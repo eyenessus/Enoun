@@ -86,7 +86,6 @@ class UserEnounController extends Controller
         return $this->service->autenticarUser($request);
     }
 
-
     public function sair(Request $request): RedirectResponse
     {
         return $this->service->sair($request);
@@ -111,7 +110,8 @@ class UserEnounController extends Controller
             'totalServicos' => $servico['totalservicos'],
             'produto' => $produto['produto'],
             'totalProdutos' => $produto['totalProdutos'],
-            'quantidadeP'=> $produto['quantidade']
+            'quantidadeP'=> $produto['quantidade'],
+            'quantidadeS'=>$servico['quantidade']
         ]);
     }
 

@@ -149,28 +149,26 @@ class ProdutoEloquentORM implements ProdutoEnounInterface
                     $quantidade[$index] = $respostaCache[$index];
                 }
             }
-           
+
             $total = array_sum(array_map(function ($quant, $valor) {
                 return $quant * $valor;
             }, $quantidade, $valorCont));
-        
-        } 
+        }
 
 
-            
-       
-        return ['produto' => collect($produto), 'totalProdutos' => $total, 'quantidade' => $usuario? 0 : $quantidade];
+
+
+        return ['produto' => collect($produto), 'totalProdutos' => $total, 'quantidade' => $usuario ? 0 : $quantidade];
     }
 
 
     public function removerDoCarrinho(string $id): void
     {
-        $this->redis->del('produto:' . $id);
         $usuario = auth()->user();
-        if($usuario)
-        {
+        $this->redis->del('produto:' . $id);
+        if ($usuario) {
             $usuario->produtosCarrinho()->detach($id);
-        }  
+        }
     }
 
     public function decrementarProduto(string $id): null | bool

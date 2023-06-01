@@ -17,10 +17,10 @@ use stdClass;
 class ServicoEloquentORM implements ServicoEnounInterface
 {
 
-    public function __construct(protected Servico $model,
-    protected Client $redis,
-    )
-    {
+    public function __construct(
+        protected Servico $model,
+        protected Client $redis,
+    ) {
     }
 
     public function getAll(): Collection
@@ -79,10 +79,19 @@ class ServicoEloquentORM implements ServicoEnounInterface
         if (!$servico = $this->model->findOrFail($id)) {
             return null;
         }
+        $tempo = 90 * 60; //tempo de cache do item dentro do carinho
+
+        if (!$produto = $this->model->findOrFail($id)) {
+            return null;
+        }
+
+        $this->redis->rpush('servico:' . $id, $produto); //adiciona a lista em memoria cache
+        $this->redis->expire('servico:' . $id, $tempo); //tempo de expirção aplicada
+
         if ($usuario) {
             $carrinhoDeservicos = $usuario->servicosCarrinho();
             $carrinhoDeservicos->syncWithoutDetaching($servico->id);
-            $carrinhoDeservicos->where('carrinho_id',$servico->id)->increment('quantidade');
+            $carrinhoDeservicos->where('carrinho_id', $servico->id)->increment('quantidade');
         }
         return true;
     }
@@ -90,7 +99,7 @@ class ServicoEloquentORM implements ServicoEnounInterface
 
     public function buscarMeusServicos(): array | null
     {
-     
+
 
         $total = 0;
         $usuario = auth()->user();
@@ -122,20 +131,22 @@ class ServicoEloquentORM implements ServicoEnounInterface
                     $quantidade[$index] = $respostaCache[$index];
                 }
             }
-           
+
             $total = array_sum(array_map(function ($quant, $valor) {
                 return $quant * $valor;
             }, $quantidade, $valorCont));
-        
-        } 
+        }
 
-        return ['servico' => collect($servico), 'totalservicos' => $total];
+        return ['servico' => collect($servico), 'totalservicos' => $total, 'quantidade' => $usuario ? 0 : $quantidade];
     }
 
     public function removerDoCarrinho(string $id): void
     {
         $usuario = auth()->user();
-        $usuario->servicosCarrinho()->detach($id);
+        $this->redis->del('servico:' . $id);
+        if ($usuario) {
+            $usuario->servicosCarrinho()->detach($id);
+        }
     }
 
     public function decrementarServico(string $id): null | bool
@@ -146,13 +157,12 @@ class ServicoEloquentORM implements ServicoEnounInterface
         }
         $carrinhoDeservicos = $usuario->servicosCarrinho();
         $carrinhoDeservicos->syncWithoutDetaching($servico->id);
-        $carrinhoDeservicos->where('carrinho_id',$servico->id)->decrement('quantidade');
-       $itemVazio =  $carrinhoDeservicos->where('quantidade', '<', 1)->first();
-       if($itemVazio)
-       {
-        $carrinhoDeservicos->detach($itemVazio->id);  
-       }
-         
+        $carrinhoDeservicos->where('carrinho_id', $servico->id)->decrement('quantidade');
+        $itemVazio =  $carrinhoDeservicos->where('quantidade', '<', 1)->first();
+        if ($itemVazio) {
+            $carrinhoDeservicos->detach($itemVazio->id);
+        }
+
         return true;
     }
 }
