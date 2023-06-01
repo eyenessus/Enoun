@@ -6,7 +6,8 @@ use App\Http\Controllers\Pay\PagseguroController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [EnounController::class, 'index'])->name('inicio');
-Route::get('/search/{search?}',[EnounController::class,'buscar'])->name('buscar');
+Route::get('/search/{search?}', [EnounController::class, 'buscar'])->name('buscar');
+
 Route::prefix('servicos')->group(
     function () {
         Route::get('/', [ServicoEnounController::class, 'index'])->name('servicos.index');
@@ -20,10 +21,6 @@ Route::prefix('produtos')->group(
         Route::get('/', [ProdutoEnounController::class, 'index'])->name('produtos.index');
     }
 );
-
-Route::fallback(function () {
-    return view('fallback');
-});
 
 Route::prefix('/home')->group(function () {
     Route::get('/sobre', [EnounController::class, 'sobre'])->name('sobre');
@@ -40,13 +37,14 @@ Route::prefix('user')->middleware('guest')->group(function () {
 
 Route::get('/carrinho', [UserEnounController::class, 'carrinho'])->name('carrinho.index');
 Route::post('/produto/{produto}/add', [ProdutoEnounController::class, 'adicionarPtCarrinho'])->name('produto.add.store');
+Route::delete('/produto/{produto}/delete', [ProdutoEnounController::class, 'removerDoCarrinho'])->name('produto.delete.destroy');
+Route::post('/produto/{produto}/remove', [ProdutoEnounController::class, 'decrementarDoCarrinho'])->name('produto.remove.store');
+Route::post('/servico/{servico}/add', [ServicoEnounController::class, 'adicionarSvCarrinho'])->name('servico.add.store');
+Route::delete('/servico/{servico}/delete', [ServicoEnounController::class, 'removerDoCarrinho'])->name('servico.delete.destroy');
+Route::post('/servico/{servico}/remove', [ServicoEnounController::class, 'decrementarDoCarrinho'])->name('servico.remove.store');
 
 Route::middleware('auth')->group(function () {
-    Route::delete('/produto/{produto}/delete', [ProdutoEnounController::class, 'removerDoCarrinho'])->name('produto.delete.destroy');
-    Route::post('/produto/{produto}/remove', [ProdutoEnounController::class, 'decrementarDoCarrinho'])->name('produto.remove.store');
-    Route::post('/servico/{servico}/add', [ServicoEnounController::class, 'adicionarSvCarrinho'])->name('servico.add.store');
-    Route::delete('/servico/{servico}/delete', [ServicoEnounController::class, 'removerDoCarrinho'])->name('servico.delete.destroy');
-    Route::post('/servico/{servico}/remove', [ServicoEnounController::class, 'decrementarDoCarrinho'])->name('servico.remove.store');
+    Route::get('/cupom', [UserEnounController::class, 'cupom']);
     Route::get('/login/logout', [UserEnounController::class, 'sair'])->name('sair');
     Route::get('/identidade', [UserEnounController::class, 'formcadastrarIdentidade'])->name('identidade');
     Route::get('/endereco', [UserEnounController::class, 'formEndereco'])->name('endereco');
@@ -73,7 +71,6 @@ Route::prefix('admin')->middleware(['auth', 'identificacao', 'admin'])->group(fu
     Route::get('/servico/{id}/edit', [ServicoEnounController::class, 'edit'])->name('servico.edit');
     Route::put('/servico/{id}', [ServicoEnounController::class, 'update'])->name('servico.update');
     Route::delete('/servico/{id}', [ServicoEnounController::class, 'destroy'])->name('servico.destroy');
-   
     Route::get('/formAssin', [MercadoPagoController::class, 'formAssinatura'])->name('formularioDeAssinatura');
 });
 
@@ -90,20 +87,20 @@ Route::prefix('mercadoPagoPay')->middleware(['auth', 'identificacao'])->group(fu
     Route::post('/editarCartao/{cartao}', [MercadoPagoController::class, 'atualizarCartao'])->name('editarCartao');
     Route::put('/atualizarCartao/{card}', [MercadoPagoController::class, 'update'])->name('atualizarCard');
     Route::post('/cliente/mp', [MercadoPagoController::class, 'criarCliente'])->name('criarClienteMP');
-    
     Route::post('/planoDeAssinatura/mp', [MercadoPagoController::class, 'criarPlanoAssinatura'])->name('planoDeAssinaturaMP');
     Route::get('/plano/assinatura', [MercadoPagoController::class, 'formularioPlanoAssinatura'])->name('formularioPlanoAssinatura');
     Route::get('/gerenciar/todos/assinaturas', [MercadoPagoController::class, 'verTodasAssinaturas'])->name('verTodasAssinaturas');
     Route::get('/planos/mp', [MercadoPagoController::class, 'verTodosPlanosDeAssinatura'])->name('verPlanosAssinatura');
+    Route::post('/assinarPlano/{id}', [MercadoPagoController::class, 'assinarPlano'])->name('assinarPlano');
+    Route::post('/assinatura/mp/', [MercadoPagoController::class, 'criarAssinatura'])->name('assinaturaMP');
 });
-Route::post('/notifications/mp', [MercadoPagoController::class, 'receberNotificacoes']);
+
 
 Route::prefix('pagSeguro')->middleware(['auth', 'identificacao'])->group(function () {
     Route::get('/pagSeguroCartao', [PagseguroController::class, 'index'])->name('pagSeguro');
     Route::post('/pagamentoPagSe', [PagseguroController::class, 'cartaoCredito'])->name('pagamentoCartaoPag');
     Route::get('/boletoPagSeguro', [PagseguroController::class, 'boleto'])->name('pagSeguroBoleto');
     Route::get('/pixPagSeguro', [PagseguroController::class, 'pix'])->name('pagSeguroPix');
-    Route::post('/notifications/pag', [PagseguroController::class, 'receberNotificacoes']);
     Route::get('/assinaturaRecorrente', [PagseguroController::class, 'assinaturaDeRecorrenciaInital'])->name('assinaturaPG');
     Route::get('/assinaturaRecorrenteSub', [PagseguroController::class, 'assinaturaDeRecorrenciaSubsequente'])->name('planoDeAssinaturaPG');
 });
@@ -113,10 +110,17 @@ Route::get('/user/perfil', [UserEnounController::class, 'meuPerfil'])->name('meu
 Route::get('/user/planos', [UserEnounController::class, 'meusPlanos'])->name('meusPlanos')->middleware('identificacao');
 Route::post('/apagarUser/{id}', [UserEnounController::class, 'destroy'])->name('apagarPerfil');
 Route::get('/editarPerfil/{id}', [UserEnounController::class, 'edit'])->name('editarPerfil');
-Route::put('/formUpdate/{id}',[UserEnounController::class, 'update'])->name('atualizarPerfil');
+Route::put('/formUpdate/{id}', [UserEnounController::class, 'update'])->name('atualizarPerfil');
 
-Route::post('/assinarPlano/{id}',[MercadoPagoController::class,'assinarPlano'])->name('assinarPlano');
 
-Route::post('/assinatura/mp/', [MercadoPagoController::class, 'criarAssinatura'])->name('assinaturaMP');
+//WEBOHOOKS
+Route::prefix('notifications')->group(function ()
+{
+    Route::post('/mp', [MercadoPagoController::class, 'receberNotificacoes']);
+    Route::post('/pag', [PagseguroController::class, 'receberNotificacoes']);
+});
 
-Route::get('/cupom',[UserEnounController::class,'cupom']);
+
+Route::fallback(function () {
+    return view('fallback');
+});
