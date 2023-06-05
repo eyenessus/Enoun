@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Mail\EnounMail;
 use App\Models\Carrinho;
 use App\Models\Servico;
 use App\Services\Enoun\EnounServices;
@@ -12,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 use Symfony\Component\VarDumper\VarDumper;
 
@@ -24,7 +26,7 @@ class EnounController extends Controller
     ) {
     }
     public function index(): View
-    {
+    {      
         $slide = $this->enounServices->slides();
         $plano = $this->mercadoService->buscarTodosPlanosDeAssinatura();
         $plano = collect($plano['results']);
