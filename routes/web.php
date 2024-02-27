@@ -111,3 +111,7 @@ Route::get('/assinaturaa', function () {
 Route::post('/gerar-token-cartao', [MercadoPagoController::class,'gerarAssinatura']);
 
 Route::get('/obterInfor', [EnounController::class, 'obterInfor']);
+
+Route::get('/ok',function(){
+    return view('pag');
+});

@@ -89,8 +89,7 @@ class MercadoPagoController extends Controller
 
         // Salve a preferência
         $preference->save();
-        dd($preference);
-
+       
         // Redirecione o usuário para a página de pagamento do Mercado Pago
         return redirect($preference->init_point);
     }
@@ -204,52 +203,60 @@ class MercadoPagoController extends Controller
     public function plano(Request $request)
     {
 
-        $params = array(
-            "reason" => "Enoun",
-            "auto_recurring" => array(
+        $params = [
+            "reason" => "rafael lindo",
+            "auto_recurring" => [
                 "frequency" => 1,
                 "frequency_type" => "months",
                 "repetitions" => 1,
                 "billing_day" => 5,
                 "billing_day_proportional" => true,
-                "free_trial" => array(
+                "free_trial" => [
                     "frequency" => 3,
                     "frequency_type" => "months"
-                ),
-                "transaction_amount" => 500,
+                ],
+                "transaction_amount" => 50,
                 "currency_id" => "BRL"
-            ),
-            "payment_methods_allowed" => array(
-                "excluded_payment_types" => array(
-                    array(
+            ],
+            "payment_methods_allowed" => [
+                "excluded_payment_types" => [
+                    [
                         "id" => "ticket"
-                    )
-                ),
-                "excluded_payment_methods" => array(
-                    array(
+                    ]
+                ],
+                "excluded_payment_methods" => [
+                    [
                         "id" => "amex"
-                    )
-                )
-            ),
+                    ]
+                ]
+            ],
             "back_url" => "https://www.yoursite.com"
-        );
+        ];
 
         $response = Http::withToken(env('MERCADO_PAGO_ACCESS_TOKEN'))
-            ->withHeaders([
-                'Content-Type' => 'application/json'
-            ])
-            ->post('https://api.mercadopago.com/preapproval_plan', $params);
-
-
-        if ($response->failed()) {
-            $error = $response->json();
-            return response()->json($error, $response->status());
-        }
-
-        $result = $response->json();
-        return response()->json($result, $response->status());
+        ->withHeaders([
+            'Content-Type' => 'application/json'
+        ])
+        ->post('https://api.mercadopago.com/preapproval_plan', $params);
+        dd($response->json());
     }
+    public function geradorToken()
+    {
 
+        $cardToken = new CardToken();
+        $cardToken->cardholderName = '[REDACTED_NAME]';
+        $cardToken->cardNumber = '[REDACTED_CARD_NUMBER]';
+        $cardToken->securityCode = '013';
+        $cardToken->expirationMonth = '03';
+        $cardToken->expirationYear = '2028';
+        $cardToken->identificationType = 'CPF';
+        $cardToken->identificationNumber = '[REDACTED_CPF]'; // insira o CPF do usuário aqui
+
+        $cardToken->save();
+        $cardTokenId = $cardToken->id;
+
+        return $cardTokenId;
+    }
     public function assinaturaa(Request $request)
     {
 
@@ -282,13 +289,13 @@ class MercadoPagoController extends Controller
     public function assinatura(Request $request)
     {
         $cartao = new Card();
-        $cartao->customer_id = '1330581867-sELyj5ZR8D91No';
-        $cartao->token=$request['token'];
+        $cartao->customer_id = '[REDACTED_CUSTOMER_ID]';
+        $cartao->token=$request['token'];   
         $cartao->save();
         //ofc
         $preapproval = new Preapproval();
-        $preapproval->payer_email = $request['email'];
-        $preapproval->preapproval_plan_id = '2c93808486feba790186ff29bc600037';
+        $preapproval->payer_email = 'test_user_1183031487@testuser.com';
+        $preapproval->preapproval_plan_id =null; //'2c93808486feba790186ff29bc600037';
         $preapproval->back_url = 'https://www.yourwebsite.com/return';
         $preapproval->auto_recurring = array(
             "frequency" => 1,
@@ -297,7 +304,7 @@ class MercadoPagoController extends Controller
             "currency_id" => "BRL",
             "repetitions" => 12
         );
-        $preapproval->status = "authorized";
+         $preapproval->status = "authorized";
         $preapproval->external_reference = "ok ok";
         $preapproval->card_token_id = $request['token'];
         $preapproval->reason = "Some reason";
@@ -336,15 +343,17 @@ class MercadoPagoController extends Controller
 
     public function criarCliente(Request  $request)
     {
-        //cria cliente e cartão
+        dd('');
+     
         $customer = new Customer();
-        $customer->email = 'testeone98675645@gmail.com';
+        $customer->email = '[REDACTED_EMAIL]';
         $customer->first_name = 'Emerson';
         $customer->last_name = 'Sousa';
         $customer->phone = array(
             'area_code' => '11',
             'number' => '[REDACTED_PHONE]'
         );
+       
         $customer->identification = array(
             'type' => 'CPF',
             'number' => '[REDACTED_CPF]'
@@ -361,17 +370,14 @@ class MercadoPagoController extends Controller
             'federal_unit' => 'SP',
             'country' => 'BR'
         );
-
-        // Salve o novo cliente na plataforma de pagamentos do MercadoPago
         $customer->save();
-
+        dd($customer);
         $card = new Card();
         $card->token = $request->input('token');
         $card->customer_id = $customer->id;
         $card->issuer = array("id" => "25");
         $card->payment_method = array("id" => "credit_card");
         $card->save();
-        dd($card);
     }
 
     public function buscarCliente()

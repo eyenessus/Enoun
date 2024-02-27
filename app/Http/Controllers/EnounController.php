@@ -20,6 +20,7 @@ class EnounController extends Controller
         if(auth()){
             $user = auth()->user();
         }
+        
         return view(
             'Inicio.inicio',
             ['inicio' => $noticias, 'slides' => $inforday,'user' => $user]
