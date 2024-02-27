@@ -14,9 +14,7 @@ class Pedido extends Model
     {
         return $this->belongsToMany(User::class);
     }
-
     protected $fillable = ['user_id'];
-
     protected $casts = [
         'descricao' => 'array',
         'quantidadeUnitaria' => 'array',

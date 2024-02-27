@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\MercadoPagoController;
 
 class EnounPostController extends Controller
-{  
+{
     protected $MercadoPago;
 
     public function __construct(MercadoPagoController $MercadoPago)
@@ -97,9 +97,9 @@ class EnounPostController extends Controller
 
         $usuarioLogado = auth()->user();
         $carrinho = $usuarioLogado->servicosAsCar;
-        
-        
-       
+
+
+
         //valor final
         $valorFinal = 0;
         foreach ($carrinho as $valor) {
@@ -116,7 +116,7 @@ class EnounPostController extends Controller
 
         //valor Unitario
         $valorUnitario = [];
-        for ($i = 0; $i < count($carrinho); $i++){
+        for ($i = 0; $i < count($carrinho); $i++) {
             array_push($valorUnitario, $carrinho[$i]['preco']);
         }
 
@@ -145,13 +145,9 @@ class EnounPostController extends Controller
         $usuarioLogado->pedidosAsWith()->attach($encontraPedidoFeito);
 
         $usuarioLogado->servicosAsCar()->detach(); //limpa items do carrinho
-       
-        
 
-        return $this->MercadoPago->criarPagamento($carrinho,$usuarioLogado,$encontraPedidoFeito);;
+      
+
+        return $this->MercadoPago->criarPagamento($carrinho, $usuarioLogado, $encontraPedidoFeito);;
     }
-
-  
-
-
 }

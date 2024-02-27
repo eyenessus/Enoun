@@ -8,7 +8,7 @@
     <title>Mercado Pago</title>
     <script src="https://sdk.mercadopago.com/js/v2"></script>
     <script>
-        const mp = new MercadoPago("APP_USR-4070c3e7-5cb0-4a7d-9b2f-0d1420b5fb71");
+        const mp = new MercadoPago("APP_USR-121fdff3-bdba-4031-80e1-3377bce876de");
     </script>
 </head>
 
@@ -228,5 +228,3 @@
         }
     </script>
 </body>
-
-</html>

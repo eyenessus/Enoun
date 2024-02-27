@@ -2,7 +2,7 @@
 @section('titulo', 'Carrinho de compras')
 @section('conteudo')
 
-   
+
 
     <div class="container">
 
