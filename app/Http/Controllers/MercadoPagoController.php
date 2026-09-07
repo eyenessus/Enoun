@@ -7,7 +7,6 @@ use App\Models\Pedido;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use MercadoPago\Card;
-use MercadoPago\CardToken;
 use MercadoPago\Customer;
 use MercadoPago\Item;
 use MercadoPago\Payer;
@@ -242,20 +241,9 @@ class MercadoPagoController extends Controller
     }
     public function geradorToken()
     {
-
-        $cardToken = new CardToken();
-        $cardToken->cardholderName = '[REDACTED_NAME]';
-        $cardToken->cardNumber = '[REDACTED_CARD_NUMBER]';
-        $cardToken->securityCode = '013';
-        $cardToken->expirationMonth = '03';
-        $cardToken->expirationYear = '2028';
-        $cardToken->identificationType = 'CPF';
-        $cardToken->identificationNumber = '[REDACTED_CPF]'; // insira o CPF do usuário aqui
-
-        $cardToken->save();
-        $cardTokenId = $cardToken->id;
-
-        return $cardTokenId;
+        return response()->json([
+            'message' => 'Card tokenization must be performed by the Mercado Pago frontend SDK.',
+        ], 410);
     }
     public function assinaturaa(Request $request)
     {
@@ -289,7 +277,7 @@ class MercadoPagoController extends Controller
     public function assinatura(Request $request)
     {
         $cartao = new Card();
-        $cartao->customer_id = '[REDACTED_CUSTOMER_ID]';
+        $cartao->customer_id = $request->string('customer_id')->toString();
         $cartao->token=$request['token'];   
         $cartao->save();
         //ofc
@@ -343,31 +331,43 @@ class MercadoPagoController extends Controller
 
     public function criarCliente(Request  $request)
     {
-        dd('');
-     
+        $data = $request->validate([
+            'email' => ['required', 'email'],
+            'first_name' => ['required', 'string'],
+            'last_name' => ['required', 'string'],
+            'phone_area_code' => ['required', 'string'],
+            'phone_number' => ['required', 'string'],
+            'identification_number' => ['required', 'string'],
+            'zip_code' => ['required', 'string'],
+            'street_name' => ['required', 'string'],
+            'street_number' => ['required', 'string'],
+            'neighborhood' => ['required', 'string'],
+            'city' => ['required', 'string'],
+            'state' => ['required', 'string'],
+        ]);
+
         $customer = new Customer();
-        $customer->email = '[REDACTED_EMAIL]';
-        $customer->first_name = 'Emerson';
-        $customer->last_name = 'Sousa';
+        $customer->email = $data['email'];
+        $customer->first_name = $data['first_name'];
+        $customer->last_name = $data['last_name'];
         $customer->phone = array(
-            'area_code' => '11',
-            'number' => '[REDACTED_PHONE]'
+            'area_code' => $data['phone_area_code'],
+            'number' => $data['phone_number'],
         );
        
         $customer->identification = array(
             'type' => 'CPF',
-            'number' => '[REDACTED_CPF]'
+            'number' => $data['identification_number'],
         );
         $customer->address = array(
-            'zip_code' => '[REDACTED_ZIP]',
-            'street_name' => 'Rua [REDACTED_ADDRESS]',
-            'street_number' => 38,
-            'neighborhood' => '[REDACTED_NEIGHBORHOOD]',
+            'zip_code' => $data['zip_code'],
+            'street_name' => $data['street_name'],
+            'street_number' => $data['street_number'],
+            'neighborhood' => $data['neighborhood'],
             'city' => array(
-                'name' => 'São Paulo',
-                'id' => 'BR-SP-44'
+                'name' => $data['city'],
             ),
-            'federal_unit' => 'SP',
+            'federal_unit' => $data['state'],
             'country' => 'BR'
         );
         $customer->save();
